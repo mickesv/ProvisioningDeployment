@@ -1,0 +1,237 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+blockquote {
+    font-style: italic;
+}
+
+table {
+    border-spacing: 5px;
+    background-color: #FAFAFA;
+    border-collapse: collapse;
+}
+
+table, td {
+    border: 1px solid black;    
+}
+
+.LogoBox {
+    height: 100px;
+    position: fixed;
+    width: 100%;
+    padding: 5px;
+    padding-left: 10px;
+    top: 0px;
+    left: 0px;
+    background-color: #FFFFFF;
+}
+
+.Logo {
+    height: 100px;
+}
+
+.LogoSpacer {
+    height: 50px;    
+}
+
+.FooterSpacer {
+    height: 100px;    
+}
+
+.Footer {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1em;
+  background-color: #efefef;
+  text-align: center;
+}
+
+.ProjectInfo {
+    box-sizing: content-box;
+    margin-bottom: 0.5em;
+    padding: 10px
+    
+}
+
+.OrionInfo {
+    box-sizing: content-box;
+    margin-bottom: 0.5em;
+    padding: 10px
+}
+
+.MessageBox {
+    text-align: center;
+    box-sizing: content-box;
+    border: 1px solid black;
+    border-radius: 5px;
+    background: #F0FFF0;
+    margin: 50px;
+    padding: 10px;
+    line-height: 2;
+}
+
+.QuickLinksBox {
+    text-align: center;
+    box-sizing: content-box;
+    border: 1px solid black;
+    border-radius: 5px;
+    background: #F0F0FF;
+    margin: 50px;
+    padding: 10px;
+    line-height: 2;
+}
+
+.SearchBox {
+    text-align: center;
+    box-sizing: content-box;
+    border: 1px solid black;
+    border-radius: 5px;
+    background: #F0F0FF;
+    margin: 50px;
+    padding: 10px;
+    line-height: 2;
+}
+
+.SearchHeader {
+    box-sizing: content-box;
+    margin-bottom: 0.5em;
+    padding: 10px
+}               
+
+.resultItem {
+    padding: 10px;
+    border-bottom: 1px solid grey;
+}
+
+.resultItem:nth-child(even) {
+    background: #F8F8FF;
+}
+
+.resultItem .sidebar {
+    float: left;
+    width: 3em;
+    vertical-align: top;
+    display: inline-block;
+}
+
+.resultItem .contents {
+    width: 90%
+    display: inline-block;    
+}
+
+.quickLookData.Trawled {
+    border: 1px solid grey;
+    border-radius: 5px;
+    padding: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.badge {
+    padding: 0px;
+    margin-right: 5px;
+    font: 10px "Lucida Grande", Helvetica, Arial, sans-serif;
+    border: 1px solid grey;
+    border-radius: 3px;
+    white-space: nowrap;
+    display: inline-block;
+}
+
+.badgeTag {
+    padding-left: 2px;
+    padding-right: 2px;
+    background: #008000;
+    text-align: center;
+    color: white;    
+}
+
+.badgeValue {
+    padding-left: 2px;
+    padding-right: 2px;
+    min-width: 10em;
+    text-align: center;    
+    background: #808080;
+    color: white;
+}
+
+.badge a {
+    color: white;
+    text-decoration: none;
+}
+
+.ComponentDetails .pulse {
+    float: left;
+    vertical-align: top;
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+}
+
+
+.ComponentDetails .contents {
+    display: inline-block;
+    margin: 5px;
+    width: calc(100% - 110px);
+}
+
+.ComponentDetails .feedback {
+    float: right;
+    text-align: right;
+    display: inline-block;    
+}
+
+.ComponentDetails .moreInfo {
+    display: inline-block;
+    text-align: right;
+    float: right;
+    padding: 10px;
+}
+
+.ComponentDetails .moreInfo #feedback {
+    width: 80%,
+    height: 2em;    
+}
+
+.ComponentDetails .submissionStatus {
+    background: #408040;
+    text-align: center;
+    color: white;
+    padding: 10px;
+    border: 1px solid grey;
+    border-radius: 3px;    
+}
+
+#search {
+    text-align: left;
+    width: 85%;
+    height: 2em;
+    padding-left: 5px;
+    border-radius:5px;
+    margin-left: 5px;
+}
+
+#searchLogo {
+    height: 50px;
+}
+
+#searchSpinner {
+    font-size: 30px;
+}
+
+.whatisthis {
+    padding: 0px;
+    margin-right: 5px;
+    font: 10px "Lucida Grande", Helvetica, Arial, sans-serif;
+    border-radius: 3px;
+    white-space: nowrap;
+    display: inline-block;
+    text-align: center;    
+}

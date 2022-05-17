@@ -1,0 +1,18 @@
+doctype html
+-var title='Quote Finder App'
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/css/style.css')
+    script(defer, src='https://use.fontawesome.com/releases/v5.0.8/js/all.js')
+  body
+    .LogoBox
+      img.Logo(src='/images/logo.png')
+    .LogoSpacer
+
+    block content
+
+    .FooterSpacer
+    .Footer
+      | #{title} -- Copyright 2022 
+      a(href='mailto:Mikael.Svahnberg@bth.se') Mikael Svahnberg      
