@@ -21,6 +21,7 @@ function startPage(req, res) {
     res.render('index');
 }
 
+dispatcher.initialise();
 
 // Listen for a client, set up search route
 // --------------------
@@ -36,7 +37,6 @@ io.on('connection', socket => {
         console.log('user disconnected');
     });
 });
-
 
 
 // Simple error handling

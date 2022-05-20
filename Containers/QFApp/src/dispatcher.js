@@ -1,20 +1,92 @@
+const RSMQPromise = require('rsmq-promise-native');
+const rsmq = new RSMQPromise({host: process.env.REDIS_HOST });
+const RSMQWorker = require('rsmq-worker');
+var textManager = require('./textmanager');
+
+const SEARCHQUEUE = 'searchJob';
+const DEFAULTTIMEOUT = 10000;
+var TIMEOUT = DEFAULTTIMEOUT;
+
+function createQueue(queueName) {
+    console.log('creaing queue: ', queueName);
+    return rsmq.deleteQueue({qname: queueName})
+        .catch(err => {} )
+        .then( () => rsmq.createQueue({qname: queueName}))
+        .then(done => console.log('Message Queue ' + queueName + ' created.'))
+        .catch(err => console.log(err));    
+}
+
+function initialise() {
+    if (!process.env.REDIS_HOST) {
+        console.log('WARNING: the environment variable REDIS_HOST is not set');
+    }
+
+    if (process.env.TIMEOUT) {
+        TIMEOUT = 1000 * process.env.TIMEOUT;
+    }
+    
+    return createQueue(SEARCHQUEUE);
+};
+
+module.exports.initialise = initialise;
+
+
+function formatJobs(searchString, texts, queueName) {
+    let jobs = [];
+    texts.forEach( j => jobs.push({searchString: searchString,
+                                   textName: j,
+                                   returnQueue: queueName}));
+    return jobs;
+}
+
+function sendJobs(jobs) {
+    // TODO as the number of texts/jobs grow, it will become painful to allocate memory for so many promises.
+    let prom = [];
+    jobs.forEach( j => prom.push(new Promise( () => {
+        console.log('Creating message for job', j);
+        rsmq.sendMessage( {qname: SEARCHQUEUE, message: JSON.stringify(j)} )
+    })));
+    return Promise.all(prom);
+}
+
+function startListeners(socket) {
+    console.log('Listening for results on message queue', socket.id);
+    let worker = new RSMQWorker(socket.id);
+    worker.on('message', (msg, next, id) => {
+        console.log('Response on queue', socket.id, id, msg);
+        socket.emit('answer', msg);
+        next();
+    });
+
+    worker.start();
+    setTimeout( () => { cleanup(socket, worker, 'timeout'); }, TIMEOUT);
+}
+
+function cleanup(socket, worker, reason) {
+    console.log('cleaning up for reason', reason);
+    worker.quit();
+    rsmq.deleteQueue({qname: socket.id});
+    socket.emit('done', {msg: reason} );                         
+}
 
 module.exports.dispatchSearch= (searchString, socket) => {
     console.log('Searching for : ' + searchString);
 
-    // For now, something dummy just to provide a staggered response
-    var responses = [];    
-    for (i =0; i < 10; i++) {
-        let ans = 'Responsepart ' + i;        
-        responses.push(delayRespond(socket, ans, i*1000))
-    }
-    Promise.all(responses)
-        .then( () => { socket.emit('done', {}); });
-};
+    // TODO
+    // - List available texts
+    // - Create returnQueue (use socket.id as name)
+    // - Format Jobs (one for each text) {searchString: , textTitle:, returnQueue: socket.id}
+    // - send jobs
+    // - Wait for returnMessage
+    //   - if returnMessage is "job started", increase workerCounter
+    //   - if returnMessage is "result", output in socket.emit
+    //   - if returnMessage is "job done", decrease workerCounter
+    // - if (workerCounter==0 || timeout (TIMEOUT == 10s || process.env.TIMEOUT)) socket.emit("done", {maybe-some-stats})
+    //   - …and close the returnQueue
 
-function delayRespond(socket, ans, delay) {
-    return new Promise( (res, rej) => {
-        setTimeout(res, delay);
-    })
-        .then( () => { socket.emit('answer', ans); } );
-}
+    let texts = textManager.listTexts();
+    let jobs = formatJobs(searchString, texts, socket.id);    
+    return createQueue(socket.id)
+        .then(() => startListeners(socket))
+        .then(() => sendJobs(jobs));
+};
