@@ -4,17 +4,8 @@ const RSMQWorker = require('rsmq-worker');
 var textManager = require('./textmanager');
 
 const SEARCHQUEUE = 'searchJob';
-const DEFAULTTIMEOUT = 10000;
+const DEFAULTTIMEOUT = 20000;
 var TIMEOUT = DEFAULTTIMEOUT;
-
-function createQueue(queueName) {
-    console.log('creaing queue: ', queueName);
-    return rsmq.deleteQueue({qname: queueName})
-        .catch(err => {} )
-        .then( () => rsmq.createQueue({qname: queueName}))
-        .then(done => console.log('Message Queue ' + queueName + ' created.'))
-        .catch(err => console.log(err));    
-}
 
 function initialise() {
     if (!process.env.REDIS_HOST) {
@@ -29,6 +20,36 @@ function initialise() {
 };
 
 module.exports.initialise = initialise;
+
+
+function createQueue(queueName) {
+    return rsmq.deleteQueue({qname: queueName})
+        .catch(err => {} )
+        .then( () => rsmq.createQueue({qname: queueName}))
+        .then(done => console.log('Created Message Queue', queueName))
+        .catch(err => console.log(err));    
+}
+
+function startListeners(queueName, socket) {
+    console.log('Listening for results on message queue', queueName);
+    let worker = new RSMQWorker(queueName, {host: process.env.REDIS_HOST });
+    worker.on('message', (msg, next, id) => {
+        console.log('Response on queue', queueName, id, msg);
+        socket.emit('answer', msg);
+        next();
+    });
+
+    worker.start();
+    setTimeout( () => { cleanup(queueName, socket, worker, 'timeout'); }, TIMEOUT);
+}
+
+function cleanup(queueName, socket, worker, reason) {
+    console.log('cleaning up for reason', reason);
+    worker.quit();
+    rsmq.deleteQueue({qname: queueName});
+    socket.emit('done', {msg: reason} );                         
+}
+
 
 
 function formatJobs(searchString, texts, queueName) {
@@ -49,25 +70,6 @@ function sendJobs(jobs) {
     return Promise.all(prom);
 }
 
-function startListeners(socket) {
-    console.log('Listening for results on message queue', socket.id);
-    let worker = new RSMQWorker(socket.id);
-    worker.on('message', (msg, next, id) => {
-        console.log('Response on queue', socket.id, id, msg);
-        socket.emit('answer', msg);
-        next();
-    });
-
-    worker.start();
-    setTimeout( () => { cleanup(socket, worker, 'timeout'); }, TIMEOUT);
-}
-
-function cleanup(socket, worker, reason) {
-    console.log('cleaning up for reason', reason);
-    worker.quit();
-    rsmq.deleteQueue({qname: socket.id});
-    socket.emit('done', {msg: reason} );                         
-}
 
 module.exports.dispatchSearch= (searchString, socket) => {
     console.log('Searching for : ' + searchString);
@@ -87,6 +89,6 @@ module.exports.dispatchSearch= (searchString, socket) => {
     let texts = textManager.listTexts();
     let jobs = formatJobs(searchString, texts, socket.id);    
     return createQueue(socket.id)
-        .then(() => startListeners(socket))
+        .then(() => startListeners(socket.id, socket))
         .then(() => sendJobs(jobs));
 };
