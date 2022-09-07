@@ -8,6 +8,7 @@ services:
       - ./Containers/QFApp/src:/app/src
     environment:
       REDIS_HOST: messagequeue
+      TEXTSTORE_HOST: textstore
 
   worker:
     image: qfworker

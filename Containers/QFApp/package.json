@@ -2,7 +2,6 @@
   "name": "qfapp",
   "version": "1.0.0",
   "description": "Frontend for QuoteFinder app",
-  "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon src/index.js"
@@ -11,6 +10,8 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.18.1",
+    "node-fetch": "^2.6.7",
+    "mongoose": "^6.3.3",
     "pug": "^3.0.2",
     "rsmq": "^0.12.4",
     "rsmq-promise-native": "^0.0.4",
