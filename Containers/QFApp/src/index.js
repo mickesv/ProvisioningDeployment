@@ -4,12 +4,16 @@ const port = 3000;
 const server = require('http').createServer(app);
 const io = require('socket.io')(server);
 const fetch = require('node-fetch');
+const os = require('os');
 var path = require('path');
 
 // TextManager manages all the texts in the database
 // Dispatcher manages the job queue
 const TextManager = require('./textManager');
 const Dispatcher = require('./dispatcher');
+
+// const serverIDMessage = { message: 'Server id: ' + os.hostname() };
+const serverIDMessage = {}; // No message
 
 // Set up Page Renderer
 app.set('views', path.join(__dirname, 'views'));
@@ -26,7 +30,7 @@ app.use('/', router);
 
 function startPage(req, res) {
     console.log('Loading start page from: ' + req.hostname);
-    return res.render('index');
+    return res.render('index', serverIDMessage);
 }
 
 function addTextPage(req, res) {
@@ -39,7 +43,8 @@ function listTextsPage(req, res) {
     let tm = new TextManager();
     return tm.connect()
         .then( tm.listTexts )
-        .then(texts => res.render('listTexts', {textList: texts}) );
+        .then(texts => res.render('index', {textList: texts,
+                                                ...serverIDMessage}) );
 }
 
 // Listen for a client, set up what to do on specific messages on the socket
@@ -126,5 +131,6 @@ app.use(function(err, req, res, next) {
 // All done, start listening
 server.listen(port, () => {
     console.log(`QuoteFinder app listening on port ${port}`);
+    console.log('Server id:', os.hostname());
 });
 

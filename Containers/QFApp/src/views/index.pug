@@ -6,9 +6,8 @@ block content
   script(src='/js/main.js')
   if message
     .MessageBox
-      // Don't remember what this was, but I'll keep it for now
       p.message #{message}
-      a(href=msgurl) [View]
+      // a(href=msgurl) [View]
   .SearchBox
     span.label Enter Words:
     input#search(type='search', placeholder='words (in order) to search for')
@@ -18,5 +17,11 @@ block content
       span#WorkerCount
     h2#SearchStatus
     div#Results
+    div#Texts
+      if textList
+        h2 Available Texts
+        ul
+          each val in textList
+            li= val
     
 
