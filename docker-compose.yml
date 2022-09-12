@@ -15,7 +15,7 @@ services:
     volumes:
       - ./Containers/QFWorker/src:/app/src
     deploy:
-      replicas: 5
+      replicas: 1
     environment:
       REDIS_HOST: messagequeue
       TEXTSTORE_HOST: textstore
@@ -45,3 +45,28 @@ volumes:
   textstore-data:
   mongo-config:
     
+#
+# Including this here so that you have a head start down the rabbit hole
+# This, along with suitable deploy/replicas setup of the "app" service above, should
+# *in theory* provide a loadbalancer for the web server.
+# The reason why this does not work is because I use socket.io for communicating
+# between the web client and the qfapp server. But if the loadbalancer distributes 
+# calls using round-robin, each socket call ends up on a new server.
+#
+# Avenue to explore: Do not use docker-compose to define the replicas, so that they
+# instead end up on separate ports; that way you can "lock" the loadbalancer (e.g. with
+# "ip_hash") so that all calls from one client end up on the same server.
+#
+# --------------------
+#   loadbalancer:
+#     image: nginx:latest
+#     volumes:
+#       - ./Containers/nginx-lb/nginx.conf:/etc/nginx/nginx.conf:ro
+#     depends_on:
+#       - app
+#     ports:
+#       - "8080:3000"
+# networks:
+#   default:
+#     driver: bridge
+#     name: app
