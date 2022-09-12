@@ -19,7 +19,7 @@ class TextManager {
 
         let connection = `mongodb://${dbServer}/${dbName}`
         return mongoose.connect(connection)
-            .then( () => console.log('Connected to database', dbName))
+            //.then( () => console.log('Connected to database', dbName))
             .catch( (err) => {
                 console.error('Database connection error', dbName);
                 console.error(' trying to connect to server:', connection);
@@ -32,7 +32,7 @@ class TextManager {
     }
 
     startSearch(job, nrthreads, searchStrategy) {
-        console.log('Starting search for', job.searchString);
+        //console.log('Starting search for', job.searchString);
         return Text.find({name: job.textTitle})
             .then(results => {
                 let batches = Array.from(Array(nrthreads), () => Array());
@@ -50,7 +50,7 @@ class TextManager {
 
     addText(title, contents) {
         contents = contents || '';
-        console.log('Storing text to database');
+        //console.log('Storing text to database');
         let lines = contents.split(/\n/);
         let firstLine = 0;
         let lastLine = firstLine + CHUNKSIZE;
@@ -65,7 +65,7 @@ class TextManager {
     }
     
     listTexts() {
-        console.log('Retrieving available text titles...');
+        //console.log('Retrieving available text titles...');
         return Text.distinct('name');
     }
 
