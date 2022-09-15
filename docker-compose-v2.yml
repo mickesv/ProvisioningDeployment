@@ -5,7 +5,7 @@ services:
     ports:
       - 8080:3000
     volumes:
-      - ./Containers/QFApp/src:/app/src
+      - ./Containers/Version2/QFApp/src:/app/src
     environment:
       REDIS_HOST: messagequeue
       TEXTSTORE_HOST: textstore
@@ -13,7 +13,7 @@ services:
   worker:
     image: qfworker
     volumes:
-      - ./Containers/QFWorker/src:/app/src
+      - ./Containers/Version2/QFWorker/src:/app/src
     deploy:
       replicas: 1
     environment:
