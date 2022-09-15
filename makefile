@@ -23,6 +23,10 @@ cleanv1-all:
 	docker rm -f textstore qfstandalone
 	docker network rm qfstandalone-net
 
-clean: cleanv1-all
+cleanv2-all:
+	docker rm -f $(shell docker ps -a -q)
+	docker volume rm -f quotefinder_mongo-config quotefinder_redis-conf quotefinder_redis-data quotefinder_textstore-data
+
+clean: cleanv1-all cleanv2-all
 	cd Containers && make clean
 
