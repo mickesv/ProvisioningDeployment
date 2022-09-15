@@ -1,0 +1,8 @@
+extends baselayout
+
+block content
+  h1 #{error.status} #{message}
+  p Please go back to the 
+    a(href='/') Start Page
+    | . 
+  //  pre #{error.stack}

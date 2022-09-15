@@ -1,0 +1,27 @@
+extends baselayout
+
+block content
+  script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js')
+  script(src='/socket.io/socket.io.js')
+  script(src='/js/main.js')
+  if message
+    .MessageBox
+      p.message #{message}
+      // a(href=msgurl) [View]
+  .SearchBox
+    span.label Enter Words:
+    input#search(type='search', placeholder='words (in order) to search for')
+  .SearchResults
+    div#WorkerStatus
+      span#WorkerHeading
+      span#WorkerCount
+    h2#SearchStatus
+    div#Results
+    div#Texts
+      if textList
+        h2 Available Texts
+        ul
+          each val in textList
+            li= val
+    
+
