@@ -1,0 +1,15 @@
+{
+  "name": "qfworker",
+  "version": "1.0.0",
+  "description": "backend worker for QuoteFinder app",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon src/index.js"
+  },
+  "author": "Mikael Svahnberg",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.1",
+    "mongoose": "^6.3.3"
+  }
+}

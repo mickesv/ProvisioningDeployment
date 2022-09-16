@@ -1,0 +1,35 @@
+version: "3.8"
+services:
+  app:
+    image: qfappv3
+    ports:
+      - 8080:3000
+    volumes:
+      - ./Containers/Version3/QFApp/src:/app/src
+    environment:
+      TEXTSTORE_HOST: textstore
+      WORKER: worker
+      TIMEOUT: 10
+
+  worker:
+    image: qfworkerv3
+    volumes:
+      - ./Containers/Version3/QFWorker/src:/app/src
+    deploy:
+      replicas: 5
+    environment:
+      TEXTSTORE_HOST: textstore
+      
+  textstore:
+    image: mongo
+    restart: always
+    command: --quiet --syslog
+    expose:
+      - "27017"
+    volumes:
+      - textstore-data:/data/db
+      - mongo-config:/data/configdb
+
+volumes:
+  textstore-data:
+  mongo-config:

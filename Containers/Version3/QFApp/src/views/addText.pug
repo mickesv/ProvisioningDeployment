@@ -1,0 +1,24 @@
+extends baselayout
+
+block content
+  script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js')
+  script(src='/socket.io/socket.io.js')
+  script(src='/js/addText.js')
+  if message
+    .MessageBox
+      p.message #{message}
+      // a(href=msgurl) [View]
+  .SearchBox
+    // FIXME Someday I may care enough to make sure the two text fields are properly aligned.
+    div.label Title: 
+      input#texttitle(placeholder='Title of the text')
+    div.label URL: 
+      input#texturl(type='text', placeholder='URL of text to add to database')
+    div
+      input#addtextbutton(type='button', value='Add', onclick='addText()')
+  .Status
+    div#Status
+  .Results
+    div#Results
+    
+
