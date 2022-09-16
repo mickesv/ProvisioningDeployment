@@ -25,14 +25,14 @@ cleanv1:
 
 cleanv1-all:
 	docker rm -f textstore qfstandalone
-	docker network rm qfstandalone-net
+	docker network prune -f
 
 cleanv2-all:
-	docker rm -f $(shell docker ps -a -q)
+	docker rm -f $(shell docker ps -a -q) dummy
 	docker volume rm -f quotefinder_mongo-config quotefinder_redis-conf quotefinder_redis-data quotefinder_textstore-data
 
 cleanv3-all:
-	docker rm -f $(shell docker ps -a -q)
+	docker rm -f $(shell docker ps -a -q) dummy
 	docker volume rm -f quotefinder_mongo-config quotefinder_textstore-data
 
 clean: cleanv1-all cleanv2-all cleanv3-all
