@@ -20,6 +20,14 @@ v3:
 	cd Containers && make v3
 	docker compose -f docker-compose-v3.yml up
 
+kubestart:
+	minikube start
+
+kubestatus:
+	kubectl get deployments
+	kubectl get pods
+#	minikube dashboard &
+
 cleanv1:
 	docker rm -f qfstandalone
 
