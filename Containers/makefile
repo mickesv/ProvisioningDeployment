@@ -6,6 +6,16 @@ v2: qfapp-v2 qfworker-v2
 
 v3: qfapp-v3 qfworker-v3
 
+image-list:
+	docker image ls
+
+# This rule is obviously not generic since the version name is hard coded
+# Keeping it here just so I know where to look for the commands needed.
+qfstandalone-push:
+	docker tag qfstandalone:latest mickesv/qfstandalone:version1
+	docker push mickesv/qfstandalone:version1
+
+
 qfstandalone:
 	cd Version1/QFStandalone && docker build -t qfstandalone .
 	touch qfstandalone
