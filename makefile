@@ -28,10 +28,22 @@ v3:
 	docker compose -f docker-compose-v3.yml up
 
 kube-v1: kubestart
-	kubectl apply -f kubernetes-config/v1-qfstandalone.yaml
+	kubectl apply -f kubernetes-config/v1-1-qfstandalone.yaml
 	sleep 3
 	minikube service qfapp-service
 	-kubectl get pods -o name | grep qfstandalone | xargs kubectl logs -f
+
+
+.ONESHELL:
+kube-v12: kubestart
+	@kubectl apply -f kubernetes-config/v1-2-qfstandalone.yaml -l data=config
+	@kubectl apply -f kubernetes-config/v1-2-qfstandalone.yaml -l app=textstore
+	@export textstoreip=$$(kubectl get services/textstore-service --template='{{.spec.clusterIP}}')	
+	kubectl get configmap/qfapp-config -o yaml | sed -r "s/NOTSET/$$textstoreip/" | kubectl apply -f -
+	kubectl apply -f kubernetes-config/v1-2-qfstandalone.yaml -l app=qfapp
+	sleep 5
+	minikube service qfapp-service
+	-kubectl get pods -o name | grep qfstandalone | head -1 | xargs kubectl logs -f
 
 
 # Kubernetes
@@ -66,7 +78,8 @@ cleanv3-all:
 	docker volume rm -f quotefinder_mongo-config quotefinder_textstore-data
 
 clean-kube-v1:
-	kubectl delete -f kubernetes-config/v1-qfstandalone.yaml
+#	-kubectl delete -f kubernetes-config/v1-1-qfstandalone.yaml # Only need to kill the most complete one.
+	-kubectl delete -f kubernetes-config/v1-2-qfstandalone.yaml
 
 clean: cleanv1-all cleanv2-all cleanv3-all
 	cd Containers && make clean

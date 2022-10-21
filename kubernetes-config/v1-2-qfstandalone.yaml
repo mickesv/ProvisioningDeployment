@@ -1,0 +1,152 @@
+# Changes from v1-1:
+# - Added Mongodb database. I am doing this as a separate StatefulSet and a Service, because I want them to run in their own pods.
+# - ConfigMap to store hostname for mongodb
+# - TODO: Make sure there are corresponding PersistentVolumes so I don't get a new one for each new mongodb replica.
+
+# ConfigMap to store TEXTSTORE_HOST variable in
+# --------------------
+# textstore_host MUST be set to NOTSET (case sensitive), since I will use sed to replace this with the right IP number when starting.
+# Unfortunately, I now need to start things in stages:
+# 1. apply this file and anything with the label "data=config"
+# 2. apply this file and anything with the label "app=textstore"
+# 3. get the spec.clusterIP from services/textstore-service
+# 4. extract the configMap, replace NOTSET with the ipnumber from step 3, and apply as a "new" configmap.
+# 5. apply this file and anything with the label "app=qfapp"
+#
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: qfapp-config
+  labels:
+    data: config
+data:
+  textstore_host: "NOTSET"
+---
+
+# QFStandalone
+# --------------------
+#
+# Service (LoadBalancer) to expose qfstandalone
+# "create a service before its corresponding backend..." https://kubernetes.io/docs/concepts/configuration/overview/
+#
+# Using "sessionAffinity=ClientIP" means that I can have more than one replica of the qfstandalone deployment,
+# since routing from the same client is always done to the same pod. This takes care of the socket-talk between
+# each client and their (now) corresponding express-server.
+# 
+apiVersion: v1
+kind: Service
+metadata:
+  name: qfapp-service
+  labels:
+    app: qfapp
+spec:
+  type: LoadBalancer
+  sessionAffinity: ClientIP
+  ports:
+  - name: http
+    port: 3000
+    nodePort: 30001
+    protocol: TCP
+  selector:
+    app: qfapp
+---
+# Deployment to launch one container of mickesv/qfstandalone in a pod.
+# A bit of repetitive "label app: qfapp" everywhere, but I /think/ they are all needed.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: qfstandalone
+  labels:
+    app: qfapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: qfapp
+  template:
+    metadata:
+      labels:
+        app: qfapp
+    spec:
+      containers:
+      - name: qfstandalone
+        image: mickesv/qfstandalone:version1
+        ports:
+        - containerPort: 3000
+        env:
+        - name: TEXTSTORE_HOST
+          valueFrom:
+            configMapKeyRef: 
+              name: qfapp-config
+              key: textstore_host
+---
+# TextStore
+# --------------------
+# - one container per pod running the image mongodb
+# - one headless service to access them.
+# - Two persistentVolumeClaims/mounts: textstore-data, and mongo-config
+# 
+# I also need two PersistentVolumes to match these claims. As per recommendations
+# these are specified in a separate file (so that someone with the right privileges can launch them)
+# Scrath that: the PV's are created automatically by minikube. May be different once you start
+# deploying to SomewhereOnTheCloud.
+# 
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: textstore-service
+  labels:
+    app: textstore
+spec:
+  clusterIP: 10.96.0.101   # Hardcoded clusterIP so that I can give that to the qfstandalone app.
+  ports:
+  - port: 27017
+    targetPort: mongodb-port
+  selector:
+    app: textstore
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: textstore
+  labels:
+    app: textstore
+spec:
+  serviceName: mongodb
+  replicas: 1
+  selector:
+    matchLabels:
+      app: textstore
+  template:
+    metadata:
+      labels:
+        app: textstore
+    spec:
+      containers:
+      - name: textstore
+        image: mongo
+        ports:
+        - containerPort: 27017
+          name: mongodb-port
+        volumeMounts:
+        - name: textstore-data
+          mountPath: /data/db
+        - name: mongo-config
+          mountPath: /data/configdb
+  volumeClaimTemplates:
+    - metadata:
+        name: textstore-data
+      spec:
+        accessModes: [ "ReadWriteMany" ]
+        resources:
+          requests:
+            storage: 10Mi
+    - metadata:
+        name: mongo-config
+      spec:
+        accessModes: [ "ReadWriteMany" ]
+        resources:
+          requests:
+            storage: 5Mi
+---
