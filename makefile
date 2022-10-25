@@ -35,16 +35,18 @@ kube-v1: kubestart
 
 
 .ONESHELL:
-kube-v12: kubestart
+kube-v12: kubestart kube-volumes
 	@kubectl apply -f kubernetes-config/v1-2-qfstandalone.yaml -l data=config
 	@kubectl apply -f kubernetes-config/v1-2-qfstandalone.yaml -l app=textstore
 	@export textstoreip=$$(kubectl get services/textstore-service --template='{{.spec.clusterIP}}')	
 	kubectl get configmap/qfapp-config -o yaml | sed -r "s/NOTSET/$$textstoreip/" | kubectl apply -f -
 	kubectl apply -f kubernetes-config/v1-2-qfstandalone.yaml -l app=qfapp
 	sleep 5
-	minikube service qfapp-service
+	-minikube service qfapp-service
 	-kubectl get pods -o name | grep qfstandalone | head -1 | xargs kubectl logs -f
 
+kube-volumes: kubestart
+	@-kubectl apply -f kubernetes-config/volumes.yaml
 
 # Kubernetes
 # --------------------
@@ -55,8 +57,14 @@ kubestop:
 	minikube stop
 
 kubestatus:
-	kubectl get deployments
-	kubectl get pods
+	@echo "Deployments:"; kubectl get deployments; echo ""
+	@echo "StatefulSets:"; kubectl get statefulSets; echo ""
+	@echo "Pods:"; kubectl get pods; echo ""
+	@echo "StorageClasses:"; kubectl get storageClass; echo ""
+	@echo "PersistentVolumes:"; kubectl get persistentVolumes; echo ""
+	@echo "PersistentVolumeClaims:";kubectl get persistentVolumeClaims; echo ""
+#	@-kubectl logs textstore-1 --all-containers  # Checking if second replica could start ok. If volumes are misconfigured, mongodb will fail.
+
 #	minikube dashboard &
 
 # Cleanups
@@ -79,7 +87,11 @@ cleanv3-all:
 
 clean-kube-v1:
 #	-kubectl delete -f kubernetes-config/v1-1-qfstandalone.yaml # Only need to kill the most complete one.
-	-kubectl delete -f kubernetes-config/v1-2-qfstandalone.yaml
+	-kubectl delete --cascade='foreground' -f kubernetes-config/v1-2-qfstandalone.yaml
+
+clean-kube-volumes:
+	-kubectl delete --cascade='foreground' -f kubernetes-config/volumes.yaml
+	-kubectl delete pvc --all
 
 clean: cleanv1-all cleanv2-all cleanv3-all
 	cd Containers && make clean

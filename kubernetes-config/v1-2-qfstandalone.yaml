@@ -1,7 +1,6 @@
 # Changes from v1-1:
 # - Added Mongodb database. I am doing this as a separate StatefulSet and a Service, because I want them to run in their own pods.
 # - ConfigMap to store hostname for mongodb
-# - TODO: Make sure there are corresponding PersistentVolumes so I don't get a new one for each new mongodb replica.
 
 # ConfigMap to store TEXTSTORE_HOST variable in
 # --------------------
@@ -91,6 +90,25 @@ spec:
 # Scrath that: the PV's are created automatically by minikube. May be different once you start
 # deploying to SomewhereOnTheCloud.
 # 
+# There are two paths forward here:
+# - One is to create separate resources for each PersistentVolumeClaim and then refer to these using the ...spec.volumes
+#   This will not work, since all replicas will then bind to this same PersistentVolume (claim), and MongoDB will choke
+#   since there is already a lock file in place.
+#   I am keeping this config commented out below the working config , for future reference.
+#
+# - The other is to use volumeClaimTemplates, that specifies what /each/ replica in the StatefulSet desires.
+#
+#   WARNING: If you then specify spec.storageClassName, kubernetes will go looking for that particular storageClass.
+#   If you /have/ this class specified, kubiot will dutifully wait for you to attach a persistentVolume to match that class.
+#   If you do attach a PV to the StorageClass, you are almost back to the first problem; for the next replica
+#   kubernetes will wait for /another/ PV to be attached to the StorageClass.
+#   ... So, the only solution I have right now is:
+#    - Do not specify spec.storageClassName
+#    - Do not specify any StorageClasses
+#    - Do not specify any PersistentVolumes
+#
+#    :grumpy-cat: Me no like.
+#
 ---
 apiVersion: v1
 kind: Service
@@ -99,7 +117,7 @@ metadata:
   labels:
     app: textstore
 spec:
-  clusterIP: 10.96.0.101   # Hardcoded clusterIP so that I can give that to the qfstandalone app.
+  clusterIP: 10.96.0.101   # Hardcoded clusterIP, but I don't think I need this anymore (with the configMap shenanigans)
   ports:
   - port: 27017
     targetPort: mongodb-port
@@ -138,15 +156,87 @@ spec:
     - metadata:
         name: textstore-data
       spec:
-        accessModes: [ "ReadWriteMany" ]
+        accessModes: ["ReadWriteOnce"]
+#        storageClassName: data
         resources:
-          requests:
+          requests: 
             storage: 10Mi
     - metadata:
         name: mongo-config
       spec:
-        accessModes: [ "ReadWriteMany" ]
+        accessModes: ["ReadWriteOnce"]
+#        storageClassName: config
         resources:
-          requests:
-            storage: 5Mi
+          requests: 
+            storage: 5Mi          
 ---
+
+# --------------------
+# This attempt does not work since all replicas bind to the same PersistentVolume
+# and MongoDB does not like this.
+# --------------------
+# ---
+# apiVersion: v1
+# kind: PersistentVolumeClaim
+# metadata:
+#   name: textstore-data
+#   labels:
+#     app: textstore
+# spec:
+#   accessModes:
+#   - ReadWriteOnce
+#   storageClassName: data
+#   resources:
+#     requests:
+#       storage: 10Mi
+# ---
+# apiVersion: v1
+# kind: PersistentVolumeClaim
+# metadata:
+#   name: textstore-config
+#   labels:
+#     app: textstore
+# spec:
+#   accessModes:
+#   - ReadWriteOnce
+#   storageClassName: config
+#   resources:
+#     requests:
+#       storage: 5Mi
+# ---
+# apiVersion: apps/v1
+# kind: StatefulSet
+# metadata:
+#   name: textstore
+#   labels:
+#     app: textstore
+# spec:
+#   serviceName: mongodb
+#   replicas: 2
+#   selector:
+#     matchLabels:
+#       app: textstore
+#   template:
+#     metadata:
+#       labels:
+#         app: textstore
+#     spec:
+#       containers:
+#       - name: textstore
+#         image: mongo
+#         ports:
+#         - containerPort: 27017
+#           name: mongodb-port
+#         volumeMounts:
+#         - name: textstore-data
+#           mountPath: /data/db
+#         - name: mongo-config
+#           mountPath: /data/configdb
+#       volumes:
+#         - name: textstore-data
+#           persistentVolumeClaim: 
+#             claimName: textstore-data
+#         - name: mongo-config
+#           persistentVolumeClaim: 
+#             claimName: textstore-config
+# ---

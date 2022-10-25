@@ -1,0 +1,57 @@
+#
+# Persistent Volumes
+# --------------------
+# This is a separate file, since this is usually managed by an admin and not the app developer.
+#
+# PV's can be dynamically created using StorageClasses, but I want to do this so I get control over the PV's.
+# Likewise, the storageClasses are created dynamically if not specified.
+
+# apiVersion: storage.k8s.io/v1
+# kind: StorageClass
+# metadata:
+#   name: data
+# reclaimPolicy: Delete
+# provisioner: kubernetes.io/no-provisioner
+# allowVolumeExpansion: true
+# volumeBindingMode: WaitForFirstConsumer
+# # volumeBindingMode: Immediate  # Bind as soon as someone makes a PV claim.
+# ---
+# apiVersion: storage.k8s.io/v1
+# kind: StorageClass
+# metadata:
+#   name: config
+# reclaimPolicy: Delete
+# provisioner: kubernetes.io/no-provisioner
+# allowVolumeExpansion: true
+# volumeBindingMode: WaitForFirstConsumer
+# # volumeBindingMode: Immediate  # Bind as soon as someone makes a PV claim.
+---
+# apiVersion: v1
+# kind: PersistentVolume
+# metadata:
+#   name: qfapp-data
+# spec:
+#   capacity:
+#     storage: 100Mi
+#   volumeMode: Filesystem
+#   accessModes:
+#     - ReadWriteOnce   # Mountable by one node per instance in read-write-mode
+#   storageClassName: data
+#   persistentVolumeReclaimPolicy: Delete  # or Recycle (deprecated) or Retain
+#   hostPath:
+#     path: "/tmp/kubernetes-volumes/data"
+# ---
+# apiVersion: v1
+# kind: PersistentVolume
+# metadata:
+#   name: qfapp-config
+# spec:
+#   capacity:
+#     storage: 50Mi
+#   volumeMode: Filesystem
+#   accessModes:
+#     - ReadWriteOnce
+#   storageClassName: config
+#   persistentVolumeReclaimPolicy: Delete  # or Recycle (deprecated) or Retain
+#   hostPath:
+#     path: "/tmp/kubernetes-volumes/config"
