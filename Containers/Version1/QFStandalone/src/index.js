@@ -143,3 +143,5 @@ server.listen(port, () => {
     console.log('Server id:', os.hostname());
 });
 
+// Start a connection just to test it.
+new TextManager().connect();
