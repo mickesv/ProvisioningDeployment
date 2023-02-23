@@ -35,16 +35,17 @@ class SimpleTextManager {
             console.log('WARNING: the environment variable TEXTSTORE_HOST is not set');        
         } else {
             dbServer = process.env.TEXTSTORE_HOST + ':' + dbPort;
-            let connection = `mongodb://${dbServer}/${dbName}`
-            return mongoose.connect(connection)
-                .then( () => console.log('Connected to database', dbName))
-                .catch( (err) => {
-                    console.error('Database connection error', dbName);
-                    console.error(' trying to connect to server:', connection);
-                    console.error('Error message is:', err);
-                    throw new Error('Failed to connect to database.');
-                });
         }
+
+        let connection = `mongodb://${dbServer}/${dbName}`
+        return mongoose.connect(connection)
+            .then( () => console.log('Connected to database', dbName))
+            .catch( (err) => {
+                console.error('Database connection error', dbName);
+                console.error(' trying to connect to server:', connection);
+                console.error('Error message is:', err);
+                throw new Error('Failed to connect to database.');
+            });
     }
 
     simpleSearch(searchString) {
