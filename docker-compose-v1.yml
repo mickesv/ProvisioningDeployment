@@ -1,0 +1,16 @@
+version: "3.8"
+services:
+  app:
+    image: qfstandalone
+    ports:
+      - 8080:3000
+    volumes:
+      - ./Containers/Version1/QFStandalone/src:/app/src
+    environment:
+      TEXTSTORE_HOST: textstore
+  textstore:
+    image: mongo
+    command: --quiet --syslog
+    expose:
+      - "27017"
+    
