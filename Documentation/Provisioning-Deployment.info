@@ -1,4 +1,4 @@
-This is Provisioning-Deployment.info, produced by makeinfo version 7.0.2
+This is Provisioning-Deployment.info, produced by makeinfo version 7.0.3
 from Provisioning-Deployment.texi.
 
 This is part of a course on Applied Cloud Computing and Big Data,
@@ -173,6 +173,16 @@ the course:
    • Cloud Provisioning and Deployment
    • The Business Case for Cloud Computing
    • Big Data Analytics
+
+   The course is divided across two source code repositories:
+
+   • <https://github.com/mickesv/QuoteFinder.git> contains the
+     instructions and source code for the Cloud Provisioning and
+     Deployment, and the Business Case for Cloud Computing parts of the
+     course.
+   • <https://github.com/mickesv/BigDataAnalytics.git> contains the
+     instructions and source code for the Big Data Analytics part of the
+     course.
 
    This document covers the first two of these themes, i.e.  Cloud
 Provisioning and Deployment, and The Business Case for Cloud Computing.
@@ -427,7 +437,7 @@ be able to:
    *Judgement and approach* On completion of the course, the student
 will be able to:
    • Be able to evaluate different reasons for choosing a cloud solution
-     and select a suitable solution accordingy accordingly.
+     and select a suitable solution accordingly accordingly.
 
 
 File: Provisioning-Deployment.info,  Node: Microservices and Lightweight Containers,  Next: Quiz Hypervisors and Lightweight Virtual Machines,  Prev: Introduction to Orchestration and Provisioning,  Up: Top
@@ -487,7 +497,7 @@ logic and deployment logic which is highly sought after.
 and language best suited for its particular responsibility.  Some may
 use a particular framework that dictate how to structure the code,
 others may be written in some high performance language, and others
-again may consist of a simple stringing together of a couple of unix
+again may consist of a simple stringing together of a couple of Unix
 commands.
 
    A third benefit is that with the separation between application logic
@@ -522,9 +532,9 @@ process, and have some mechanism to communicate between the processes
 (e.g.  sockets, remote procedure calls, pipes, file system, or through
 the database).  Challenges are that we still have to start and connect
 all the different parts of our system when running, and we need to build
-the logic ourself to scale up or down.  If we want to scale one part of
-our applicaion by starting more processes of the same type, we need to
-manage the logic for this.  If we want to “scale out” to another
+the logic ourselves to scale up or down.  If we want to scale one part
+of our application by starting more processes of the same type, we need
+to manage the logic for this.  If we want to “scale out” to another
 machine, we need to implement and manage the logic for this.  If one
 process writes to a particular file, all other processes are directly
 influenced by this, and need to have logic implemented to avoid
@@ -621,7 +631,7 @@ Typically, a Dockerfile will contain at least the following commands
 This can either be an image you have created yourself, or a ready-made
 image from Docker hub.  Example: ‘FROM node:18-alpine’ says that you
 want to use an image that has node.js version 18 installed on top of an
-Alpine linux install (which is a lightweight linux distribution, more
+Alpine Linux install (which is a lightweight Linux distribution, more
 than which you probably do not need).
 
    ‘RUN’ , which has a whole range of different parameters (
@@ -778,7 +788,7 @@ using it.
      --------------------------------------------------------------------------------------------------------------------------------
      Parameter   Parameter       Description
      --------------------------------------------------------------------------------------------------------------------------------
-     -d          –detach         Run the container in the bacgkround without any console interaction
+     -d          –detach         Run the container in the background without any console interaction
      -p          –publish        List the ports that should be exposed from inside the container to a specific port on the host OS
      -e          –env            Set environment variables inside the container
      -v          –volume         Mount a volume (or directory) from the host is into the container
@@ -811,7 +821,7 @@ using it.
      it again with ‘docker container stop <container-id>’ and ‘docker
      container start <container-id>’ .  If we stop the container we can
      also remove it completely (e.g.  in order to update with a newer
-     image): ‘docker container rm <container-id>’ (addding the
+     image): ‘docker container rm <container-id>’ (adding the
      “force”-flag ‘-f’ to rm will first stop the container if it is
      running, saving you one command: ‘docker rm -f <container-id>’).
 
@@ -877,7 +887,7 @@ seamlessly.
 that actually does emulate the virtual hardware as well.  So you can
 emulate an x86 architecture on top of a mac M1 machine, or vice versa.
 The installation and setup _looks_ more daunting than e.g.  Virtualbox
-does, but it is really quite easy – at least on a linux machine.  In my
+does, but it is really quite easy – at least on a Linux machine.  In my
 experience, Qemu is also much faster than a corresponding virtual
 machine in Virtualbox.
 
@@ -1066,7 +1076,7 @@ use this:
   3. The client checks the return queue until a message arrives.
 
    Having established that this is indeed possible, the question
-remains: Is this a good idea?  Please disuss this in small groups.
+remains: Is this a good idea?  Please discuss this in small groups.
 
    The message queue may be implemented in many ways.  We may, for
 example, use a dedicated table in our database (to which our entire
@@ -1135,7 +1145,7 @@ of this quiz is to serve as a learning aid allowing you to think about
 these concepts, and for us to keep track of your progress in the course.
 If you are unable to maintain the study pace required to submit this
 quiz on time, we want to be made aware of this so that you are able to
-re-plan your committment for the remainder of the course.
+re-plan your commitment for the remainder of the course.
 
 
 File: Provisioning-Deployment.info,  Node: Let's get Practical,  Next: Quiz Let's get Practical,  Prev: Quiz Hypervisors and Lightweight Virtual Machines,  Up: Top
@@ -1220,7 +1230,7 @@ available texts from the database.
                                                      ...serverIDMessage}) );
      }
 
-   Jade/Pug is out of scope for this brief walkthrough, but the
+   Jade/Pug is out of scope for this brief walk-through, but the
 templates used to render the pages can be found in the directory
 ‘/src/views’ .  One more thing to point out here is the use of
 _Promises_ rather than the usual callback hell that you often end up in
@@ -1363,7 +1373,7 @@ File: Provisioning-Deployment.info,  Node: Installing and Running QFStandalone, 
      scripted, configuration managed, and ready to go.
 
      *Tasks*
-       0. Open a terminal in whichever way your operating sustem expects
+       0. Open a terminal in whichever way your operating system expects
           you to.
 
        1. Create an empty directory on your machine, e.g.
@@ -1441,7 +1451,7 @@ File: Provisioning-Deployment.info,  Node: Installing and Running QFStandalone, 
      is ‘vagrant’, that there is a ‘package-lock.json’ file, and a
      ‘node_modules’ directory.
 
-       7. log out and start the Quotefinder app with ‘vagrant ssh -c 'cd
+       7. log out and start the QuoteFinder app with ‘vagrant ssh -c 'cd
           ~/Version1/QFStandalone && npm run dev'’
 
        8. We can now test the app.  Open a web browser to
@@ -1476,7 +1486,7 @@ File: Provisioning-Deployment.info,  Node: Installing and Running QFStandalone, 
 
      If you think it was cumbersome to edit the file like this, then any
      modern IDE ought to support opening a file over a network protocol.
-     In emacs, for example, you open the file as usual but with the
+     In Emacs, for example, you open the file as usual but with the
      search path
      ‘/vagrant:version1--app:/home/vagrant/Version1/QFStandalone/src/index.js’
      , i.e.  using the protocol ‘/vagrant:’ , open a file on the machine
@@ -1492,12 +1502,12 @@ File: Provisioning-Deployment.info,  Node: Installing and Running QFStandalone, 
      forced to sync files manually.
 
      *Summary* We have now
-       1. Configured a virual machine using Vagrant and a hypervisor of
+       1. Configured a virtual machine using Vagrant and a hypervisor of
           your choice.
        2. Provisioned the machine with the help of some shell scripting
           so that it has node.js installed and is running a MongoDB
           database.
-       3. Installed version 1 of the QoteFinder app.
+       3. Installed version 1 of the QuoteFinder app.
        4. Started the machine and let it set everything up.
        5. Started the QuoteFinder app and tested it to ensure that it is
           able to connect to the web client and the database.
@@ -1525,7 +1535,7 @@ File: Provisioning-Deployment.info,  Node: Installing and Running QFStandalone, 
      microservice.
 
      *Tasks* 0.[@0] Open up a terminal as before, create a new
-     subdirectory e.g.  ‘QuoteFinder/Version1/docker’ , and cd into it.
+     sub-directory e.g.  ‘QuoteFinder/Version1/docker’ , and cd into it.
 
        1. Clone the QuoteFinder repository: ‘git clone
           https://github.com/mickesv/QuoteFinder/’ , extract Version1 by
@@ -1612,7 +1622,7 @@ File: Provisioning-Deployment.info,  Node: Installing and Running QFStandalone, 
           eye on the output in the terminal.
 
        12. Let us now test editing the app.  On your host machine, open
-          up the file ‘src/index.js’ , find the functiion ‘startPage()’,
+          up the file ‘src/index.js’ , find the function ‘startPage()’,
           replace the return line with ‘return listTextsPage(req, res);’
           and save.  Notice that the app is reloaded directly, and when
           you reload the start page in your web browser you will now see
@@ -1720,7 +1730,7 @@ File: Provisioning-Deployment.info,  Node: Quiz Let's get Practical,  Next: Prov
 Please answer the following questions:
 
   1. QFStandalone depends on five javascript packages.  In what file are
-     these dependecies specified?
+     these dependencies specified?
   2. The dependencies are never installed on your host computer.  How do
      you instruct Docker that they should be installed?
   3. How do you instruct Vagrant that they should be installed?
@@ -1744,7 +1754,7 @@ of this quiz is to serve as a learning aid allowing you to think about
 these concepts, and for us to keep track of your progress in the course.
 If you are unable to maintain the study pace required to submit this
 quiz on time, we want to be made aware of this so that you are able to
-re-plan your committment for the remainder of the course.
+re-plan your commitment for the remainder of the course.
 
 
 File: Provisioning-Deployment.info,  Node: Provisioning and Orchestration,  Next: Quiz Provisioning and Orchestration,  Prev: Quiz Let's get Practical,  Up: Top
@@ -1788,7 +1798,7 @@ output to see what went wrong and how to modify the installation script.
 Docker, and the one we made with Vagrant.  Let us examine the
 differences.
 
-   With Docker we started with an amost ready machine (‘FROM
+   With Docker we started with an almost ready machine (‘FROM
 node:18-alpine’) , and the focus was to install _anything else_ that we
 needed and to further configure the microservice image.  We also had to
 repeat some of this configuration on the command line when we started a
@@ -1851,7 +1861,7 @@ network alias, preferred IP address, and forwarded ports can be
 configured.  Additional provisioning can also be added for each machine,
 but I would advise against this: it is better to rely on your designated
 provisioning tool for _all_ provisioning, and only include as little as
-is necessary to bootstrap this provisioning tool in your Vagranfile.
+is necessary to bootstrap this provisioning tool in your Vagrantfile.
 Separation of Concerns for the win!
 
 
@@ -1890,7 +1900,7 @@ look as follows:
            - "27017"
 
    And is started with ‘docker compose -f docker-compose-v1.yml up’.  I
-am not a fan of languages where whitespace has a semantic meaning, but
+am not a fan of languages where white-space has a semantic meaning, but
 with YAML we are unfortunately forced to accept this.  Going through the
 example above, we see that we define two services, ‘app’ and
 ‘textstore’, each based on a separate docker image (qfstandalone and
@@ -1927,12 +1937,12 @@ Kubernetes with the QuoteFinder app, but not quite yet.
 <http://saltstack.com/> .  In many ways, Salt is a combination of a
 provisioning tool and an orchestration tool.  Once a salt infrastructure
 is set up (with the ever so cool and hip names ‘salt-master’ and
-‘salt-minions’ ), one distributes jobs across this infastructure.  These
-jobs may be to query a minion for some state, or to run a specific
-(unix) command on a particular minion.  This also means that you can
+‘salt-minions’ ), one distributes jobs across this infrastructure.
+These jobs may be to query a minion for some state, or to run a specific
+(UNIX) command on a particular minion.  This also means that you can
 distribute any software to the minions so you can use and re-use your
 salt infrastructure over and over again with new jobs.  In that sense,
-it is closer to parallell computing platforms such as Hadoop, or even
+it is closer to parallel computing platforms such as Hadoop, or even
 Lambda Functions on e.g Azure or Amazon Web Services.
 
 
@@ -1967,7 +1977,7 @@ File: Provisioning-Deployment.info,  Node: Quiz Provisioning and Orchestration, 
 composing your architecture solution.  First, the underlying software
 architecture decisions shape the possible solutions.  Second, all the
 quality requirements (not the least including security) are still
-imporant and must be considered both on the architecture level and on
+important and must be considered both on the architecture level and on
 the implementation level.  Third, fancy principles and lofty software
 architectures are well and good, but once you start deploying your
 solution to a particular cloud provider using a particular technology
@@ -1998,7 +2008,7 @@ of this quiz is to serve as a learning aid allowing you to think about
 these concepts, and for us to keep track of your progress in the course.
 If you are unable to maintain the study pace required to submit this
 quiz on time, we want to be made aware of this so that you are able to
-re-plan your committment for the remainder of the course.
+re-plan your commitment for the remainder of the course.
 
 
 File: Provisioning-Deployment.info,  Node: Application Design and Development,  Next: Let's get Practical Again,  Prev: Quiz Provisioning and Orchestration,  Up: Top
@@ -2028,9 +2038,9 @@ deals with scaling the application should be easy to do.
    Trivially, an application can scale in two directions, i.e.
 _vertically_ by adding more resources within each node (e.g.  faster
 CPU’s, more memory, bigger disks), or _horizontally_ by adding more
-nodes.  One refers to this as _verically scaling up_, and _horizontally
+nodes.  One refers to this as _vertically scaling up_, and _horizontally
 scaling out_.  The goals of both these types of scalability is to
-support nore concurrent users or jobs, or to decrease response times.
+support more concurrent users or jobs, or to decrease response times.
 
    Using the same scalability mechanisms, one can also increase
 _reliability_ of an application, e.g.  by adding redundant nodes and a
@@ -2067,7 +2077,7 @@ Automation
      cloud resources.
 
    As a developer of a cloud-native application, these principles are in
-fact more or less sufficient.  The knowledge that new resoures are
+fact more or less sufficient.  The knowledge that new resources are
 always available and under the control of the application itself, as and
 when needed means that an application can be developed as a collection
 of standalone units.  For the _cloud provider_, however, a few more
@@ -2077,7 +2087,7 @@ model:
 Multitenancy, or Pooled Resources
      There may be any number of virtual resources running on each
      physical hardware unit, and any single user of a cloud service or
-     of cloud infrastrucure is not aware of who else may be sharing the
+     of cloud infrastructure is not aware of who else may be sharing the
      physical platform at any given point.  Each resource has its own
      CPU, memory, and disk, and is not aware of what else may be running
      next to it (or what they are paying for).
@@ -2193,9 +2203,9 @@ more modern programming languages as well, such as JavaScript and Java
 (with the introduction of the Streams API). The underlying principle of
 this programming pattern is to transform a list into another list by
 applying a function to each element in the list, i.e.  a _map_ from one
-domain to another.  Mutliple transformations can be daisy-chained
+domain to another.  Multiple transformations can be daisy-chained
 through a series of _maps_, and often this is sufficient to process the
-data as required.  Sometimes, something neeeds to be computed across an
+data as required.  Sometimes, something needs to be computed across an
 entire list, i.e.  _reduce_ the list down to for example a scalar.  This
 is done by applying a function together with an accumulator variable to
 each element in the list.
@@ -2203,7 +2213,7 @@ each element in the list.
                 map                 reduce
      (a b c)  -------> (a' b' c') ----------> X
 
-   As it happens, this programming pattern is eminently sutable for
+   As it happens, this programming pattern is eminently suitable for
 scaling.  In the extreme case, each application of the map function can
 be distributed to a separate node.  Since each element in the list and
 the application of the map function on that element is independent from
@@ -2261,7 +2271,7 @@ unavailable is another discussion.
 process the request right now.  For example, it did not get all of the
 message, some other component it relies on was temporarily unavailable,
 or it was busy doing some maintenance work.  In that case, the node
-should return a “busy signal”, for example a ‘503 service unavalable’
+should return a “busy signal”, for example a ‘503 service unavailable’
 return on a http request.  Good clients recognise this busy signal and
 have strategies for dealing with this.  Usually, a retry is sufficient,
 or maybe first wait a while and then retry.
@@ -2278,21 +2288,21 @@ it happens, this also enables redundancy in that if one data center
 fails, the work can be handed over to one of the application instances
 running on a different data center.
 
-   There is an overhead and a cost in runnining multiple instances of an
+   There is an overhead and a cost in running multiple instances of an
 application – even when using the cloud provider’s tools for moving the
-application around the world.  Unless there is a tanglible improvement
-in user experience, it may not be worth it to implement the multisite
+application around the world.  Unless there is a tangible improvement in
+user experience, it may not be worth it to implement the multisite
 deployment pattern.
 
    Another consideration is whether your deployments across the globe
-should shrink and grow over the course of a single day, to accomodate
+should shrink and grow over the course of a single day, to accommodate
 for the fact that users in a particular region are more or less active
 during a day (e.g.  more activity in the early evenings and less at
 night).
 
    *Content Delivery Network (CDN)* and *Valet Key* patterns Building a
 RESTful microservice usually means starting with some web framework in
-your programming environment (e.g.  an express appliation in node.js).
+your programming environment (e.g.  an express application in node.js).
 This means that you have an adequate or possibly decent web server that
 is good at executing the application code, but may not be great as a web
 server.  If your application is serving a lot of static contents, then
@@ -2334,7 +2344,7 @@ Accepting that nodes can fail or be taken offline at any time means that
 applications need to be built with this in mind.  Limitations in network
 speeds and a desire to make the best use of available computing
 resources influence where and how an application’s services are deployed
-(e.g., which parts of an application that are colocated or distributed
+(e.g., which parts of an application that are co-located or distributed
 closer to the customers) and indeed what constitutes a service in the
 first place (e.g.  inserting a content delivery network in the
 application).  In a more conceptual focus, the desire to enable scaling
@@ -2925,7 +2935,7 @@ let’s start by inspecting this file:
    There are only three services this time since the Redis store is no
 longer needed.  The images are tagged ‘v3’ to keep them separate from
 the previous version (They could probably have been named ‘qfapp:v3’ and
-‘qfworker:v3’ according to docker’s tag-numbering scheme, but they are
+‘qfworker:v3’ according to Docker’s tag-numbering scheme, but they are
 not really versions of the same app since they use a different
 architecture, and I like to live on the wild side).  The ‘app’ service
 has one additional environment variable set, but otherwise there are no
@@ -3039,7 +3049,7 @@ of this quiz is to serve as a learning aid allowing you to think about
 these concepts, and for us to keep track of your progress in the course.
 If you are unable to maintain the study pace required to submit this
 quiz on time, we want to be made aware of this so that you are able to
-re-plan your committment for the remainder of the course.
+re-plan your commitment for the remainder of the course.
 
 
 File: Provisioning-Deployment.info,  Node: Deployment with Kubernetes,  Next: Quiz Deployment with Kubernetes,  Prev: Quiz Design Decisions and Development Setup,  Up: Top
@@ -3101,7 +3111,7 @@ the application microservices are run.
   4. If the container need _Persistent Storage_ this is split into two
      parts.  The developer of container makes a _PersistentVolumeClaim_
      describing what type of persistent storage they need, and the
-     administrator of the Kubernetes kluster provides one or more
+     administrator of the Kubernetes cluster provides one or more
      _PersistentVolume_ to match the desired claims.
   5. A _Deployment_ describes the contents in a Pod on a slightly higher
      level, enabling Kubernetes to take more responsibility for e.g.
@@ -3122,7 +3132,7 @@ File: Provisioning-Deployment.info,  Node: Get Started with Kubernetes,  Next: A
 ================================
 
 You have already installed the necessary software to set up a very small
-kubernetes cluster (consisting of a single machine).  For Windows/Mac,
+Kubernetes cluster (consisting of a single machine).  For Windows/Mac,
 this is included in ‘Docker Desktop’ , although you may need to go into
 the settings and enable Kubernetes.  For Linux, you will use the
 standalone ‘minikube’, started with a simple ‘minikube start’ .  Check
@@ -3205,7 +3215,7 @@ me (!)  and use the ‘mickesv’ version.
 
    *Tasks*
   0. Open up a terminal and enter your ‘QuoteFinder’ directory.  Create
-     a new subdirectory, e.g.  ‘QuoteFinder/Kubernetes’ , and cd into
+     a new sub-directory, e.g.  ‘QuoteFinder/Kubernetes’ , and cd into
      it.
 
   1. Create the file ‘qfstandalone-v1-1.yaml’ and copy the configuration
@@ -3218,11 +3228,11 @@ me (!)  and use the ‘mickesv’ version.
   1. It is time to test if the web page is available.  In order to
      access the web page, we first need to find the external ip of the
      qfapp-service (Remember that the service is required to bridge from
-     the outside world to inside the kubernetes kluster).  Get the list
+     the outside world to inside the Kubernetes cluster).  Get the list
      of services through ‘kubectl get services’ , and you will notice
      that each service has both a ‘CLUSTER-IP’ and an ‘EXTERNAL-IP’.
      Right now, the service only has a Cluster-ip, which is internal to
-     Kubernetes.  Other containers inside the same kubernetes cluster
+     Kubernetes.  Other containers inside the same Kubernetes cluster
      may use this to access the qfapp-service, but we cannot use this
      address from the outside.  For this, we need the external IP, and
      this may still be listed as ‘<pending>’.
@@ -3246,15 +3256,15 @@ for you.
    The command to access the logs in a pod is ‘kubectl logs -f
 <podname>’, where the ‘-f’ flag means that we want to _follow_ the logs
 and continue to print anything that is added to them.  With a bit of
-unix elbow-grease, the following incantation should both find the name
+Unix elbow-grease, the following incantation should both find the name
 of the pod and attach itself to the log: ‘kubectl get pods -o name |
 grep qfstandalone | xargs kubectl logs -f’ .
 
    Breaking down the command, we see the following:
-   • The three parts are combined with unix pipes (the ‘|’ symbol).  The
+   • The three parts are combined with Unix pipes (the ‘|’ symbol).  The
      output (standard output, to be precise) of the command to the left
      of the pipe will be the input (standard input) for the command to
-     the right of the pipe.  This is how simple unix commands are
+     the right of the pipe.  This is how simple Unix commands are
      daisy-chained to each other to produce ever more complex tasks.
    • ‘kubectl get pods -o name’ prints the names (only the names) of all
      running pods.
@@ -3303,8 +3313,8 @@ deployment.
 
    First, of course, the database need to be started.  Since we want
 data to survive restarts, we will do this as a ‘StatefulSet’ .  This
-StatefulSet will launch an image of mongodb (as before).  It will also
-make two persistent VolumeClaims (as before); one for mongoDB’s
+StatefulSet will launch an image of MongoDB (as before).  It will also
+make two persistent VolumeClaims (as before); one for MongoDB’s
 configuration and one for the data.
 
    These Persistent Volume Claims are then matched to Persistent Volumes
@@ -3336,7 +3346,7 @@ any storageClassName, or any StorageClasses or PersistentVolumes at all.
 
    Almost finally, in order to access the replicas of the database, we
 need a Service, and any access (even from within the Kubernetes cluster)
-will ne done with the help of this service.
+will be done with the help of this service.
 
    We still need to configure the QuoteFinder app so that it can find
 and connect to the database.  One Kubernetes way to do this is via a
@@ -3439,7 +3449,7 @@ the ‘volumeMounts’ in the container spec above.
 will be replaced with the right IP during startup.
 
   3. Some edits are required for the qfapp container template to make
-     use of this configmap to set an environment variable (using the
+     use of this ConfigMap to set an environment variable (using the
      ‘env’ specification):
 
      spec:
@@ -3559,7 +3569,7 @@ of this quiz is to serve as a learning aid allowing you to think about
 these concepts, and for us to keep track of your progress in the course.
 If you are unable to maintain the study pace required to submit this
 quiz on time, we want to be made aware of this so that you are able to
-re-plan your committment for the remainder of the course.
+re-plan your commitment for the remainder of the course.
 
 
 File: Provisioning-Deployment.info,  Node: Scaling the Database,  Next: Edit a Container in a Pod in a Node in a Cluster,  Prev: Quiz Deployment with Kubernetes,  Up: Top
@@ -3590,7 +3600,7 @@ File: Provisioning-Deployment.info,  Node: Database Scaling,  Next: MongoDB Repl
 
    Yes.  Yes, we can.  The first and easiest way to scale is by scaling
 the node it runs on, i.e.  _vertical scaling_.  This implies increasing
-the number of CPUs, thhe amount of RAM, and/or increase the storage
+the number of CPUs, the amount of RAM, and/or increase the storage
 capacity.
 
    The second way to scale is by _replication_.  This creates duplicate
@@ -3660,7 +3670,7 @@ involve a certain amount of tool specific (MongoDB) incantation.
                                                    +--------------------+
 
    In practice, however, it doesn’t.  MongoDB does not know that there
-is such a thing as external LoadBalancers (and in any case it can not
+is such a thing as external Load-Balancers (and in any case it can not
 rely on that the user knows).  The MongoDB replica do also not want to
 assume this role, and if they did they would still need to decide which
 IP should be broadcast to the outside.  Instead, the design solution
@@ -3681,7 +3691,7 @@ The following items from the previous setup are generic enough that they
 do not require any modification at this stage:
 
 The qfapp-service
-     this service only enables access from the outside of the kubernetes
+     this service only enables access from the outside of the Kubernetes
      cluster, so there is no need to change it.
 The textstore-service
      this too will remain unchanged.  To be honest, I’m not sure whether
@@ -3693,15 +3703,15 @@ The volumeClaimTemplates for the textstore containers
 
      The ‘textstore StatefulSet’, does require some changes:
 
-        • For costmetic reasons, we replace the ‘serviceName’ to
+        • For cosmetic reasons, we replace the ‘serviceName’ to
           “textstore-service”.  This becomes part of the hostname (e.g.
           ‘textstore-0.textstore-service.default.svc.cluster.local’)
         • The number of ‘replicas’ starts out with the value ‘3’.
-        • The startup ‘command’ needs to be edited to start mongodb in
+        • The startup ‘command’ needs to be edited to start MongoDB in
           ReplicaSet mode: ‘["mongod", "--bind_ip", "0.0.0.0",
           "--replSet", "MainRepSet"’ .  Breaking this down:
              • listen to all network interfaces ‘--bind_ip 0.0.0.0’
-             • use the specified name for the replicaSet ‘--replSet
+             • use the specified name for the ReplicaSet ‘--replSet
                MainRepSet’
         • A _Readiness Probe_ is defined.  This will be used by
           Kubernetes to check whether the startup of a replica is ready
@@ -3778,13 +3788,13 @@ The volumeClaimTemplates for the textstore containers
           ---
 
      I am not a fan of that the URLs to each member in the cluster has
-     to be hardcoded like this ( ‘textstore_replicaset’ ), since this
+     to be hard-coded like this ( ‘textstore_replicaset’ ), since this
      limits the ability to scale up or down the number of replicas.
      Ideally, it should be as easy to change the ‘spec.replicas’ for the
-     StatefulSet and let Kuberentes re-apply.  In practice, this is now
+     StatefulSet and let Kubernetes re-apply.  In practice, this is now
      made much more difficult.
 
-  3. QfStandalone Deployment
+  3. QFStandalone Deployment
 
      As a start, the only edit to the qfstandalone deployment we make is
      to include the newly defined element from the ConfigMap.
@@ -3834,10 +3844,10 @@ The volumeClaimTemplates for the textstore containers
        1. Locate the ‘textstore StatefulSet’ and replace it with the
           version above.
 
-       2. Locate the ‘QFapp ConfigMap’ and replace it with the version
+       2. Locate the ‘QFApp ConfigMap’ and replace it with the version
           above.
 
-       3. Locate the ‘QfStandalone Deployment’ and replace it with the
+       3. Locate the ‘QFStandalone Deployment’ and replace it with the
           version above.
 
        4. Start everything: ‘kubectl apply -f qfstandalone-v1-3.yaml’
@@ -3899,7 +3909,7 @@ The volumeClaimTemplates for the textstore containers
           longer get any errors.
 
      *Summary* We have now:
-       1. Configured the simplest and unsafest possible mongodb
+       1. Configured the simplest and unsafest possible MongoDB
           replicaset without any form of authentication whatsoever.
        2. Created a single-phase startup where everything can be
           deployed with a single ‘kubectl apply’ command.
@@ -3969,10 +3979,10 @@ However, it is good to keep it short for the next step.  In fact, it
 would not be a bad idea to keep it under ‘/tmp’.)
 
    Unfortunately, this _still_ does not mean that we are able to access
-the files.  The reason for this is a kubernetes concept which we have
-not discussed yet, namely that of a _Node_.  A kubernetes node can be
+the files.  The reason for this is a Kubernetes concept which we have
+not discussed yet, namely that of a _Node_.  A Kubernetes node can be
 seen as the unit that would be run on one piece of (virtual) hardware.
-On this noe pods, volumes, etc.  are deployed.  ‘minikube’ is a
+On this node pods, volumes, etc.  are deployed.  ‘minikube’ is a
 single-node implementation of Kubernetes so there is not much more
 configuring to do, but if you deploy to a cloud provider you would get
 to decide how many nodes you want to run your application across, as
@@ -4016,7 +4026,7 @@ network filesystem if you are concerned with the security issues of
 NFS), and mount this as the container volume.
 
    The other option is to go the other direction and mount a local
-directory onto the kubernetes node, and then use a hostPath setup to
+directory onto the Kubernetes node, and then use a hostPath setup to
 propagate this mount into the container.  ‘minikube mount’ is able to do
 this, but due to bugs this is not working at the time of writing.
 
@@ -4038,11 +4048,11 @@ File: Provisioning-Deployment.info,  Node: Additional Concepts,  Next: Summary, 
 A few loose ends need to be tied up to complete this introduction to
 Kubernetes.  First, we are finally able to solve the previous problems
 that we had with scaling the frontend.  If you remember, the use of
-‘socket.io’ meant that it was difficult to use a simple loadbalancer to
+‘socket.io’ meant that it was difficult to use a simple load-balancer to
 scale the frontend since each client-server connection relied on a
 socket to be kept alive for the duration.  Well, one of the flags that
-can be given to a loadbalancer service is ‘spec.sessionAffinity:
-ClientIP’ , which means that kubernetes will stick all sessions
+can be given to a load-balancer service is ‘spec.sessionAffinity:
+ClientIP’ , which means that Kubernetes will stick all sessions
 originating from the same client IP to the same deployment instance.
 This is all that is required in order to be able to scale the number of
 replicas of the qfstandalone deployment.
@@ -4092,7 +4102,7 @@ user that clients can use e.g.  when querying the database.
 
    The shared key should of course not be bandied around like so much
 trash: If this key gets out then your database can become compromised by
-someone adding their own mongoDB instance to your ReplicaSet.  As soon
+someone adding their own MongoDB instance to your ReplicaSet.  As soon
 as the key is created, we should thus create a Kubernetes _Secret_ out
 of it, and then access this secret from within the containers.  This is
 similar to how you can use data from ConfigMaps in your containers.
@@ -4180,7 +4190,7 @@ high-performance computing unit in the same host computer (for example a
 graphics card), or to scale out and run an arbitrary number of replicas
 of the function at the cloud provider.  This pattern is not always
 applicable, but for _some_ computing tasks it really lends itself to
-creating a transparend and yet scalable solution.
+creating a transparent and yet scalable solution.
 
 
 File: Provisioning-Deployment.info,  Node: Summary,  Next: Assignment Build Something,  Prev: Additional Concepts,  Up: Top
@@ -4189,9 +4199,9 @@ File: Provisioning-Deployment.info,  Node: Summary,  Next: Assignment Build Some
 **********
 
 This is it!  We have reached the end of the road for what I wanted to
-cover in this course.  (See *note Learning Outcomes:: for a list of the
-relevant Learning Outcomes) To begin with, the following concepts have
-been explored:
+cover in this part of the course.  (See *note Learning Outcomes:: for a
+list of the relevant Learning Outcomes) To begin with, the following
+concepts have been explored:
 
    • Microservices as a Software Architecture Design Decision
    • Principles of Microservice Architectures
@@ -4236,7 +4246,7 @@ life may throw at you.
    While exploring these tools, there is one key principle that have
 permeated every step along the way: _Infrastructure as Code_ .  Only by
 treating the infrastructure, the deployment, in the same way as the rest
-of an applications codebase, are we able to maintain repeatable
+of an applications code-base, are we able to maintain repeatable
 orchestrations, where each individual part of a deployment is
 configuration managed and tested.
 
@@ -4257,7 +4267,7 @@ configuration managed and tested.
 
 
    The “only” thing remaining for You to do now is to prove that you too
-have learnt all this.  Read on to learn how.
+have learnt all this.  Read on to figure out how.
 
 
 File: Provisioning-Deployment.info,  Node: Assignment Build Something,  Next: Concept Index,  Prev: Summary,  Up: Top
@@ -4300,7 +4310,7 @@ application according to the following principles:
      to mitigate the identified challenges.
   4. A link to a configuration management repository (e.g.  git) where
      the source code of the application can be viewed.  This must also
-     include the code for your kubernetes deployment.
+     include the code for your Kubernetes deployment.
 
    Once delivered, _a meeting will be scheduled_ where you are expected
 to run and explain your application and its deployment.  Be prepared to
@@ -4490,7 +4500,7 @@ Concept Index
                                                               (line  15)
 * Ultimate Goal – Deploy Application to a Cloud Server: Introduction to Orchestration and Provisioning.
                                                               (line  83)
-* Verical Scaling:                       Principles of Microservice Architectures.
+* Vertical Scaling:                      Principles of Microservice Architectures.
                                                               (line  13)
 * Virtual Machine:                       Not Building Microservices -- Infrastructure As A Service.
                                                               (line   6)
@@ -4653,75 +4663,75 @@ Functions and Commands Index
 Tag Table:
 Node: Top1476
 Node: Document Overview5744
-Node: A Note on Reading Research Articles7932
-Node: Introduction to Orchestration and Provisioning11651
-Ref: introduction11946
-Node: Learning Outcomes18289
-Node: Microservices and Lightweight Containers19362
-Node: Building Microservices23626
-Node: A Quick Rundown of Docker Terminology26930
-Node: Dockerfile29040
-Node: Docker Commands32834
-Ref: Getting Help33154
-Ref: Docker image and Image Management34175
-Ref: Docker run and Container Management36232
-Ref: tabdocker-run-parameters36549
-Node: Not Building Microservices -- Infrastructure As A Service39185
-Node: Provisioning your Virtual Machine42740
-Node: Communicating Microservices and REST APIs44730
-Node: Other communication means48681
-Node: Quiz Hypervisors and Lightweight Virtual Machines53366
-Node: Let's get Practical56199
-Node: Introducing the QuoteFinder application56596
-Node: Install relevant software63088
-Ref: qemu-vagrant65063
-Node: Installing and Running QFStandalone65693
-Ref: Full Virtual Machine65956
-Ref: Docker74159
-Node: A Minimal Qemu Vagrantfile82926
-Node: Quiz Let's get Practical84257
-Node: Provisioning and Orchestration86025
-Node: Provisioning86344
-Node: Orchestration89897
-Node: Docker Compose91592
-Node: Cloud Orchestration93461
-Node: Quiz Provisioning and Orchestration95455
-Node: Application Design and Development98720
-Node: Principles of Microservice Architectures99173
-Node: Cloud Architecture Patterns104617
-Node: Introduction to YAML and Docker-Composeyml117025
-Node: Let's get Practical Again122364
-Node: Introducing Version 2 of the QuoteFinder app122849
-Node: Installing and Running Version 2 of QuoteFinder130582
-Node: Editing the Running Application134414
-Node: Scaling the Deployment137999
-Node: Cleanup and Summary139591
-Node: Introducing Version 3 of the QuoteFinder app142786
-Node: Quiz Design Decisions and Development Setup148450
-Node: Deployment with Kubernetes150592
-Ref: Deployment150828
-Node: Introduction to Kubernetes150925
-Node: Get Started with Kubernetes154122
-Node: Attach the Database162183
-Node: Quiz Deployment with Kubernetes169973
-Node: Scaling the Database173176
-Node: Database Scaling173503
-Node: MongoDB ReplicaSet176366
-Node: Setting up a MongoDB ReplicaSet in Kubernetes178464
-Ref: TextStore StatefulSet179253
-Ref: Qfapp ConfigMap181991
-Ref: QfStandalone Deployment182966
-Ref: Tasks184262
-Node: Edit a Container in a Pod in a Node in a Cluster188481
-Ref: kube-edit188748
-Node: Additional Concepts193965
-Node: Summary201278
-Node: Assignment Build Something204315
-Ref: assignment-build-something204499
-Node: Concept Index207925
-Node: Program Index219995
-Node: Files and Data Types Index225717
-Node: Functions and Commands Index226896
+Node: A Note on Reading Research Articles8367
+Node: Introduction to Orchestration and Provisioning12086
+Ref: introduction12381
+Node: Learning Outcomes18724
+Node: Microservices and Lightweight Containers19798
+Node: Building Microservices24062
+Node: A Quick Rundown of Docker Terminology27369
+Node: Dockerfile29479
+Node: Docker Commands33273
+Ref: Getting Help33593
+Ref: Docker image and Image Management34614
+Ref: Docker run and Container Management36671
+Ref: tabdocker-run-parameters36988
+Node: Not Building Microservices -- Infrastructure As A Service39623
+Node: Provisioning your Virtual Machine43178
+Node: Communicating Microservices and REST APIs45168
+Node: Other communication means49119
+Node: Quiz Hypervisors and Lightweight Virtual Machines53805
+Node: Let's get Practical56637
+Node: Introducing the QuoteFinder application57034
+Node: Install relevant software63527
+Ref: qemu-vagrant65502
+Node: Installing and Running QFStandalone66132
+Ref: Full Virtual Machine66395
+Ref: Docker74600
+Node: A Minimal Qemu Vagrantfile83367
+Node: Quiz Let's get Practical84698
+Node: Provisioning and Orchestration86466
+Node: Provisioning86785
+Node: Orchestration90339
+Node: Docker Compose92035
+Node: Cloud Orchestration93905
+Node: Quiz Provisioning and Orchestration95898
+Node: Application Design and Development99163
+Node: Principles of Microservice Architectures99616
+Node: Cloud Architecture Patterns105063
+Node: Introduction to YAML and Docker-Composeyml117472
+Node: Let's get Practical Again122811
+Node: Introducing Version 2 of the QuoteFinder app123296
+Node: Installing and Running Version 2 of QuoteFinder131029
+Node: Editing the Running Application134861
+Node: Scaling the Deployment138446
+Node: Cleanup and Summary140038
+Node: Introducing Version 3 of the QuoteFinder app143233
+Node: Quiz Design Decisions and Development Setup148897
+Node: Deployment with Kubernetes151038
+Ref: Deployment151274
+Node: Introduction to Kubernetes151371
+Node: Get Started with Kubernetes154568
+Node: Attach the Database162630
+Node: Quiz Deployment with Kubernetes170420
+Node: Scaling the Database173622
+Node: Database Scaling173949
+Node: MongoDB ReplicaSet176811
+Node: Setting up a MongoDB ReplicaSet in Kubernetes178910
+Ref: TextStore StatefulSet179699
+Ref: Qfapp ConfigMap182436
+Ref: QFStandalone Deployment183412
+Ref: Tasks184708
+Node: Edit a Container in a Pod in a Node in a Cluster188927
+Ref: kube-edit189194
+Node: Additional Concepts194412
+Node: Summary201727
+Node: Assignment Build Something204782
+Ref: assignment-build-something204966
+Node: Concept Index208392
+Node: Program Index220462
+Node: Files and Data Types Index226184
+Node: Functions and Commands Index227363
 
 End Tag Table
 

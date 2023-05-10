@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<!-- Created by GNU Texinfo 7.0.2, https://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 7.0.3, https://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <!-- This is part of a course on Applied Cloud Computing and Big Data, offered by Blekinge Institute of Technology. Version 1.0
@@ -207,6 +207,13 @@ Next: <a href="#A-Note-on-Reading-Research-Articles" accesskey="n" rel="next">A 
 </li><li>Big Data Analytics
 </li></ul>
 
+<p>The course is divided across two source code repositories:
+</p>
+<ul class="itemize mark-bullet">
+<li><a class="uref" href="https://github.com/mickesv/QuoteFinder.git">https://github.com/mickesv/QuoteFinder.git</a> contains the instructions and source code for the Cloud Provisioning and Deployment, and the Business Case for Cloud Computing parts of the course.
+</li><li><a class="uref" href="https://github.com/mickesv/BigDataAnalytics.git">https://github.com/mickesv/BigDataAnalytics.git</a> contains the instructions and source code for the Big Data Analytics part of the course.
+</li></ul>
+
 <p>This document covers the first two of these themes, i.e. Cloud Provisioning and Deployment, and The Business Case for Cloud Computing. The document is structured as a series of introductions to different topics mixed with hands-on tasks to exercise these topics. 
 </p>
 <p>The topic introductions and practical exercises are further punctuated by quizzes that (a) serve as checkpoints of important concepts that have been covered to that point, but also (b) introduce further reading material to deepen your understanding of the cloud computing business case. <strong class="strong">These quizzes are not marked</strong>, but serve as a learning aid; for you to summarise what you have learnt so far, and for us to keep track of your progress through the material.
@@ -365,7 +372,7 @@ Up: <a href="#Introduction-to-Orchestration-and-Provisioning" accesskey="u" rel=
 
 <p><strong class="strong">Judgement and approach</strong> On completion of the course, the student will be able to:
 </p><ul class="itemize mark-bullet">
-<li>Be able to evaluate different reasons for choosing a cloud solution and select a suitable solution accordingy accordingly.
+<li>Be able to evaluate different reasons for choosing a cloud solution and select a suitable solution accordingly accordingly.
 </li></ul>
 
 <hr>
@@ -395,7 +402,7 @@ Next: <a href="#Quiz-Hypervisors-and-Lightweight-Virtual-Machines" accesskey="n"
 </p>
 <p>One more benefit (some would argue it is the main benefit) is that there is no longer any need for multi-threaded programming. Each microservice can (and perhaps even should be) as single-threaded as possible. If one needs to scale the application this is done as part of the deployment rather than with the help of logic inside the application. This creates a <em class="emph">separation of concern</em> between application logic and deployment logic which is highly sought after.
 </p>
-<p>Another benefit is that each microservice can be written in the way and language best suited for its particular responsibility. Some may use a particular framework that dictate how to structure the code, others may be written in some high performance language, and others again may consist of a simple stringing together of a couple of unix commands.
+<p>Another benefit is that each microservice can be written in the way and language best suited for its particular responsibility. Some may use a particular framework that dictate how to structure the code, others may be written in some high performance language, and others again may consist of a simple stringing together of a couple of Unix commands.
 </p>
 <a class="index-entry-id" id="index-Governance"></a>
 <p>A third benefit is that with the separation between application logic and deployment logic it is easy to attach monitors to each microservice to gauge e.g. whether it is running, healthy, or overloaded. Logs can be created and inspected within each microservice, and temporary or permanent storage may be attached to each microservice.
@@ -421,7 +428,7 @@ Next: <a href="#A-Quick-Rundown-of-Docker-Terminology" accesskey="n" rel="next">
 
 <p>What do we then need to do in order to build our application as a collection of collaborating microservices?
 </p>
-<p>In the most basic level, we simply build our application as a collection of executables. We launch each executable as a separate process, and have some mechanism to communicate between the processes (e.g. sockets, remote procedure calls, pipes, file system, or through the database). Challenges are that we still have to start and connect all the different parts of our system when running, and we need to build the logic ourself to scale up or down. If we want to scale one part of our applicaion by starting more processes of the same type, we need to manage the logic for this. If we want to &ldquo;scale out&rdquo; to another machine, we need to implement and manage the logic for this. If one process writes to a particular file, all other processes are directly influenced by this, and need to have logic implemented to avoid conflicts.
+<p>In the most basic level, we simply build our application as a collection of executables. We launch each executable as a separate process, and have some mechanism to communicate between the processes (e.g. sockets, remote procedure calls, pipes, file system, or through the database). Challenges are that we still have to start and connect all the different parts of our system when running, and we need to build the logic ourselves to scale up or down. If we want to scale one part of our application by starting more processes of the same type, we need to manage the logic for this. If we want to &ldquo;scale out&rdquo; to another machine, we need to implement and manage the logic for this. If one process writes to a particular file, all other processes are directly influenced by this, and need to have logic implemented to avoid conflicts.
 </p>
 <a class="index-entry-id" id="index-chroot"></a>
 <p>Next level up, at least on UNIX systems, is through &lsquo;<samp class="samp">chroot</samp>&rsquo;. Through this program we basically &ldquo;sandbox&rdquo; the file system for a particular process so that we can have separate parts of our disk allocated to different processes (called a &ldquo;chroot jail&rdquo; ). Within this new root environment we can install tools only needed for this particular process. We can also have separate sections of our disk for e.g. testing environments and development environments, and we can isolate all dependencies from one process to only that which is available within its particular chroot jail.
@@ -487,7 +494,7 @@ Next: <a href="#Docker-Commands" accesskey="n" rel="next">Docker Commands</a>, P
 <p>Typically, a Dockerfile will contain at least the following commands (Most of which can appear more than once):
 </p>
 <a class="index-entry-id" id="index-Docker-FROM"></a>
-<p><code class="code">FROM</code> to specify which image to use as a base for the container. This can either be an image you have created yourself, or a ready-made image from Docker hub. Example: <code class="code">FROM node:18-alpine</code> says that you want to use an image that has node.js version 18 installed on top of an Alpine linux install (which is a lightweight linux distribution, more than which you probably do not need).
+<p><code class="code">FROM</code> to specify which image to use as a base for the container. This can either be an image you have created yourself, or a ready-made image from Docker hub. Example: <code class="code">FROM node:18-alpine</code> says that you want to use an image that has node.js version 18 installed on top of an Alpine Linux install (which is a lightweight Linux distribution, more than which you probably do not need).
 </p>
 <a class="index-entry-id" id="index-Docker-RUN"></a>
 <a class="index-entry-id" id="index-nodemon"></a>
@@ -611,7 +618,7 @@ myfirstimage                  latest      270970b0971b   5 seconds ago   232MB
 <div class="float" id="tabdocker_002drun_002dparameters">
 <table class="multitable">
 <thead><tr><th>Short</th><th>Long</th><th></th></tr><tr><th>Parameter</th><th>Parameter</th><th>Description</th></tr></thead>
-<tbody><tr><td>-d</td><td>&ndash;detach</td><td>Run the container in the bacgkround without any console interaction</td></tr>
+<tbody><tr><td>-d</td><td>&ndash;detach</td><td>Run the container in the background without any console interaction</td></tr>
 <tr><td>-p</td><td>&ndash;publish</td><td>List the ports that should be exposed from inside the container to a specific port on the host OS</td></tr>
 <tr><td>-e</td><td>&ndash;env</td><td>Set environment variables inside the container</td></tr>
 <tr><td>-v</td><td>&ndash;volume</td><td>Mount a volume (or directory) from the host is into the container</td></tr>
@@ -640,7 +647,7 @@ myfirstimage                  latest      270970b0971b   5 seconds ago   232MB
 <a class="index-entry-id" id="index-docker-container-start"></a>
 <a class="index-entry-id" id="index-docker-container-rm"></a>
 
-<p>the CONTAINER ID is used as a handle to do other things with the container. We can, for example, stop the container and later start it again with &lsquo;<samp class="samp">docker container stop &lt;container-id&gt;</samp>&rsquo; and &lsquo;<samp class="samp">docker container start &lt;container-id&gt;</samp>&rsquo; . If we stop the container we can also remove it completely (e.g. in order to update with a newer image): &lsquo;<samp class="samp">docker container rm &lt;container-id&gt;</samp>&rsquo; (addding the &ldquo;force&rdquo;-flag &lsquo;<samp class="samp">-f</samp>&rsquo; to rm will first stop the container if it is running, saving you one command: &lsquo;<samp class="samp">docker rm -f &lt;container-id&gt;</samp>&rsquo;).
+<p>the CONTAINER ID is used as a handle to do other things with the container. We can, for example, stop the container and later start it again with &lsquo;<samp class="samp">docker container stop &lt;container-id&gt;</samp>&rsquo; and &lsquo;<samp class="samp">docker container start &lt;container-id&gt;</samp>&rsquo; . If we stop the container we can also remove it completely (e.g. in order to update with a newer image): &lsquo;<samp class="samp">docker container rm &lt;container-id&gt;</samp>&rsquo; (adding the &ldquo;force&rdquo;-flag &lsquo;<samp class="samp">-f</samp>&rsquo; to rm will first stop the container if it is running, saving you one command: &lsquo;<samp class="samp">docker rm -f &lt;container-id&gt;</samp>&rsquo;).
 </p></li></ol>
 
 <hr>
@@ -692,7 +699,7 @@ Next: <a href="#Provisioning-your-Virtual-Machine" accesskey="n" rel="next">Prov
 <p>Of these, Virtualbox is free for use and available on most operating systems and mostly works without problems. It is, however, limited to x86 and AMD64/Intel64 hardware architectures so if you are using e.g. a more recent Mac you will not be able to use it. In those cases, you <em class="emph">can</em> make do with VMWare or Parallells, but each of them have their own unique set of error messages and challenges to overcome in order to work seamlessly.
 </p>
 <a class="index-entry-id" id="index-Qemu"></a>
-<p>Qemu <a class="uref" href="https://www.qemu.org/">https://www.qemu.org/</a> is a more powerful and free alternative that actually does emulate the virtual hardware as well. So you can emulate an x86 architecture on top of a mac M1 machine, or vice versa. The installation and setup <em class="emph">looks</em> more daunting than e.g. Virtualbox does, but it is really quite easy &ndash; at least on a linux machine. In my experience, Qemu is also much faster than a corresponding virtual machine in Virtualbox.
+<p>Qemu <a class="uref" href="https://www.qemu.org/">https://www.qemu.org/</a> is a more powerful and free alternative that actually does emulate the virtual hardware as well. So you can emulate an x86 architecture on top of a mac M1 machine, or vice versa. The installation and setup <em class="emph">looks</em> more daunting than e.g. Virtualbox does, but it is really quite easy &ndash; at least on a Linux machine. In my experience, Qemu is also much faster than a corresponding virtual machine in Virtualbox.
 </p>
 <hr>
 </div>
@@ -800,7 +807,7 @@ Previous: <a href="#Communicating-Microservices-and-REST-APIs" accesskey="p" rel
 </li><li> The client checks the return queue until a message arrives.
 </li></ol>
 
-<p>Having established that this is indeed possible, the question remains: Is this a good idea? Please disuss this in small groups.
+<p>Having established that this is indeed possible, the question remains: Is this a good idea? Please discuss this in small groups.
 </p>
 <a class="index-entry-id" id="index-Redis"></a>
 <a class="index-entry-id" id="index-MQTT"></a>
@@ -850,7 +857,7 @@ Next: <a href="#Let_0027s-get-Practical" accesskey="n" rel="next">Let&rsquo;s ge
 
 <p>There is a Quiz on Canvas where you can submit your article summaries and answers to the questions.
 </p>
-<p><strong class="strong">NOTICE:</strong> <em class="emph">This quiz does not contribute to the grade in the course. We do, however, require of you to submit the quiz on time.</em> The purpose of this quiz is to serve as a learning aid allowing you to think about these concepts, and for us to keep track of your progress in the course. If you are unable to maintain the study pace required to submit this quiz on time, we want to be made aware of this so that you are able to re-plan your committment for the remainder of the course.
+<p><strong class="strong">NOTICE:</strong> <em class="emph">This quiz does not contribute to the grade in the course. We do, however, require of you to submit the quiz on time.</em> The purpose of this quiz is to serve as a learning aid allowing you to think about these concepts, and for us to keep track of your progress in the course. If you are unable to maintain the study pace required to submit this quiz on time, we want to be made aware of this so that you are able to re-plan your commitment for the remainder of the course.
 </p>
 <hr>
 </div>
@@ -938,7 +945,7 @@ function listTextsPage(req, res) {
 <a class="index-entry-id" id="index-Jade"></a>
 <a class="index-entry-id" id="index-Pug"></a>
 <a class="index-entry-id" id="index-JavaScript-Promise"></a>
-<p>Jade/Pug is out of scope for this brief walkthrough, but the templates used to render the pages can be found in the directory <code class="code">/src/views</code> . One more thing to point out here is the use of <em class="emph">Promises</em> rather than the usual callback hell that you often end up in with JavaScript (the <code class="code">then()</code> - daisy-chain is a clue that Promises are being used).
+<p>Jade/Pug is out of scope for this brief walk-through, but the templates used to render the pages can be found in the directory <code class="code">/src/views</code> . One more thing to point out here is the use of <em class="emph">Promises</em> rather than the usual callback hell that you often end up in with JavaScript (the <code class="code">then()</code> - daisy-chain is a clue that Promises are being used).
 </p>
 <p>The rendered web page connects back to the express server using <em class="emph">socket.io</em> , so when a button is pressed in the web browser, this does not generate a new HTTP call back, but rather just a message on an already open communications socket. This seamlessly extends the event-driven architecture of node.js (with <code class="code">EventEmitter.emit()</code> and <code class="code">EventEmitter.on()</code> ) to also work across system boundaries to the web browser. In the directory <code class="code">/src/public/js</code> you will find the two client-side javascript files that takes care of this.
 </p>
@@ -1040,7 +1047,7 @@ Next: <a href="#A-Minimal-Qemu-Vagrantfile" accesskey="n" rel="next">A Minimal Q
 </p>
 <p><strong class="strong">Tasks</strong>
 </p><ol class="enumerate" start="0">
-<li> Open a terminal in whichever way your operating sustem expects you to.
+<li> Open a terminal in whichever way your operating system expects you to.
 
 </li><li> Create an empty directory on your machine, e.g. <code class="code">QuoteFinder/Version1/vagrant</code> , and cd into it.
 
@@ -1118,7 +1125,7 @@ drwxrwxr-x   4 vagrant vagrant   4096 Feb 23 11:37 src
 <p>Your specific version numbers may of course vary, but specific things to look at is that the node version is not something hopelessly outdated such as &lsquo;<samp class="samp">0.10.0</samp>&rsquo;, that the owner of the files is &lsquo;<samp class="samp">vagrant</samp>&rsquo;, that there is a &lsquo;<samp class="samp">package-lock.json</samp>&rsquo; file, and a &lsquo;<samp class="samp">node_modules</samp>&rsquo; directory.
 </p>
 <ol class="enumerate" start="7">
-<li> log out and start the Quotefinder app with <code class="code">vagrant ssh -c 'cd ~/Version1/QFStandalone &amp;&amp; npm run dev'</code>
+<li> log out and start the QuoteFinder app with <code class="code">vagrant ssh -c 'cd ~/Version1/QFStandalone &amp;&amp; npm run dev'</code>
 
 </li><li> We can now test the app. Open a web browser to <a class="uref" href="http://localhost:8080/add">http://localhost:8080/add</a> and click the &rsquo;Add&rsquo; button to add a book to your database. Your terminal window where the app is running will print some info, hopefully ending with <em class="emph">Text added.</em> If not, make note of any error messages printed.
 
@@ -1131,16 +1138,16 @@ drwxrwxr-x   4 vagrant vagrant   4096 Feb 23 11:37 src
 </li><li> In the function <code class="code">startPage()</code> , instead of directly return a page rendering, let us by default always list the available texts. So replace the return line with &lsquo;<samp class="samp">return listTextsPage(req, res);</samp>&rsquo; and save. Because we are internally using <code class="code">nodemon</code> <a class="uref" href="https://nodemon.io/">https://nodemon.io/</a> to start our app (this is specified in &lsquo;<samp class="samp">package.json</samp>&rsquo; ), the app is restarted whenever we save a file, which you can go back to your first terminal and verify.
 </li></ol>
 
-<p>If you think it was cumbersome to edit the file like this, then any modern IDE ought to support opening a file over a network protocol. In emacs, for example, you open the file as usual but with the search path <code class="code">/vagrant:version1--app:/home/vagrant/Version1/QFStandalone/src/index.js</code> , i.e. using the protocol <code class="code">/vagrant:</code> , open a file on the machine <code class="code">app</code> as specified in the Vagrantfile in the directory <code class="code">version1</code> , and then the full path to the file inside the guest machine.
+<p>If you think it was cumbersome to edit the file like this, then any modern IDE ought to support opening a file over a network protocol. In Emacs, for example, you open the file as usual but with the search path <code class="code">/vagrant:version1--app:/home/vagrant/Version1/QFStandalone/src/index.js</code> , i.e. using the protocol <code class="code">/vagrant:</code> , open a file on the machine <code class="code">app</code> as specified in the Vagrantfile in the directory <code class="code">version1</code> , and then the full path to the file inside the guest machine.
 </p>
 <p>Another approach (which is maybe more likely) is that you would develop locally in a sub-directory to where the Vagrantfile is located. By default Vagrant mounts this directory to <code class="code">/vagrant</code> on the guest machine (Please, do log in and check this). This is however not always the case. In some situations Vagrant has troubles keeping the host and the guest in sync, and you will be forced to sync files manually.
 </p>
 <p><strong class="strong">Summary</strong>
 We have now
 </p><ol class="enumerate">
-<li> Configured a virual machine using Vagrant and a hypervisor of your choice.
+<li> Configured a virtual machine using Vagrant and a hypervisor of your choice.
 </li><li> Provisioned the machine with the help of some shell scripting so that it has node.js installed and is running a MongoDB database.
-</li><li> Installed version 1 of the QoteFinder app.
+</li><li> Installed version 1 of the QuoteFinder app.
 </li><li> Started the machine and let it set everything up.
 </li><li> Started the QuoteFinder app and tested it to ensure that it is able to connect to the web client and the database.
 </li><li> Edited a file in the QuoteFinder app and seen the app restart and the changes immediately go live.
@@ -1159,7 +1166,7 @@ Run <code class="code">vagrant destroy -f</code> to take down the machine and sc
 <p>This time, we are going to fetch the QuoteFinder app and pretend to do our development locally, so that we are only <em class="emph">deploying</em> as a microservice.
 </p>
 <p><strong class="strong">Tasks</strong>
-0.[@0] Open up a terminal as before, create a new subdirectory e.g. <code class="code">QuoteFinder/Version1/docker</code> , and cd into it.
+0.[@0] Open up a terminal as before, create a new sub-directory e.g. <code class="code">QuoteFinder/Version1/docker</code> , and cd into it.
 </p>
 <ol class="enumerate">
 <li> Clone the QuoteFinder repository: <code class="code">git clone https://github.com/mickesv/QuoteFinder/</code> ,  extract Version1 by copying it <code class="code">cp -r QuoteFinder/Containers/Version1 .</code>  , and cd into the directory <code class="code">cd Version1/QFStandalone</code>
@@ -1227,7 +1234,7 @@ mickesv/qfstandalone:version1 # Use this image (the tag we previously set)
 
 </li><li> Go to <a class="uref" href="http://localhost:8080/">http://localhost:8080/</a> and search for something, e.g. &rsquo;prince&rsquo;. This will give a list of hits. Remember to keep an eye on the output in the terminal.
 
-</li><li> Let us now test editing the app. On your host machine, open up the file <code class="code">src/index.js</code> , find the functiion &lsquo;<samp class="samp">startPage()</samp>&rsquo;, replace the return line with &lsquo;<samp class="samp">return listTextsPage(req, res);</samp>&rsquo; and save. Notice that the app is reloaded directly, and when you reload the start page in your web browser you will now see a list of available texts.
+</li><li> Let us now test editing the app. On your host machine, open up the file <code class="code">src/index.js</code> , find the function &lsquo;<samp class="samp">startPage()</samp>&rsquo;, replace the return line with &lsquo;<samp class="samp">return listTextsPage(req, res);</samp>&rsquo; and save. Notice that the app is reloaded directly, and when you reload the start page in your web browser you will now see a list of available texts.
 </li></ol>
 
 <p>The reason why this works so much more seamlessly compared to the full-virtual-machine approach we tried before is because we are mounting the host directory into the guest with the <code class="code">-v ./src:/app/src</code> flag. In effect, we are replacing the entire &lsquo;<samp class="samp">src</samp>&rsquo; directory inside the container with whatever we have saved locally, thus overloading whatever we put in there when we created the image. If we remove the &lsquo;<samp class="samp">-v</samp>&rsquo; flag, we will revert back to whatever was in there when we created the image. As before, <code class="code">nodemon</code> restarts for us if it detects that a file has been changed.
@@ -1327,7 +1334,7 @@ Next: <a href="#Provisioning-and-Orchestration" accesskey="n" rel="next">Provisi
 <p>Please answer the following questions:
 </p>
 <ol class="enumerate">
-<li> QFStandalone depends on five javascript packages. In what file are these dependecies specified?
+<li> QFStandalone depends on five javascript packages. In what file are these dependencies specified?
 </li><li> The dependencies are never installed on your host computer. How do you instruct Docker that they should be installed?
 </li><li> How do you instruct Vagrant that they should be installed?
 </li><li> Which file/javascript module is responsible for setting up the http routes?
@@ -1340,7 +1347,7 @@ Next: <a href="#Provisioning-and-Orchestration" accesskey="n" rel="next">Provisi
 
 <p>There is a Quiz on Canvas where you can submit your article summaries and answers to the questions.
 </p>
-<p><strong class="strong">NOTICE:</strong> <em class="emph">This quiz does not contribute to the grade in the course. We do, however, require of you to submit the quiz on time.</em> The purpose of this quiz is to serve as a learning aid allowing you to think about these concepts, and for us to keep track of your progress in the course. If you are unable to maintain the study pace required to submit this quiz on time, we want to be made aware of this so that you are able to re-plan your committment for the remainder of the course.
+<p><strong class="strong">NOTICE:</strong> <em class="emph">This quiz does not contribute to the grade in the course. We do, however, require of you to submit the quiz on time.</em> The purpose of this quiz is to serve as a learning aid allowing you to think about these concepts, and for us to keep track of your progress in the course. If you are unable to maintain the study pace required to submit this quiz on time, we want to be made aware of this so that you are able to re-plan your commitment for the remainder of the course.
 </p>
 <hr>
 </div>
@@ -1375,7 +1382,7 @@ Next: <a href="#Orchestration" accesskey="n" rel="next">Orchestration</a>, Up: <
 </p>
 <p>We have already seen two forms of provisioning; the one we made with Docker, and the one we made with Vagrant. Let us examine the differences.
 </p>
-<p>With Docker we started with an amost ready machine (&lsquo;<samp class="samp">FROM node:18-alpine</samp>&rsquo;) , and the focus was to install <em class="emph">anything else</em> that we needed and to further configure the microservice image. We also had to repeat some of this configuration on the command line when we started a container based on this image.
+<p>With Docker we started with an almost ready machine (&lsquo;<samp class="samp">FROM node:18-alpine</samp>&rsquo;) , and the focus was to install <em class="emph">anything else</em> that we needed and to further configure the microservice image. We also had to repeat some of this configuration on the command line when we started a container based on this image.
 </p>
 <p>With Vagrant we started with a relatively clean linux install ( <code class="code">config.vm.box=&quot;bento/ubuntu-20.04&quot;</code> ), and then had to execute a series of shell commands in order to install the rest. We can not compare with the docker install straight off since we also installed a MongoDB database, and we downloaded the entire QuoteFinder repository (not just its dependencies) inside the virtual machine, but if you go back and look, you will notice that there was a bit of <code class="code">sudo apt-get update</code>, <code class="code">sudo apt-get install -y</code>, some <code class="code">echo</code> and <code class="code">cd here/and/there</code> , and some copying of files with &lsquo;<samp class="samp">cp</samp>&rsquo; . All the things you could expect to do interactively, but saved in the Vagrantfile to be able to run and re-run the provisioning at will. Technically, we <em class="emph">can</em> do all of this in our Dockerfile too, but there is generally less need for it.
 </p>
@@ -1399,7 +1406,7 @@ Next: <a href="#Docker-Compose" accesskey="n" rel="next">Docker Compose</a>, Pre
 <a class="index-entry-id" id="index-Orchestration"></a>
 <p>As the number of services we wish to deploy grows (actually, as soon as it grows to more than one, e.g. an application and a database), there is a need to manage the collection of deployments. An application may, for example, consist of several collaborating virtual machines, each requiring a specific provisioning and configuration of ports to forward, or there may be a desire to create more instances of the database and have some form of load balancing between them. This additional step is called <em class="emph">Orchestration</em>. Vagrant does both; orchestration of which virtual machines to start ( for example, <code class="code">config.vm.define &quot;app&quot;</code> creates one machine named &ldquo;app&rdquo;), and the provisioning of them ( &lsquo;<samp class="samp">config.vm.provision &quot;shell&quot;</samp>&rsquo; ). This is practical for smaller setups, but the desire to <em class="emph">separate concerns</em> means that it is soon desirable to delegate the provisioning to a provisioning tool such as Ansible and leave the Vagrantfile responsible only for the orchestration.
 </p>
-<p>With Vagrant, adding more machines is as easy as adding additional blocks of &lsquo;<samp class="samp">config.vm.define</samp>&rsquo;. For each defined virtual machine, the network alias, preferred IP address, and forwarded ports can be configured. Additional provisioning can also be added for each machine, but I would advise against this: it is better to rely on your designated provisioning tool for <em class="emph">all</em> provisioning, and only include as little as is necessary to bootstrap this provisioning tool in your Vagranfile. Separation of Concerns for the win!
+<p>With Vagrant, adding more machines is as easy as adding additional blocks of &lsquo;<samp class="samp">config.vm.define</samp>&rsquo;. For each defined virtual machine, the network alias, preferred IP address, and forwarded ports can be configured. Additional provisioning can also be added for each machine, but I would advise against this: it is better to rely on your designated provisioning tool for <em class="emph">all</em> provisioning, and only include as little as is necessary to bootstrap this provisioning tool in your Vagrantfile. Separation of Concerns for the win!
 </p>
 <hr>
 </div>
@@ -1434,7 +1441,7 @@ services:
       - &quot;27017&quot;
 </pre></div>
 
-<p>And is started with &lsquo;<samp class="samp">docker compose -f docker-compose-v1.yml up</samp>&rsquo;. I am not a fan of languages where whitespace has a semantic meaning, but with YAML we are unfortunately forced to accept this. Going through the example above, we see that we define two services, &lsquo;<samp class="samp">app</samp>&rsquo; and &lsquo;<samp class="samp">textstore</samp>&rsquo;, each based on a separate docker image (qfstandalone and mongo, respectively). Unless otherwise specified, MongoDB is quite chatty so the &lsquo;<samp class="samp">command:</samp>&rsquo; line is basically telling it to shut up and log things using the system logger instead. Do note that the network is implicitly defined, which is a relief.
+<p>And is started with &lsquo;<samp class="samp">docker compose -f docker-compose-v1.yml up</samp>&rsquo;. I am not a fan of languages where white-space has a semantic meaning, but with YAML we are unfortunately forced to accept this. Going through the example above, we see that we define two services, &lsquo;<samp class="samp">app</samp>&rsquo; and &lsquo;<samp class="samp">textstore</samp>&rsquo;, each based on a separate docker image (qfstandalone and mongo, respectively). Unless otherwise specified, MongoDB is quite chatty so the &lsquo;<samp class="samp">command:</samp>&rsquo; line is basically telling it to shut up and log things using the system logger instead. Do note that the network is implicitly defined, which is a relief.
 </p>
 <hr>
 </div>
@@ -1453,7 +1460,7 @@ Previous: <a href="#Docker-Compose" accesskey="p" rel="prev">Docker Compose</a>,
 </p>
 <a class="index-entry-id" id="index-SaltStack"></a>
 <a class="index-entry-id" id="index-Hadoop"></a>
-<p>Yet one more alternative worth mentioning is Salt and its SaltStack <a class="uref" href="http://saltstack.com/">http://saltstack.com/</a> . In many ways, Salt is a combination of a provisioning tool and an orchestration tool. Once a salt infrastructure is set up (with the ever so cool and hip names &lsquo;<samp class="samp">salt-master</samp>&rsquo; and &lsquo;<samp class="samp">salt-minions</samp>&rsquo; ), one distributes jobs across this infastructure. These jobs may be to query a minion for some state, or to run a specific (unix) command on a particular minion. This also means that you can distribute any software to the minions so you can use and re-use your salt infrastructure over and over again with new jobs. In that sense, it is closer to parallell computing platforms such as Hadoop, or even Lambda Functions on e.g Azure or Amazon Web Services.
+<p>Yet one more alternative worth mentioning is Salt and its SaltStack <a class="uref" href="http://saltstack.com/">http://saltstack.com/</a> . In many ways, Salt is a combination of a provisioning tool and an orchestration tool. Once a salt infrastructure is set up (with the ever so cool and hip names &lsquo;<samp class="samp">salt-master</samp>&rsquo; and &lsquo;<samp class="samp">salt-minions</samp>&rsquo; ), one distributes jobs across this infrastructure. These jobs may be to query a minion for some state, or to run a specific (UNIX) command on a particular minion. This also means that you can distribute any software to the minions so you can use and re-use your salt infrastructure over and over again with new jobs. In that sense, it is closer to parallel computing platforms such as Hadoop, or even Lambda Functions on e.g Azure or Amazon Web Services.
 </p>
 <hr>
 </div>
@@ -1474,7 +1481,7 @@ Next: <a href="#Application-Design-and-Development" accesskey="n" rel="next">App
 </li><li> Esteban Elias Romero, Carlos David Camacho, Carlos Enrique Montenegro, Óscar Esneider Acosta, Rubén González Crespo, Elvis Eduardo Gaona, and Marcelo Herrera Martínez. 2022. Integration of DevOps Practices on a Noise Monitor System with CircleCI and Terraform. ACM Trans. Manage. Inf. Syst. 13, 4, Article 36 (December 2022), 24 pages.
 </li></ol>
 
-<p>These articles provide different viewpoints with which to start composing your architecture solution. First, the underlying software architecture decisions shape the possible solutions. Second, all the quality requirements (not the least including security) are still imporant and must be considered both on the architecture level and on the implementation level. Third, fancy principles and lofty software architectures are well and good, but once you start deploying your solution to a particular cloud provider using a particular technology stack, things soon get ugly.
+<p>These articles provide different viewpoints with which to start composing your architecture solution. First, the underlying software architecture decisions shape the possible solutions. Second, all the quality requirements (not the least including security) are still important and must be considered both on the architecture level and on the implementation level. Third, fancy principles and lofty software architectures are well and good, but once you start deploying your solution to a particular cloud provider using a particular technology stack, things soon get ugly.
 </p>
 <p><strong class="strong">TODO</strong> Summarise each article/resource (no more than 1/2 page each) according to the following:
 </p>
@@ -1497,7 +1504,7 @@ Next: <a href="#Application-Design-and-Development" accesskey="n" rel="next">App
 
 <p>There is a Quiz on Canvas where you can submit your article summaries and answers to the questions.
 </p>
-<p><strong class="strong">NOTICE:</strong> <em class="emph">This quiz does not contribute to the grade in the course. We do, however, require of you to submit the quiz on time.</em> The purpose of this quiz is to serve as a learning aid allowing you to think about these concepts, and for us to keep track of your progress in the course. If you are unable to maintain the study pace required to submit this quiz on time, we want to be made aware of this so that you are able to re-plan your committment for the remainder of the course.
+<p><strong class="strong">NOTICE:</strong> <em class="emph">This quiz does not contribute to the grade in the course. We do, however, require of you to submit the quiz on time.</em> The purpose of this quiz is to serve as a learning aid allowing you to think about these concepts, and for us to keep track of your progress in the course. If you are unable to maintain the study pace required to submit this quiz on time, we want to be made aware of this so that you are able to re-plan your commitment for the remainder of the course.
 </p>
 <hr>
 </div>
@@ -1526,9 +1533,9 @@ Next: <a href="#Cloud-Architecture-Patterns" accesskey="n" rel="next">Cloud Arch
 <a class="index-entry-id" id="index-Maintainability"></a>
 <p>The key quality requirement for cloud architecture patterns is <em class="emph">Scalability</em>. This is a bit unusual, since most modularisation efforts rather focus on <em class="emph">Maintainability</em>. Digging deeper, the goal is of course always to create a maintainably scalable solution, i.e. where scalability is built in and therefore any maintainability task that deals with scaling the application should be easy to do.
 </p>
-<a class="index-entry-id" id="index-Verical-Scaling"></a>
+<a class="index-entry-id" id="index-Vertical-Scaling"></a>
 <a class="index-entry-id" id="index-Horizontal-Scaling"></a>
-<p>Trivially, an application can scale in two directions, i.e. <em class="emph">vertically</em> by adding more resources within each node (e.g. faster CPU&rsquo;s, more memory, bigger disks), or <em class="emph">horizontally</em> by adding more nodes. One refers to this as <em class="emph">verically scaling up</em>, and <em class="emph">horizontally scaling out</em>. The goals of both these types of scalability is to support nore concurrent users or jobs, or to decrease response times.
+<p>Trivially, an application can scale in two directions, i.e. <em class="emph">vertically</em> by adding more resources within each node (e.g. faster CPU&rsquo;s, more memory, bigger disks), or <em class="emph">horizontally</em> by adding more nodes. One refers to this as <em class="emph">vertically scaling up</em>, and <em class="emph">horizontally scaling out</em>. The goals of both these types of scalability is to support more concurrent users or jobs, or to decrease response times.
 </p>
 <a class="index-entry-id" id="index-Reliability"></a>
 <a class="index-entry-id" id="index-Extensibility"></a>
@@ -1554,7 +1561,7 @@ Next: <a href="#Cloud-Architecture-Patterns" accesskey="n" rel="next">Cloud Arch
 </p></dd>
 </dl>
 
-<p>As a developer of a cloud-native application, these principles are in fact more or less sufficient. The knowledge that new resoures are always available and under the control of the application itself, as and when needed means that an application can be developed as a collection of standalone units. For the <em class="emph">cloud provider</em>, however, a few more principles are desirable to make this an economically viable business model:
+<p>As a developer of a cloud-native application, these principles are in fact more or less sufficient. The knowledge that new resources are always available and under the control of the application itself, as and when needed means that an application can be developed as a collection of standalone units. For the <em class="emph">cloud provider</em>, however, a few more principles are desirable to make this an economically viable business model:
 </p>
 <a class="index-entry-id" id="index-Pooled-Resources"></a>
 <a class="index-entry-id" id="index-Multitenancy"></a>
@@ -1562,7 +1569,7 @@ Next: <a href="#Cloud-Architecture-Patterns" accesskey="n" rel="next">Cloud Arch
 <a class="index-entry-id" id="index-Commodity-Hardware"></a>
 <dl class="table">
 <dt>Multitenancy, or Pooled Resources</dt>
-<dd><p>There may be any number of virtual resources running on each physical hardware unit, and any single user of a cloud service or of cloud infrastrucure is not aware of who else may be sharing the physical platform at any given point. Each resource has its own CPU, memory, and disk, and is not aware of what else may be running next to it (or what they are paying for).
+<dd><p>There may be any number of virtual resources running on each physical hardware unit, and any single user of a cloud service or of cloud infrastructure is not aware of who else may be sharing the physical platform at any given point. Each resource has its own CPU, memory, and disk, and is not aware of what else may be running next to it (or what they are paying for).
 </p></dd>
 <dt>Virtualisation</dt>
 <dd><p>In order to support the above, virtualisation of resources is a required technical solution. Without virtualisation, neither multitenancy, automation, nor elastic scaling, would be possible.
@@ -1633,14 +1640,14 @@ This pattern is used to make the nodes more loosely connected. Without this patt
 
 <a class="index-entry-id" id="index-MapReduce"></a>
 <p><strong class="strong">MapReduce Pattern</strong>
-This gives me a chance to write about my favourite programming language, <em class="emph">lisp</em>, where this pattern is an intrinsic part of any data processing. Surprisingly, it reappears in more modern programming languages as well, such as JavaScript and Java (with the introduction of the Streams API). The underlying principle of this programming pattern is to transform a list into another list by applying a function to each element in the list, i.e. a <em class="emph">map</em> from one domain to another. Mutliple transformations can be daisy-chained through a series of <em class="emph">maps</em>, and often this is sufficient to process the data as required. Sometimes, something neeeds to be computed across an entire list, i.e. <em class="emph">reduce</em> the list down to for example a scalar. This is done by applying a function together with an accumulator variable to each element in the list.
+This gives me a chance to write about my favourite programming language, <em class="emph">lisp</em>, where this pattern is an intrinsic part of any data processing. Surprisingly, it reappears in more modern programming languages as well, such as JavaScript and Java (with the introduction of the Streams API). The underlying principle of this programming pattern is to transform a list into another list by applying a function to each element in the list, i.e. a <em class="emph">map</em> from one domain to another. Multiple transformations can be daisy-chained through a series of <em class="emph">maps</em>, and often this is sufficient to process the data as required. Sometimes, something needs to be computed across an entire list, i.e. <em class="emph">reduce</em> the list down to for example a scalar. This is done by applying a function together with an accumulator variable to each element in the list.
 </p>
 <div class="example">
 <pre class="example-preformatted">           map                 reduce
 (a b c)  -------&gt; (a' b' c') ----------&gt; X
 </pre></div>
 
-<p>As it happens, this programming pattern is eminently sutable for scaling. In the extreme case, each application of the map function can be distributed to a separate node. Since each element in the list and the application of the map function on that element is independent from all other elements, they can be executed asynchronously, and the results collected and collated into the modified list. The reduce function can be trickier to distribute since there may be a dependency on that elements are reduced in a specific order. However, with some clever use of the right data structures (in particular the <em class="emph">dictionary</em> data structure), it is possible to create parallelisable versions of reduce functions as well.
+<p>As it happens, this programming pattern is eminently suitable for scaling. In the extreme case, each application of the map function can be distributed to a separate node. Since each element in the list and the application of the map function on that element is independent from all other elements, they can be executed asynchronously, and the results collected and collated into the modified list. The reduce function can be trickier to distribute since there may be a dependency on that elements are reduced in a specific order. However, with some clever use of the right data structures (in particular the <em class="emph">dictionary</em> data structure), it is possible to create parallelisable versions of reduce functions as well.
 </p>
 <p>When parallelising this programming pattern e.g. in a cloud native application, important aspects to consider is to ensure that each element is truly independent of all other elements, and that the map function can operate on each element individually. Additional map/reduce steps may be necessary in order to preprocess the data to ensure this. Scalability-wise, there is an overhead cost for a new computing node, since data need to be pre-processed and distributed to the node and the results need to be collected and collated, so it is important to fine-tune the number of jobs assigned to each computing node for optimal performance.
 </p>
@@ -1656,7 +1663,7 @@ The fundamental programming principle in a cloud native application is that <em 
 </p>
 <p>When and whether to alert the load balancer that a node might be unavailable is another discussion.
 </p>
-<p>Sometimes, a node is not completely down, it is just unable to process the request right now. For example, it did not get all of the message, some other component it relies on was temporarily unavailable, or it was busy doing some maintenance work. In that case, the node should return a &ldquo;busy signal&rdquo;, for example a &lsquo;<samp class="samp">503 service unavalable</samp>&rsquo; return on a http request. Good clients recognise this busy signal and have strategies for dealing with this. Usually, a retry is sufficient, or maybe first wait a while and then retry.
+<p>Sometimes, a node is not completely down, it is just unable to process the request right now. For example, it did not get all of the message, some other component it relies on was temporarily unavailable, or it was busy doing some maintenance work. In that case, the node should return a &ldquo;busy signal&rdquo;, for example a &lsquo;<samp class="samp">503 service unavailable</samp>&rsquo; return on a http request. Good clients recognise this busy signal and have strategies for dealing with this. Usually, a retry is sufficient, or maybe first wait a while and then retry.
 </p>
 
 <p><strong class="strong">Colocate Pattern</strong> and <strong class="strong">Multisite Deployment Pattern</strong>
@@ -1664,13 +1671,13 @@ Nodes that work closely together should also be located as close to each other a
 </p>
 <p>This principle extends to the end users. By deploying an application to many data centers across the world, users can be routed to the instance running closest to them, thereby reducing network latency. As it happens, this also enables redundancy in that if one data center fails, the work can be handed over to one of the application instances running on a different data center.
 </p>
-<p>There is an overhead and a cost in runnining multiple instances of an application &ndash; even when using the cloud provider&rsquo;s tools for moving the application around the world. Unless there is a tanglible improvement in user experience, it may not be worth it to implement the multisite deployment pattern.
+<p>There is an overhead and a cost in running multiple instances of an application &ndash; even when using the cloud provider&rsquo;s tools for moving the application around the world. Unless there is a tangible improvement in user experience, it may not be worth it to implement the multisite deployment pattern.
 </p>
-<p>Another consideration is whether your deployments across the globe should shrink and grow over the course of a single day, to accomodate for the fact that users in a particular region are more or less active during a day (e.g. more activity in the early evenings and less at night).
+<p>Another consideration is whether your deployments across the globe should shrink and grow over the course of a single day, to accommodate for the fact that users in a particular region are more or less active during a day (e.g. more activity in the early evenings and less at night).
 </p>
 
 <p><strong class="strong">Content Delivery Network (CDN)</strong> and <strong class="strong">Valet Key</strong> patterns
-Building a RESTful microservice usually means starting with some web framework in your programming environment (e.g. an express appliation in node.js). This means that you have an adequate or possibly decent web server that is good at executing the application code, but may not be great as a web server. If your application is serving a lot of static contents, then it may not be able to keep up with the dynamic requests that will execute your application code.
+Building a RESTful microservice usually means starting with some web framework in your programming environment (e.g. an express application in node.js). This means that you have an adequate or possibly decent web server that is good at executing the application code, but may not be great as a web server. If your application is serving a lot of static contents, then it may not be able to keep up with the dynamic requests that will execute your application code.
 </p>
 <p>The solution is to include a dedicated web server in your solution that is really good and optimised for serving static content. Either access this web server directly, or through dedicated nodes across the globe whose purpose is to cache oft-requested contents closer to the end-user. This network is solely focused on delivering contents and not bothered with anything else in your application. Specifically, the CDN does not deal with dynamic contents.
 </p>
@@ -1680,7 +1687,7 @@ Building a RESTful microservice usually means starting with some web framework i
 </p>
 
 <p><strong class="strong">Summary</strong>
-The architecture patterns for cloud native applications are centered around the ability to scale up and down as needed (This is perhaps not very surprising), but the preference is to scale horizontally. Since the current state of the application (e.g. the number of available nodes of any particular type) can change at a moments notice, robust communication pathways using e.g. message queues are required. To some extent, this defines the execution view of the system&rsquo;s architecture, but with this definition comes a few limitations. Accepting that nodes can fail or be taken offline at any time means that applications need to be built with this in mind. Limitations in network speeds and a desire to make the best use of available computing resources influence where and how an application&rsquo;s services are deployed (e.g., which parts of an application that are colocated or distributed closer to the customers) and indeed what constitutes a service in the first place (e.g. inserting a content delivery network in the application). In a more conceptual focus, the desire to enable scaling implies restructuring algorithms into more scaling-friendly forms, for example the MapReduce pattern. Finally, an open architecture across multiple nodes and servers requires that security and access control is considered throughout the application, for example using temporary and time-limited access keys.
+The architecture patterns for cloud native applications are centered around the ability to scale up and down as needed (This is perhaps not very surprising), but the preference is to scale horizontally. Since the current state of the application (e.g. the number of available nodes of any particular type) can change at a moments notice, robust communication pathways using e.g. message queues are required. To some extent, this defines the execution view of the system&rsquo;s architecture, but with this definition comes a few limitations. Accepting that nodes can fail or be taken offline at any time means that applications need to be built with this in mind. Limitations in network speeds and a desire to make the best use of available computing resources influence where and how an application&rsquo;s services are deployed (e.g., which parts of an application that are co-located or distributed closer to the customers) and indeed what constitutes a service in the first place (e.g. inserting a content delivery network in the application). In a more conceptual focus, the desire to enable scaling implies restructuring algorithms into more scaling-friendly forms, for example the MapReduce pattern. Finally, an open architecture across multiple nodes and servers requires that security and access control is considered throughout the application, for example using temporary and time-limited access keys.
 </p>
 <hr>
 </div>
@@ -2152,7 +2159,7 @@ volumes:
   mongo-config:
 </pre></div>
 
-<p>There are only three services this time since the Redis store is no longer needed. The images are tagged <code class="code">v3</code> to keep them separate from the previous version (They could probably have been named <code class="code">qfapp:v3</code> and <code class="code">qfworker:v3</code> according to docker&rsquo;s tag-numbering scheme, but they are not really versions of the same app since they use a different architecture, and I like to live on the wild side). The <code class="code">app</code> service has one additional environment variable set, but otherwise there are no major differences.
+<p>There are only three services this time since the Redis store is no longer needed. The images are tagged <code class="code">v3</code> to keep them separate from the previous version (They could probably have been named <code class="code">qfapp:v3</code> and <code class="code">qfworker:v3</code> according to Docker&rsquo;s tag-numbering scheme, but they are not really versions of the same app since they use a different architecture, and I like to live on the wild side). The <code class="code">app</code> service has one additional environment variable set, but otherwise there are no major differences.
 </p>
 <a class="index-entry-id" id="index-diff"></a>
 <p>Inspecting the QFAapp frontend, the only part we expect to differ is the <code class="code">Dispatch</code> class (This can be confirmed with the help of the command <code class="code">diff</code>, for example using <code class="code">diff --brief QFApp/src/ ../Version2/QFApp/src/</code> to get a summary of which files that differ). In the same way, we find that the only file that differs for the QFWorker is the <code class="code">index.js</code> file.
@@ -2233,7 +2240,7 @@ Next: <a href="#Deployment-with-Kubernetes" accesskey="n" rel="next">Deployment 
 
 <p>There is a Quiz on Canvas where you can submit your article summaries and answers to the questions.
 </p>
-<p><strong class="strong">NOTICE:</strong> <em class="emph">This quiz does not contribute to the grade in the course. We do, however, require of you to submit the quiz on time.</em> The purpose of this quiz is to serve as a learning aid allowing you to think about these concepts, and for us to keep track of your progress in the course. If you are unable to maintain the study pace required to submit this quiz on time, we want to be made aware of this so that you are able to re-plan your committment for the remainder of the course.
+<p><strong class="strong">NOTICE:</strong> <em class="emph">This quiz does not contribute to the grade in the course. We do, however, require of you to submit the quiz on time.</em> The purpose of this quiz is to serve as a learning aid allowing you to think about these concepts, and for us to keep track of your progress in the course. If you are unable to maintain the study pace required to submit this quiz on time, we want to be made aware of this so that you are able to re-plan your commitment for the remainder of the course.
 </p>
 <hr>
 </div>
@@ -2287,7 +2294,7 @@ From the inside out:
 <li> <em class="emph">Containers</em> are still the core concept, and they are no different to the microservice containers used previously. They are, in fact, based on the same docker images as before.
 </li><li> Containers are collected into <em class="emph">pods</em>, that gathers containers working closely together, possibly with some shared storage.
 </li><li> A container can mount <em class="emph">Volumes</em> inside the same pod.
-</li><li> If the container need <em class="emph">Persistent Storage</em> this is split into two parts. The developer of container makes a <em class="emph">PersistentVolumeClaim</em> describing what type of persistent storage they need, and the administrator of the Kubernetes kluster provides one or more <em class="emph">PersistentVolume</em> to match the desired claims.
+</li><li> If the container need <em class="emph">Persistent Storage</em> this is split into two parts. The developer of container makes a <em class="emph">PersistentVolumeClaim</em> describing what type of persistent storage they need, and the administrator of the Kubernetes cluster provides one or more <em class="emph">PersistentVolume</em> to match the desired claims.
 </li><li> A <em class="emph">Deployment</em> describes the contents in a Pod on a slightly higher level, enabling Kubernetes to take more responsibility for e.g. scaling the deployment or to move the pods to other nodes if necessary.
 </li><li> <em class="emph">Labels</em> are used to identify which parts of the application are affected by different configuration directives.
 </li><li> <em class="emph">Services</em> are set up to access your application. They act as the glue between the pods/containers and the outside world.
@@ -2305,7 +2312,7 @@ Next: <a href="#Attach-the-Database" accesskey="n" rel="next">Attach the Databas
 <h3 class="section" id="Get-Started-with-Kubernetes-1">13.2 Get Started with Kubernetes</h3>
 
 <a class="index-entry-id" id="index-kubectl"></a>
-<p>You have already installed the necessary software to set up a very small kubernetes cluster (consisting of a single machine). For Windows/Mac, this is included in <code class="code">Docker Desktop</code> , although you may need to go into the settings and enable Kubernetes. For Linux, you will use the standalone <code class="code">minikube</code>, started with a simple <code class="code">minikube start</code> . Check the status of your cluster with <code class="code">kubectl cluster-info</code> .
+<p>You have already installed the necessary software to set up a very small Kubernetes cluster (consisting of a single machine). For Windows/Mac, this is included in <code class="code">Docker Desktop</code> , although you may need to go into the settings and enable Kubernetes. For Linux, you will use the standalone <code class="code">minikube</code>, started with a simple <code class="code">minikube start</code> . Check the status of your cluster with <code class="code">kubectl cluster-info</code> .
 </p>
 <p>It is possible to set up your deployment well and good using only the command line tool <code class="code">kubectl</code> but I would not recommend it. By now, the mantra <em class="emph">Infrastructure as Code</em> should be ingrained into you, so let&rsquo;s write some YAML code to set up a deployment.
 </p>
@@ -2371,7 +2378,7 @@ spec:
 </p>
 <p><strong class="strong">Tasks</strong>
 </p><ol class="enumerate" start="0">
-<li> Open up a terminal and enter your <code class="code">QuoteFinder</code> directory. Create a new subdirectory, e.g. <code class="code">QuoteFinder/Kubernetes</code> , and cd into it.
+<li> Open up a terminal and enter your <code class="code">QuoteFinder</code> directory. Create a new sub-directory, e.g. <code class="code">QuoteFinder/Kubernetes</code> , and cd into it.
 
 </li><li> Create the file <code class="code">qfstandalone-v1-1.yaml</code> and copy the configuration from above into it.
 
@@ -2383,7 +2390,7 @@ spec:
 <a class="index-entry-id" id="index-Kubernetes-Cluster-IP"></a>
 <a class="index-entry-id" id="index-Kubernetes-External-IP"></a>
 <ol class="enumerate">
-<li> It is time to test if the web page is available. In order to access the web page, we first need to find the external ip of the qfapp-service (Remember that the service is required to bridge from the outside world to inside the kubernetes kluster). Get the list of services through <code class="code">kubectl get services</code> , and you will notice that each service has both a &lsquo;<samp class="samp">CLUSTER-IP</samp>&rsquo; and an &lsquo;<samp class="samp">EXTERNAL-IP</samp>&rsquo;. Right now, the service only has a Cluster-ip, which is internal to Kubernetes. Other containers inside the same kubernetes cluster may use this to access the qfapp-service, but we cannot use this address from the outside. For this, we need the external IP, and this may still be listed as &lsquo;<samp class="samp">&lt;pending&gt;</samp>&rsquo;.
+<li> It is time to test if the web page is available. In order to access the web page, we first need to find the external ip of the qfapp-service (Remember that the service is required to bridge from the outside world to inside the Kubernetes cluster). Get the list of services through <code class="code">kubectl get services</code> , and you will notice that each service has both a &lsquo;<samp class="samp">CLUSTER-IP</samp>&rsquo; and an &lsquo;<samp class="samp">EXTERNAL-IP</samp>&rsquo;. Right now, the service only has a Cluster-ip, which is internal to Kubernetes. Other containers inside the same Kubernetes cluster may use this to access the qfapp-service, but we cannot use this address from the outside. For this, we need the external IP, and this may still be listed as &lsquo;<samp class="samp">&lt;pending&gt;</samp>&rsquo;.
 </li></ol>
 
 <a class="index-entry-id" id="index-Kubernetes-NodePort"></a>
@@ -2395,14 +2402,14 @@ spec:
 <li> Previously we were able to see the containers print out all sorts of debug info as it was running. Let&rsquo;s try recreating that. First, list all running pods (just the names): <code class="code">kubectl get pods</code> . Notice that the name you specified has been appended with some sort of hash key. All of this is the name of the pod.
 </li></ol>
 
-<p>The command to access the logs in a pod is <code class="code">kubectl logs -f &lt;podname&gt;</code>, where the <code class="code">-f</code> flag means that we want to <em class="emph">follow</em> the logs and continue to print anything that is added to them. With a bit of unix elbow-grease, the following incantation should both find the name of the pod and attach itself to the log: <code class="code">kubectl get pods -o name | grep qfstandalone | xargs kubectl logs -f</code> . 
+<p>The command to access the logs in a pod is <code class="code">kubectl logs -f &lt;podname&gt;</code>, where the <code class="code">-f</code> flag means that we want to <em class="emph">follow</em> the logs and continue to print anything that is added to them. With a bit of Unix elbow-grease, the following incantation should both find the name of the pod and attach itself to the log: <code class="code">kubectl get pods -o name | grep qfstandalone | xargs kubectl logs -f</code> . 
 </p>
 <a class="index-entry-id" id="index-grep"></a>
 <a class="index-entry-id" id="index-xargs"></a>
 <a class="index-entry-id" id="index-Unix-pipe-_007c"></a>
 <p>Breaking down the command, we see the following:
 </p><ul class="itemize mark-bullet">
-<li>The three parts are combined with unix pipes (the <code class="code">|</code> symbol). The output (standard output, to be precise) of the command to the left of the pipe will be the input (standard input) for the command to the right of the pipe. This is how simple unix commands are daisy-chained to each other to produce ever more complex tasks.
+<li>The three parts are combined with Unix pipes (the <code class="code">|</code> symbol). The output (standard output, to be precise) of the command to the left of the pipe will be the input (standard input) for the command to the right of the pipe. This is how simple Unix commands are daisy-chained to each other to produce ever more complex tasks.
 </li><li><code class="code">kubectl get pods -o name</code> prints the names (only the names) of all running pods.
 </li><li><code class="code">grep qfstandalone</code> filters the output to only those containing the string &ldquo;qfstandalone&rdquo;
 </li><li><code class="code">xargs</code> converts whatever it receives on standard input into arguments at the end of whatever command is given to it.
@@ -2441,7 +2448,7 @@ Previous: <a href="#Get-Started-with-Kubernetes" accesskey="p" rel="prev">Get St
 <p>Attaching a database should in theory be easy, but let&rsquo;s take a moment and do this &ldquo;right&rdquo;, so that we get a configurable and by the books deployment.
 </p>
 <a class="index-entry-id" id="index-Kubernetes-StatefulSet"></a>
-<p>First, of course, the database need to be started. Since we want data to survive restarts, we will do this as a <code class="code">StatefulSet</code> . This StatefulSet will launch an image of mongodb (as before). It will also make two persistent VolumeClaims (as before); one for mongoDB&rsquo;s configuration and one for the data.
+<p>First, of course, the database need to be started. Since we want data to survive restarts, we will do this as a <code class="code">StatefulSet</code> . This StatefulSet will launch an image of MongoDB (as before). It will also make two persistent VolumeClaims (as before); one for MongoDB&rsquo;s configuration and one for the data.
 </p>
 <a class="index-entry-id" id="index-Kubernetes-Access-Roles"></a>
 <p>These Persistent Volume Claims are then matched to Persistent Volumes by Kubernetes, and the recommendation is that these are specified in a separate file, so that they can be deployed by someone with the right access privileges. App developers make claims, and node administrators provide resources. A Persistent Volume is a resource, and thus need a node administrator to configure.
@@ -2454,7 +2461,7 @@ Previous: <a href="#Get-Started-with-Kubernetes" accesskey="p" rel="prev">Get St
 <a class="index-entry-id" id="index-Kubernetes-volumeClaimTemplates"></a>
 <p>To avoid this, we will not make concrete claims to a particular persistent volume; we will specify a <em class="emph">template</em> for the claims, called a <code class="code">volumeClaimTemplate</code>. This template specifies the <em class="emph">type</em> of volume required, but as little else as possible. Especially avoid specifying any storageClassName, or any StorageClasses or PersistentVolumes at all.
 </p>
-<p>Almost finally, in order to access the replicas of the database, we need a Service, and any access (even from within the Kubernetes cluster) will ne done with the help of this service.
+<p>Almost finally, in order to access the replicas of the database, we need a Service, and any access (even from within the Kubernetes cluster) will be done with the help of this service.
 </p>
 <a class="index-entry-id" id="index-Kubernetes-ConfigMap"></a>
 <p>We still need to configure the QuoteFinder app so that it can find and connect to the database. One Kubernetes way to do this is via a <code class="code">ConfigMap</code>. This is a simple key-value map that can be referenced from the container templates.
@@ -2558,7 +2565,7 @@ data:
 <p>Caution, <code class="code">textstore_host</code> MUST be &ldquo;NOTSET&rdquo; (case sensitive). This will be replaced with the right IP during startup.
 </p>
 <ol class="enumerate" start="3">
-<li> Some edits are required for the qfapp container template to make use of this configmap to set an environment variable (using the  <code class="code">env</code> specification):
+<li> Some edits are required for the qfapp container template to make use of this ConfigMap to set an environment variable (using the  <code class="code">env</code> specification):
 </li></ol>
 
 <div class="example">
@@ -2658,7 +2665,7 @@ Next: <a href="#Scaling-the-Database" accesskey="n" rel="next">Scaling the Datab
 
 <p>There is a Quiz on Canvas where you can submit your article summaries and answers to the questions.
 </p>
-<p><strong class="strong">NOTICE:</strong> <em class="emph">This quiz does not contribute to the grade in the course. We do, however, require of you to submit the quiz on time.</em> The purpose of this quiz is to serve as a learning aid allowing you to think about these concepts, and for us to keep track of your progress in the course. If you are unable to maintain the study pace required to submit this quiz on time, we want to be made aware of this so that you are able to re-plan your committment for the remainder of the course.
+<p><strong class="strong">NOTICE:</strong> <em class="emph">This quiz does not contribute to the grade in the course. We do, however, require of you to submit the quiz on time.</em> The purpose of this quiz is to serve as a learning aid allowing you to think about these concepts, and for us to keep track of your progress in the course. If you are unable to maintain the study pace required to submit this quiz on time, we want to be made aware of this so that you are able to re-plan your commitment for the remainder of the course.
 </p>
 <hr>
 </div>
@@ -2694,7 +2701,7 @@ Next: <a href="#MongoDB-ReplicaSet" accesskey="n" rel="next">MongoDB ReplicaSet<
                 ||     ||
 </pre></div>
 
-<p>Yes. Yes, we can. The first and easiest way to scale is by scaling the node it runs on, i.e. <em class="emph">vertical scaling</em>. This implies increasing the number of CPUs, thhe amount of RAM, and/or increase the storage capacity.
+<p>Yes. Yes, we can. The first and easiest way to scale is by scaling the node it runs on, i.e. <em class="emph">vertical scaling</em>. This implies increasing the number of CPUs, the amount of RAM, and/or increase the storage capacity.
 </p>
 <a class="index-entry-id" id="index-Database-Replication"></a>
 <a class="index-entry-id" id="index-NoSQL"></a>
@@ -2740,7 +2747,7 @@ Client                                 \ \-
                                               +--------------------+
 </pre></div>
 
-<p>In practice, however, it doesn&rsquo;t. MongoDB does not know that there is such a thing as external LoadBalancers (and in any case it can not rely on that the user knows). The MongoDB replica do also not want to assume this role, and if they did they would still need to decide which IP should be broadcast to the outside. Instead, the design solution that MongoDB has opted for is to push load balancing onto the database clients.
+<p>In practice, however, it doesn&rsquo;t. MongoDB does not know that there is such a thing as external Load-Balancers (and in any case it can not rely on that the user knows). The MongoDB replica do also not want to assume this role, and if they did they would still need to decide which IP should be broadcast to the outside. Instead, the design solution that MongoDB has opted for is to push load balancing onto the database clients.
 </p>
 <p>By now you know that I have plenty of opinions about software and design decisions so I will leave it as an exercise to the reader to define, list, and sort a suitable array of invectives.
 </p>
@@ -2757,7 +2764,7 @@ Previous: <a href="#MongoDB-ReplicaSet" accesskey="p" rel="prev">MongoDB Replica
 </p>
 <dl class="table">
 <dt>The qfapp-service</dt>
-<dd><p>this service only enables access from the outside of the kubernetes cluster, so there is no need to change it.
+<dd><p>this service only enables access from the outside of the Kubernetes cluster, so there is no need to change it.
 </p></dd>
 <dt>The textstore-service</dt>
 <dd><p>this too will remain unchanged. To be honest, I&rsquo;m not sure whether it is actually used, but it may need to be there anyway.
@@ -2775,12 +2782,12 @@ Previous: <a href="#MongoDB-ReplicaSet" accesskey="p" rel="prev">MongoDB Replica
 </p>
 <a class="index-entry-id" id="index-Kubernetes-Readiness-Probe"></a>
 <ul class="itemize mark-bullet">
-<li>For costmetic reasons, we replace the &lsquo;<samp class="samp">serviceName</samp>&rsquo; to &ldquo;textstore-service&rdquo;. This becomes part of the hostname (e.g. <code class="code">textstore-0.textstore-service.default.svc.cluster.local</code>)
+<li>For cosmetic reasons, we replace the &lsquo;<samp class="samp">serviceName</samp>&rsquo; to &ldquo;textstore-service&rdquo;. This becomes part of the hostname (e.g. <code class="code">textstore-0.textstore-service.default.svc.cluster.local</code>)
 </li><li>The number of &lsquo;<samp class="samp">replicas</samp>&rsquo; starts out with the value &lsquo;<samp class="samp">3</samp>&rsquo;.
-</li><li>The startup &lsquo;<samp class="samp">command</samp>&rsquo; needs to be edited to start mongodb in ReplicaSet mode: &lsquo;<samp class="samp">[&quot;mongod&quot;, &quot;--bind_ip&quot;, &quot;0.0.0.0&quot;, &quot;--replSet&quot;, &quot;MainRepSet&quot;</samp>&rsquo; . Breaking this down:
+</li><li>The startup &lsquo;<samp class="samp">command</samp>&rsquo; needs to be edited to start MongoDB in ReplicaSet mode: &lsquo;<samp class="samp">[&quot;mongod&quot;, &quot;--bind_ip&quot;, &quot;0.0.0.0&quot;, &quot;--replSet&quot;, &quot;MainRepSet&quot;</samp>&rsquo; . Breaking this down:
 <ul class="itemize mark-bullet">
 <li>listen to all network interfaces &lsquo;<samp class="samp">--bind_ip 0.0.0.0</samp>&rsquo;
-</li><li>use the specified name for the replicaSet &lsquo;<samp class="samp">--replSet MainRepSet</samp>&rsquo;
+</li><li>use the specified name for the ReplicaSet &lsquo;<samp class="samp">--replSet MainRepSet</samp>&rsquo;
 </li></ul>
 </li><li>A <em class="emph">Readiness Probe</em> is defined. This will be used by Kubernetes to check whether the startup of a replica is ready and it can be added to the list of running replicas. Running a &ldquo;ping&rdquo; command inside the database is usually a good start for this.
 </li></ul>
@@ -2858,9 +2865,9 @@ data:
 ---
 </pre></div>
 
-<p>I am not a fan of that the URLs to each member in the cluster has to be hardcoded like this ( &lsquo;<samp class="samp">textstore_replicaset</samp>&rsquo; ), since this limits the ability to scale up or down the number of replicas. Ideally, it should be as easy to change the &lsquo;<samp class="samp">spec.replicas</samp>&rsquo; for the StatefulSet and let Kuberentes re-apply. In practice, this is now made much more difficult.
+<p>I am not a fan of that the URLs to each member in the cluster has to be hard-coded like this ( &lsquo;<samp class="samp">textstore_replicaset</samp>&rsquo; ), since this limits the ability to scale up or down the number of replicas. Ideally, it should be as easy to change the &lsquo;<samp class="samp">spec.replicas</samp>&rsquo; for the StatefulSet and let Kubernetes re-apply. In practice, this is now made much more difficult.
 </p>
-</li><li> <a class="anchor" id="QfStandalone-Deployment"></a>QfStandalone Deployment
+</li><li> <a class="anchor" id="QFStandalone-Deployment"></a>QFStandalone Deployment
 
 
 <p>As a start, the only edit to the qfstandalone deployment we make is to include the newly defined element from the ConfigMap. Specifically, the environment variable &lsquo;<samp class="samp">TEXTSTORE_HOST</samp>&rsquo; need to get its value from &lsquo;<samp class="samp">textstore_replicaset</samp>&rsquo; in the configmap.
@@ -2907,9 +2914,9 @@ spec:
 
 </li><li> Locate the &lsquo;<samp class="samp">textstore StatefulSet</samp>&rsquo; and replace it with the version above.
 
-</li><li> Locate the &lsquo;<samp class="samp">QFapp ConfigMap</samp>&rsquo; and replace it with the version above.
+</li><li> Locate the &lsquo;<samp class="samp">QFApp ConfigMap</samp>&rsquo; and replace it with the version above.
 
-</li><li> Locate the &lsquo;<samp class="samp">QfStandalone Deployment</samp>&rsquo; and replace it with the version above.
+</li><li> Locate the &lsquo;<samp class="samp">QFStandalone Deployment</samp>&rsquo; and replace it with the version above.
 
 </li><li> Start everything: <code class="code">kubectl apply -f qfstandalone-v1-3.yaml</code>
 
@@ -2942,7 +2949,7 @@ You should see the app restarting in the log output you attached to earlier, and
 <p><strong class="strong">Summary</strong>
 We have now:
 </p><ol class="enumerate">
-<li> Configured the simplest and unsafest possible mongodb replicaset without any form of authentication whatsoever.
+<li> Configured the simplest and unsafest possible MongoDB replicaset without any form of authentication whatsoever.
 </li><li> Created a single-phase startup where everything can be deployed with a single &lsquo;<samp class="samp">kubectl apply</samp>&rsquo; command.
 </li><li> Waited for parts of a deployment to come online in an orderly fashion with <code class="code">kubectl rollout status</code> and a ReadinessProbe.
 </li><li> Ugly-hacked our way into a container to edit the running application code.
@@ -3013,7 +3020,7 @@ Next: <a href="#Additional-Concepts" accesskey="n" rel="next">Additional Concept
 <p>(The path can of course be anywhere here, it does not have to be <code class="code">/app/src</code> since that only really makes sense inside the container. However, it is good to keep it short for the next step. In fact, it would not be a bad idea to keep it under <code class="code">/tmp</code>.)
 </p>
 <a class="index-entry-id" id="index-Kubernetes-Node"></a>
-<p>Unfortunately, this <em class="emph">still</em> does not mean that we are able to access the files. The reason for this is a kubernetes concept which we have not discussed yet, namely that of a <em class="emph">Node</em>. A kubernetes node can be seen as the unit that would be run on one piece of (virtual) hardware. On this noe pods, volumes, etc. are deployed. <code class="code">minikube</code> is a single-node implementation of Kubernetes so there is not much more configuring to do, but if you deploy to a cloud provider you would get to decide how many nodes you want to run your application across, as well as how many volumes, pods, services, etc. that you desire.
+<p>Unfortunately, this <em class="emph">still</em> does not mean that we are able to access the files. The reason for this is a Kubernetes concept which we have not discussed yet, namely that of a <em class="emph">Node</em>. A Kubernetes node can be seen as the unit that would be run on one piece of (virtual) hardware. On this node pods, volumes, etc. are deployed. <code class="code">minikube</code> is a single-node implementation of Kubernetes so there is not much more configuring to do, but if you deploy to a cloud provider you would get to decide how many nodes you want to run your application across, as well as how many volumes, pods, services, etc. that you desire.
 </p>
 <p>You can access the inside of the single node with <code class="code">minikube ssh</code> ; please take a moment to convince yourself that the minikube node is essentially a complete virtual machine.
 </p>
@@ -3039,7 +3046,7 @@ Next: <a href="#Additional-Concepts" accesskey="n" rel="next">Additional Concept
 <a class="index-entry-id" id="index-Network-File-System-NFS"></a>
 <p>Despite all warnings about why this is a bad idea, if we still want to access the container&rsquo;s inside, there are two options available to us. One is to define a proper volume with a PersistentVolumeClaim for the container. Of course, there is a non-trivial amount of work to set this up in Kubernetes to ensure that an already existing directory on the host computer is made available as a PersistentVolume. A middle ground is perhaps to export the directory as an NFS share (or any other type of network filesystem if you are concerned with the security issues of NFS), and mount this as the container volume.
 </p>
-<p>The other option is to go the other direction and mount a local directory onto the kubernetes node, and then use a hostPath setup to propagate this mount into the container. <code class="code">minikube mount</code> is able to do this, but due to bugs this is not working at the time of writing.
+<p>The other option is to go the other direction and mount a local directory onto the Kubernetes node, and then use a hostPath setup to propagate this mount into the container. <code class="code">minikube mount</code> is able to do this, but due to bugs this is not working at the time of writing.
 </p>
 <p><strong class="strong">Summary</strong>
 Accessing the running code of a container in Kubernetes is difficult and there are plenty of reasons to advice against it. The recommendation is to do the development using e.g. Docker Compose and only deploy to Kubernetes as a last step when everything is tested and ship-shape. This includes subsequent debugging: There should be nothing in the containers that wasn&rsquo;t there already when the image was created, and so all debugging can and should be done locally outside of the Kubernetes deployment.
@@ -3054,7 +3061,7 @@ Next: <a href="#Summary" accesskey="n" rel="next">Summary</a>, Previous: <a href
 <h2 class="chapter" id="Additional-Concepts-1">17 Additional Concepts</h2>
 
 <a class="index-entry-id" id="index-Kubernetes-SessionAffinity"></a>
-<p>A few loose ends need to be tied up to complete this introduction to Kubernetes. First, we are finally able to solve the previous problems that we had with scaling the frontend. If you remember, the use of <code class="code">socket.io</code> meant that it was difficult to use a simple loadbalancer to scale the frontend since each client-server connection relied on a socket to be kept alive for the duration. Well, one of the flags that can be given to a loadbalancer service is <code class="code">spec.sessionAffinity: ClientIP</code> , which means that kubernetes will stick all sessions originating from the same client IP to the same deployment instance. This is all that is required in order to be able to scale the number of replicas of the qfstandalone deployment.
+<p>A few loose ends need to be tied up to complete this introduction to Kubernetes. First, we are finally able to solve the previous problems that we had with scaling the frontend. If you remember, the use of <code class="code">socket.io</code> meant that it was difficult to use a simple load-balancer to scale the frontend since each client-server connection relied on a socket to be kept alive for the duration. Well, one of the flags that can be given to a load-balancer service is <code class="code">spec.sessionAffinity: ClientIP</code> , which means that Kubernetes will stick all sessions originating from the same client IP to the same deployment instance. This is all that is required in order to be able to scale the number of replicas of the qfstandalone deployment.
 </p>
 <a class="index-entry-id" id="index-Kubernetes-Scaling"></a>
 <p>One simple way to scale is to edit the <code class="code">spec.replicas</code> in the yaml file and simply re-apply it. Go ahead; start the dashboard <code class="code">minikube dashboard &amp;</code> , edit the yaml file (add the <code class="code">sessionAffinity</code> flag above while you&rsquo;re at it), and re-run <code class="code">kubectl apply -f qfstandalone-v-1-3.yaml</code> . You should see the number of deployed pods change as a consequence.
@@ -3073,7 +3080,7 @@ Next: <a href="#Summary" accesskey="n" rel="next">Summary</a>, Previous: <a href
 <p>When we set up the MongoDB ReplicaSet we dodged the bullet of authentication. Technically, there are a number of steps involved in this that you really ought to try your hand at just because. First, the internal cluster should be told to use a specific key to communicate inside the cluster. Second, once the replicaset is up and running (or before? This used to work in one way and in a recent update it no longer works the same way), you should setup users; One admin user to manage the databases and the database cluster, and at least one regular user that clients can use e.g. when querying the database.
 </p>
 <a class="index-entry-id" id="index-Kubernetes-Secrets"></a>
-<p>The shared key should of course not be bandied around like so much trash: If this key gets out then your database can become compromised by someone adding their own mongoDB instance to your ReplicaSet. As soon as the key is created, we should thus create a Kubernetes <em class="emph">Secret</em> out of it, and then access this secret from within the containers. This is similar to how you can use data from ConfigMaps in your containers.
+<p>The shared key should of course not be bandied around like so much trash: If this key gets out then your database can become compromised by someone adding their own MongoDB instance to your ReplicaSet. As soon as the key is created, we should thus create a Kubernetes <em class="emph">Secret</em> out of it, and then access this secret from within the containers. This is similar to how you can use data from ConfigMaps in your containers.
 </p>
 <p>To summarise:
 </p>
@@ -3154,7 +3161,7 @@ spec:
 <a class="index-entry-id" id="index-Lambda-Functions"></a>
 <a class="index-entry-id" id="index-Azure-Functions"></a>
 <a class="index-entry-id" id="index-Azure-Durable-Functions"></a>
-<p>One final trend to keep an eye on is that of <em class="emph">lambda functions</em>. They are not always called that, e.g. Microsoft refers to them as Azure Functions or Azure Durable Functions, but the gist is the same. In some ways, this is a natural extension of the microservice architecture, when even a REST API can be considered too much, and all that is needed is a way to replicate and run a function in a distributed way. Typically, the desire is to develop locally and then seamlessly decide whether to run functions within in the same process, perhaps run them on a high-performance computing unit in the same host computer (for example a graphics card), or to scale out and run an arbitrary number of replicas of the function at the cloud provider. This pattern is not always applicable, but for <em class="emph">some</em> computing tasks it really lends itself to creating a transparend and yet scalable solution.
+<p>One final trend to keep an eye on is that of <em class="emph">lambda functions</em>. They are not always called that, e.g. Microsoft refers to them as Azure Functions or Azure Durable Functions, but the gist is the same. In some ways, this is a natural extension of the microservice architecture, when even a REST API can be considered too much, and all that is needed is a way to replicate and run a function in a distributed way. Typically, the desire is to develop locally and then seamlessly decide whether to run functions within in the same process, perhaps run them on a high-performance computing unit in the same host computer (for example a graphics card), or to scale out and run an arbitrary number of replicas of the function at the cloud provider. This pattern is not always applicable, but for <em class="emph">some</em> computing tasks it really lends itself to creating a transparent and yet scalable solution.
 </p>
 <hr>
 </div>
@@ -3165,7 +3172,7 @@ Next: <a href="#Assignment-Build-Something" accesskey="n" rel="next">Assignment:
 </div>
 <h2 class="chapter" id="Summary-1">18 Summary</h2>
 
-<p>This is it! We have reached the end of the road for what I wanted to cover in this course. (See <a class="ref" href="#Learning-Outcomes">Learning Outcomes</a> for a list of the relevant Learning Outcomes)  To begin with, the following concepts have been explored:
+<p>This is it! We have reached the end of the road for what I wanted to cover in this part of the course. (See <a class="ref" href="#Learning-Outcomes">Learning Outcomes</a> for a list of the relevant Learning Outcomes)  To begin with, the following concepts have been explored:
 </p>
 <ul class="itemize mark-bullet">
 <li>Microservices as a Software Architecture Design Decision
@@ -3196,7 +3203,7 @@ Next: <a href="#Assignment-Build-Something" accesskey="n" rel="next">Assignment:
 
 <p>These technologies and tools are typical representatives of contemporary software microservice development. They are by no means alone on the market, there are plenty of other competing technologies, but with this stack and an understanding of the concepts behind the tools you are well equipped to face the future and any tool <em class="emph">du jour</em> life may throw at you.
 </p>
-<p>While exploring these tools, there is one key principle that have permeated every step along the way: <em class="emph">Infrastructure as Code</em> . Only by treating the infrastructure, the deployment, in the same way as the rest of an applications codebase, are we able to maintain repeatable orchestrations, where each individual part of a deployment is configuration managed and tested.
+<p>While exploring these tools, there is one key principle that have permeated every step along the way: <em class="emph">Infrastructure as Code</em> . Only by treating the infrastructure, the deployment, in the same way as the rest of an applications code-base, are we able to maintain repeatable orchestrations, where each individual part of a deployment is configuration managed and tested.
 </p>
 <p>In fact, this is important so let me repeat myself:
 </p>
@@ -3217,7 +3224,7 @@ c(&quot;)(&quot;)
 
 </pre></div>
 
-<p>The &ldquo;only&rdquo; thing remaining for You to do now is to prove that you too have learnt all this. Read on to learn how.
+<p>The &ldquo;only&rdquo; thing remaining for You to do now is to prove that you too have learnt all this. Read on to figure out how.
 </p>
 <hr>
 </div>
@@ -3249,7 +3256,7 @@ Next: <a href="#Concept-Index" accesskey="n" rel="next">Concept Index</a>, Previ
 <li> A description of the software you have built and what it does.
 </li><li> A software architecture design of your application, describing the role of each component in your system, their responsibilities, and the architecture principles (e.g. cloud architecture patterns) that are used to connect them to a functioning system. This also includes a mapping between software components and the microservices designed and built to implement the components.
 </li><li> A discussion of the benefits and challenges with your architecture design. This must include a discussion about security. It must also include a discussion of what you have done or what can be done to mitigate the identified challenges.
-</li><li> A link to a configuration management repository (e.g. git) where the source code of the application can be viewed. This must also include the code for your kubernetes deployment.
+</li><li> A link to a configuration management repository (e.g. git) where the source code of the application can be viewed. This must also include the code for your Kubernetes deployment.
 </li></ol>
 
 <p>Once delivered, <em class="emph">a meeting will be scheduled</em> where you are expected to run and explain your application and its deployment. Be prepared to answer questions about:
@@ -3458,7 +3465,7 @@ Next: <a href="#Program-Index" accesskey="n" rel="next">Program Index</a>, Previ
 <tr><td></td><td class="printindex-index-entry"><a href="#index-Ultimate-Goal-_002d_002d-Deploy-Application-to-a-Cloud-Server">Ultimate Goal &ndash; Deploy Application to a Cloud Server</a>:</td><td>&nbsp;</td><td class="printindex-index-section"><a href="#Introduction-to-Orchestration-and-Provisioning">Introduction to Orchestration and Provisioning</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
 <tr><th id="Concept-Index_cp_letter-V">V</th><td></td><td></td></tr>
-<tr><td></td><td class="printindex-index-entry"><a href="#index-Verical-Scaling">Verical Scaling</a>:</td><td>&nbsp;</td><td class="printindex-index-section"><a href="#Principles-of-Microservice-Architectures">Principles of Microservice Architectures</a></td></tr>
+<tr><td></td><td class="printindex-index-entry"><a href="#index-Vertical-Scaling">Vertical Scaling</a>:</td><td>&nbsp;</td><td class="printindex-index-section"><a href="#Principles-of-Microservice-Architectures">Principles of Microservice Architectures</a></td></tr>
 <tr><td></td><td class="printindex-index-entry"><a href="#index-Virtual-Machine">Virtual Machine</a>:</td><td>&nbsp;</td><td class="printindex-index-section"><a href="#Not-Building-Microservices-_002d_002d-Infrastructure-As-A-Service">Not Building Microservices -- Infrastructure As A Service</a></td></tr>
 <tr><td></td><td class="printindex-index-entry"><a href="#index-Virtualisation">Virtualisation</a>:</td><td>&nbsp;</td><td class="printindex-index-section"><a href="#Principles-of-Microservice-Architectures">Principles of Microservice Architectures</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
