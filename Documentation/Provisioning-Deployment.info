@@ -176,8 +176,8 @@ the course:
 
    The course is divided across two source code repositories:
 
-   • <https://github.com/mickesv/QuoteFinder.git> contains the
-     instructions and source code for the Cloud Provisioning and
+   • <https://github.com/mickesv/ProvisioningDeployment.git> contains
+     the instructions and source code for the Cloud Provisioning and
      Deployment, and the Business Case for Cloud Computing parts of the
      course.
    • <https://github.com/mickesv/BigDataAnalytics.git> contains the
@@ -4663,75 +4663,75 @@ Functions and Commands Index
 Tag Table:
 Node: Top1476
 Node: Document Overview5744
-Node: A Note on Reading Research Articles8367
-Node: Introduction to Orchestration and Provisioning12086
-Ref: introduction12381
-Node: Learning Outcomes18724
-Node: Microservices and Lightweight Containers19798
-Node: Building Microservices24062
-Node: A Quick Rundown of Docker Terminology27369
-Node: Dockerfile29479
-Node: Docker Commands33273
-Ref: Getting Help33593
-Ref: Docker image and Image Management34614
-Ref: Docker run and Container Management36671
-Ref: tabdocker-run-parameters36988
-Node: Not Building Microservices -- Infrastructure As A Service39623
-Node: Provisioning your Virtual Machine43178
-Node: Communicating Microservices and REST APIs45168
-Node: Other communication means49119
-Node: Quiz Hypervisors and Lightweight Virtual Machines53805
-Node: Let's get Practical56637
-Node: Introducing the QuoteFinder application57034
-Node: Install relevant software63527
-Ref: qemu-vagrant65502
-Node: Installing and Running QFStandalone66132
-Ref: Full Virtual Machine66395
-Ref: Docker74600
-Node: A Minimal Qemu Vagrantfile83367
-Node: Quiz Let's get Practical84698
-Node: Provisioning and Orchestration86466
-Node: Provisioning86785
-Node: Orchestration90339
-Node: Docker Compose92035
-Node: Cloud Orchestration93905
-Node: Quiz Provisioning and Orchestration95898
-Node: Application Design and Development99163
-Node: Principles of Microservice Architectures99616
-Node: Cloud Architecture Patterns105063
-Node: Introduction to YAML and Docker-Composeyml117472
-Node: Let's get Practical Again122811
-Node: Introducing Version 2 of the QuoteFinder app123296
-Node: Installing and Running Version 2 of QuoteFinder131029
-Node: Editing the Running Application134861
-Node: Scaling the Deployment138446
-Node: Cleanup and Summary140038
-Node: Introducing Version 3 of the QuoteFinder app143233
-Node: Quiz Design Decisions and Development Setup148897
-Node: Deployment with Kubernetes151038
-Ref: Deployment151274
-Node: Introduction to Kubernetes151371
-Node: Get Started with Kubernetes154568
-Node: Attach the Database162630
-Node: Quiz Deployment with Kubernetes170420
-Node: Scaling the Database173622
-Node: Database Scaling173949
-Node: MongoDB ReplicaSet176811
-Node: Setting up a MongoDB ReplicaSet in Kubernetes178910
-Ref: TextStore StatefulSet179699
-Ref: Qfapp ConfigMap182436
-Ref: QFStandalone Deployment183412
-Ref: Tasks184708
-Node: Edit a Container in a Pod in a Node in a Cluster188927
-Ref: kube-edit189194
-Node: Additional Concepts194412
-Node: Summary201727
-Node: Assignment Build Something204782
-Ref: assignment-build-something204966
-Node: Concept Index208392
-Node: Program Index220462
-Node: Files and Data Types Index226184
-Node: Functions and Commands Index227363
+Node: A Note on Reading Research Articles8378
+Node: Introduction to Orchestration and Provisioning12097
+Ref: introduction12392
+Node: Learning Outcomes18735
+Node: Microservices and Lightweight Containers19809
+Node: Building Microservices24073
+Node: A Quick Rundown of Docker Terminology27380
+Node: Dockerfile29490
+Node: Docker Commands33284
+Ref: Getting Help33604
+Ref: Docker image and Image Management34625
+Ref: Docker run and Container Management36682
+Ref: tabdocker-run-parameters36999
+Node: Not Building Microservices -- Infrastructure As A Service39634
+Node: Provisioning your Virtual Machine43189
+Node: Communicating Microservices and REST APIs45179
+Node: Other communication means49130
+Node: Quiz Hypervisors and Lightweight Virtual Machines53816
+Node: Let's get Practical56648
+Node: Introducing the QuoteFinder application57045
+Node: Install relevant software63538
+Ref: qemu-vagrant65513
+Node: Installing and Running QFStandalone66143
+Ref: Full Virtual Machine66406
+Ref: Docker74611
+Node: A Minimal Qemu Vagrantfile83378
+Node: Quiz Let's get Practical84709
+Node: Provisioning and Orchestration86477
+Node: Provisioning86796
+Node: Orchestration90350
+Node: Docker Compose92046
+Node: Cloud Orchestration93916
+Node: Quiz Provisioning and Orchestration95909
+Node: Application Design and Development99174
+Node: Principles of Microservice Architectures99627
+Node: Cloud Architecture Patterns105074
+Node: Introduction to YAML and Docker-Composeyml117483
+Node: Let's get Practical Again122822
+Node: Introducing Version 2 of the QuoteFinder app123307
+Node: Installing and Running Version 2 of QuoteFinder131040
+Node: Editing the Running Application134872
+Node: Scaling the Deployment138457
+Node: Cleanup and Summary140049
+Node: Introducing Version 3 of the QuoteFinder app143244
+Node: Quiz Design Decisions and Development Setup148908
+Node: Deployment with Kubernetes151049
+Ref: Deployment151285
+Node: Introduction to Kubernetes151382
+Node: Get Started with Kubernetes154579
+Node: Attach the Database162641
+Node: Quiz Deployment with Kubernetes170431
+Node: Scaling the Database173633
+Node: Database Scaling173960
+Node: MongoDB ReplicaSet176822
+Node: Setting up a MongoDB ReplicaSet in Kubernetes178921
+Ref: TextStore StatefulSet179710
+Ref: Qfapp ConfigMap182447
+Ref: QFStandalone Deployment183423
+Ref: Tasks184719
+Node: Edit a Container in a Pod in a Node in a Cluster188938
+Ref: kube-edit189205
+Node: Additional Concepts194423
+Node: Summary201738
+Node: Assignment Build Something204793
+Ref: assignment-build-something204977
+Node: Concept Index208403
+Node: Program Index220473
+Node: Files and Data Types Index226195
+Node: Functions and Commands Index227374
 
 End Tag Table
 
