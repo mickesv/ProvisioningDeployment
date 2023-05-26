@@ -160,6 +160,7 @@ Generally, interpret each section of an article as follows:
 - The /related work/ section should discuss in further detail what other researchers have done that is similar to, or relates to, the article you are reading. This may give you an idea of how others have addressed the problem, and may give you pointers to other articles that you would wish to read.
 - The /methodology/ section explains how the study was conducted. Once an article is published (which they naturally are in this course), this is mostly interesting if you distrust some of the results and want to see if anything has been missed when constructing the study.
 - The /execution and results/ sections describe how the study was executed (in particular discrepancies from the planned methodology), and what the raw results were. Most of the time, you can safely skip these sections.
+  # Suggest same qualifier as in the other module.
 - The /analysis/ section "bakes" the results and tries to answer the research questions (address the identified problem). This is probably the most interesting section for you to read.
 - The /discussion/ section should raise the view and try to see what the results actually mean in a bigger context. What can you do with the results? "So what?". This is a tricky section to read, since the authors want you to believe that their results are the best thing invented since hot porridge, but at the same time they have to identify threats to the validity of the study. Validity threats are things that could have influenced the results instead of the sought after effect. This may be things that happened at the same time, inadequacies in the researchers skills and abilities, or inadequacies in the research design. Please remember, when (or if) reading this section, that most of the identified validity threats are minor obstacles (or the article would not have been published) that may impact the scientific view of the results more than the practical significance or usefulness of them.
 - The /references/ may give you ideas for other articles that you would like to read.
@@ -178,13 +179,13 @@ You may be used to develop applications in your local development environment. F
 - When you start working on a new feature branch, your machine is indeed tainted by everything you have developed and tested before. Partially, this is what you have your configuration management system for: You would go back to the main branch and create your new feature branch from there. Technically, this /should/ remove everything else you have been doing so that you start from the same page every time. In practice, the settings in your development environment is not affected by what you do with the configuration management tool, your stack of installed software is not affected, and if you use a database it will merrily continue with whatever test data you had in there just before.
 
 #+CINDEX: Deployment
-- When you are ready to deploy your application (of course you have already tested it?) , you first need to set this server up and make sure that it is installed and setup in exactly the same way as your development machine. And then you deploy. And say a prayer. And hope that no users try to use your application while you are figuring out what went wrong.
+- When you are ready to deploy your application (of course you have already tested it?), you first need to set this server up and make sure that it is installed and setup in exactly the same way as your development machine. And then you deploy. And say a prayer. And hope that no users try to use your application while you are figuring out what went wrong.
 
 #+CINDEX: Redeployment
 - As time goes, you ever so often log in to the server with your running application to install updates, fix minor errors, and upgrade your application. Until things have gone horribly wrong and you need to start from scratch again, and you realise that you have not maintained an updated lab notebook with all the things you have ever done on the server. Things that you have already fixed once re-appear and you have to fix them again. And again.
 
 #+CINDEX: Deployment Environments
-This brings us back to the overall goal. What you want is a controllable and repeatable way to set up your machines. Controllable, so that you can decide whether you want a development-version (Where perhaps your application is running with debug flags turned on), a test-version (that contains a reasonable subset of all the data in the live system and where tests for different environments are launched automatically) , or a running production version of your system (that you really have no business ever editing directly, and maybe never need to edit directly since it is deployed automatically as soon as all tests are run).
+This brings us back to the overall goal. What you want is a controllable and repeatable way to set up your machines. Controllable, so that you can decide whether you want a development-version (where perhaps your application is running with debug flags turned on), a test-version (that contains a reasonable subset of all the data in the live system and where tests for different environments are launched automatically), or a running production version of your system (that you really have no business ever editing directly, and maybe never need to edit directly since it is deployed automatically as soon as all tests are run).
 
 #+CINDEX: Repeatable Deployment
 You want the setup to be /repeatable/ so that you will always start from the same page, no matter what. Basically, you want to banish even the idea that it is ok to log in to a running environment to change things. If you want to introduce changes, you change the repeatable scripts, test them, and then push them to the rest of the project for common use. Now, /anyone/ in the project can create the exact same environment as you have, and test your code under exactly the same conditions.
@@ -249,7 +250,7 @@ Thus: as an application grows in size and complexity, there is a need to structu
 Some types of execution modularisation is probably already familiar to you. You have probably heard of /client-server architectures/, and you have probably built systems using an external database. If you are unlucky, you may have developed multi-threaded applications.
 
 #+CINDEX: Microservice Architecture
-/Microservice architectures/ is an attempt to simplify development. On an architecture level, it is an attempt to settle on a single type of interface between the different conceptual components (usually a [[RESTAPI][REST API]]), align the execution of an application with its conceptual view, and defer creation of the module view to each individual component/executable. Of course, this works less well in practice because one still wish to re-use components between the different microservices but that's another story.
+/Microservice architectures/ is an attempt to simplify development. On an architecture level, it is an attempt to settle on a single type of interface between the different conceptual components (usually a [[RESTAPI][REST API]]), align the execution of an application with its conceptual view, and defer creation of the module view to each individual component/executable. Of course, this works less well in practice because one still wishes to re-use components between the different microservices but that's another story.
 
 One more benefit (some would argue it is the main benefit) is that there is no longer any need for multi-threaded programming. Each microservice can (and perhaps even should be) as single-threaded as possible. If one needs to scale the application this is done as part of the deployment rather than with the help of logic inside the application. This creates a /separation of concern/ between application logic and deployment logic which is highly sought after.
 
@@ -271,7 +272,7 @@ Next level up, at least on UNIX systems, is through =chroot=. Through this progr
 #+PINDEX: Docker
 #+PINDEX: Podman
 #+CINDEX: Container
-As it happens, there are applications for this. You may have heard about Docker https://www.docker.com/ or its open source cousin Podman https://podman.io/ . Both of these are examples of Linux Containers (LXC), which are usually described as "Lightweight virtual machines". With tools like these you create a /Container/ with a specific set of programs installed, and then you can manage this container as a whole, rather than having to keep track of each individual part inside. 
+As it happens, there are applications for this. You may have heard about Docker https://www.docker.com/ or its open source cousin Podman https://podman.io/. Both of these are examples of Linux Containers (LXC), which are usually described as "Lightweight virtual machines". With tools like these you create a /Container/ with a specific set of programs installed, and then you can manage this container as a whole, rather than having to keep track of each individual part inside.
 
 #+CINDEX: Responsibility-Driven Design
 This container essentially consist of two things: (a) The software needed to run your microservice, and (b) your microservice, and the idea is to keep both of these as small as possible. Do not expect a full user experience from the software stack in a container, be prepared to fight with ~sh~ rather than something slightly easier to use like ~bash~. As for the microservice that you deploy in the container, try to maintain a strict responsibility-driven design: If you want to give a container two responsibilities then consider splitting it into two containers.
@@ -281,7 +282,7 @@ When working with Docker you start with a ~Dockerfile~ . Each line in this Docke
 
 #+PINDEX: Docker Hub
 #+CINDEX: Docker Hub
-Based on this Dockerfile you create an ~Image~ . This is a snapshot in time from when all the lines in the Dockerfile have been executed. You can version control and tag this image if you like, and it is this image that you will push to Docker hub https://hub.docker.com/ . If you are using a ready-made container from Docker hub, e.g. with a database or a web server installed , it is this image that will be downloaded and used as a layer in your own Docker image.
+Based on this Dockerfile you create an ~Image~. This is a snapshot in time from when all the lines in the Dockerfile have been executed. You can version control and tag this image if you like, and it is this image that you will push to Docker hub https://hub.docker.com/. If you are using a ready-made container from Docker hub, e.g. with a database or a web server installed, it is this image that will be downloaded and used as a layer in your own Docker image.
 
 When you start your Container, it will use the image as a base and execute the ~ENTRYPOINT~ in the Dockerfile, which is the command and its parameters that should be used to start your microservice. You now have your running Container.
 
@@ -355,7 +356,7 @@ Now that you have created your Dockerfile, the next step is to start using it.
 *** Getting Help
 #+PINDEX: man
 #+PINDEX: info
-For almost all commands in Unix, you have a few different ways to get help. Running the command with the parameter =-h= , or =--help= (note the two dashes) is a good start. For more detailed information, you use the command =man= . Sometimes, you can get even more details if you use the command =info=. Try the following commands:
+For almost all commands in Unix, you have a few different ways to get help. Running the command with the parameter =-h= , or =--help= (note the two dashes) is a good start. For more detailed information, you use the command =man=. Sometimes, you can get even more details if you use the command =info=. Try the following commands:
 
 #+begin_src bash
 docker -h
@@ -407,7 +408,7 @@ myfirstimage                  latest      270970b0971b   5 seconds ago   232MB
 What else can we do? Try =docker image --help= . Apparently we can (among other things) build, list, inspect, remove, and tag images with this command. =docker build= is, in fact, an alias for =docker image build=.
 
 #+FINDEX: docker image rm
-Once you are done (not yet), you may want to clean up after yourself. Each image has a name listed under REPOSITORY, a tag listed under TAG, and an IMAGE ID. If there is only one image with that name, you can run =docker image rm myfirstimage= . If you have several images with the same name (try creating one more with =docker build -t myfirstimage:second .= ) , you will need to qualify the name with the specific TAG you want to remove. If all else fail (e.g. if you forgot to give the image a name in the first place), you can use the IMAGE ID to uniquely identify your image.
+Once you are done (not yet), you may want to clean up after yourself. Each image has a name listed under REPOSITORY, a tag listed under TAG, and an IMAGE ID. If there is only one image with that name, you can run =docker image rm myfirstimage=. If you have several images with the same name (try creating one more with =docker build -t myfirstimage:second .=), you will need to qualify the name with the specific TAG you want to remove. If all else fail (e.g. if you forgot to give the image a name in the first place), you can use the IMAGE ID to uniquely identify your image.
 *** Docker run and Container Management
 #+FINDEX: docker run
 #+FINDEX: docker container run
@@ -428,9 +429,9 @@ So, let's get this image to actually run as a container, using the command =dock
 | -t        | --tty         | Allocate a terminal (console). Usually together with -i                                           |
 |-----------+---------------+---------------------------------------------------------------------------------------------------|
 
-The most common ones you will see are the detach and publish flags, and you will often see these together: =docker run -dp 8080:3000= , which will open port 8080 on your host into port 3000 inside the container.
+The most common ones you will see are the detach and publish flags, and you will often see these together: =docker run -dp 8080:3000=, which will open port 8080 on your host into port 3000 inside the container.
 
-When developing your application, it is useful to be able to view any console output it makes (e.g. if you use =printf()=, =cout=, =console.log()= , or =(print)= inside your application). =docker run -it= enables this, and also enables you to give commands into your running application if it is reading from standard input.
+When developing your application, it is useful to be able to view any console output it makes (e.g. if you use =printf()=, =cout=, =console.log()=, or =(print)= inside your application). =docker run -it= enables this, and also enables you to give commands into your running application if it is reading from standard input.
 
 #+FINDEX: docker container
 #+FINDEX: docker container ps
@@ -447,7 +448,7 @@ CONTAINER ID   IMAGE     COMMAND         CREATED         STATUS         PORTS   
 #+FINDEX: docker container start
 #+FINDEX: docker container rm
 
-the CONTAINER ID is used as a handle to do other things with the container. We can, for example, stop the container and later start it again with =docker container stop <container-id>= and =docker container start <container-id>= . If we stop the container we can also remove it completely (e.g. in order to update with a newer image): =docker container rm <container-id>= (adding the "force"-flag =-f= to rm will first stop the container if it is running, saving you one command: =docker rm -f <container-id>=).
+the CONTAINER ID is used as a handle to do other things with the container. We can, for example, stop the container and later start it again with =docker container stop <container-id>= and =docker container start <container-id>=. If we stop the container we can also remove it completely (e.g. in order to update with a newer image): =docker container rm <container-id>= (adding the "force"-flag =-f= to rm will first stop the container if it is running, saving you one command: =docker rm -f <container-id>=).
 ** Not Building Microservices -- Infrastructure As A Service <<iaas>>
 #+CINDEX: Virtual Machine
 #+CINDEX: IAAS Infrastructure As A Service
@@ -480,7 +481,7 @@ In order to run virtual machines, you need a Hypervisor software that can act as
 #+PINDEX: Parallells
 Some common hypervisors include:
 - Virtualbox https://www.virtualbox.org/ 
-- VMWare, with VMWare Fusion for Mac https://www.vmware.com/products/fusion.html  , and VMWare Workstation for Windows and Linux https://www.vmware.com/products/workstation-player.html
+- VMWare, with VMWare Fusion for Mac https://www.vmware.com/products/fusion.html, and VMWare Workstation for Windows and Linux https://www.vmware.com/products/workstation-player.html
 - Parallells https://www.parallels.com/se/  if you are using a Mac
 - Hyper-V https://learn.microsoft.com/en-us/virtualization/hyper-v-on-windows/ if you are using Windows
 
@@ -490,13 +491,13 @@ Of these, Virtualbox is free for use and available on most operating systems and
 Qemu https://www.qemu.org/ is a more powerful and free alternative that actually does emulate the virtual hardware as well. So you can emulate an x86 architecture on top of a mac M1 machine, or vice versa. The installation and setup /looks/ more daunting than e.g. Virtualbox does, but it is really quite easy -- at least on a Linux machine. In my experience, Qemu is also much faster than a corresponding virtual machine in Virtualbox.
 ** Provisioning your Virtual Machine
 #+CINDEX: Provisioning
-With a hypervisor such as above, you get a clean virtual machine, and it is up to you to install whatever operating system you want to run, and whatever software you want installed on top of this operating system. You /can/ do this manually, but if you remember the goals we set up in the Introduction (See [[introduction]] ) , we want to do better than this. We wish help from the computer to create a repeatable and configuration managed deployment that can be used over and over again.
+With a hypervisor such as above, you get a clean virtual machine, and it is up to you to install whatever operating system you want to run, and whatever software you want installed on top of this operating system. You /can/ do this manually, but if you remember the goals we set up in the Introduction (See [[introduction]]), we want to do better than this. We wish help from the computer to create a repeatable and configuration managed deployment that can be used over and over again.
 
 #+PINDEX: Vagrant
 #+TINDEX: Vagrantfile
 This is where the software Vagrant https://www.vagrantup.com/ comes into play. With Vagrant we create a file =Vagrantfile= where we specify the size and type of virtual machines we want, the operating system we want on them, and any other software we want installed -- analogous to the =Dockerfile= discussed earlier, but with much more details. It is important to note that Vagrant does not create any virtual machines itself, it is not a hypervisor. Instead, it interacts with other hypervisors such as Virtualbox, VMWare, Hyper-V, or Qemu and requests them to do the "heavy lifting" for it. The beauty of this is that you learn once how to work with Vagrant, and can use the same Vagrantfile to create your same virtual machine using any of the supported hypervisors and indeed even launch your virtual machine on a cloud provider.
 
-Unlike Docker, a Vagrantfile can also specify several machine configurations in one, so you can Orchestrate your entire application at once instead of having to work separately with each component/microservice in your system setup. But this is another story which we will get to later (see [[Deployment]] ).
+Unlike Docker, a Vagrantfile can also specify several machine configurations in one, so you can orchestrate your entire application at once instead of having to work separately with each component/microservice in your system setup. But this is another story which we will get to later (see [[Deployment]]).
 ** Communicating Microservices and REST APIs <<RESTAPI>>
 #+CINDEX: Network Socket
 #+CINDEX: RPC Remote Procedure Call
@@ -557,7 +558,7 @@ Having established that this is indeed possible, the question remains: Is this a
 
 #+PINDEX: Redis
 #+TINDEX: MQTT
-The message queue may be implemented in many ways. We may, for example, use a dedicated table in our database (to which our entire system is connected anyway). We may dedicate a separate microservice running e.g. Redis https://redis.io/ , and use an implementation of a message queue that connects to this microservice. We may even wish to go formal and pick a service that implements the MQTT protocol (Message Queue Telemetry Transport protocol). But that's a story for another day.
+The message queue may be implemented in many ways. We may, for example, use a dedicated table in our database (to which our entire system is connected anyway). We may dedicate a separate microservice running e.g. Redis https://redis.io/, and use an implementation of a message queue that connects to this microservice. We may even wish to go formal and pick a service that implements the MQTT protocol (Message Queue Telemetry Transport protocol). But that's a story for another day.
 * Quiz: Hypervisors and Lightweight Virtual Machines :Knowledge:Quiz:
 *TODO* Please read the following articles:
 
