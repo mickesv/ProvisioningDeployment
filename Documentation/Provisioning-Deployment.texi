@@ -238,7 +238,7 @@ The @emph{related work} section should discuss in further detail what other rese
 @item
 The @emph{methodology} section explains how the study was conducted. Once an article is published (which they naturally are in this course), this is mostly interesting if you distrust some of the results and want to see if anything has been missed when constructing the study.
 @item
-The @emph{execution and results} sections describe how the study was executed (in particular discrepancies from the planned methodology), and what the raw results were. Most of the time, you can safely skip these sections.
+The @emph{execution and results} sections describe how the study was executed (in particular discrepancies from the planned methodology), and what the raw results were. Most of the time, you can safely skip these sections. Sometimes however, the @emph{results} section is combined with the @emph{analysis} section.
 @item
 The @emph{analysis} section ``bakes'' the results and tries to answer the research questions (address the identified problem). This is probably the most interesting section for you to read.
 @item
@@ -272,7 +272,7 @@ When you start working on a new feature branch, your machine is indeed tainted b
 @cindex Deployment
 @itemize
 @item
-When you are ready to deploy your application (of course you have already tested it?) , you first need to set this server up and make sure that it is installed and setup in exactly the same way as your development machine. And then you deploy. And say a prayer. And hope that no users try to use your application while you are figuring out what went wrong.
+When you are ready to deploy your application (of course you have already tested it?), you first need to set this server up and make sure that it is installed and setup in exactly the same way as your development machine. And then you deploy. And say a prayer. And hope that no users try to use your application while you are figuring out what went wrong.
 @end itemize
 
 @cindex Redeployment
@@ -282,7 +282,7 @@ As time goes, you ever so often log in to the server with your running applicati
 @end itemize
 
 @cindex Deployment Environments
-This brings us back to the overall goal. What you want is a controllable and repeatable way to set up your machines. Controllable, so that you can decide whether you want a development-version (Where perhaps your application is running with debug flags turned on), a test-version (that contains a reasonable subset of all the data in the live system and where tests for different environments are launched automatically) , or a running production version of your system (that you really have no business ever editing directly, and maybe never need to edit directly since it is deployed automatically as soon as all tests are run).
+This brings us back to the overall goal. What you want is a controllable and repeatable way to set up your machines. Controllable, so that you can decide whether you want a development-version (where perhaps your application is running with debug flags turned on), a test-version (that contains a reasonable subset of all the data in the live system and where tests for different environments are launched automatically), or a running production version of your system (that you really have no business ever editing directly, and maybe never need to edit directly since it is deployed automatically as soon as all tests are run).
 
 @cindex Repeatable Deployment
 You want the setup to be @emph{repeatable} so that you will always start from the same page, no matter what. Basically, you want to banish even the idea that it is ok to log in to a running environment to change things. If you want to introduce changes, you change the repeatable scripts, test them, and then push them to the rest of the project for common use. Now, @emph{anyone} in the project can create the exact same environment as you have, and test your code under exactly the same conditions.
@@ -367,7 +367,7 @@ Thus: as an application grows in size and complexity, there is a need to structu
 Some types of execution modularisation is probably already familiar to you. You have probably heard of @emph{client-server architectures}, and you have probably built systems using an external database. If you are unlucky, you may have developed multi-threaded applications.
 
 @cindex Microservice Architecture
-@emph{Microservice architectures} is an attempt to simplify development. On an architecture level, it is an attempt to settle on a single type of interface between the different conceptual components (usually a @ref{Communicating Microservices and REST APIs, , REST API}), align the execution of an application with its conceptual view, and defer creation of the module view to each individual component/executable. Of course, this works less well in practice because one still wish to re-use components between the different microservices but that's another story.
+@emph{Microservice architectures} is an attempt to simplify development. On an architecture level, it is an attempt to settle on a single type of interface between the different conceptual components (usually a @ref{Communicating Microservices and REST APIs, , REST API}), align the execution of an application with its conceptual view, and defer creation of the module view to each individual component/executable. Of course, this works less well in practice because one still wishes to re-use components between the different microservices but that's another story.
 
 One more benefit (some would argue it is the main benefit) is that there is no longer any need for multi-threaded programming. Each microservice can (and perhaps even should be) as single-threaded as possible. If one needs to scale the application this is done as part of the deployment rather than with the help of logic inside the application. This creates a @emph{separation of concern} between application logic and deployment logic which is highly sought after.
 
@@ -403,7 +403,7 @@ Next level up, at least on UNIX systems, is through @samp{chroot}. Through this 
 @pindex Docker
 @pindex Podman
 @cindex Container
-As it happens, there are applications for this. You may have heard about Docker @uref{https://www.docker.com/} or its open source cousin Podman @uref{https://podman.io/} . Both of these are examples of Linux Containers (LXC), which are usually described as ``Lightweight virtual machines''. With tools like these you create a @emph{Container} with a specific set of programs installed, and then you can manage this container as a whole, rather than having to keep track of each individual part inside. 
+As it happens, there are applications for this. You may have heard about Docker @uref{https://www.docker.com/} or its open source cousin Podman @uref{https://podman.io/}. Both of these are examples of Linux Containers (LXC), which are usually described as ``Lightweight virtual machines''. With tools like these you create a @emph{Container} with a specific set of programs installed, and then you can manage this container as a whole, rather than having to keep track of each individual part inside.
 
 @cindex Responsibility-Driven Design
 This container essentially consist of two things: (a) The software needed to run your microservice, and (b) your microservice, and the idea is to keep both of these as small as possible. Do not expect a full user experience from the software stack in a container, be prepared to fight with @code{sh} rather than something slightly easier to use like @code{bash}. As for the microservice that you deploy in the container, try to maintain a strict responsibility-driven design: If you want to give a container two responsibilities then consider splitting it into two containers.
@@ -416,7 +416,7 @@ When working with Docker you start with a @code{Dockerfile} . Each line in this 
 
 @pindex Docker Hub
 @cindex Docker Hub
-Based on this Dockerfile you create an @code{Image} . This is a snapshot in time from when all the lines in the Dockerfile have been executed. You can version control and tag this image if you like, and it is this image that you will push to Docker hub @uref{https://hub.docker.com/} . If you are using a ready-made container from Docker hub, e.g. with a database or a web server installed , it is this image that will be downloaded and used as a layer in your own Docker image.
+Based on this Dockerfile you create an @code{Image}. This is a snapshot in time from when all the lines in the Dockerfile have been executed. You can version control and tag this image if you like, and it is this image that you will push to Docker hub @uref{https://hub.docker.com/}. If you are using a ready-made container from Docker hub, e.g. with a database or a web server installed, it is this image that will be downloaded and used as a layer in your own Docker image.
 
 When you start your Container, it will use the image as a base and execute the @code{ENTRYPOINT} in the Dockerfile, which is the command and its parameters that should be used to start your microservice. You now have your running Container.
 
@@ -500,7 +500,7 @@ Now that you have created your Dockerfile, the next step is to start using it.
 
 @pindex man
 @pindex info
-For almost all commands in Unix, you have a few different ways to get help. Running the command with the parameter @samp{-h} , or @samp{--help} (note the two dashes) is a good start. For more detailed information, you use the command @samp{man} . Sometimes, you can get even more details if you use the command @samp{info}. Try the following commands:
+For almost all commands in Unix, you have a few different ways to get help. Running the command with the parameter @samp{-h} , or @samp{--help} (note the two dashes) is a good start. For more detailed information, you use the command @samp{man}. Sometimes, you can get even more details if you use the command @samp{info}. Try the following commands:
 
 @example
 docker -h
@@ -556,7 +556,7 @@ myfirstimage                  latest      270970b0971b   5 seconds ago   232MB
 What else can we do? Try @samp{docker image --help} . Apparently we can (among other things) build, list, inspect, remove, and tag images with this command. @samp{docker build} is, in fact, an alias for @samp{docker image build}.
 
 @findex docker image rm
-Once you are done (not yet), you may want to clean up after yourself. Each image has a name listed under REPOSITORY, a tag listed under TAG, and an IMAGE ID@. If there is only one image with that name, you can run @samp{docker image rm myfirstimage} . If you have several images with the same name (try creating one more with @samp{docker build -t myfirstimage:second .} ) , you will need to qualify the name with the specific TAG you want to remove. If all else fail (e.g. if you forgot to give the image a name in the first place), you can use the IMAGE ID to uniquely identify your image.
+Once you are done (not yet), you may want to clean up after yourself. Each image has a name listed under REPOSITORY, a tag listed under TAG, and an IMAGE ID@. If there is only one image with that name, you can run @samp{docker image rm myfirstimage}. If you have several images with the same name (try creating one more with @samp{docker build -t myfirstimage:second .}), you will need to qualify the name with the specific TAG you want to remove. If all else fail (e.g. if you forgot to give the image a name in the first place), you can use the IMAGE ID to uniquely identify your image.
 
 @item
 @anchor{Docker run and Container Management}Docker run and Container Management
@@ -602,9 +602,9 @@ So, let's get this image to actually run as a container, using the command @samp
 @caption{Some of the more common parameters to docker run.}
 @end float
 
-The most common ones you will see are the detach and publish flags, and you will often see these together: @samp{docker run -dp 8080:3000} , which will open port 8080 on your host into port 3000 inside the container.
+The most common ones you will see are the detach and publish flags, and you will often see these together: @samp{docker run -dp 8080:3000}, which will open port 8080 on your host into port 3000 inside the container.
 
-When developing your application, it is useful to be able to view any console output it makes (e.g. if you use @samp{printf()}, @samp{cout}, @samp{console.log()} , or @samp{(print)} inside your application). @samp{docker run -it} enables this, and also enables you to give commands into your running application if it is reading from standard input.
+When developing your application, it is useful to be able to view any console output it makes (e.g. if you use @samp{printf()}, @samp{cout}, @samp{console.log()}, or @samp{(print)} inside your application). @samp{docker run -it} enables this, and also enables you to give commands into your running application if it is reading from standard input.
 
 @findex docker container
 @findex docker container ps
@@ -621,7 +621,7 @@ CONTAINER ID   IMAGE     COMMAND         CREATED         STATUS         PORTS   
 @findex docker container start
 @findex docker container rm
 
-the CONTAINER ID is used as a handle to do other things with the container. We can, for example, stop the container and later start it again with @samp{docker container stop <container-id>} and @samp{docker container start <container-id>} . If we stop the container we can also remove it completely (e.g. in order to update with a newer image): @samp{docker container rm <container-id>} (adding the ``force''-flag @samp{-f} to rm will first stop the container if it is running, saving you one command: @samp{docker rm -f <container-id>}).
+the CONTAINER ID is used as a handle to do other things with the container. We can, for example, stop the container and later start it again with @samp{docker container stop <container-id>} and @samp{docker container start <container-id>}. If we stop the container we can also remove it completely (e.g. in order to update with a newer image): @samp{docker container rm <container-id>} (adding the ``force''-flag @samp{-f} to rm will first stop the container if it is running, saving you one command: @samp{docker rm -f <container-id>}).
 @end enumerate
 
 @node Not Building Microservices -- Infrastructure As A Service
@@ -661,7 +661,7 @@ Some common hypervisors include:
 @item
 Virtualbox @uref{https://www.virtualbox.org/} 
 @item
-VMWare, with VMWare Fusion for Mac @uref{https://www.vmware.com/products/fusion.html}  , and VMWare Workstation for Windows and Linux @uref{https://www.vmware.com/products/workstation-player.html}
+VMWare, with VMWare Fusion for Mac @uref{https://www.vmware.com/products/fusion.html}, and VMWare Workstation for Windows and Linux @uref{https://www.vmware.com/products/workstation-player.html}
 @item
 Parallells @uref{https://www.parallels.com/se/}  if you are using a Mac
 @item
@@ -677,13 +677,13 @@ Qemu @uref{https://www.qemu.org/} is a more powerful and free alternative that a
 @section Provisioning your Virtual Machine
 
 @cindex Provisioning
-With a hypervisor such as above, you get a clean virtual machine, and it is up to you to install whatever operating system you want to run, and whatever software you want installed on top of this operating system. You @emph{can} do this manually, but if you remember the goals we set up in the Introduction (See @ref{introduction} ) , we want to do better than this. We wish help from the computer to create a repeatable and configuration managed deployment that can be used over and over again.
+With a hypervisor such as above, you get a clean virtual machine, and it is up to you to install whatever operating system you want to run, and whatever software you want installed on top of this operating system. You @emph{can} do this manually, but if you remember the goals we set up in the Introduction (See @ref{introduction}), we want to do better than this. We wish help from the computer to create a repeatable and configuration managed deployment that can be used over and over again.
 
 @pindex Vagrant
 @tindex Vagrantfile
 This is where the software Vagrant @uref{https://www.vagrantup.com/} comes into play. With Vagrant we create a file @samp{Vagrantfile} where we specify the size and type of virtual machines we want, the operating system we want on them, and any other software we want installed -- analogous to the @samp{Dockerfile} discussed earlier, but with much more details. It is important to note that Vagrant does not create any virtual machines itself, it is not a hypervisor. Instead, it interacts with other hypervisors such as Virtualbox, VMWare, Hyper-V, or Qemu and requests them to do the ``heavy lifting'' for it. The beauty of this is that you learn once how to work with Vagrant, and can use the same Vagrantfile to create your same virtual machine using any of the supported hypervisors and indeed even launch your virtual machine on a cloud provider.
 
-Unlike Docker, a Vagrantfile can also specify several machine configurations in one, so you can Orchestrate your entire application at once instead of having to work separately with each component/microservice in your system setup. But this is another story which we will get to later (see @ref{Deployment} ).
+Unlike Docker, a Vagrantfile can also specify several machine configurations in one, so you can orchestrate your entire application at once instead of having to work separately with each component/microservice in your system setup. But this is another story which we will get to later (see @ref{Deployment}).
 
 @node Communicating Microservices and REST APIs
 @section Communicating Microservices and REST APIs 
@@ -777,7 +777,7 @@ Having established that this is indeed possible, the question remains: Is this a
 
 @pindex Redis
 @tindex MQTT
-The message queue may be implemented in many ways. We may, for example, use a dedicated table in our database (to which our entire system is connected anyway). We may dedicate a separate microservice running e.g. Redis @uref{https://redis.io/} , and use an implementation of a message queue that connects to this microservice. We may even wish to go formal and pick a service that implements the MQTT protocol (Message Queue Telemetry Transport protocol). But that's a story for another day.
+The message queue may be implemented in many ways. We may, for example, use a dedicated table in our database (to which our entire system is connected anyway). We may dedicate a separate microservice running e.g. Redis @uref{https://redis.io/}, and use an implementation of a message queue that connects to this microservice. We may even wish to go formal and pick a service that implements the MQTT protocol (Message Queue Telemetry Transport protocol). But that's a story for another day.
 
 @node Quiz Hypervisors and Lightweight Virtual Machines
 @chapter Quiz: Hypervisors and Lightweight Virtual Machines
@@ -1043,14 +1043,17 @@ sudo apt-get install -y git curl wget gnupg
 
 echo "----------> Installing MongoDB-org"
 wget -qO - https://www.mongodb.org/static/pgp/server-6.0.asc | sudo apt-key add -
-echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/6.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-6.0.list
+echo "deb [ arch=amd64,arm64 ]\
+      https://repo.mongodb.org/apt/ubuntu\
+      focal/mongodb-org/6.0 multiverse" | sudo \
+      tee /etc/apt/sources.list.d/mongodb-org-6.0.list
 sudo apt-get update
 sudo apt-get install -y mongodb-org
 sudo systemctl start mongod
 
 echo "----------> Installing node.js"
 curl -fsSL https://deb.nodesource.com/setup_19.x | sudo -E bash - &&\
-sudo apt-get install -y nodejs
+     sudo apt-get install -y nodejs
 npm install -g nodemon
 SHELL
 @end example
@@ -1204,8 +1207,10 @@ Start the MongoDB container. This incantation has a few commands built in, so le
 docker run                  # Start a Container
 -d                          # In detached mode (in the background)
 --network qfstandalone-net  # Connect to the virtual network we just created
---network-alias textstore   # Make this container accessible on the network using this name
---name textstore            # Use this name when we access the container with docker
+--network-alias textstore   # Make this container accessible
+                            # on the network using this name
+--name textstore            # Use this name when we access 
+                            # the container with docker
 mongo                       # Use this image as base for the container
 @end example
 
@@ -1217,13 +1222,17 @@ Now we are finally ready to start the QuoteFinder container. Again, let's break 
 
 @example
 docker run                    # Start a container
--it                           # In interactive mode, and attach a terminal so we can also type into it
+-it                           # In interactive mode, and attach 
+                              # a terminal so we can also type into it
 --network qfstandalone-net    # Same virtual network
--e TEXTSTORE_HOST=textstore   # Set the environment variable to the network alias of our MongoDB database
+-e TEXTSTORE_HOST=textstore   # Set the environment variable to the 
+                              # network alias of our MongoDB database
 -w /app                       # Set the working directory inside the container
--v ./src:/app/src             # Attach the host directory ./src to the guest under /app/src
+-v ./src:/app/src             # Attach the host directory ./src 
+                              # to the guest under /app/src
 --name qfstandalone           # Docker name
--p 8080:3000                  # Connect host port 8080 to port 3000 in the container
+-p 8080:3000                  # Connect host port 8080 to 
+                              # port 3000 in the container
 mickesv/qfstandalone:version1 # Use this image (the tag we previously set)
 @end example
 
@@ -1657,8 +1666,10 @@ The architecture patterns for cloud native applications are centered around the 
 An increasing range of tools use YAML @uref{https://yaml.org/spec/} to describe configurations. As mentioned before, this includes provisioning tools such as Ansible, and orchestration tools such as Docker Compose and Kubernetes (which we will eventually get to). There are of course other choices too, but it is a rather neat idea to be able to use a single grammar for all types of configurations. It is claimed that YAML is more readable than JSON (which I doubt) and XML (which I agree with). Below is a quick rundown of relevant YAML syntax (there is more, but this covers 90% of the cloud configuration use cases).
 
 @example
----                          # Every new YAML node starts with three hyphens. You can often include many nodes in the same file.
-Name: "Arthur Dent"          # Something with the key "Name" has the (string) value "Arthur Dent"
+---                          # Every new YAML node starts with three hyphens. 
+                             # You can often include many nodes in the same file.
+Name: "Arthur Dent"          # Something with the key "Name" has the 
+                             # (string) value "Arthur Dent"
 Age: 42                      # Integers and floats are also supported.
 Active: true                 # ... as are booleans (true or false)
 Friends: null                # ... and null values.
@@ -1668,7 +1679,8 @@ Inventory:                   # The value of the inventory key is a list.
   - Towel
   - Babelfish
 Desires: [ House, Clothes ]   # Lists can also be inlined
-Address:                      # A Mapping (or a dictionary) is a set of key/value pairs, where each key is unique.
+Address:                      # A Mapping (or a dictionary) is a set of 
+                              # key/value pairs, where each key is unique.
   Street: "Vogon Intergalactic Bypass #47111"
   City: "What do you mean city? We work with the whole Universe!"
   HouseNumber: 0
@@ -1692,8 +1704,9 @@ FavouritePoem: |             # Multi-line contents.
   On a lurgid bee,
   That mordiously hath blurted out,
   Its earted jurtles, grumbling
-  Into a rancid festering confectious organ squealer. [drowned out by moaning and screaming]
-...                          # Formally, a YAML ends with three dots. Can often be left out.
+  Into a rancid festering confectious organ squealer.
+     [drowned out by moaning and screaming]
+...     # Formally, a YAML ends with three dots. Can often be left out.
 @end example
 
 Do note that indentation matters. Apparently this is a popular design decision these days. I personally dislike this since I claim that whitespace should not carry semantic meaning. In my not so humble opinion, this choice decreases maintainability and readability.
@@ -1724,7 +1737,8 @@ services:
       - "8080:3000"
     volumes:
       - "volume:container-path"
-      - db-data:/etc/data  # Mount the volume db-data inside the container on the path /etc/data.
+      - db-data:/etc/data  # Mount the volume db-data inside 
+                           # the container on the path /etc/data.
   some-other-service:
     image:           # the image of some other service you want to run
 
@@ -1795,63 +1809,78 @@ A conceptual view of QuoteFinder Version 2:
 @end example
 
 The overall process for a search:
-@multitable {aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa} {aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa} {aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa}
+@multitable {aaaaaaaaaaaaaaaaaaaa} {aaaaaaaaaaaaaaaaaaaaaaaa} {aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa}
 @headitem Web Client
 @tab QFApp
 @tab QFWorker
 @item 
 @tab 
-@tab 0. Listen on 'searchJob' queue
+@tab 0. Listen on
 @item 1. search(words)
 @tab 
+@tab 'searchJob' queue
+@item 2. Listen
+@tab 3. List all texts
 @tab 
-@item 2. Listen on @samp{socket} for results
+@item on @samp{socket}
+@tab in TextStore database
 @tab 
+@item for results
+@tab 4. Create a job
 @tab 
 @item 
-@tab 3. List all texts in TextStore database
-@tab 
-@item 
-@tab 4. Create a job for each text
+@tab for each text
 @tab 
 @item 
 @tab 5. Create a return queue
 @tab 
 @item 
-@tab 6. Send all jobs to the 'searchJob' queue
+@tab 6. Send all jobs
 @tab 
 @item 
-@tab 7. Listen on the return queue.
+@tab to the 'searchJob' queue
 @tab 
 @item 
-@tab 
-@tab 8. Pick first message in queue
+@tab 7. Listen on the
+@tab 8. Pick first
+@item 
+@tab return queue.
+@tab message in queue
 @item 
 @tab 
 @tab 9. Create N threads
 @item 
 @tab 
-@tab 10. [each thread] fetch chunk from TextStore database
+@tab 10. [each thread] fetch chunk
 @item 
 @tab 
-@tab 11. [each thread] look for quote, compile results.
+@tab from TextStore database
 @item 
 @tab 
-@tab 12. Collate and send results on return queue.
+@tab 11. [each thread] look for quote,
 @item 
 @tab 
-@tab 13. Goto 9 until no more chunks available
+@tab compile results.
 @item 
 @tab 
+@tab 12. Collate and send
+@item 
+@tab 
+@tab results on return queue.
+@item 
+@tab 
+@tab 13. Goto 9 until no more chunks
+@item 
+@tab 14. Receive results
 @tab then goto 8 until no more messages
 @item 
-@tab 
+@tab on return queue.
 @tab then goto 0.
 @item 
-@tab 14. Receive results on return queue.
+@tab 15. send to web
 @tab 
 @item 
-@tab 15. send to web client's @samp{socket}
+@tab client's @samp{socket}
 @tab 
 @item 
 @tab 16. Goto 7.
@@ -2054,7 +2083,8 @@ Stop and clean up after the running deployment by running the following commands
 @example
 docker compose -f docker-compose-v2.yml stop
 docker rm -f $(docker ps -a -q) dummy
-docker volume rm version2_mongo-config version2_redis-conf version2_redis-data version2_textstore-data
+docker volume rm version2_mongo-config version2_redis-conf\
+       version2_redis-data version2_textstore-data
 docker network prune -f
 @end example
 
@@ -2202,7 +2232,9 @@ class Dispatcher @{
             console.log('Using url:', url);
             return fetch(url)
                 .then(res => res.json())
-                .then(res => res.forEach( t => socket.emit('answer', JSON.stringify(t))));
+                .then(res => 
+                    res.forEach( t =>
+                        socket.emit('answer', JSON.stringify(t))));
         @}))
         .then( () => socket.emit('done', @{msg: 'done'@}));
     @}
@@ -2612,10 +2644,13 @@ kubectl apply -f qfstandalone-v1-2.yaml -l data=config
 kubectl apply -f qfstandalone-v1-2.yaml -l app=textstore
 
 # Extract the clusterIP
-export textstoreip=$( kubectl get services/textstore-service --template='@{@{.spec.clusterIP@}@}' )
+export textstoreip=$( kubectl get \
+                              services/textstore-service \
+                              --template='@{@{.spec.clusterIP@}@}' )
 
 # Retrieve the ConfigMap, replace "NOTSET" with the clusterIP, and re-apply.
-kubectl get configmap/qfapp-config -o yaml | sed -r "s/NOTSET/$textstoreip/" | kubectl apply -f -
+kubectl get configmap/qfapp-config -o yaml\
+    | sed -r "s/NOTSET/$textstoreip/" | kubectl apply -f -
 
 # Finally, start the qfapp
 kubectl apply -f qfstandalone-v1-2.yaml -l app=qfapp
@@ -2869,17 +2904,20 @@ spec:
 Accessing the database, will require a new access string:
 
 @example
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: qfapp-config
-  labels:
-    data: config
-data:
-  textstore_host: "NOTSET"
-  textstore_replicaset: "mongodb://textstore-0.textstore-service.default.svc.cluster.local:27017,textstore-1.textstore-service.default.svc.cluster.local:27017,textstore-2.textstore-service.default.svc.cluster.local:27017/textStore?replicaSet=MainRepSet"
----
+  ---
+  apiVersion: v1
+  kind: ConfigMap
+  metadata:
+    name: qfapp-config
+    labels:
+      data: config
+  data:
+    textstore_host: "NOTSET"
+    textstore_replicaset: "mongodb://textstore-0.textstore-service.default.svc.cluster.local:27017,\
+textstore-1.textstore-service.default.svc.cluster.local:27017,\
+textstore-2.textstore-service.default.svc.cluster.local:27017/\
+textStore?replicaSet=MainRepSet"
+  ---
 @end example
 
 I am not a fan of that the URLs to each member in the cluster has to be hard-coded like this ( @samp{textstore_replicaset} ), since this limits the ability to scale up or down the number of replicas. Ideally, it should be as easy to change the @samp{spec.replicas} for the StatefulSet and let Kubernetes re-apply. In practice, this is now made much more difficult.
@@ -3111,75 +3149,88 @@ To summarise:
 @example
 # Generate and store the key as a Kubernetes Secret
 openssl rand -base64 200 > ./replica-set-key.txt
-kubectl create secret generic mongodb-bootstrap-data --from-file=mongodb-keyfile=./replica-set-key.txt
+kubectl create secret generic mongodb-bootstrap-data\
+        --from-file=mongodb-keyfile=./replica-set-key.txt
 
 # Add some users to the database
-kubectl exec -i textstore-0 -- mongosh --quiet --eval 'db.getSiblingDB("admin").createUser(@{ user: "main_admin", pwd: "hunter2", roles: [ @{ role: "root", db: "admin" @} ]@});'
-kubectl exec -i textstore-0 -- mongosh --quiet --eval 'db.getSiblingDB("admin").auth("main_admin", "hunter2"); db.getSiblingDB("admin").createUser(@{ user: "kube", pwd: "kubeuser", roles: ["readWriteAnyDatabase"]@});'
+kubectl exec -i textstore-0\
+        -- mongosh --quiet --eval 'db.getSiblingDB("admin")\
+        .createUser(@{ user: "main_admin", pwd: "hunter2",\
+                      roles: [ @{ role: "root", db: "admin" @} ]@});'
+kubectl exec -i textstore-0\
+        -- mongosh --quiet --eval 'db.getSiblingDB("admin")\
+        .auth("main_admin", "hunter2"); \
+        db.getSiblingDB("admin")\
+        .createUser(@{ user: "kube", pwd: "kubeuser",\
+                      roles: ["readWriteAnyDatabase"]@});'
 @end example
 
 
 @dots{} and the configuration of the MongoDB StatefulSet:
 
 @example
----
-apiVersion: apps/v1
-kind: StatefulSet
-metadata:
-  name: textstore
-  labels:
-    app: textstore
-spec:
-  serviceName: textstore-service  # This becomes part of the hostname (e.g. textstore-0.textstore-service.default.svc.cluster.local)
-  replicas: 3
-  selector:
-    matchLabels:
+  ---
+  apiVersion: apps/v1
+  kind: StatefulSet
+  metadata:
+    name: textstore
+    labels:
       app: textstore
-  template:
-    metadata:
-      labels:
+  spec:
+    serviceName: textstore-service  # This becomes part of the hostname
+        # (e.g. textstore-0.textstore-service.default.svc.cluster.local)
+    replicas: 3
+    selector:
+      matchLabels:
         app: textstore
-        startup: textstore-wait
-    spec:
-      containers:
-      - name: textstore
-        image: mongo
-        command: ["mongod", "--bind_ip", "0.0.0.0", "--replSet", "MainRepSet", "--auth", "--clusterAuthMode", "keyFile", "--keyFile", "/etc/secrets-volume/mongodb-keyfile", "--setParameter", "authenticationMechanisms=SCRAM-SHA-1"]
-        readinessProbe:
-          exec:
-            command: ["mongosh", "--eval", "db.adminCommand(@{ping: 1@})"]
-        ports:
-        - containerPort: 27017
-          name: mongodb-port
-        volumeMounts:
-        - name: textstore-data
-          mountPath: /data/db
-        - name: mongo-config
-          mountPath: /data/configdb
+    template:
+      metadata:
+        labels:
+          app: textstore
+          startup: textstore-wait
+      spec:
+        containers:
+        - name: textstore
+          image: mongo
+          command: ["mongod", "--bind_ip", "0.0.0.0",
+"--replSet", "MainRepSet", "--auth", "--clusterAuthMode",
+"keyFile", "--keyFile", "/etc/secrets-volume/mongodb-keyfile",
+"--setParameter", "authenticationMechanisms=SCRAM-SHA-1"]
+          readinessProbe:
+            exec:
+              command: ["mongosh", "--eval", "db.adminCommand(@{ping: 1@})"]
+          ports:
+          - containerPort: 27017
+            name: mongodb-port
+          volumeMounts:
+          - name: textstore-data
+            mountPath: /data/db
+          - name: mongo-config
+            mountPath: /data/configdb
+          - name: secrets-volume
+            readOnly: true
+            mountPath: /etc/secrets-volume
+        volumes:
         - name: secrets-volume
-          readOnly: true
-          mountPath: /etc/secrets-volume
-      volumes:
-      - name: secrets-volume
-        secret:
-          secretName: mongodb-bootstrap-data
-          defaultMode: 256
-  volumeClaimTemplates:
-    - metadata:
-        name: textstore-data
-      spec:
-        accessModes: ["ReadWriteOnce"]
-        resources:
-          requests: 
-            storage: 10Mi
-    - metadata:
-        name: mongo-config
-      spec:
-        accessModes: ["ReadWriteOnce"]
-        resources:
-          requests: 
-            storage: 5Mi          
----
+          secret:
+            secretName: mongodb-bootstrap-data
+            defaultMode: 256
+    volumeClaimTemplates:
+      - metadata:
+          name: textstore-data
+        spec:
+          accessModes: ["ReadWriteOnce"]
+          resources:
+            requests: 
+              storage: 10Mi
+      - metadata:
+          name: mongo-config
+        spec:
+          accessModes: ["ReadWriteOnce"]
+          resources:
+            requests: 
+              storage: 5Mi          
+  ---
 @end example
 
 @cindex Lambda Functions
@@ -3253,7 +3304,7 @@ c(")(")
 
 @end example
 
-The ``only'' thing remaining for You to do now is to prove that you too have learnt all this. Read on to figure out how.
+The ``only'' thing remaining for you to do now is to prove that you too have learnt all this. Read on to figure out how.
 
 @node Assignment Build Something
 @chapter Assignment: Build Something

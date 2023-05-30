@@ -263,7 +263,7 @@ Next: <a href="#Introduction-to-Orchestration-and-Provisioning" accesskey="n" re
 <li>The <em class="emph">introduction</em> section in an article puts the problem into context, and might give you clues as to how other researchers have solved it before. You can use this section to get a generic overview.
 </li><li>The <em class="emph">related work</em> section should discuss in further detail what other researchers have done that is similar to, or relates to, the article you are reading. This may give you an idea of how others have addressed the problem, and may give you pointers to other articles that you would wish to read.
 </li><li>The <em class="emph">methodology</em> section explains how the study was conducted. Once an article is published (which they naturally are in this course), this is mostly interesting if you distrust some of the results and want to see if anything has been missed when constructing the study.
-</li><li>The <em class="emph">execution and results</em> sections describe how the study was executed (in particular discrepancies from the planned methodology), and what the raw results were. Most of the time, you can safely skip these sections.
+</li><li>The <em class="emph">execution and results</em> sections describe how the study was executed (in particular discrepancies from the planned methodology), and what the raw results were. Most of the time, you can safely skip these sections. Sometimes however, the <em class="emph">results</em> section is combined with the <em class="emph">analysis</em> section.
 </li><li>The <em class="emph">analysis</em> section &ldquo;bakes&rdquo; the results and tries to answer the research questions (address the identified problem). This is probably the most interesting section for you to read.
 </li><li>The <em class="emph">discussion</em> section should raise the view and try to see what the results actually mean in a bigger context. What can you do with the results? &ldquo;So what?&rdquo;. This is a tricky section to read, since the authors want you to believe that their results are the best thing invented since hot porridge, but at the same time they have to identify threats to the validity of the study. Validity threats are things that could have influenced the results instead of the sought after effect. This may be things that happened at the same time, inadequacies in the researchers skills and abilities, or inadequacies in the research design. Please remember, when (or if) reading this section, that most of the identified validity threats are minor obstacles (or the article would not have been published) that may impact the scientific view of the results more than the practical significance or usefulness of them.
 </li><li>The <em class="emph">references</em> may give you ideas for other articles that you would like to read.
@@ -296,7 +296,7 @@ Next: <a href="#Microservices-and-Lightweight-Containers" accesskey="n" rel="nex
 
 <a class="index-entry-id" id="index-Deployment"></a>
 <ul class="itemize mark-bullet">
-<li>When you are ready to deploy your application (of course you have already tested it?) , you first need to set this server up and make sure that it is installed and setup in exactly the same way as your development machine. And then you deploy. And say a prayer. And hope that no users try to use your application while you are figuring out what went wrong.
+<li>When you are ready to deploy your application (of course you have already tested it?), you first need to set this server up and make sure that it is installed and setup in exactly the same way as your development machine. And then you deploy. And say a prayer. And hope that no users try to use your application while you are figuring out what went wrong.
 </li></ul>
 
 <a class="index-entry-id" id="index-Redeployment"></a>
@@ -305,7 +305,7 @@ Next: <a href="#Microservices-and-Lightweight-Containers" accesskey="n" rel="nex
 </li></ul>
 
 <a class="index-entry-id" id="index-Deployment-Environments"></a>
-<p>This brings us back to the overall goal. What you want is a controllable and repeatable way to set up your machines. Controllable, so that you can decide whether you want a development-version (Where perhaps your application is running with debug flags turned on), a test-version (that contains a reasonable subset of all the data in the live system and where tests for different environments are launched automatically) , or a running production version of your system (that you really have no business ever editing directly, and maybe never need to edit directly since it is deployed automatically as soon as all tests are run).
+<p>This brings us back to the overall goal. What you want is a controllable and repeatable way to set up your machines. Controllable, so that you can decide whether you want a development-version (where perhaps your application is running with debug flags turned on), a test-version (that contains a reasonable subset of all the data in the live system and where tests for different environments are launched automatically), or a running production version of your system (that you really have no business ever editing directly, and maybe never need to edit directly since it is deployed automatically as soon as all tests are run).
 </p>
 <a class="index-entry-id" id="index-Repeatable-Deployment"></a>
 <p>You want the setup to be <em class="emph">repeatable</em> so that you will always start from the same page, no matter what. Basically, you want to banish even the idea that it is ok to log in to a running environment to change things. If you want to introduce changes, you change the repeatable scripts, test them, and then push them to the rest of the project for common use. Now, <em class="emph">anyone</em> in the project can create the exact same environment as you have, and test your code under exactly the same conditions.
@@ -398,7 +398,7 @@ Next: <a href="#Quiz-Hypervisors-and-Lightweight-Virtual-Machines" accesskey="n"
 <p>Some types of execution modularisation is probably already familiar to you. You have probably heard of <em class="emph">client-server architectures</em>, and you have probably built systems using an external database. If you are unlucky, you may have developed multi-threaded applications.
 </p>
 <a class="index-entry-id" id="index-Microservice-Architecture"></a>
-<p><em class="emph">Microservice architectures</em> is an attempt to simplify development. On an architecture level, it is an attempt to settle on a single type of interface between the different conceptual components (usually a <a class="ref" href="#Communicating-Microservices-and-REST-APIs">REST API</a>), align the execution of an application with its conceptual view, and defer creation of the module view to each individual component/executable. Of course, this works less well in practice because one still wish to re-use components between the different microservices but that&rsquo;s another story.
+<p><em class="emph">Microservice architectures</em> is an attempt to simplify development. On an architecture level, it is an attempt to settle on a single type of interface between the different conceptual components (usually a <a class="ref" href="#Communicating-Microservices-and-REST-APIs">REST API</a>), align the execution of an application with its conceptual view, and defer creation of the module view to each individual component/executable. Of course, this works less well in practice because one still wishes to re-use components between the different microservices but that&rsquo;s another story.
 </p>
 <p>One more benefit (some would argue it is the main benefit) is that there is no longer any need for multi-threaded programming. Each microservice can (and perhaps even should be) as single-threaded as possible. If one needs to scale the application this is done as part of the deployment rather than with the help of logic inside the application. This creates a <em class="emph">separation of concern</em> between application logic and deployment logic which is highly sought after.
 </p>
@@ -439,7 +439,7 @@ Next: <a href="#A-Quick-Rundown-of-Docker-Terminology" accesskey="n" rel="next">
 <a class="index-entry-id" id="index-Docker"></a>
 <a class="index-entry-id" id="index-Podman"></a>
 <a class="index-entry-id" id="index-Container"></a>
-<p>As it happens, there are applications for this. You may have heard about Docker <a class="uref" href="https://www.docker.com/">https://www.docker.com/</a> or its open source cousin Podman <a class="uref" href="https://podman.io/">https://podman.io/</a> . Both of these are examples of Linux Containers (LXC), which are usually described as &ldquo;Lightweight virtual machines&rdquo;. With tools like these you create a <em class="emph">Container</em> with a specific set of programs installed, and then you can manage this container as a whole, rather than having to keep track of each individual part inside. 
+<p>As it happens, there are applications for this. You may have heard about Docker <a class="uref" href="https://www.docker.com/">https://www.docker.com/</a> or its open source cousin Podman <a class="uref" href="https://podman.io/">https://podman.io/</a>. Both of these are examples of Linux Containers (LXC), which are usually described as &ldquo;Lightweight virtual machines&rdquo;. With tools like these you create a <em class="emph">Container</em> with a specific set of programs installed, and then you can manage this container as a whole, rather than having to keep track of each individual part inside.
 </p>
 <a class="index-entry-id" id="index-Responsibility_002dDriven-Design"></a>
 <p>This container essentially consist of two things: (a) The software needed to run your microservice, and (b) your microservice, and the idea is to keep both of these as small as possible. Do not expect a full user experience from the software stack in a container, be prepared to fight with <code class="code">sh</code> rather than something slightly easier to use like <code class="code">bash</code>. As for the microservice that you deploy in the container, try to maintain a strict responsibility-driven design: If you want to give a container two responsibilities then consider splitting it into two containers.
@@ -458,7 +458,7 @@ Next: <a href="#Dockerfile" accesskey="n" rel="next">Dockerfile</a>, Previous: <
 </p>
 <a class="index-entry-id" id="index-Docker-Hub-1"></a>
 <a class="index-entry-id" id="index-Docker-Hub"></a>
-<p>Based on this Dockerfile you create an <code class="code">Image</code> . This is a snapshot in time from when all the lines in the Dockerfile have been executed. You can version control and tag this image if you like, and it is this image that you will push to Docker hub <a class="uref" href="https://hub.docker.com/">https://hub.docker.com/</a> . If you are using a ready-made container from Docker hub, e.g. with a database or a web server installed , it is this image that will be downloaded and used as a layer in your own Docker image.
+<p>Based on this Dockerfile you create an <code class="code">Image</code>. This is a snapshot in time from when all the lines in the Dockerfile have been executed. You can version control and tag this image if you like, and it is this image that you will push to Docker hub <a class="uref" href="https://hub.docker.com/">https://hub.docker.com/</a>. If you are using a ready-made container from Docker hub, e.g. with a database or a web server installed, it is this image that will be downloaded and used as a layer in your own Docker image.
 </p>
 <p>When you start your Container, it will use the image as a base and execute the <code class="code">ENTRYPOINT</code> in the Dockerfile, which is the command and its parameters that should be used to start your microservice. You now have your running Container.
 </p>
@@ -553,7 +553,7 @@ Next: <a href="#Not-Building-Microservices-_002d_002d-Infrastructure-As-A-Servic
 
 <a class="index-entry-id" id="index-man"></a>
 <a class="index-entry-id" id="index-info"></a>
-<p>For almost all commands in Unix, you have a few different ways to get help. Running the command with the parameter &lsquo;<samp class="samp">-h</samp>&rsquo; , or &lsquo;<samp class="samp">--help</samp>&rsquo; (note the two dashes) is a good start. For more detailed information, you use the command &lsquo;<samp class="samp">man</samp>&rsquo; . Sometimes, you can get even more details if you use the command &lsquo;<samp class="samp">info</samp>&rsquo;. Try the following commands:
+<p>For almost all commands in Unix, you have a few different ways to get help. Running the command with the parameter &lsquo;<samp class="samp">-h</samp>&rsquo; , or &lsquo;<samp class="samp">--help</samp>&rsquo; (note the two dashes) is a good start. For more detailed information, you use the command &lsquo;<samp class="samp">man</samp>&rsquo;. Sometimes, you can get even more details if you use the command &lsquo;<samp class="samp">info</samp>&rsquo;. Try the following commands:
 </p>
 <div class="example">
 <pre class="example-preformatted">docker -h
@@ -606,7 +606,7 @@ myfirstimage                  latest      270970b0971b   5 seconds ago   232MB
 <p>What else can we do? Try &lsquo;<samp class="samp">docker image --help</samp>&rsquo; . Apparently we can (among other things) build, list, inspect, remove, and tag images with this command. &lsquo;<samp class="samp">docker build</samp>&rsquo; is, in fact, an alias for &lsquo;<samp class="samp">docker image build</samp>&rsquo;.
 </p>
 <a class="index-entry-id" id="index-docker-image-rm"></a>
-<p>Once you are done (not yet), you may want to clean up after yourself. Each image has a name listed under REPOSITORY, a tag listed under TAG, and an IMAGE ID. If there is only one image with that name, you can run &lsquo;<samp class="samp">docker image rm myfirstimage</samp>&rsquo; . If you have several images with the same name (try creating one more with &lsquo;<samp class="samp">docker build -t myfirstimage:second .</samp>&rsquo; ) , you will need to qualify the name with the specific TAG you want to remove. If all else fail (e.g. if you forgot to give the image a name in the first place), you can use the IMAGE ID to uniquely identify your image.
+<p>Once you are done (not yet), you may want to clean up after yourself. Each image has a name listed under REPOSITORY, a tag listed under TAG, and an IMAGE ID. If there is only one image with that name, you can run &lsquo;<samp class="samp">docker image rm myfirstimage</samp>&rsquo;. If you have several images with the same name (try creating one more with &lsquo;<samp class="samp">docker build -t myfirstimage:second .</samp>&rsquo;), you will need to qualify the name with the specific TAG you want to remove. If all else fail (e.g. if you forgot to give the image a name in the first place), you can use the IMAGE ID to uniquely identify your image.
 </p>
 </li><li> <a class="anchor" id="Docker-run-and-Container-Management"></a>Docker run and Container Management
 
@@ -630,9 +630,9 @@ myfirstimage                  latest      270970b0971b   5 seconds ago   232MB
 </table>
 
 <div class="caption"><p><strong class="strong">Table 4.1: </strong>Some of the more common parameters to docker run.</p></div></div>
-<p>The most common ones you will see are the detach and publish flags, and you will often see these together: &lsquo;<samp class="samp">docker run -dp 8080:3000</samp>&rsquo; , which will open port 8080 on your host into port 3000 inside the container.
+<p>The most common ones you will see are the detach and publish flags, and you will often see these together: &lsquo;<samp class="samp">docker run -dp 8080:3000</samp>&rsquo;, which will open port 8080 on your host into port 3000 inside the container.
 </p>
-<p>When developing your application, it is useful to be able to view any console output it makes (e.g. if you use &lsquo;<samp class="samp">printf()</samp>&rsquo;, &lsquo;<samp class="samp">cout</samp>&rsquo;, &lsquo;<samp class="samp">console.log()</samp>&rsquo; , or &lsquo;<samp class="samp">(print)</samp>&rsquo; inside your application). &lsquo;<samp class="samp">docker run -it</samp>&rsquo; enables this, and also enables you to give commands into your running application if it is reading from standard input.
+<p>When developing your application, it is useful to be able to view any console output it makes (e.g. if you use &lsquo;<samp class="samp">printf()</samp>&rsquo;, &lsquo;<samp class="samp">cout</samp>&rsquo;, &lsquo;<samp class="samp">console.log()</samp>&rsquo;, or &lsquo;<samp class="samp">(print)</samp>&rsquo; inside your application). &lsquo;<samp class="samp">docker run -it</samp>&rsquo; enables this, and also enables you to give commands into your running application if it is reading from standard input.
 </p>
 <a class="index-entry-id" id="index-docker-container"></a>
 <a class="index-entry-id" id="index-docker-container-ps"></a>
@@ -647,7 +647,7 @@ myfirstimage                  latest      270970b0971b   5 seconds ago   232MB
 <a class="index-entry-id" id="index-docker-container-start"></a>
 <a class="index-entry-id" id="index-docker-container-rm"></a>
 
-<p>the CONTAINER ID is used as a handle to do other things with the container. We can, for example, stop the container and later start it again with &lsquo;<samp class="samp">docker container stop &lt;container-id&gt;</samp>&rsquo; and &lsquo;<samp class="samp">docker container start &lt;container-id&gt;</samp>&rsquo; . If we stop the container we can also remove it completely (e.g. in order to update with a newer image): &lsquo;<samp class="samp">docker container rm &lt;container-id&gt;</samp>&rsquo; (adding the &ldquo;force&rdquo;-flag &lsquo;<samp class="samp">-f</samp>&rsquo; to rm will first stop the container if it is running, saving you one command: &lsquo;<samp class="samp">docker rm -f &lt;container-id&gt;</samp>&rsquo;).
+<p>the CONTAINER ID is used as a handle to do other things with the container. We can, for example, stop the container and later start it again with &lsquo;<samp class="samp">docker container stop &lt;container-id&gt;</samp>&rsquo; and &lsquo;<samp class="samp">docker container start &lt;container-id&gt;</samp>&rsquo;. If we stop the container we can also remove it completely (e.g. in order to update with a newer image): &lsquo;<samp class="samp">docker container rm &lt;container-id&gt;</samp>&rsquo; (adding the &ldquo;force&rdquo;-flag &lsquo;<samp class="samp">-f</samp>&rsquo; to rm will first stop the container if it is running, saving you one command: &lsquo;<samp class="samp">docker rm -f &lt;container-id&gt;</samp>&rsquo;).
 </p></li></ol>
 
 <hr>
@@ -691,7 +691,7 @@ Next: <a href="#Provisioning-your-Virtual-Machine" accesskey="n" rel="next">Prov
 <p>Some common hypervisors include:
 </p><ul class="itemize mark-bullet">
 <li>Virtualbox <a class="uref" href="https://www.virtualbox.org/">https://www.virtualbox.org/</a> 
-</li><li>VMWare, with VMWare Fusion for Mac <a class="uref" href="https://www.vmware.com/products/fusion.html">https://www.vmware.com/products/fusion.html</a>  , and VMWare Workstation for Windows and Linux <a class="uref" href="https://www.vmware.com/products/workstation-player.html">https://www.vmware.com/products/workstation-player.html</a>
+</li><li>VMWare, with VMWare Fusion for Mac <a class="uref" href="https://www.vmware.com/products/fusion.html">https://www.vmware.com/products/fusion.html</a>, and VMWare Workstation for Windows and Linux <a class="uref" href="https://www.vmware.com/products/workstation-player.html">https://www.vmware.com/products/workstation-player.html</a>
 </li><li>Parallells <a class="uref" href="https://www.parallels.com/se/">https://www.parallels.com/se/</a>  if you are using a Mac
 </li><li>Hyper-V <a class="uref" href="https://learn.microsoft.com/en-us/virtualization/hyper-v-on-windows/">https://learn.microsoft.com/en-us/virtualization/hyper-v-on-windows/</a> if you are using Windows
 </li></ul>
@@ -711,13 +711,13 @@ Next: <a href="#Communicating-Microservices-and-REST-APIs" accesskey="n" rel="ne
 <h3 class="section" id="Provisioning-your-Virtual-Machine-1">4.6 Provisioning your Virtual Machine</h3>
 
 <a class="index-entry-id" id="index-Provisioning"></a>
-<p>With a hypervisor such as above, you get a clean virtual machine, and it is up to you to install whatever operating system you want to run, and whatever software you want installed on top of this operating system. You <em class="emph">can</em> do this manually, but if you remember the goals we set up in the Introduction (See <a class="ref" href="#introduction">introduction</a> ) , we want to do better than this. We wish help from the computer to create a repeatable and configuration managed deployment that can be used over and over again.
+<p>With a hypervisor such as above, you get a clean virtual machine, and it is up to you to install whatever operating system you want to run, and whatever software you want installed on top of this operating system. You <em class="emph">can</em> do this manually, but if you remember the goals we set up in the Introduction (See <a class="ref" href="#introduction">introduction</a>), we want to do better than this. We wish help from the computer to create a repeatable and configuration managed deployment that can be used over and over again.
 </p>
 <a class="index-entry-id" id="index-Vagrant"></a>
 <a class="index-entry-id" id="index-Vagrantfile"></a>
 <p>This is where the software Vagrant <a class="uref" href="https://www.vagrantup.com/">https://www.vagrantup.com/</a> comes into play. With Vagrant we create a file &lsquo;<samp class="samp">Vagrantfile</samp>&rsquo; where we specify the size and type of virtual machines we want, the operating system we want on them, and any other software we want installed &ndash; analogous to the &lsquo;<samp class="samp">Dockerfile</samp>&rsquo; discussed earlier, but with much more details. It is important to note that Vagrant does not create any virtual machines itself, it is not a hypervisor. Instead, it interacts with other hypervisors such as Virtualbox, VMWare, Hyper-V, or Qemu and requests them to do the &ldquo;heavy lifting&rdquo; for it. The beauty of this is that you learn once how to work with Vagrant, and can use the same Vagrantfile to create your same virtual machine using any of the supported hypervisors and indeed even launch your virtual machine on a cloud provider.
 </p>
-<p>Unlike Docker, a Vagrantfile can also specify several machine configurations in one, so you can Orchestrate your entire application at once instead of having to work separately with each component/microservice in your system setup. But this is another story which we will get to later (see <a class="ref" href="#Deployment">Deployment</a> ).
+<p>Unlike Docker, a Vagrantfile can also specify several machine configurations in one, so you can orchestrate your entire application at once instead of having to work separately with each component/microservice in your system setup. But this is another story which we will get to later (see <a class="ref" href="#Deployment">Deployment</a>).
 </p>
 <hr>
 </div>
@@ -811,7 +811,7 @@ Previous: <a href="#Communicating-Microservices-and-REST-APIs" accesskey="p" rel
 </p>
 <a class="index-entry-id" id="index-Redis"></a>
 <a class="index-entry-id" id="index-MQTT"></a>
-<p>The message queue may be implemented in many ways. We may, for example, use a dedicated table in our database (to which our entire system is connected anyway). We may dedicate a separate microservice running e.g. Redis <a class="uref" href="https://redis.io/">https://redis.io/</a> , and use an implementation of a message queue that connects to this microservice. We may even wish to go formal and pick a service that implements the MQTT protocol (Message Queue Telemetry Transport protocol). But that&rsquo;s a story for another day.
+<p>The message queue may be implemented in many ways. We may, for example, use a dedicated table in our database (to which our entire system is connected anyway). We may dedicate a separate microservice running e.g. Redis <a class="uref" href="https://redis.io/">https://redis.io/</a>, and use an implementation of a message queue that connects to this microservice. We may even wish to go formal and pick a service that implements the MQTT protocol (Message Queue Telemetry Transport protocol). But that&rsquo;s a story for another day.
 </p>
 <hr>
 </div>
@@ -1068,14 +1068,17 @@ sudo apt-get install -y git curl wget gnupg
 
 echo &quot;----------&gt; Installing MongoDB-org&quot;
 wget -qO - https://www.mongodb.org/static/pgp/server-6.0.asc | sudo apt-key add -
-echo &quot;deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/6.0 multiverse&quot; | sudo tee /etc/apt/sources.list.d/mongodb-org-6.0.list
+echo &quot;deb [ arch=amd64,arm64 ]\
+      https://repo.mongodb.org/apt/ubuntu\
+      focal/mongodb-org/6.0 multiverse&quot; | sudo \
+      tee /etc/apt/sources.list.d/mongodb-org-6.0.list
 sudo apt-get update
 sudo apt-get install -y mongodb-org
 sudo systemctl start mongod
 
 echo &quot;----------&gt; Installing node.js&quot;
 curl -fsSL https://deb.nodesource.com/setup_19.x | sudo -E bash - &amp;&amp;\
-sudo apt-get install -y nodejs
+     sudo apt-get install -y nodejs
 npm install -g nodemon
 SHELL
 </pre></div>
@@ -1205,8 +1208,10 @@ ENTRYPOINT [&quot;npm&quot;, &quot;run&quot;, &quot;dev&quot;]
 <pre class="example-preformatted">docker run                  # Start a Container
 -d                          # In detached mode (in the background)
 --network qfstandalone-net  # Connect to the virtual network we just created
---network-alias textstore   # Make this container accessible on the network using this name
---name textstore            # Use this name when we access the container with docker
+--network-alias textstore   # Make this container accessible
+                            # on the network using this name
+--name textstore            # Use this name when we access 
+                            # the container with docker
 mongo                       # Use this image as base for the container
 </pre></div>
 
@@ -1217,13 +1222,17 @@ mongo                       # Use this image as base for the container
 
 <div class="example">
 <pre class="example-preformatted">docker run                    # Start a container
--it                           # In interactive mode, and attach a terminal so we can also type into it
+-it                           # In interactive mode, and attach 
+                              # a terminal so we can also type into it
 --network qfstandalone-net    # Same virtual network
--e TEXTSTORE_HOST=textstore   # Set the environment variable to the network alias of our MongoDB database
+-e TEXTSTORE_HOST=textstore   # Set the environment variable to the 
+                              # network alias of our MongoDB database
 -w /app                       # Set the working directory inside the container
--v ./src:/app/src             # Attach the host directory ./src to the guest under /app/src
+-v ./src:/app/src             # Attach the host directory ./src 
+                              # to the guest under /app/src
 --name qfstandalone           # Docker name
--p 8080:3000                  # Connect host port 8080 to port 3000 in the container
+-p 8080:3000                  # Connect host port 8080 to 
+                              # port 3000 in the container
 mickesv/qfstandalone:version1 # Use this image (the tag we previously set)
 </pre></div>
 
@@ -1702,8 +1711,10 @@ Previous: <a href="#Cloud-Architecture-Patterns" accesskey="p" rel="prev">Cloud 
 <p>An increasing range of tools use YAML <a class="uref" href="https://yaml.org/spec/">https://yaml.org/spec/</a> to describe configurations. As mentioned before, this includes provisioning tools such as Ansible, and orchestration tools such as Docker Compose and Kubernetes (which we will eventually get to). There are of course other choices too, but it is a rather neat idea to be able to use a single grammar for all types of configurations. It is claimed that YAML is more readable than JSON (which I doubt) and XML (which I agree with). Below is a quick rundown of relevant YAML syntax (there is more, but this covers 90% of the cloud configuration use cases).
 </p>
 <div class="example">
-<pre class="example-preformatted">---                          # Every new YAML node starts with three hyphens. You can often include many nodes in the same file.
-Name: &quot;Arthur Dent&quot;          # Something with the key &quot;Name&quot; has the (string) value &quot;Arthur Dent&quot;
+<pre class="example-preformatted">---                          # Every new YAML node starts with three hyphens. 
+                             # You can often include many nodes in the same file.
+Name: &quot;Arthur Dent&quot;          # Something with the key &quot;Name&quot; has the 
+                             # (string) value &quot;Arthur Dent&quot;
 Age: 42                      # Integers and floats are also supported.
 Active: true                 # ... as are booleans (true or false)
 Friends: null                # ... and null values.
@@ -1713,7 +1724,8 @@ Inventory:                   # The value of the inventory key is a list.
   - Towel
   - Babelfish
 Desires: [ House, Clothes ]   # Lists can also be inlined
-Address:                      # A Mapping (or a dictionary) is a set of key/value pairs, where each key is unique.
+Address:                      # A Mapping (or a dictionary) is a set of 
+                              # key/value pairs, where each key is unique.
   Street: &quot;Vogon Intergalactic Bypass #47111&quot;
   City: &quot;What do you mean city? We work with the whole Universe!&quot;
   HouseNumber: 0
@@ -1737,8 +1749,9 @@ FavouritePoem: |             # Multi-line contents.
   On a lurgid bee,
   That mordiously hath blurted out,
   Its earted jurtles, grumbling
-  Into a rancid festering confectious organ squealer. [drowned out by moaning and screaming]
-...                          # Formally, a YAML ends with three dots. Can often be left out.
+  Into a rancid festering confectious organ squealer.
+     [drowned out by moaning and screaming]
+...     # Formally, a YAML ends with three dots. Can often be left out.
 </pre></div>
 
 <p>Do note that indentation matters. Apparently this is a popular design decision these days. I personally dislike this since I claim that whitespace should not carry semantic meaning. In my not so humble opinion, this choice decreases maintainability and readability.
@@ -1764,7 +1777,8 @@ FavouritePoem: |             # Multi-line contents.
       - &quot;8080:3000&quot;
     volumes:
       - &quot;volume:container-path&quot;
-      - db-data:/etc/data  # Mount the volume db-data inside the container on the path /etc/data.
+      - db-data:/etc/data  # Mount the volume db-data inside 
+                           # the container on the path /etc/data.
   some-other-service:
     image:           # the image of some other service you want to run
 
@@ -1849,24 +1863,29 @@ A conceptual view of QuoteFinder Version 2:
 <p>The overall process for a search:
 </p><table class="multitable">
 <thead><tr><th>Web Client</th><th>QFApp</th><th>QFWorker</th></tr></thead>
-<tbody><tr><td></td><td></td><td>0. Listen on &rsquo;searchJob&rsquo; queue</td></tr>
-<tr><td>1. search(words)</td><td></td><td></td></tr>
-<tr><td>2. Listen on &lsquo;<samp class="samp">socket</samp>&rsquo; for results</td><td></td><td></td></tr>
-<tr><td></td><td>3. List all texts in TextStore database</td><td></td></tr>
-<tr><td></td><td>4. Create a job for each text</td><td></td></tr>
+<tbody><tr><td></td><td></td><td>0. Listen on</td></tr>
+<tr><td>1. search(words)</td><td></td><td>&rsquo;searchJob&rsquo; queue</td></tr>
+<tr><td>2. Listen</td><td>3. List all texts</td><td></td></tr>
+<tr><td>on &lsquo;<samp class="samp">socket</samp>&rsquo;</td><td>in TextStore database</td><td></td></tr>
+<tr><td>for results</td><td>4. Create a job</td><td></td></tr>
+<tr><td></td><td>for each text</td><td></td></tr>
 <tr><td></td><td>5. Create a return queue</td><td></td></tr>
-<tr><td></td><td>6. Send all jobs to the &rsquo;searchJob&rsquo; queue</td><td></td></tr>
-<tr><td></td><td>7. Listen on the return queue.</td><td></td></tr>
-<tr><td></td><td></td><td>8. Pick first message in queue</td></tr>
+<tr><td></td><td>6. Send all jobs</td><td></td></tr>
+<tr><td></td><td>to the &rsquo;searchJob&rsquo; queue</td><td></td></tr>
+<tr><td></td><td>7. Listen on the</td><td>8. Pick first</td></tr>
+<tr><td></td><td>return queue.</td><td>message in queue</td></tr>
 <tr><td></td><td></td><td>9. Create N threads</td></tr>
-<tr><td></td><td></td><td>10. [each thread] fetch chunk from TextStore database</td></tr>
-<tr><td></td><td></td><td>11. [each thread] look for quote, compile results.</td></tr>
-<tr><td></td><td></td><td>12. Collate and send results on return queue.</td></tr>
-<tr><td></td><td></td><td>13. Goto 9 until no more chunks available</td></tr>
-<tr><td></td><td></td><td>then goto 8 until no more messages</td></tr>
-<tr><td></td><td></td><td>then goto 0.</td></tr>
-<tr><td></td><td>14. Receive results on return queue.</td><td></td></tr>
-<tr><td></td><td>15. send to web client&rsquo;s &lsquo;<samp class="samp">socket</samp>&rsquo;</td><td></td></tr>
+<tr><td></td><td></td><td>10. [each thread] fetch chunk</td></tr>
+<tr><td></td><td></td><td>from TextStore database</td></tr>
+<tr><td></td><td></td><td>11. [each thread] look for quote,</td></tr>
+<tr><td></td><td></td><td>compile results.</td></tr>
+<tr><td></td><td></td><td>12. Collate and send</td></tr>
+<tr><td></td><td></td><td>results on return queue.</td></tr>
+<tr><td></td><td></td><td>13. Goto 9 until no more chunks</td></tr>
+<tr><td></td><td>14. Receive results</td><td>then goto 8 until no more messages</td></tr>
+<tr><td></td><td>on return queue.</td><td>then goto 0.</td></tr>
+<tr><td></td><td>15. send to web</td><td></td></tr>
+<tr><td></td><td>client&rsquo;s &lsquo;<samp class="samp">socket</samp>&rsquo;</td><td></td></tr>
 <tr><td></td><td>16. Goto 7.</td><td></td></tr>
 <tr><td>17. Display results.</td><td></td><td></td></tr>
 <tr><td>18. Goto 2.</td><td></td><td></td></tr>
@@ -2052,7 +2071,8 @@ Next: <a href="#Introducing-Version-3-of-the-QuoteFinder-app" accesskey="n" rel=
 <div class="example">
 <pre class="example-preformatted">docker compose -f docker-compose-v2.yml stop
 docker rm -f $(docker ps -a -q) dummy
-docker volume rm version2_mongo-config version2_redis-conf version2_redis-data version2_textstore-data
+docker volume rm version2_mongo-config version2_redis-conf\
+       version2_redis-data version2_textstore-data
 docker network prune -f
 </pre></div>
 
@@ -2195,7 +2215,9 @@ volumes:
             console.log('Using url:', url);
             return fetch(url)
                 .then(res =&gt; res.json())
-                .then(res =&gt; res.forEach( t =&gt; socket.emit('answer', JSON.stringify(t))));
+                .then(res =&gt; 
+                    res.forEach( t =&gt;
+                        socket.emit('answer', JSON.stringify(t))));
         }))
         .then( () =&gt; socket.emit('done', {msg: 'done'}));
     }
@@ -2593,10 +2615,13 @@ kubectl apply -f qfstandalone-v1-2.yaml -l data=config
 kubectl apply -f qfstandalone-v1-2.yaml -l app=textstore
 
 # Extract the clusterIP
-export textstoreip=$( kubectl get services/textstore-service --template='{{.spec.clusterIP}}' )
+export textstoreip=$( kubectl get \
+                              services/textstore-service \
+                              --template='{{.spec.clusterIP}}' )
 
 # Retrieve the ConfigMap, replace &quot;NOTSET&quot; with the clusterIP, and re-apply.
-kubectl get configmap/qfapp-config -o yaml | sed -r &quot;s/NOTSET/$textstoreip/&quot; | kubectl apply -f -
+kubectl get configmap/qfapp-config -o yaml\
+    | sed -r &quot;s/NOTSET/$textstoreip/&quot; | kubectl apply -f -
 
 # Finally, start the qfapp
 kubectl apply -f qfstandalone-v1-2.yaml -l app=qfapp
@@ -2852,17 +2877,20 @@ spec:
 <p>Accessing the database, will require a new access string:
 </p>
 <div class="example">
-<pre class="example-preformatted">---
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: qfapp-config
-  labels:
-    data: config
-data:
-  textstore_host: &quot;NOTSET&quot;
-  textstore_replicaset: &quot;mongodb://textstore-0.textstore-service.default.svc.cluster.local:27017,textstore-1.textstore-service.default.svc.cluster.local:27017,textstore-2.textstore-service.default.svc.cluster.local:27017/textStore?replicaSet=MainRepSet&quot;
----
+<pre class="example-preformatted">  ---
+  apiVersion: v1
+  kind: ConfigMap
+  metadata:
+    name: qfapp-config
+    labels:
+      data: config
+  data:
+    textstore_host: &quot;NOTSET&quot;
+    textstore_replicaset: &quot;mongodb://textstore-0.textstore-service.default.svc.cluster.local:27017,\
+textstore-1.textstore-service.default.svc.cluster.local:27017,\
+textstore-2.textstore-service.default.svc.cluster.local:27017/\
+textStore?replicaSet=MainRepSet&quot;
+  ---
 </pre></div>
 
 <p>I am not a fan of that the URLs to each member in the cluster has to be hard-coded like this ( &lsquo;<samp class="samp">textstore_replicaset</samp>&rsquo; ), since this limits the ability to scale up or down the number of replicas. Ideally, it should be as easy to change the &lsquo;<samp class="samp">spec.replicas</samp>&rsquo; for the StatefulSet and let Kubernetes re-apply. In practice, this is now made much more difficult.
@@ -3087,75 +3115,88 @@ Next: <a href="#Summary" accesskey="n" rel="next">Summary</a>, Previous: <a href
 <div class="example">
 <pre class="example-preformatted"># Generate and store the key as a Kubernetes Secret
 openssl rand -base64 200 &gt; ./replica-set-key.txt
-kubectl create secret generic mongodb-bootstrap-data --from-file=mongodb-keyfile=./replica-set-key.txt
+kubectl create secret generic mongodb-bootstrap-data\
+        --from-file=mongodb-keyfile=./replica-set-key.txt
 
 # Add some users to the database
-kubectl exec -i textstore-0 -- mongosh --quiet --eval 'db.getSiblingDB(&quot;admin&quot;).createUser({ user: &quot;main_admin&quot;, pwd: &quot;hunter2&quot;, roles: [ { role: &quot;root&quot;, db: &quot;admin&quot; } ]});'
-kubectl exec -i textstore-0 -- mongosh --quiet --eval 'db.getSiblingDB(&quot;admin&quot;).auth(&quot;main_admin&quot;, &quot;hunter2&quot;); db.getSiblingDB(&quot;admin&quot;).createUser({ user: &quot;kube&quot;, pwd: &quot;kubeuser&quot;, roles: [&quot;readWriteAnyDatabase&quot;]});'
+kubectl exec -i textstore-0\
+        -- mongosh --quiet --eval 'db.getSiblingDB(&quot;admin&quot;)\
+        .createUser({ user: &quot;main_admin&quot;, pwd: &quot;hunter2&quot;,\
+                      roles: [ { role: &quot;root&quot;, db: &quot;admin&quot; } ]});'
+kubectl exec -i textstore-0\
+        -- mongosh --quiet --eval 'db.getSiblingDB(&quot;admin&quot;)\
+        .auth(&quot;main_admin&quot;, &quot;hunter2&quot;); \
+        db.getSiblingDB(&quot;admin&quot;)\
+        .createUser({ user: &quot;kube&quot;, pwd: &quot;kubeuser&quot;,\
+                      roles: [&quot;readWriteAnyDatabase&quot;]});'
 </pre></div>
 
 
 <p>&hellip; and the configuration of the MongoDB StatefulSet:
 </p>
 <div class="example">
-<pre class="example-preformatted">---
-apiVersion: apps/v1
-kind: StatefulSet
-metadata:
-  name: textstore
-  labels:
-    app: textstore
-spec:
-  serviceName: textstore-service  # This becomes part of the hostname (e.g. textstore-0.textstore-service.default.svc.cluster.local)
-  replicas: 3
-  selector:
-    matchLabels:
+<pre class="example-preformatted">  ---
+  apiVersion: apps/v1
+  kind: StatefulSet
+  metadata:
+    name: textstore
+    labels:
       app: textstore
-  template:
-    metadata:
-      labels:
+  spec:
+    serviceName: textstore-service  # This becomes part of the hostname
+        # (e.g. textstore-0.textstore-service.default.svc.cluster.local)
+    replicas: 3
+    selector:
+      matchLabels:
         app: textstore
-        startup: textstore-wait
-    spec:
-      containers:
-      - name: textstore
-        image: mongo
-        command: [&quot;mongod&quot;, &quot;--bind_ip&quot;, &quot;0.0.0.0&quot;, &quot;--replSet&quot;, &quot;MainRepSet&quot;, &quot;--auth&quot;, &quot;--clusterAuthMode&quot;, &quot;keyFile&quot;, &quot;--keyFile&quot;, &quot;/etc/secrets-volume/mongodb-keyfile&quot;, &quot;--setParameter&quot;, &quot;authenticationMechanisms=SCRAM-SHA-1&quot;]
-        readinessProbe:
-          exec:
-            command: [&quot;mongosh&quot;, &quot;--eval&quot;, &quot;db.adminCommand({ping: 1})&quot;]
-        ports:
-        - containerPort: 27017
-          name: mongodb-port
-        volumeMounts:
-        - name: textstore-data
-          mountPath: /data/db
-        - name: mongo-config
-          mountPath: /data/configdb
+    template:
+      metadata:
+        labels:
+          app: textstore
+          startup: textstore-wait
+      spec:
+        containers:
+        - name: textstore
+          image: mongo
+          command: [&quot;mongod&quot;, &quot;--bind_ip&quot;, &quot;0.0.0.0&quot;,
+&quot;--replSet&quot;, &quot;MainRepSet&quot;, &quot;--auth&quot;, &quot;--clusterAuthMode&quot;,
+&quot;keyFile&quot;, &quot;--keyFile&quot;, &quot;/etc/secrets-volume/mongodb-keyfile&quot;,
+&quot;--setParameter&quot;, &quot;authenticationMechanisms=SCRAM-SHA-1&quot;]
+          readinessProbe:
+            exec:
+              command: [&quot;mongosh&quot;, &quot;--eval&quot;, &quot;db.adminCommand({ping: 1})&quot;]
+          ports:
+          - containerPort: 27017
+            name: mongodb-port
+          volumeMounts:
+          - name: textstore-data
+            mountPath: /data/db
+          - name: mongo-config
+            mountPath: /data/configdb
+          - name: secrets-volume
+            readOnly: true
+            mountPath: /etc/secrets-volume
+        volumes:
         - name: secrets-volume
-          readOnly: true
-          mountPath: /etc/secrets-volume
-      volumes:
-      - name: secrets-volume
-        secret:
-          secretName: mongodb-bootstrap-data
-          defaultMode: 256
-  volumeClaimTemplates:
-    - metadata:
-        name: textstore-data
-      spec:
-        accessModes: [&quot;ReadWriteOnce&quot;]
-        resources:
-          requests: 
-            storage: 10Mi
-    - metadata:
-        name: mongo-config
-      spec:
-        accessModes: [&quot;ReadWriteOnce&quot;]
-        resources:
-          requests: 
-            storage: 5Mi          
----
+          secret:
+            secretName: mongodb-bootstrap-data
+            defaultMode: 256
+    volumeClaimTemplates:
+      - metadata:
+          name: textstore-data
+        spec:
+          accessModes: [&quot;ReadWriteOnce&quot;]
+          resources:
+            requests: 
+              storage: 10Mi
+      - metadata:
+          name: mongo-config
+        spec:
+          accessModes: [&quot;ReadWriteOnce&quot;]
+          resources:
+            requests: 
+              storage: 5Mi          
+  ---
 </pre></div>
 
 <a class="index-entry-id" id="index-Lambda-Functions"></a>
@@ -3224,7 +3265,7 @@ c(&quot;)(&quot;)
 
 </pre></div>
 
-<p>The &ldquo;only&rdquo; thing remaining for You to do now is to prove that you too have learnt all this. Read on to figure out how.
+<p>The &ldquo;only&rdquo; thing remaining for you to do now is to prove that you too have learnt all this. Read on to figure out how.
 </p>
 <hr>
 </div>

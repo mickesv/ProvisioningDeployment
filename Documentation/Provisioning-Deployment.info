@@ -260,7 +260,8 @@ may help you:
    • The _execution and results_ sections describe how the study was
      executed (in particular discrepancies from the planned
      methodology), and what the raw results were.  Most of the time, you
-     can safely skip these sections.
+     can safely skip these sections.  Sometimes however, the _results_
+     section is combined with the _analysis_ section.
    • The _analysis_ section “bakes” the results and tries to answer the
      research questions (address the identified problem).  This is
      probably the most interesting section for you to read.
@@ -325,10 +326,10 @@ There are some challenges with this, however:
      test data you had in there just before.
 
    • When you are ready to deploy your application (of course you have
-     already tested it?)  , you first need to set this server up and
-     make sure that it is installed and setup in exactly the same way as
-     your development machine.  And then you deploy.  And say a prayer.
-     And hope that no users try to use your application while you are
+     already tested it?), you first need to set this server up and make
+     sure that it is installed and setup in exactly the same way as your
+     development machine.  And then you deploy.  And say a prayer.  And
+     hope that no users try to use your application while you are
      figuring out what went wrong.
 
    • As time goes, you ever so often log in to the server with your
@@ -341,13 +342,13 @@ There are some challenges with this, however:
 
    This brings us back to the overall goal.  What you want is a
 controllable and repeatable way to set up your machines.  Controllable,
-so that you can decide whether you want a development-version (Where
+so that you can decide whether you want a development-version (where
 perhaps your application is running with debug flags turned on), a
 test-version (that contains a reasonable subset of all the data in the
 live system and where tests for different environments are launched
-automatically) , or a running production version of your system (that
-you really have no business ever editing directly, and maybe never need
-to edit directly since it is deployed automatically as soon as all tests
+automatically), or a running production version of your system (that you
+really have no business ever editing directly, and maybe never need to
+edit directly since it is deployed automatically as soon as all tests
 are run).
 
    You want the setup to be _repeatable_ so that you will always start
@@ -482,7 +483,7 @@ interface between the different conceptual components (usually a *note
 REST API: Communicating Microservices and REST APIs.), align the
 execution of an application with its conceptual view, and defer creation
 of the module view to each individual component/executable.  Of course,
-this works less well in practice because one still wish to re-use
+this works less well in practice because one still wishes to re-use
 components between the different microservices but that’s another story.
 
    One more benefit (some would argue it is the main benefit) is that
@@ -560,7 +561,7 @@ app to help with that!
 
    As it happens, there are applications for this.  You may have heard
 about Docker <https://www.docker.com/> or its open source cousin Podman
-<https://podman.io/> .  Both of these are examples of Linux Containers
+<https://podman.io/>.  Both of these are examples of Linux Containers
 (LXC), which are usually described as “Lightweight virtual machines”.
 With tools like these you create a _Container_ with a specific set of
 programs installed, and then you can manage this container as a whole,
@@ -587,12 +588,12 @@ this Dockerfile creates a ‘Layer’, and Docker will try to be smart about
 caching these layers so that if you re-use your Dockerfile it will start
 from the last layer that is the same as one it has previously built.
 
-   Based on this Dockerfile you create an ‘Image’ .  This is a snapshot
+   Based on this Dockerfile you create an ‘Image’.  This is a snapshot
 in time from when all the lines in the Dockerfile have been executed.
 You can version control and tag this image if you like, and it is this
-image that you will push to Docker hub <https://hub.docker.com/> .  If
+image that you will push to Docker hub <https://hub.docker.com/>.  If
 you are using a ready-made container from Docker hub, e.g.  with a
-database or a web server installed , it is this image that will be
+database or a web server installed, it is this image that will be
 downloaded and used as a layer in your own Docker image.
 
    When you start your Container, it will use the image as a base and
@@ -711,7 +712,7 @@ using it.
      For almost all commands in Unix, you have a few different ways to
      get help.  Running the command with the parameter ‘-h’ , or
      ‘--help’ (note the two dashes) is a good start.  For more detailed
-     information, you use the command ‘man’ .  Sometimes, you can get
+     information, you use the command ‘man’.  Sometimes, you can get
      even more details if you use the command ‘info’.  Try the following
      commands:
 
@@ -769,13 +770,12 @@ using it.
      Once you are done (not yet), you may want to clean up after
      yourself.  Each image has a name listed under REPOSITORY, a tag
      listed under TAG, and an IMAGE ID.  If there is only one image with
-     that name, you can run ‘docker image rm myfirstimage’ .  If you
-     have several images with the same name (try creating one more with
-     ‘docker build -t myfirstimage:second .’ ) , you will need to
-     qualify the name with the specific TAG you want to remove.  If all
-     else fail (e.g.  if you forgot to give the image a name in the
-     first place), you can use the IMAGE ID to uniquely identify your
-     image.
+     that name, you can run ‘docker image rm myfirstimage’.  If you have
+     several images with the same name (try creating one more with
+     ‘docker build -t myfirstimage:second .’), you will need to qualify
+     the name with the specific TAG you want to remove.  If all else
+     fail (e.g.  if you forgot to give the image a name in the first
+     place), you can use the IMAGE ID to uniquely identify your image.
 
   3. Docker run and Container Management
 
@@ -800,13 +800,13 @@ using it.
      Table 4.1: Some of the more common parameters to docker run.
 
      The most common ones you will see are the detach and publish flags,
-     and you will often see these together: ‘docker run -dp 8080:3000’ ,
+     and you will often see these together: ‘docker run -dp 8080:3000’,
      which will open port 8080 on your host into port 3000 inside the
      container.
 
      When developing your application, it is useful to be able to view
      any console output it makes (e.g.  if you use ‘printf()’, ‘cout’,
-     ‘console.log()’ , or ‘(print)’ inside your application).  ‘docker
+     ‘console.log()’, or ‘(print)’ inside your application).  ‘docker
      run -it’ enables this, and also enables you to give commands into
      your running application if it is reading from standard input.
 
@@ -819,7 +819,7 @@ using it.
      the CONTAINER ID is used as a handle to do other things with the
      container.  We can, for example, stop the container and later start
      it again with ‘docker container stop <container-id>’ and ‘docker
-     container start <container-id>’ .  If we stop the container we can
+     container start <container-id>’.  If we stop the container we can
      also remove it completely (e.g.  in order to update with a newer
      image): ‘docker container rm <container-id>’ (adding the
      “force”-flag ‘-f’ to rm will first stop the container if it is
@@ -867,7 +867,7 @@ platform.  In practice, however, there are limitations to this.
    Some common hypervisors include:
    • Virtualbox <https://www.virtualbox.org/>
    • VMWare, with VMWare Fusion for Mac
-     <https://www.vmware.com/products/fusion.html> , and VMWare
+     <https://www.vmware.com/products/fusion.html>, and VMWare
      Workstation for Windows and Linux
      <https://www.vmware.com/products/workstation-player.html>
    • Parallells <https://www.parallels.com/se/> if you are using a Mac
@@ -901,7 +901,7 @@ With a hypervisor such as above, you get a clean virtual machine, and it
 is up to you to install whatever operating system you want to run, and
 whatever software you want installed on top of this operating system.
 You _can_ do this manually, but if you remember the goals we set up in
-the Introduction (See *note introduction:: ) , we want to do better than
+the Introduction (See *note introduction::), we want to do better than
 this.  We wish help from the computer to create a repeatable and
 configuration managed deployment that can be used over and over again.
 
@@ -919,10 +919,10 @@ create your same virtual machine using any of the supported hypervisors
 and indeed even launch your virtual machine on a cloud provider.
 
    Unlike Docker, a Vagrantfile can also specify several machine
-configurations in one, so you can Orchestrate your entire application at
+configurations in one, so you can orchestrate your entire application at
 once instead of having to work separately with each
 component/microservice in your system setup.  But this is another story
-which we will get to later (see *note Deployment:: ).
+which we will get to later (see *note Deployment::).
 
 
 File: Provisioning-Deployment.info,  Node: Communicating Microservices and REST APIs,  Next: Other communication means,  Prev: Provisioning your Virtual Machine,  Up: Microservices and Lightweight Containers
@@ -1081,7 +1081,7 @@ remains: Is this a good idea?  Please discuss this in small groups.
    The message queue may be implemented in many ways.  We may, for
 example, use a dedicated table in our database (to which our entire
 system is connected anyway).  We may dedicate a separate microservice
-running e.g.  Redis <https://redis.io/> , and use an implementation of a
+running e.g.  Redis <https://redis.io/>, and use an implementation of a
 message queue that connects to this microservice.  We may even wish to
 go formal and pick a service that implements the MQTT protocol (Message
 Queue Telemetry Transport protocol).  But that’s a story for another
@@ -1395,14 +1395,17 @@ File: Provisioning-Deployment.info,  Node: Installing and Running QFStandalone, 
 
           echo "----------> Installing MongoDB-org"
           wget -qO - https://www.mongodb.org/static/pgp/server-6.0.asc | sudo apt-key add -
-          echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/6.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-6.0.list
+          echo "deb [ arch=amd64,arm64 ]\
+                https://repo.mongodb.org/apt/ubuntu\
+                focal/mongodb-org/6.0 multiverse" | sudo \
+                tee /etc/apt/sources.list.d/mongodb-org-6.0.list
           sudo apt-get update
           sudo apt-get install -y mongodb-org
           sudo systemctl start mongod
 
           echo "----------> Installing node.js"
           curl -fsSL https://deb.nodesource.com/setup_19.x | sudo -E bash - &&\
-          sudo apt-get install -y nodejs
+               sudo apt-get install -y nodejs
           npm install -g nodemon
           SHELL
 
@@ -1588,8 +1591,10 @@ File: Provisioning-Deployment.info,  Node: Installing and Running QFStandalone, 
           docker run                  # Start a Container
           -d                          # In detached mode (in the background)
           --network qfstandalone-net  # Connect to the virtual network we just created
-          --network-alias textstore   # Make this container accessible on the network using this name
-          --name textstore            # Use this name when we access the container with docker
+          --network-alias textstore   # Make this container accessible
+                                      # on the network using this name
+          --name textstore            # Use this name when we access
+                                      # the container with docker
           mongo                       # Use this image as base for the container
 
      In one line: ‘docker run -d --network qfstandalone-net
@@ -1598,13 +1603,17 @@ File: Provisioning-Deployment.info,  Node: Installing and Running QFStandalone, 
           Again, let’s break down the incantation first:
 
           docker run                    # Start a container
-          -it                           # In interactive mode, and attach a terminal so we can also type into it
+          -it                           # In interactive mode, and attach
+                                        # a terminal so we can also type into it
           --network qfstandalone-net    # Same virtual network
-          -e TEXTSTORE_HOST=textstore   # Set the environment variable to the network alias of our MongoDB database
+          -e TEXTSTORE_HOST=textstore   # Set the environment variable to the
+                                        # network alias of our MongoDB database
           -w /app                       # Set the working directory inside the container
-          -v ./src:/app/src             # Attach the host directory ./src to the guest under /app/src
+          -v ./src:/app/src             # Attach the host directory ./src
+                                        # to the guest under /app/src
           --name qfstandalone           # Docker name
-          -p 8080:3000                  # Connect host port 8080 to port 3000 in the container
+          -p 8080:3000                  # Connect host port 8080 to
+                                        # port 3000 in the container
           mickesv/qfstandalone:version1 # Use this image (the tag we previously set)
 
      One long string: ‘docker run -it --network qfstandalone-net -e
@@ -2370,8 +2379,10 @@ that YAML is more readable than JSON (which I doubt) and XML (which I
 agree with).  Below is a quick rundown of relevant YAML syntax (there is
 more, but this covers 90% of the cloud configuration use cases).
 
-     ---                          # Every new YAML node starts with three hyphens. You can often include many nodes in the same file.
-     Name: "Arthur Dent"          # Something with the key "Name" has the (string) value "Arthur Dent"
+     ---                          # Every new YAML node starts with three hyphens.
+                                  # You can often include many nodes in the same file.
+     Name: "Arthur Dent"          # Something with the key "Name" has the
+                                  # (string) value "Arthur Dent"
      Age: 42                      # Integers and floats are also supported.
      Active: true                 # ... as are booleans (true or false)
      Friends: null                # ... and null values.
@@ -2381,7 +2392,8 @@ more, but this covers 90% of the cloud configuration use cases).
        - Towel
        - Babelfish
      Desires: [ House, Clothes ]   # Lists can also be inlined
-     Address:                      # A Mapping (or a dictionary) is a set of key/value pairs, where each key is unique.
+     Address:                      # A Mapping (or a dictionary) is a set of
+                                   # key/value pairs, where each key is unique.
        Street: "Vogon Intergalactic Bypass #47111"
        City: "What do you mean city? We work with the whole Universe!"
        HouseNumber: 0
@@ -2405,8 +2417,9 @@ more, but this covers 90% of the cloud configuration use cases).
        On a lurgid bee,
        That mordiously hath blurted out,
        Its earted jurtles, grumbling
-       Into a rancid festering confectious organ squealer. [drowned out by moaning and screaming]
-     ...                          # Formally, a YAML ends with three dots. Can often be left out.
+       Into a rancid festering confectious organ squealer.
+          [drowned out by moaning and screaming]
+     ...     # Formally, a YAML ends with three dots. Can often be left out.
 
    Do note that indentation matters.  Apparently this is a popular
 design decision these days.  I personally dislike this since I claim
@@ -2450,7 +2463,8 @@ In summary, the following can be specified:
            - "8080:3000"
          volumes:
            - "volume:container-path"
-           - db-data:/etc/data  # Mount the volume db-data inside the container on the path /etc/data.
+           - db-data:/etc/data  # Mount the volume db-data inside
+                                # the container on the path /etc/data.
        some-other-service:
          image:           # the image of some other service you want to run
 
@@ -2570,31 +2584,35 @@ returning results sooner.
                                        +------------------------------------------+
 
    The overall process for a search:
-Web Client                          QFApp                                       QFWorker
-----------------------------------------------------------------------------------------------------------------------------------------
-                                                                                0.  Listen on ’searchJob’ queue
-1.  search(words)
-2.  Listen on ‘socket’ for
-results
-                                    3.  List all texts in TextStore database
-                                    4.  Create a job for each text
-                                    5.  Create a return queue
-                                    6.  Send all jobs to the ’searchJob’
-                                    queue
-                                    7.  Listen on the return queue.
-                                                                                8.  Pick first message in queue
-                                                                                9.  Create N threads
-                                                                                10.  [each thread] fetch chunk from TextStore
-                                                                                database
-                                                                                11.  [each thread] look for quote, compile results.
-                                                                                12.  Collate and send results on return queue.
-                                                                                13.  Goto 9 until no more chunks available
-                                                                                then goto 8 until no more messages
-                                                                                then goto 0.
-                                    14.  Receive results on return queue.
-                                    15.  send to web client’s ‘socket’
-                                    16.  Goto 7.
-17.  Display results.
+Web Client             QFApp                      QFWorker
+---------------------------------------------------------------------------------------
+                                                  0.  Listen on
+1.  search(words)                                 ’searchJob’ queue
+2.  Listen             3.  List all texts
+on ‘socket’            in TextStore database
+for results            4.  Create a job
+                       for each text
+                       5.  Create a return
+                       queue
+                       6.  Send all jobs
+                       to the ’searchJob’ queue
+                       7.  Listen on the          8.  Pick first
+                       return queue.              message in queue
+                                                  9.  Create N threads
+                                                  10.  [each thread] fetch chunk
+                                                  from TextStore database
+                                                  11.  [each thread] look for quote,
+                                                  compile results.
+                                                  12.  Collate and send
+                                                  results on return queue.
+                                                  13.  Goto 9 until no more chunks
+                       14.  Receive results       then goto 8 until no more messages
+                       on return queue.           then goto 0.
+                       15.  send to web
+                       client’s ‘socket’
+                       16.  Goto 7.
+17.  Display
+results.
 18.  Goto 2.
 
    Simple, isn’t it?
@@ -2806,7 +2824,8 @@ commands:
 
      docker compose -f docker-compose-v2.yml stop
      docker rm -f $(docker ps -a -q) dummy
-     docker volume rm version2_mongo-config version2_redis-conf version2_redis-data version2_textstore-data
+     docker volume rm version2_mongo-config version2_redis-conf\
+            version2_redis-data version2_textstore-data
      docker network prune -f
 
    The last command may need a clarification: Even if we have not
@@ -2980,7 +2999,9 @@ us inspect the class in its entirety:
                  console.log('Using url:', url);
                  return fetch(url)
                      .then(res => res.json())
-                     .then(res => res.forEach( t => socket.emit('answer', JSON.stringify(t))));
+                     .then(res =>
+                         res.forEach( t =>
+                             socket.emit('answer', JSON.stringify(t))));
              }))
              .then( () => socket.emit('done', {msg: 'done'}));
          }
@@ -3476,10 +3497,13 @@ will be replaced with the right IP during startup.
      kubectl apply -f qfstandalone-v1-2.yaml -l app=textstore
 
      # Extract the clusterIP
-     export textstoreip=$( kubectl get services/textstore-service --template='{{.spec.clusterIP}}' )
+     export textstoreip=$( kubectl get \
+                                   services/textstore-service \
+                                   --template='{{.spec.clusterIP}}' )
 
      # Retrieve the ConfigMap, replace "NOTSET" with the clusterIP, and re-apply.
-     kubectl get configmap/qfapp-config -o yaml | sed -r "s/NOTSET/$textstoreip/" | kubectl apply -f -
+     kubectl get configmap/qfapp-config -o yaml\
+         | sed -r "s/NOTSET/$textstoreip/" | kubectl apply -f -
 
      # Finally, start the qfapp
      kubectl apply -f qfstandalone-v1-2.yaml -l app=qfapp
@@ -3775,17 +3799,20 @@ The volumeClaimTemplates for the textstore containers
 
      Accessing the database, will require a new access string:
 
-          ---
-          apiVersion: v1
-          kind: ConfigMap
-          metadata:
-            name: qfapp-config
-            labels:
-              data: config
-          data:
-            textstore_host: "NOTSET"
-            textstore_replicaset: "mongodb://textstore-0.textstore-service.default.svc.cluster.local:27017,textstore-1.textstore-service.default.svc.cluster.local:27017,textstore-2.textstore-service.default.svc.cluster.local:27017/textStore?replicaSet=MainRepSet"
-          ---
+            ---
+            apiVersion: v1
+            kind: ConfigMap
+            metadata:
+              name: qfapp-config
+              labels:
+                data: config
+            data:
+              textstore_host: "NOTSET"
+              textstore_replicaset: "mongodb://textstore-0.textstore-service.default.svc.cluster.local:27017,\
+          textstore-1.textstore-service.default.svc.cluster.local:27017,\
+          textstore-2.textstore-service.default.svc.cluster.local:27017/\
+          textStore?replicaSet=MainRepSet"
+            ---
 
      I am not a fan of that the URLs to each member in the cluster has
      to be hard-coded like this ( ‘textstore_replicaset’ ), since this
@@ -4111,72 +4138,85 @@ similar to how you can use data from ConfigMaps in your containers.
 
      # Generate and store the key as a Kubernetes Secret
      openssl rand -base64 200 > ./replica-set-key.txt
-     kubectl create secret generic mongodb-bootstrap-data --from-file=mongodb-keyfile=./replica-set-key.txt
+     kubectl create secret generic mongodb-bootstrap-data\
+             --from-file=mongodb-keyfile=./replica-set-key.txt
 
      # Add some users to the database
-     kubectl exec -i textstore-0 -- mongosh --quiet --eval 'db.getSiblingDB("admin").createUser({ user: "main_admin", pwd: "hunter2", roles: [ { role: "root", db: "admin" } ]});'
-     kubectl exec -i textstore-0 -- mongosh --quiet --eval 'db.getSiblingDB("admin").auth("main_admin", "hunter2"); db.getSiblingDB("admin").createUser({ user: "kube", pwd: "kubeuser", roles: ["readWriteAnyDatabase"]});'
+     kubectl exec -i textstore-0\
+             -- mongosh --quiet --eval 'db.getSiblingDB("admin")\
+             .createUser({ user: "main_admin", pwd: "hunter2",\
+                           roles: [ { role: "root", db: "admin" } ]});'
+     kubectl exec -i textstore-0\
+             -- mongosh --quiet --eval 'db.getSiblingDB("admin")\
+             .auth("main_admin", "hunter2"); \
+             db.getSiblingDB("admin")\
+             .createUser({ user: "kube", pwd: "kubeuser",\
+                           roles: ["readWriteAnyDatabase"]});'
 
    ... and the configuration of the MongoDB StatefulSet:
 
-     ---
-     apiVersion: apps/v1
-     kind: StatefulSet
-     metadata:
-       name: textstore
-       labels:
-         app: textstore
-     spec:
-       serviceName: textstore-service  # This becomes part of the hostname (e.g. textstore-0.textstore-service.default.svc.cluster.local)
-       replicas: 3
-       selector:
-         matchLabels:
+       ---
+       apiVersion: apps/v1
+       kind: StatefulSet
+       metadata:
+         name: textstore
+         labels:
            app: textstore
-       template:
-         metadata:
-           labels:
+       spec:
+         serviceName: textstore-service  # This becomes part of the hostname
+             # (e.g. textstore-0.textstore-service.default.svc.cluster.local)
+         replicas: 3
+         selector:
+           matchLabels:
              app: textstore
-             startup: textstore-wait
-         spec:
-           containers:
-           - name: textstore
-             image: mongo
-             command: ["mongod", "--bind_ip", "0.0.0.0", "--replSet", "MainRepSet", "--auth", "--clusterAuthMode", "keyFile", "--keyFile", "/etc/secrets-volume/mongodb-keyfile", "--setParameter", "authenticationMechanisms=SCRAM-SHA-1"]
-             readinessProbe:
-               exec:
-                 command: ["mongosh", "--eval", "db.adminCommand({ping: 1})"]
-             ports:
-             - containerPort: 27017
-               name: mongodb-port
-             volumeMounts:
-             - name: textstore-data
-               mountPath: /data/db
-             - name: mongo-config
-               mountPath: /data/configdb
+         template:
+           metadata:
+             labels:
+               app: textstore
+               startup: textstore-wait
+           spec:
+             containers:
+             - name: textstore
+               image: mongo
+               command: ["mongod", "--bind_ip", "0.0.0.0",
+     "--replSet", "MainRepSet", "--auth", "--clusterAuthMode",
+     "keyFile", "--keyFile", "/etc/secrets-volume/mongodb-keyfile",
+     "--setParameter", "authenticationMechanisms=SCRAM-SHA-1"]
+               readinessProbe:
+                 exec:
+                   command: ["mongosh", "--eval", "db.adminCommand({ping: 1})"]
+               ports:
+               - containerPort: 27017
+                 name: mongodb-port
+               volumeMounts:
+               - name: textstore-data
+                 mountPath: /data/db
+               - name: mongo-config
+                 mountPath: /data/configdb
+               - name: secrets-volume
+                 readOnly: true
+                 mountPath: /etc/secrets-volume
+             volumes:
              - name: secrets-volume
-               readOnly: true
-               mountPath: /etc/secrets-volume
-           volumes:
-           - name: secrets-volume
-             secret:
-               secretName: mongodb-bootstrap-data
-               defaultMode: 256
-       volumeClaimTemplates:
-         - metadata:
-             name: textstore-data
-           spec:
-             accessModes: ["ReadWriteOnce"]
-             resources:
-               requests:
-                 storage: 10Mi
-         - metadata:
-             name: mongo-config
-           spec:
-             accessModes: ["ReadWriteOnce"]
-             resources:
-               requests:
-                 storage: 5Mi
-     ---
+               secret:
+                 secretName: mongodb-bootstrap-data
+                 defaultMode: 256
+         volumeClaimTemplates:
+           - metadata:
+               name: textstore-data
+             spec:
+               accessModes: ["ReadWriteOnce"]
+               resources:
+                 requests:
+                   storage: 10Mi
+           - metadata:
+               name: mongo-config
+             spec:
+               accessModes: ["ReadWriteOnce"]
+               resources:
+                 requests:
+                   storage: 5Mi
+       ---
 
    One final trend to keep an eye on is that of _lambda functions_.
 They are not always called that, e.g.  Microsoft refers to them as Azure
@@ -4266,7 +4306,7 @@ configuration managed and tested.
      c(")(")
 
 
-   The “only” thing remaining for You to do now is to prove that you too
+   The “only” thing remaining for you to do now is to prove that you too
 have learnt all this.  Read on to figure out how.
 
 
@@ -4353,8 +4393,8 @@ Concept Index
  [index ]
 * Menu:
 
-* Azure Durable Functions:               Additional Concepts. (line 139)
-* Azure Functions:                       Additional Concepts. (line 139)
+* Azure Durable Functions:               Additional Concepts. (line 152)
+* Azure Functions:                       Additional Concepts. (line 152)
 * Bind Mount:                            Edit a Container in a Pod in a Node in a Cluster.
                                                               (line  17)
 * Client Server Software Architecture:   Microservices and Lightweight Containers.
@@ -4443,7 +4483,7 @@ Concept Index
 * Kubernetes StatefulSet:                Attach the Database. (line  10)
 * Kubernetes Volume:                     Introduction to Kubernetes.
                                                               (line  39)
-* Lambda Functions:                      Additional Concepts. (line 139)
+* Lambda Functions:                      Additional Concepts. (line 152)
 * Layered Architecture Style:            Communicating Microservices and REST APIs.
                                                               (line  58)
 * Learning Outcomes:                     Learning Outcomes.   (line   6)
@@ -4631,13 +4671,13 @@ Functions and Commands Index
                                                               (line  13)
 * Docker Compose replicas:               Scaling the Deployment.
                                                               (line  13)
-* docker container:                      Docker Commands.     (line 113)
-* docker container ls:                   Docker Commands.     (line 113)
-* docker container ps:                   Docker Commands.     (line 113)
-* docker container rm:                   Docker Commands.     (line 119)
-* docker container run:                  Docker Commands.     (line  82)
-* docker container start:                Docker Commands.     (line 119)
-* docker container stop:                 Docker Commands.     (line 119)
+* docker container:                      Docker Commands.     (line 112)
+* docker container ls:                   Docker Commands.     (line 112)
+* docker container ps:                   Docker Commands.     (line 112)
+* docker container rm:                   Docker Commands.     (line 118)
+* docker container run:                  Docker Commands.     (line  81)
+* docker container start:                Docker Commands.     (line 118)
+* docker container stop:                 Docker Commands.     (line 118)
 * Docker COPY:                           Dockerfile.          (line  38)
 * Docker ENTRYPOINT:                     Dockerfile.          (line  56)
 * Docker ENV:                            Dockerfile.          (line  53)
@@ -4647,9 +4687,9 @@ Functions and Commands Index
 * docker image build:                    Docker Commands.     (line  48)
 * docker image ls:                       Docker Commands.     (line  56)
 * docker image rm:                       Docker Commands.     (line  69)
-* docker ps:                             Docker Commands.     (line 113)
+* docker ps:                             Docker Commands.     (line 112)
 * Docker RUN:                            Dockerfile.          (line  16)
-* docker run:                            Docker Commands.     (line  82)
+* docker run:                            Docker Commands.     (line  81)
 * Docker USER:                           Dockerfile.          (line  65)
 * Docker VOLUME:                         Dockerfile.          (line  65)
 * Docker WORKDIR:                        Dockerfile.          (line  34)
@@ -4664,74 +4704,74 @@ Tag Table:
 Node: Top1476
 Node: Document Overview5744
 Node: A Note on Reading Research Articles8378
-Node: Introduction to Orchestration and Provisioning12097
-Ref: introduction12392
-Node: Learning Outcomes18735
-Node: Microservices and Lightweight Containers19809
-Node: Building Microservices24073
-Node: A Quick Rundown of Docker Terminology27380
-Node: Dockerfile29490
-Node: Docker Commands33284
-Ref: Getting Help33604
-Ref: Docker image and Image Management34625
-Ref: Docker run and Container Management36682
-Ref: tabdocker-run-parameters36999
-Node: Not Building Microservices -- Infrastructure As A Service39634
-Node: Provisioning your Virtual Machine43189
-Node: Communicating Microservices and REST APIs45179
-Node: Other communication means49130
-Node: Quiz Hypervisors and Lightweight Virtual Machines53816
-Node: Let's get Practical56648
-Node: Introducing the QuoteFinder application57045
-Node: Install relevant software63538
-Ref: qemu-vagrant65513
-Node: Installing and Running QFStandalone66143
-Ref: Full Virtual Machine66406
-Ref: Docker74611
-Node: A Minimal Qemu Vagrantfile83378
-Node: Quiz Let's get Practical84709
-Node: Provisioning and Orchestration86477
-Node: Provisioning86796
-Node: Orchestration90350
-Node: Docker Compose92046
-Node: Cloud Orchestration93916
-Node: Quiz Provisioning and Orchestration95909
-Node: Application Design and Development99174
-Node: Principles of Microservice Architectures99627
-Node: Cloud Architecture Patterns105074
-Node: Introduction to YAML and Docker-Composeyml117483
-Node: Let's get Practical Again122822
-Node: Introducing Version 2 of the QuoteFinder app123307
-Node: Installing and Running Version 2 of QuoteFinder131040
-Node: Editing the Running Application134872
-Node: Scaling the Deployment138457
-Node: Cleanup and Summary140049
-Node: Introducing Version 3 of the QuoteFinder app143244
-Node: Quiz Design Decisions and Development Setup148908
-Node: Deployment with Kubernetes151049
-Ref: Deployment151285
-Node: Introduction to Kubernetes151382
-Node: Get Started with Kubernetes154579
-Node: Attach the Database162641
-Node: Quiz Deployment with Kubernetes170431
-Node: Scaling the Database173633
-Node: Database Scaling173960
-Node: MongoDB ReplicaSet176822
-Node: Setting up a MongoDB ReplicaSet in Kubernetes178921
-Ref: TextStore StatefulSet179710
-Ref: Qfapp ConfigMap182447
-Ref: QFStandalone Deployment183423
-Ref: Tasks184719
-Node: Edit a Container in a Pod in a Node in a Cluster188938
-Ref: kube-edit189205
-Node: Additional Concepts194423
-Node: Summary201738
-Node: Assignment Build Something204793
-Ref: assignment-build-something204977
-Node: Concept Index208403
-Node: Program Index220473
-Node: Files and Data Types Index226195
-Node: Functions and Commands Index227374
+Node: Introduction to Orchestration and Provisioning12185
+Ref: introduction12480
+Node: Learning Outcomes18821
+Node: Microservices and Lightweight Containers19895
+Node: Building Microservices24161
+Node: A Quick Rundown of Docker Terminology27467
+Node: Dockerfile29574
+Node: Docker Commands33368
+Ref: Getting Help33688
+Ref: Docker image and Image Management34708
+Ref: Docker run and Container Management36757
+Ref: tabdocker-run-parameters37074
+Node: Not Building Microservices -- Infrastructure As A Service39706
+Node: Provisioning your Virtual Machine43260
+Node: Communicating Microservices and REST APIs45247
+Node: Other communication means49198
+Node: Quiz Hypervisors and Lightweight Virtual Machines53883
+Node: Let's get Practical56715
+Node: Introducing the QuoteFinder application57112
+Node: Install relevant software63605
+Ref: qemu-vagrant65580
+Node: Installing and Running QFStandalone66210
+Ref: Full Virtual Machine66473
+Ref: Docker74735
+Node: A Minimal Qemu Vagrantfile83750
+Node: Quiz Let's get Practical85081
+Node: Provisioning and Orchestration86849
+Node: Provisioning87168
+Node: Orchestration90722
+Node: Docker Compose92418
+Node: Cloud Orchestration94288
+Node: Quiz Provisioning and Orchestration96281
+Node: Application Design and Development99546
+Node: Principles of Microservice Architectures99999
+Node: Cloud Architecture Patterns105446
+Node: Introduction to YAML and Docker-Composeyml117855
+Node: Let's get Practical Again123326
+Node: Introducing Version 2 of the QuoteFinder app123811
+Node: Installing and Running Version 2 of QuoteFinder131161
+Node: Editing the Running Application134993
+Node: Scaling the Deployment138578
+Node: Cleanup and Summary140170
+Node: Introducing Version 3 of the QuoteFinder app143378
+Node: Quiz Design Decisions and Development Setup149096
+Node: Deployment with Kubernetes151237
+Ref: Deployment151473
+Node: Introduction to Kubernetes151570
+Node: Get Started with Kubernetes154767
+Node: Attach the Database162829
+Node: Quiz Deployment with Kubernetes170703
+Node: Scaling the Database173905
+Node: Database Scaling174232
+Node: MongoDB ReplicaSet177094
+Node: Setting up a MongoDB ReplicaSet in Kubernetes179193
+Ref: TextStore StatefulSet179982
+Ref: Qfapp ConfigMap182719
+Ref: QFStandalone Deployment183753
+Ref: Tasks185049
+Node: Edit a Container in a Pod in a Node in a Cluster189268
+Ref: kube-edit189535
+Node: Additional Concepts194753
+Node: Summary202372
+Node: Assignment Build Something205427
+Ref: assignment-build-something205611
+Node: Concept Index209037
+Node: Program Index221107
+Node: Files and Data Types Index226829
+Node: Functions and Commands Index228008
 
 End Tag Table
 
