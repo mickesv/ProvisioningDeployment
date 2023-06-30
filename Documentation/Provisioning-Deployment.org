@@ -702,7 +702,7 @@ On Linux, you will want to install ~docker~, ~docker-compose~, and ~minikube~.
 *TODO* Install a Hypervisor
 Vagrant provides a script language for  provisioning and orchestrating a solution, but it relies on that you already have a hypervisor installed (see [[iaas]] ). Virtualbox https://www.virtualbox.org/ is free and easy to install if your hardware is supported. Vagrant works more or less straight off with Virtualbox.
 
-You may wish to try Qemu https://www.qemu.org/download/#linux , and all its gory details https://wiki.archlinux.org/title/QEMU. If you do, you will need the following two vagrant plugins, and config the libvirt provider in the =Vagrantfile= (see <<qemu-vagrant>> ):
+You may wish to try Qemu https://www.qemu.org/download/#linux , and all its gory details https://wiki.archlinux.org/title/QEMU. If you do, you will need the following two vagrant plugins, and config the libvirt provider in the =Vagrantfile= (see [[qemu-vagrant]] ):
 
 #+begin_src bash
 vagrant plugin install vagrant-mutate # to convert boxes between different hypervisors
@@ -811,7 +811,17 @@ Your specific version numbers may of course vary, but specific things to look at
 
 If you think it was cumbersome to edit the file like this, then any modern IDE ought to support opening a file over a network protocol. In Emacs, for example, you open the file as usual but with the search path ~/vagrant:version1--app:/home/vagrant/Version1/QFStandalone/src/index.js~ , i.e. using the protocol ~/vagrant:~ , open a file on the machine ~app~ as specified in the Vagrantfile in the directory ~version1~ , and then the full path to the file inside the guest machine.
 
-Another approach (which is maybe more likely) is that you would develop locally in a sub-directory to where the Vagrantfile is located. By default Vagrant mounts this directory to ~/vagrant~ on the guest machine (Please, do log in and check this). This is however not always the case. In some situations Vagrant has troubles keeping the host and the guest in sync, and you will be forced to sync files manually.
+Another approach (which is maybe more likely) is that you would develop locally in a sub-directory relative to where the Vagrantfile is located. You can specify the sync folder and mechanism in the Vagrantfile (see https://developer.hashicorp.com/vagrant/docs/synced-folders/basic_usage). The standard sync type is ~nfs~, which requires an nfs server running on your host. Furthermore, you need to instruct Vagrant to disable ~UDP~ by configuring your sync folder as follows:
+
+#+begin_src ruby
+Vagrant.configure("2") do |config|
+  [...]	
+  config.vm.synced_folder ".", "/vagrant", type: "nfs", nfs_udp: false
+  [...]
+end
+#+end_src
+
+This will mount the directory in which the Vagrantfile resides to ~/vagrant~ on the guest machine (Please, do log in and check this). Alternatively, you can use ~rsync~ as type for the sync folder (see the example in the qemu configuration [[qemu-vagrant]]). While this does not require an nfs server on the host, you need to run ~vagrant rsync-auto~ to sync in real-time and not only when the guest boots up. 
 
 *Summary*
 We have now
