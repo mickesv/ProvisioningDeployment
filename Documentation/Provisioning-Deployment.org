@@ -420,7 +420,7 @@ So, let's get this image to actually run as a container, using the command =dock
 | -d        | --detach      | Run the container in the background without any console interaction                               |
 | -p        | --publish     | List the ports that should be exposed from inside the container to a specific port on the host OS |
 | -e        | --env         | Set environment variables inside the container                                                    |
-| -v        | --volume      | Mount a volume (or directory) from the host is into the container                                 |
+| -v        | --volume      | Mount a volume (or directory) from the host into the container                                    |
 |           | --name        | Give the running container a specific name                                                        |
 |           |               |                                                                                                   |
 | -i        | --interactive | Run the container as an interactive console application. Usually together with -t                 |
