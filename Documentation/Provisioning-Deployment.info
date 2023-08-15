@@ -791,7 +791,7 @@ using it.
      -d          –detach         Run the container in the background without any console interaction
      -p          –publish        List the ports that should be exposed from inside the container to a specific port on the host OS
      -e          –env            Set environment variables inside the container
-     -v          –volume         Mount a volume (or directory) from the host is into the container
+     -v          –volume         Mount a volume (or directory) from the host into the container
                  –name           Give the running container a specific name
      -i          –interactive    Run the container as an interactive console application.  Usually together with -t
      -t          –tty            Allocate a terminal (console).  Usually together with -i
@@ -1332,7 +1332,8 @@ Virtualbox.
    You may wish to try Qemu <https://www.qemu.org/download/#linux> , and
 all its gory details <https://wiki.archlinux.org/title/QEMU>.  If you
 do, you will need the following two vagrant plugins, and config the
-libvirt provider in the ‘Vagrantfile’ (see ):
+libvirt provider in the ‘Vagrantfile’ (see *note A Minimal Qemu
+Vagrantfile:: ):
 
      vagrant plugin install vagrant-mutate # to convert boxes between different hypervisors
      vagrant plugin install vagrant-libvirt
@@ -1372,6 +1373,13 @@ File: Provisioning-Deployment.info,  Node: Installing and Running QFStandalone, 
      decide do deploy to a cloud provider, your machine setup is already
      scripted, configuration managed, and ready to go.
 
+     One note before you begin: In Vagrant you define which boxes you
+     want and give them a name (e.g.  “app” in the tasks below) with the
+     command ‘config.vm.define’.  This name is used in commands to
+     vagrant (e.g.  ‘vagrant reload app’ to reload the “app” box) but
+     may be different from the name with which you access the box on the
+     network, i.e.  the hostname.
+
      *Tasks*
        0. Open a terminal in whichever way your operating system expects
           you to.
@@ -1382,7 +1390,8 @@ File: Provisioning-Deployment.info,  Node: Installing and Running QFStandalone, 
        2. Create a Vagrantfile according to what is required for your
           particular hypervisor.
              • The box to use is ‘bento/ubuntu-20.04’
-             • Define one VM, e.g.  called ‘app’
+             • Define one VM, e.g.  called ‘app’ # –> what does that
+               mean?
              • Configure this VM so that it forwards the guest port 3000
                to the host port 8080
 
@@ -1497,12 +1506,27 @@ File: Provisioning-Deployment.info,  Node: Installing and Running QFStandalone, 
      and then the full path to the file inside the guest machine.
 
      Another approach (which is maybe more likely) is that you would
-     develop locally in a sub-directory to where the Vagrantfile is
-     located.  By default Vagrant mounts this directory to ‘/vagrant’ on
-     the guest machine (Please, do log in and check this).  This is
-     however not always the case.  In some situations Vagrant has
-     troubles keeping the host and the guest in sync, and you will be
-     forced to sync files manually.
+     develop locally in a sub-directory relative to where the
+     Vagrantfile is located.  You can specify the sync folder and
+     mechanism in the Vagrantfile (see
+     <https://developer.hashicorp.com/vagrant/docs/synced-folders/basic_usage>).
+     The standard sync type is ‘nfs’, which requires an nfs server
+     running on your host.  Furthermore, you need to instruct Vagrant to
+     disable ‘UDP’ by configuring your sync folder as follows:
+
+          Vagrant.configure("2") do |config|
+            [...]
+            config.vm.synced_folder ".", "/vagrant", type: "nfs", nfs_udp: false
+            [...]
+          end
+
+     This will mount the directory in which the Vagrantfile resides to
+     ‘/vagrant’ on the guest machine (Please, do log in and check this).
+     Alternatively, you can use ‘rsync’ as type for the sync folder (see
+     the example in the qemu configuration *note A Minimal Qemu
+     Vagrantfile::).  While this does not require an nfs server on the
+     host, you need to run ‘vagrant rsync-auto’ to sync in real-time and
+     not only when the guest boots up.
 
      *Summary* We have now
        1. Configured a virtual machine using Vagrant and a hypervisor of
@@ -1813,18 +1837,18 @@ needed and to further configure the microservice image.  We also had to
 repeat some of this configuration on the command line when we started a
 container based on this image.
 
-   With Vagrant we started with a relatively clean linux install (
-‘config.vm.box="bento/ubuntu-20.04"’ ), and then had to execute a series
-of shell commands in order to install the rest.  We can not compare with
-the docker install straight off since we also installed a MongoDB
-database, and we downloaded the entire QuoteFinder repository (not just
-its dependencies) inside the virtual machine, but if you go back and
-look, you will notice that there was a bit of ‘sudo apt-get update’,
-‘sudo apt-get install -y’, some ‘echo’ and ‘cd here/and/there’ , and
-some copying of files with ‘cp’ .  All the things you could expect to do
-interactively, but saved in the Vagrantfile to be able to run and re-run
-the provisioning at will.  Technically, we _can_ do all of this in our
-Dockerfile too, but there is generally less need for it.
+   With Vagrant we started with a relatively clean linux install
+(bento/ubuntu-20.04), and then had to execute a series of shell commands
+in order to install the rest.  We can not compare with the docker
+install straight off since we also installed a MongoDB database, and we
+downloaded the entire QuoteFinder repository (not just its dependencies)
+inside the virtual machine, but if you go back and look, you will notice
+that there was a bit of ‘sudo apt-get update’, ‘sudo apt-get install
+-y’, some ‘echo’ and ‘cd here/and/there’ , and some copying of files
+with ‘cp’ .  All the things you could expect to do interactively, but
+saved in the Vagrantfile to be able to run and re-run the provisioning
+at will.  Technically, we _can_ do all of this in our Dockerfile too,
+but there is generally less need for it.
 
    If we do not wish to get our hands dirty with shell provisioning, we
 can use provisioning software instead.  For example, Ansible
@@ -4716,62 +4740,61 @@ Ref: Getting Help33688
 Ref: Docker image and Image Management34708
 Ref: Docker run and Container Management36757
 Ref: tabdocker-run-parameters37074
-Node: Not Building Microservices -- Infrastructure As A Service39706
-Node: Provisioning your Virtual Machine43260
-Node: Communicating Microservices and REST APIs45247
-Node: Other communication means49198
-Node: Quiz Hypervisors and Lightweight Virtual Machines53883
-Node: Let's get Practical56715
-Node: Introducing the QuoteFinder application57112
-Node: Install relevant software63605
-Ref: qemu-vagrant65580
-Node: Installing and Running QFStandalone66210
-Ref: Full Virtual Machine66473
-Ref: Docker74735
-Node: A Minimal Qemu Vagrantfile83750
-Node: Quiz Let's get Practical85081
-Node: Provisioning and Orchestration86849
-Node: Provisioning87168
-Node: Orchestration90722
-Node: Docker Compose92418
-Node: Cloud Orchestration94288
-Node: Quiz Provisioning and Orchestration96281
-Node: Application Design and Development99546
-Node: Principles of Microservice Architectures99999
-Node: Cloud Architecture Patterns105446
-Node: Introduction to YAML and Docker-Composeyml117855
-Node: Let's get Practical Again123326
-Node: Introducing Version 2 of the QuoteFinder app123811
-Node: Installing and Running Version 2 of QuoteFinder131161
-Node: Editing the Running Application134993
-Node: Scaling the Deployment138578
-Node: Cleanup and Summary140170
-Node: Introducing Version 3 of the QuoteFinder app143378
-Node: Quiz Design Decisions and Development Setup149096
-Node: Deployment with Kubernetes151237
-Ref: Deployment151473
-Node: Introduction to Kubernetes151570
-Node: Get Started with Kubernetes154767
-Node: Attach the Database162829
-Node: Quiz Deployment with Kubernetes170703
-Node: Scaling the Database173905
-Node: Database Scaling174232
-Node: MongoDB ReplicaSet177094
-Node: Setting up a MongoDB ReplicaSet in Kubernetes179193
-Ref: TextStore StatefulSet179982
-Ref: Qfapp ConfigMap182719
-Ref: QFStandalone Deployment183753
-Ref: Tasks185049
-Node: Edit a Container in a Pod in a Node in a Cluster189268
-Ref: kube-edit189535
-Node: Additional Concepts194753
-Node: Summary202372
-Node: Assignment Build Something205427
-Ref: assignment-build-something205611
-Node: Concept Index209037
-Node: Program Index221107
-Node: Files and Data Types Index226829
-Node: Functions and Commands Index228008
+Node: Not Building Microservices -- Infrastructure As A Service39703
+Node: Provisioning your Virtual Machine43257
+Node: Communicating Microservices and REST APIs45244
+Node: Other communication means49195
+Node: Quiz Hypervisors and Lightweight Virtual Machines53880
+Node: Let's get Practical56712
+Node: Introducing the QuoteFinder application57109
+Node: Install relevant software63602
+Node: Installing and Running QFStandalone66242
+Ref: Full Virtual Machine66505
+Ref: Docker75942
+Node: A Minimal Qemu Vagrantfile84957
+Node: Quiz Let's get Practical86288
+Node: Provisioning and Orchestration88056
+Node: Provisioning88375
+Node: Orchestration91905
+Node: Docker Compose93601
+Node: Cloud Orchestration95471
+Node: Quiz Provisioning and Orchestration97464
+Node: Application Design and Development100729
+Node: Principles of Microservice Architectures101182
+Node: Cloud Architecture Patterns106629
+Node: Introduction to YAML and Docker-Composeyml119038
+Node: Let's get Practical Again124509
+Node: Introducing Version 2 of the QuoteFinder app124994
+Node: Installing and Running Version 2 of QuoteFinder132344
+Node: Editing the Running Application136176
+Node: Scaling the Deployment139761
+Node: Cleanup and Summary141353
+Node: Introducing Version 3 of the QuoteFinder app144561
+Node: Quiz Design Decisions and Development Setup150279
+Node: Deployment with Kubernetes152420
+Ref: Deployment152656
+Node: Introduction to Kubernetes152753
+Node: Get Started with Kubernetes155950
+Node: Attach the Database164012
+Node: Quiz Deployment with Kubernetes171886
+Node: Scaling the Database175088
+Node: Database Scaling175415
+Node: MongoDB ReplicaSet178277
+Node: Setting up a MongoDB ReplicaSet in Kubernetes180376
+Ref: TextStore StatefulSet181165
+Ref: Qfapp ConfigMap183902
+Ref: QFStandalone Deployment184936
+Ref: Tasks186232
+Node: Edit a Container in a Pod in a Node in a Cluster190451
+Ref: kube-edit190718
+Node: Additional Concepts195936
+Node: Summary203555
+Node: Assignment Build Something206610
+Ref: assignment-build-something206794
+Node: Concept Index210220
+Node: Program Index222290
+Node: Files and Data Types Index228012
+Node: Functions and Commands Index229191
 
 End Tag Table
 

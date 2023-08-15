@@ -621,7 +621,7 @@ myfirstimage                  latest      270970b0971b   5 seconds ago   232MB
 <tbody><tr><td>-d</td><td>&ndash;detach</td><td>Run the container in the background without any console interaction</td></tr>
 <tr><td>-p</td><td>&ndash;publish</td><td>List the ports that should be exposed from inside the container to a specific port on the host OS</td></tr>
 <tr><td>-e</td><td>&ndash;env</td><td>Set environment variables inside the container</td></tr>
-<tr><td>-v</td><td>&ndash;volume</td><td>Mount a volume (or directory) from the host is into the container</td></tr>
+<tr><td>-v</td><td>&ndash;volume</td><td>Mount a volume (or directory) from the host into the container</td></tr>
 <tr><td></td><td>&ndash;name</td><td>Give the running container a specific name</td></tr>
 <tr><td></td><td></td><td></td></tr>
 <tr><td>-i</td><td>&ndash;interactive</td><td>Run the container as an interactive console application. Usually together with -t</td></tr>
@@ -1010,7 +1010,7 @@ On Windows or OSX, the software to install is <em class="emph">Docker Desktop</e
 <p><strong class="strong">TODO</strong> Install a Hypervisor
 Vagrant provides a script language for  provisioning and orchestrating a solution, but it relies on that you already have a hypervisor installed (see <a class="ref" href="#Not-Building-Microservices-_002d_002d-Infrastructure-As-A-Service">Not Building Microservices &ndash; Infrastructure As A Service</a> ). Virtualbox <a class="uref" href="https://www.virtualbox.org/">https://www.virtualbox.org/</a> is free and easy to install if your hardware is supported. Vagrant works more or less straight off with Virtualbox.
 </p>
-<p>You may wish to try Qemu <a class="uref" href="https://www.qemu.org/download/#linux">https://www.qemu.org/download/#linux</a> , and all its gory details <a class="uref" href="https://wiki.archlinux.org/title/QEMU">https://wiki.archlinux.org/title/QEMU</a>. If you do, you will need the following two vagrant plugins, and config the libvirt provider in the &lsquo;<samp class="samp">Vagrantfile</samp>&rsquo; (see <a class="anchor" id="qemu_002dvagrant"></a>):
+<p>You may wish to try Qemu <a class="uref" href="https://www.qemu.org/download/#linux">https://www.qemu.org/download/#linux</a> , and all its gory details <a class="uref" href="https://wiki.archlinux.org/title/QEMU">https://wiki.archlinux.org/title/QEMU</a>. If you do, you will need the following two vagrant plugins, and config the libvirt provider in the &lsquo;<samp class="samp">Vagrantfile</samp>&rsquo; (see <a class="ref" href="#A-Minimal-Qemu-Vagrantfile">A Minimal Qemu Vagrantfile</a> ):
 </p>
 <div class="example">
 <pre class="example-preformatted">vagrant plugin install vagrant-mutate # to convert boxes between different hypervisors
@@ -1045,6 +1045,8 @@ Next: <a href="#A-Minimal-Qemu-Vagrantfile" accesskey="n" rel="next">A Minimal Q
 
 <p>The first step is to run the QFStandalone app as if you were running it on &ldquo;bare metal&rdquo;, i.e. just as you would do if you install it directly on your machine. The benefit of running it in a separate virtual machine is that you will not litter your own machine with any of the software required for this one app. If you are involved in several different projects, each requiring their own technology stack and (possibly) different versions of some tools, it quickly becomes a nightmare to keep track of on a single machine. If you instead get into the habit of always developing inside a virtual machine, you will avoid much of this pain. Not to mention that you should not trust the software that some random teacher tells you to install, so running things inside a virtual machine is a prudent security measure. Lastly, should you later decide do deploy to a cloud provider, your machine setup is already scripted, configuration managed, and ready to go.
 </p>
+<p>One note before you begin: In Vagrant you define which boxes you want and give them a name (e.g. &ldquo;app&rdquo; in the tasks below) with the command <code class="code">config.vm.define</code>. This name is used in commands to vagrant (e.g. <code class="code">vagrant reload app</code> to reload the &ldquo;app&rdquo; box) but may be different from the name with which you access the box on the network, i.e. the hostname.
+</p>
 <p><strong class="strong">Tasks</strong>
 </p><ol class="enumerate" start="0">
 <li> Open a terminal in whichever way your operating system expects you to.
@@ -1054,7 +1056,7 @@ Next: <a href="#A-Minimal-Qemu-Vagrantfile" accesskey="n" rel="next">A Minimal Q
 </li><li> Create a Vagrantfile according to what is required for your particular hypervisor.
 <ul class="itemize mark-bullet">
 <li>The box to use is &lsquo;<samp class="samp">bento/ubuntu-20.04</samp>&rsquo;
-</li><li>Define one VM, e.g. called &lsquo;<samp class="samp">app</samp>&rsquo;
+</li><li>Define one VM, e.g. called &lsquo;<samp class="samp">app</samp>&rsquo;  # &ndash;&gt; what does that mean?
 </li><li>Configure this VM so that it forwards the guest port 3000 to the host port 8080
 </li></ul>
 
@@ -1143,7 +1145,17 @@ drwxrwxr-x   4 vagrant vagrant   4096 Feb 23 11:37 src
 
 <p>If you think it was cumbersome to edit the file like this, then any modern IDE ought to support opening a file over a network protocol. In Emacs, for example, you open the file as usual but with the search path <code class="code">/vagrant:version1--app:/home/vagrant/Version1/QFStandalone/src/index.js</code> , i.e. using the protocol <code class="code">/vagrant:</code> , open a file on the machine <code class="code">app</code> as specified in the Vagrantfile in the directory <code class="code">version1</code> , and then the full path to the file inside the guest machine.
 </p>
-<p>Another approach (which is maybe more likely) is that you would develop locally in a sub-directory to where the Vagrantfile is located. By default Vagrant mounts this directory to <code class="code">/vagrant</code> on the guest machine (Please, do log in and check this). This is however not always the case. In some situations Vagrant has troubles keeping the host and the guest in sync, and you will be forced to sync files manually.
+<p>Another approach (which is maybe more likely) is that you would develop locally in a sub-directory relative to where the Vagrantfile is located. You can specify the sync folder and mechanism in the Vagrantfile (see <a class="uref" href="https://developer.hashicorp.com/vagrant/docs/synced-folders/basic_usage">https://developer.hashicorp.com/vagrant/docs/synced-folders/basic_usage</a>). The standard sync type is <code class="code">nfs</code>, which requires an nfs server running on your host. Furthermore, you need to instruct Vagrant to disable <code class="code">UDP</code> by configuring your sync folder as follows:
+</p>
+<div class="example">
+<pre class="example-preformatted">Vagrant.configure(&quot;2&quot;) do |config|
+  [...]        
+  config.vm.synced_folder &quot;.&quot;, &quot;/vagrant&quot;, type: &quot;nfs&quot;, nfs_udp: false
+  [...]
+end
+</pre></div>
+
+<p>This will mount the directory in which the Vagrantfile resides to <code class="code">/vagrant</code> on the guest machine (Please, do log in and check this). Alternatively, you can use <code class="code">rsync</code> as type for the sync folder (see the example in the qemu configuration <a class="ref" href="#A-Minimal-Qemu-Vagrantfile">A Minimal Qemu Vagrantfile</a>). While this does not require an nfs server on the host, you need to run <code class="code">vagrant rsync-auto</code> to sync in real-time and not only when the guest boots up. 
 </p>
 <p><strong class="strong">Summary</strong>
 We have now
@@ -1393,7 +1405,7 @@ Next: <a href="#Orchestration" accesskey="n" rel="next">Orchestration</a>, Up: <
 </p>
 <p>With Docker we started with an almost ready machine (&lsquo;<samp class="samp">FROM node:18-alpine</samp>&rsquo;) , and the focus was to install <em class="emph">anything else</em> that we needed and to further configure the microservice image. We also had to repeat some of this configuration on the command line when we started a container based on this image.
 </p>
-<p>With Vagrant we started with a relatively clean linux install ( <code class="code">config.vm.box=&quot;bento/ubuntu-20.04&quot;</code> ), and then had to execute a series of shell commands in order to install the rest. We can not compare with the docker install straight off since we also installed a MongoDB database, and we downloaded the entire QuoteFinder repository (not just its dependencies) inside the virtual machine, but if you go back and look, you will notice that there was a bit of <code class="code">sudo apt-get update</code>, <code class="code">sudo apt-get install -y</code>, some <code class="code">echo</code> and <code class="code">cd here/and/there</code> , and some copying of files with &lsquo;<samp class="samp">cp</samp>&rsquo; . All the things you could expect to do interactively, but saved in the Vagrantfile to be able to run and re-run the provisioning at will. Technically, we <em class="emph">can</em> do all of this in our Dockerfile too, but there is generally less need for it.
+<p>With Vagrant we started with a relatively clean linux install (bento/ubuntu-20.04), and then had to execute a series of shell commands in order to install the rest. We can not compare with the docker install straight off since we also installed a MongoDB database, and we downloaded the entire QuoteFinder repository (not just its dependencies) inside the virtual machine, but if you go back and look, you will notice that there was a bit of <code class="code">sudo apt-get update</code>, <code class="code">sudo apt-get install -y</code>, some <code class="code">echo</code> and <code class="code">cd here/and/there</code> , and some copying of files with &lsquo;<samp class="samp">cp</samp>&rsquo; . All the things you could expect to do interactively, but saved in the Vagrantfile to be able to run and re-run the provisioning at will. Technically, we <em class="emph">can</em> do all of this in our Dockerfile too, but there is generally less need for it.
 </p>
 <a class="index-entry-id" id="index-Ansible"></a>
 <a class="index-entry-id" id="index-Chef"></a>

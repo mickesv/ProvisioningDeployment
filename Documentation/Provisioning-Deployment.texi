@@ -585,7 +585,7 @@ So, let's get this image to actually run as a container, using the command @samp
 @tab Set environment variables inside the container
 @item -v
 @tab --volume
-@tab Mount a volume (or directory) from the host is into the container
+@tab Mount a volume (or directory) from the host into the container
 @item 
 @tab --name
 @tab Give the running container a specific name
@@ -980,7 +980,7 @@ On Linux, you will want to install @code{docker}, @code{docker-compose}, and @co
 @strong{TODO} Install a Hypervisor
 Vagrant provides a script language for  provisioning and orchestrating a solution, but it relies on that you already have a hypervisor installed (see @ref{Not Building Microservices -- Infrastructure As A Service} ). Virtualbox @uref{https://www.virtualbox.org/} is free and easy to install if your hardware is supported. Vagrant works more or less straight off with Virtualbox.
 
-You may wish to try Qemu @uref{https://www.qemu.org/download/#linux} , and all its gory details @uref{https://wiki.archlinux.org/title/QEMU}. If you do, you will need the following two vagrant plugins, and config the libvirt provider in the @samp{Vagrantfile} (see @anchor{qemu-vagrant} ):
+You may wish to try Qemu @uref{https://www.qemu.org/download/#linux} , and all its gory details @uref{https://wiki.archlinux.org/title/QEMU}. If you do, you will need the following two vagrant plugins, and config the libvirt provider in the @samp{Vagrantfile} (see @ref{A Minimal Qemu Vagrantfile} ):
 
 @example
 vagrant plugin install vagrant-mutate # to convert boxes between different hypervisors
@@ -1013,6 +1013,8 @@ Vagrant @uref{https://developer.hashicorp.com/vagrant/tutorials}
 
 The first step is to run the QFStandalone app as if you were running it on ``bare metal'', i.e. just as you would do if you install it directly on your machine. The benefit of running it in a separate virtual machine is that you will not litter your own machine with any of the software required for this one app. If you are involved in several different projects, each requiring their own technology stack and (possibly) different versions of some tools, it quickly becomes a nightmare to keep track of on a single machine. If you instead get into the habit of always developing inside a virtual machine, you will avoid much of this pain. Not to mention that you should not trust the software that some random teacher tells you to install, so running things inside a virtual machine is a prudent security measure. Lastly, should you later decide do deploy to a cloud provider, your machine setup is already scripted, configuration managed, and ready to go.
 
+One note before you begin: In Vagrant you define which boxes you want and give them a name (e.g. ``app'' in the tasks below) with the command @code{config.vm.define}. This name is used in commands to vagrant (e.g. @code{vagrant reload app} to reload the ``app'' box) but may be different from the name with which you access the box on the network, i.e. the hostname.
+
 @strong{Tasks}
 @enumerate 0
 @item
@@ -1027,7 +1029,7 @@ Create a Vagrantfile according to what is required for your particular hyperviso
 @item
 The box to use is @samp{bento/ubuntu-20.04}
 @item
-Define one VM, e.g. called @samp{app}
+Define one VM, e.g. called @samp{app}  # --> what does that mean?
 @item
 Configure this VM so that it forwards the guest port 3000 to the host port 8080
 @end itemize
@@ -1127,7 +1129,17 @@ In the function @code{startPage()} , instead of directly return a page rendering
 
 If you think it was cumbersome to edit the file like this, then any modern IDE ought to support opening a file over a network protocol. In Emacs, for example, you open the file as usual but with the search path @code{/vagrant:version1--app:/home/vagrant/Version1/QFStandalone/src/index.js} , i.e. using the protocol @code{/vagrant:} , open a file on the machine @code{app} as specified in the Vagrantfile in the directory @code{version1} , and then the full path to the file inside the guest machine.
 
-Another approach (which is maybe more likely) is that you would develop locally in a sub-directory to where the Vagrantfile is located. By default Vagrant mounts this directory to @code{/vagrant} on the guest machine (Please, do log in and check this). This is however not always the case. In some situations Vagrant has troubles keeping the host and the guest in sync, and you will be forced to sync files manually.
+Another approach (which is maybe more likely) is that you would develop locally in a sub-directory relative to where the Vagrantfile is located. You can specify the sync folder and mechanism in the Vagrantfile (see @uref{https://developer.hashicorp.com/vagrant/docs/synced-folders/basic_usage}). The standard sync type is @code{nfs}, which requires an nfs server running on your host. Furthermore, you need to instruct Vagrant to disable @code{UDP} by configuring your sync folder as follows:
+
+@example
+Vagrant.configure("2") do |config|
+  [...]        
+  config.vm.synced_folder ".", "/vagrant", type: "nfs", nfs_udp: false
+  [...]
+end
+@end example
+
+This will mount the directory in which the Vagrantfile resides to @code{/vagrant} on the guest machine (Please, do log in and check this). Alternatively, you can use @code{rsync} as type for the sync folder (see the example in the qemu configuration @ref{A Minimal Qemu Vagrantfile}). While this does not require an nfs server on the host, you need to run @code{vagrant rsync-auto} to sync in real-time and not only when the guest boots up. 
 
 @strong{Summary}
 We have now
@@ -1390,7 +1402,7 @@ We have already seen two forms of provisioning; the one we made with Docker, and
 
 With Docker we started with an almost ready machine (@samp{FROM node:18-alpine}) , and the focus was to install @emph{anything else} that we needed and to further configure the microservice image. We also had to repeat some of this configuration on the command line when we started a container based on this image.
 
-With Vagrant we started with a relatively clean linux install ( @code{config.vm.box="bento/ubuntu-20.04"} ), and then had to execute a series of shell commands in order to install the rest. We can not compare with the docker install straight off since we also installed a MongoDB database, and we downloaded the entire QuoteFinder repository (not just its dependencies) inside the virtual machine, but if you go back and look, you will notice that there was a bit of @code{sudo apt-get update}, @code{sudo apt-get install -y}, some @code{echo} and @code{cd here/and/there} , and some copying of files with @samp{cp} . All the things you could expect to do interactively, but saved in the Vagrantfile to be able to run and re-run the provisioning at will. Technically, we @emph{can} do all of this in our Dockerfile too, but there is generally less need for it.
+With Vagrant we started with a relatively clean linux install (bento/ubuntu-20.04), and then had to execute a series of shell commands in order to install the rest. We can not compare with the docker install straight off since we also installed a MongoDB database, and we downloaded the entire QuoteFinder repository (not just its dependencies) inside the virtual machine, but if you go back and look, you will notice that there was a bit of @code{sudo apt-get update}, @code{sudo apt-get install -y}, some @code{echo} and @code{cd here/and/there} , and some copying of files with @samp{cp} . All the things you could expect to do interactively, but saved in the Vagrantfile to be able to run and re-run the provisioning at will. Technically, we @emph{can} do all of this in our Dockerfile too, but there is generally less need for it.
 
 @pindex Ansible
 @pindex Chef
