@@ -723,6 +723,8 @@ To familiarise yourself with Docker and Vagrant, please work through some of the
 *** Full Virtual Machine
 The first step is to run the QFStandalone app as if you were running it on "bare metal", i.e. just as you would do if you install it directly on your machine. The benefit of running it in a separate virtual machine is that you will not litter your own machine with any of the software required for this one app. If you are involved in several different projects, each requiring their own technology stack and (possibly) different versions of some tools, it quickly becomes a nightmare to keep track of on a single machine. If you instead get into the habit of always developing inside a virtual machine, you will avoid much of this pain. Not to mention that you should not trust the software that some random teacher tells you to install, so running things inside a virtual machine is a prudent security measure. Lastly, should you later decide do deploy to a cloud provider, your machine setup is already scripted, configuration managed, and ready to go.
 
+One note before you begin: In Vagrant you define which boxes you want and give them a name (e.g. "app" in the tasks below) with the command ~config.vm.define~. This name is used in commands to vagrant (e.g. ~vagrant reload app~ to reload the "app" box) but may be different from the name with which you access the box on the network, i.e. the hostname.
+
 *Tasks*
 0. [@0] Open a terminal in whichever way your operating system expects you to.
 
