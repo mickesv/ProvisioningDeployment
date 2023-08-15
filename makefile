@@ -127,6 +127,13 @@ kubestatus:
 #	@-kubectl logs textstore-1 --all-containers  # Checking if second replica could start ok. If volumes are misconfigured, mongodb will fail.
 #	minikube dashboard &
 
+# Documentation
+# --------------------
+doc:
+	@emacs --batch --file ./Documentation/Provisioning-Deployment.org --eval "(org-texinfo-export-to-info)"
+	@texi2pdf ./Documentation/Provisioning-Deployment.texi --command=@afourpaper -q -c -o ./Documentation/Provisioning-Deployment.pdf
+	@texi2any --html --no-split ./Documentation/Provisioning-Deployment.texi -o ./Documentation/Provisioning-Deployment.html
+
 # Cleanups
 # --------------------
 cleanv1:
