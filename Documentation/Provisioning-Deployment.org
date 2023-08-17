@@ -134,9 +134,8 @@ Deadlines for quizzes and assignments are listed on the course platform. The dea
 - The course is offered during one or two study periods (1/2 semester or 1 semester)
 - During this time, you are expected complete all assignments and submit them for marking.
 - Based on the marking, you may need to complement your submissions with additional material.
-- Complementing assignments can be done during the semester, within four weeks of the end of the semester, or in August.
-- Complementing assignments after the semester is only allowed if your original submissions were made during the semester and were non-trivial.
-- Given these constraints, you are free to plan your submissions as you see fit.
+- Complementing assignments can be done during the course, within two weeks of the end of the course, or in conjunction with next year's instance.
+- Complementing assignments after the course is ended is only possible if your original submissions were made during the course and were non-trivial.
 
 Assignments are submitted on the course platform. In the case of a resubmission, please highlight changes you have made, and discuss, where applicable, the changes you make.
 
