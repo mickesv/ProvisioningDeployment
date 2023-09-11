@@ -1400,22 +1400,28 @@ File: Provisioning-Deployment.info,  Node: Installing and Running QFStandalone, 
 
           config.vm.provision "shell", inline: <<-SHELL
           sudo apt-get update
-          sudo apt-get install -y git curl wget gnupg
+          sudo apt-get install -y git curl wget gnupg ca-certificates
 
           echo "----------> Installing MongoDB-org"
-          wget -qO - https://www.mongodb.org/static/pgp/server-6.0.asc | sudo apt-key add -
-          echo "deb [ arch=amd64,arm64 ]\
-                https://repo.mongodb.org/apt/ubuntu\
-                focal/mongodb-org/6.0 multiverse" | sudo \
-                tee /etc/apt/sources.list.d/mongodb-org-6.0.list
+          curl -fsSL https://pgp.mongodb.com/server-7.0.asc | \
+           sudo gpg -o /usr/share/keyrings/mongodb-server-7.0.gpg \
+           --dearmor
+
+           echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-7.0.gpg ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/7.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-7.0.list
+
           sudo apt-get update
           sudo apt-get install -y mongodb-org
           sudo systemctl start mongod
 
           echo "----------> Installing node.js"
-          curl -fsSL https://deb.nodesource.com/setup_19.x | sudo -E bash - &&\
-               sudo apt-get install -y nodejs
-          npm install -g nodemon
+          sudo mkdir -p /etc/apt/keyrings
+          curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
+
+          NODE_MAJOR=20
+          echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" | sudo tee /etc/apt/sources.list.d/nodesource.list
+
+          sudo apt-get update
+          sudo apt-get install nodejs -y
           SHELL
 
        4. Set up provisioning of the VM to download QuoteFinder and set
@@ -4750,51 +4756,51 @@ Node: Introducing the QuoteFinder application57109
 Node: Install relevant software63602
 Node: Installing and Running QFStandalone66242
 Ref: Full Virtual Machine66505
-Ref: Docker75942
-Node: A Minimal Qemu Vagrantfile84957
-Node: Quiz Let's get Practical86288
-Node: Provisioning and Orchestration88056
-Node: Provisioning88375
-Node: Orchestration91905
-Node: Docker Compose93601
-Node: Cloud Orchestration95471
-Node: Quiz Provisioning and Orchestration97464
-Node: Application Design and Development100729
-Node: Principles of Microservice Architectures101182
-Node: Cloud Architecture Patterns106629
-Node: Introduction to YAML and Docker-Composeyml119038
-Node: Let's get Practical Again124509
-Node: Introducing Version 2 of the QuoteFinder app124994
-Node: Installing and Running Version 2 of QuoteFinder132344
-Node: Editing the Running Application136176
-Node: Scaling the Deployment139761
-Node: Cleanup and Summary141353
-Node: Introducing Version 3 of the QuoteFinder app144561
-Node: Quiz Design Decisions and Development Setup150279
-Node: Deployment with Kubernetes152420
-Ref: Deployment152656
-Node: Introduction to Kubernetes152753
-Node: Get Started with Kubernetes155950
-Node: Attach the Database164012
-Node: Quiz Deployment with Kubernetes171886
-Node: Scaling the Database175088
-Node: Database Scaling175415
-Node: MongoDB ReplicaSet178277
-Node: Setting up a MongoDB ReplicaSet in Kubernetes180376
-Ref: TextStore StatefulSet181165
-Ref: Qfapp ConfigMap183902
-Ref: QFStandalone Deployment184936
-Ref: Tasks186232
-Node: Edit a Container in a Pod in a Node in a Cluster190451
-Ref: kube-edit190718
-Node: Additional Concepts195936
-Node: Summary203555
-Node: Assignment Build Something206610
-Ref: assignment-build-something206794
-Node: Concept Index210220
-Node: Program Index222290
-Node: Files and Data Types Index228012
-Node: Functions and Commands Index229191
+Ref: Docker76316
+Node: A Minimal Qemu Vagrantfile85331
+Node: Quiz Let's get Practical86662
+Node: Provisioning and Orchestration88430
+Node: Provisioning88749
+Node: Orchestration92279
+Node: Docker Compose93975
+Node: Cloud Orchestration95845
+Node: Quiz Provisioning and Orchestration97838
+Node: Application Design and Development101103
+Node: Principles of Microservice Architectures101556
+Node: Cloud Architecture Patterns107003
+Node: Introduction to YAML and Docker-Composeyml119412
+Node: Let's get Practical Again124883
+Node: Introducing Version 2 of the QuoteFinder app125368
+Node: Installing and Running Version 2 of QuoteFinder132718
+Node: Editing the Running Application136550
+Node: Scaling the Deployment140135
+Node: Cleanup and Summary141727
+Node: Introducing Version 3 of the QuoteFinder app144935
+Node: Quiz Design Decisions and Development Setup150653
+Node: Deployment with Kubernetes152794
+Ref: Deployment153030
+Node: Introduction to Kubernetes153127
+Node: Get Started with Kubernetes156324
+Node: Attach the Database164386
+Node: Quiz Deployment with Kubernetes172260
+Node: Scaling the Database175462
+Node: Database Scaling175789
+Node: MongoDB ReplicaSet178651
+Node: Setting up a MongoDB ReplicaSet in Kubernetes180750
+Ref: TextStore StatefulSet181539
+Ref: Qfapp ConfigMap184276
+Ref: QFStandalone Deployment185310
+Ref: Tasks186606
+Node: Edit a Container in a Pod in a Node in a Cluster190825
+Ref: kube-edit191092
+Node: Additional Concepts196310
+Node: Summary203929
+Node: Assignment Build Something206984
+Ref: assignment-build-something207168
+Node: Concept Index210594
+Node: Program Index222664
+Node: Files and Data Types Index228386
+Node: Functions and Commands Index229565
 
 End Tag Table
 

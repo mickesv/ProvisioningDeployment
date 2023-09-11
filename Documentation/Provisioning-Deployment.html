@@ -1066,22 +1066,28 @@ Next: <a href="#A-Minimal-Qemu-Vagrantfile" accesskey="n" rel="next">A Minimal Q
 <div class="example">
 <pre class="example-preformatted">config.vm.provision &quot;shell&quot;, inline: &lt;&lt;-SHELL
 sudo apt-get update
-sudo apt-get install -y git curl wget gnupg
+sudo apt-get install -y git curl wget gnupg ca-certificates
 
 echo &quot;----------&gt; Installing MongoDB-org&quot;
-wget -qO - https://www.mongodb.org/static/pgp/server-6.0.asc | sudo apt-key add -
-echo &quot;deb [ arch=amd64,arm64 ]\
-      https://repo.mongodb.org/apt/ubuntu\
-      focal/mongodb-org/6.0 multiverse&quot; | sudo \
-      tee /etc/apt/sources.list.d/mongodb-org-6.0.list
+curl -fsSL https://pgp.mongodb.com/server-7.0.asc | \
+ sudo gpg -o /usr/share/keyrings/mongodb-server-7.0.gpg \
+ --dearmor
+
+ echo &quot;deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-7.0.gpg ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/7.0 multiverse&quot; | sudo tee /etc/apt/sources.list.d/mongodb-org-7.0.list
+
 sudo apt-get update
 sudo apt-get install -y mongodb-org
 sudo systemctl start mongod
 
 echo &quot;----------&gt; Installing node.js&quot;
-curl -fsSL https://deb.nodesource.com/setup_19.x | sudo -E bash - &amp;&amp;\
-     sudo apt-get install -y nodejs
-npm install -g nodemon
+sudo mkdir -p /etc/apt/keyrings
+curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
+
+NODE_MAJOR=20
+echo &quot;deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main&quot; | sudo tee /etc/apt/sources.list.d/nodesource.list
+
+sudo apt-get update
+sudo apt-get install nodejs -y
 SHELL
 </pre></div>
 

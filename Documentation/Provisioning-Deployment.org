@@ -737,25 +737,31 @@ One note before you begin: In Vagrant you define which boxes you want and give t
 3. Set up provisioning of the VM to install MongoDB and node.js as follows:
 
 #+begin_src ruby
-   config.vm.provision "shell", inline: <<-SHELL
-   sudo apt-get update
-   sudo apt-get install -y git curl wget gnupg
+  config.vm.provision "shell", inline: <<-SHELL
+  sudo apt-get update
+  sudo apt-get install -y git curl wget gnupg ca-certificates
+  
+  echo "----------> Installing MongoDB-org"
+  curl -fsSL https://pgp.mongodb.com/server-7.0.asc | \
+   sudo gpg -o /usr/share/keyrings/mongodb-server-7.0.gpg \
+   --dearmor
 
-   echo "----------> Installing MongoDB-org"
-   wget -qO - https://www.mongodb.org/static/pgp/server-6.0.asc | sudo apt-key add -
-   echo "deb [ arch=amd64,arm64 ]\
-         https://repo.mongodb.org/apt/ubuntu\
-         focal/mongodb-org/6.0 multiverse" | sudo \
-         tee /etc/apt/sources.list.d/mongodb-org-6.0.list
-   sudo apt-get update
-   sudo apt-get install -y mongodb-org
-   sudo systemctl start mongod
+   echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-7.0.gpg ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/7.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-7.0.list
 
-   echo "----------> Installing node.js"
-   curl -fsSL https://deb.nodesource.com/setup_19.x | sudo -E bash - &&\
-        sudo apt-get install -y nodejs
-   npm install -g nodemon
-   SHELL
+  sudo apt-get update
+  sudo apt-get install -y mongodb-org
+  sudo systemctl start mongod
+  
+  echo "----------> Installing node.js"
+  sudo mkdir -p /etc/apt/keyrings
+  curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
+
+  NODE_MAJOR=20
+  echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" | sudo tee /etc/apt/sources.list.d/nodesource.list
+
+  sudo apt-get update
+  sudo apt-get install nodejs -y
+  SHELL
 #+end_src
 
 4. [@4] Set up provisioning of the VM to download QuoteFinder and set it up as follows (note that this is run as the user =vagrant= in order to get file permissions right):
