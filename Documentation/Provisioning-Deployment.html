@@ -1088,6 +1088,7 @@ echo &quot;deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesour
 
 sudo apt-get update
 sudo apt-get install nodejs -y
+sudo npm install -g nodemon
 SHELL
 </pre></div>
 
@@ -1109,6 +1110,7 @@ cp -r QuoteFinder/Containers/Version1 .
 echo &quot;----------&gt; Setting up QFStandalone&quot;
 cd Version1/QFStandalone
 npm install
+
 SHELL
 </pre></div>
 
@@ -1136,7 +1138,7 @@ drwxrwxr-x   4 vagrant vagrant   4096 Feb 23 11:37 src
 <p>Your specific version numbers may of course vary, but specific things to look at is that the node version is not something hopelessly outdated such as &lsquo;<samp class="samp">0.10.0</samp>&rsquo;, that the owner of the files is &lsquo;<samp class="samp">vagrant</samp>&rsquo;, that there is a &lsquo;<samp class="samp">package-lock.json</samp>&rsquo; file, and a &lsquo;<samp class="samp">node_modules</samp>&rsquo; directory.
 </p>
 <ol class="enumerate" start="7">
-<li> log out and start the QuoteFinder app with <code class="code">vagrant ssh -c 'cd ~/Version1/QFStandalone &amp;&amp; npm run dev'</code>
+<li> log out and start the QuoteFinder app with &lsquo;<samp class="samp">vagrant ssh -c 'cd ~/Version1/QFStandalone &amp;&amp; npm run dev'</samp>&rsquo;
 
 </li><li> We can now test the app. Open a web browser to <a class="uref" href="http://localhost:8080/add">http://localhost:8080/add</a> and click the &rsquo;Add&rsquo; button to add a book to your database. Your terminal window where the app is running will print some info, hopefully ending with <em class="emph">Text added.</em> If not, make note of any error messages printed.
 

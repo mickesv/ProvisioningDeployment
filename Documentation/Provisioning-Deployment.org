@@ -740,7 +740,7 @@ One note before you begin: In Vagrant you define which boxes you want and give t
   config.vm.provision "shell", inline: <<-SHELL
   sudo apt-get update
   sudo apt-get install -y git curl wget gnupg ca-certificates
-  
+
   echo "----------> Installing MongoDB-org"
   curl -fsSL https://pgp.mongodb.com/server-7.0.asc | \
    sudo gpg -o /usr/share/keyrings/mongodb-server-7.0.gpg \
@@ -751,7 +751,7 @@ One note before you begin: In Vagrant you define which boxes you want and give t
   sudo apt-get update
   sudo apt-get install -y mongodb-org
   sudo systemctl start mongod
-  
+
   echo "----------> Installing node.js"
   sudo mkdir -p /etc/apt/keyrings
   curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
@@ -761,6 +761,7 @@ One note before you begin: In Vagrant you define which boxes you want and give t
 
   sudo apt-get update
   sudo apt-get install nodejs -y
+  sudo npm install -g nodemon
   SHELL
 #+end_src
 
@@ -780,6 +781,7 @@ cp -r QuoteFinder/Containers/Version1 .
 echo "----------> Setting up QFStandalone"
 cd Version1/QFStandalone
 npm install
+
 SHELL
 #+end_src
 
@@ -804,7 +806,7 @@ drwxrwxr-x   4 vagrant vagrant   4096 Feb 23 11:37 src
 
 Your specific version numbers may of course vary, but specific things to look at is that the node version is not something hopelessly outdated such as =0.10.0=, that the owner of the files is =vagrant=, that there is a =package-lock.json= file, and a =node_modules= directory.
 
-7. [@7] log out and start the QuoteFinder app with ~vagrant ssh -c 'cd ~/Version1/QFStandalone && npm run dev'~
+7. [@7] log out and start the QuoteFinder app with =vagrant ssh -c 'cd ~/Version1/QFStandalone && npm run dev'=
 
 8. We can now test the app. Open a web browser to http://localhost:8080/add and click the 'Add' button to add a book to your database. Your terminal window where the app is running will print some info, hopefully ending with /Text added./ If not, make note of any error messages printed.
 

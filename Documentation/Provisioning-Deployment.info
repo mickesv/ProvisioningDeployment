@@ -1422,6 +1422,7 @@ File: Provisioning-Deployment.info,  Node: Installing and Running QFStandalone, 
 
           sudo apt-get update
           sudo apt-get install nodejs -y
+          sudo npm install -g nodemon
           SHELL
 
        4. Set up provisioning of the VM to download QuoteFinder and set
@@ -1441,6 +1442,7 @@ File: Provisioning-Deployment.info,  Node: Installing and Running QFStandalone, 
           echo "----------> Setting up QFStandalone"
           cd Version1/QFStandalone
           npm install
+
           SHELL
 
      The if-statement here is not strictly necessary but it helps us if
@@ -4756,51 +4758,51 @@ Node: Introducing the QuoteFinder application57109
 Node: Install relevant software63602
 Node: Installing and Running QFStandalone66242
 Ref: Full Virtual Machine66505
-Ref: Docker76316
-Node: A Minimal Qemu Vagrantfile85331
-Node: Quiz Let's get Practical86662
-Node: Provisioning and Orchestration88430
-Node: Provisioning88749
-Node: Orchestration92279
-Node: Docker Compose93975
-Node: Cloud Orchestration95845
-Node: Quiz Provisioning and Orchestration97838
-Node: Application Design and Development101103
-Node: Principles of Microservice Architectures101556
-Node: Cloud Architecture Patterns107003
-Node: Introduction to YAML and Docker-Composeyml119412
-Node: Let's get Practical Again124883
-Node: Introducing Version 2 of the QuoteFinder app125368
-Node: Installing and Running Version 2 of QuoteFinder132718
-Node: Editing the Running Application136550
-Node: Scaling the Deployment140135
-Node: Cleanup and Summary141727
-Node: Introducing Version 3 of the QuoteFinder app144935
-Node: Quiz Design Decisions and Development Setup150653
-Node: Deployment with Kubernetes152794
-Ref: Deployment153030
-Node: Introduction to Kubernetes153127
-Node: Get Started with Kubernetes156324
-Node: Attach the Database164386
-Node: Quiz Deployment with Kubernetes172260
-Node: Scaling the Database175462
-Node: Database Scaling175789
-Node: MongoDB ReplicaSet178651
-Node: Setting up a MongoDB ReplicaSet in Kubernetes180750
-Ref: TextStore StatefulSet181539
-Ref: Qfapp ConfigMap184276
-Ref: QFStandalone Deployment185310
-Ref: Tasks186606
-Node: Edit a Container in a Pod in a Node in a Cluster190825
-Ref: kube-edit191092
-Node: Additional Concepts196310
-Node: Summary203929
-Node: Assignment Build Something206984
-Ref: assignment-build-something207168
-Node: Concept Index210594
-Node: Program Index222664
-Node: Files and Data Types Index228386
-Node: Functions and Commands Index229565
+Ref: Docker76355
+Node: A Minimal Qemu Vagrantfile85370
+Node: Quiz Let's get Practical86701
+Node: Provisioning and Orchestration88469
+Node: Provisioning88788
+Node: Orchestration92318
+Node: Docker Compose94014
+Node: Cloud Orchestration95884
+Node: Quiz Provisioning and Orchestration97877
+Node: Application Design and Development101142
+Node: Principles of Microservice Architectures101595
+Node: Cloud Architecture Patterns107042
+Node: Introduction to YAML and Docker-Composeyml119451
+Node: Let's get Practical Again124922
+Node: Introducing Version 2 of the QuoteFinder app125407
+Node: Installing and Running Version 2 of QuoteFinder132757
+Node: Editing the Running Application136589
+Node: Scaling the Deployment140174
+Node: Cleanup and Summary141766
+Node: Introducing Version 3 of the QuoteFinder app144974
+Node: Quiz Design Decisions and Development Setup150692
+Node: Deployment with Kubernetes152833
+Ref: Deployment153069
+Node: Introduction to Kubernetes153166
+Node: Get Started with Kubernetes156363
+Node: Attach the Database164425
+Node: Quiz Deployment with Kubernetes172299
+Node: Scaling the Database175501
+Node: Database Scaling175828
+Node: MongoDB ReplicaSet178690
+Node: Setting up a MongoDB ReplicaSet in Kubernetes180789
+Ref: TextStore StatefulSet181578
+Ref: Qfapp ConfigMap184315
+Ref: QFStandalone Deployment185349
+Ref: Tasks186645
+Node: Edit a Container in a Pod in a Node in a Cluster190864
+Ref: kube-edit191131
+Node: Additional Concepts196349
+Node: Summary203968
+Node: Assignment Build Something207023
+Ref: assignment-build-something207207
+Node: Concept Index210633
+Node: Program Index222703
+Node: Files and Data Types Index228425
+Node: Functions and Commands Index229604
 
 End Tag Table
 

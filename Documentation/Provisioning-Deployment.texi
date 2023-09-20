@@ -1063,6 +1063,7 @@ echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.co
 
 sudo apt-get update
 sudo apt-get install nodejs -y
+sudo npm install -g nodemon
 SHELL
 @end example
 
@@ -1085,6 +1086,7 @@ cp -r QuoteFinder/Containers/Version1 .
 echo "----------> Setting up QFStandalone"
 cd Version1/QFStandalone
 npm install
+
 SHELL
 @end example
 
@@ -1115,7 +1117,7 @@ Your specific version numbers may of course vary, but specific things to look at
 
 @enumerate 7
 @item
-log out and start the QuoteFinder app with @code{vagrant ssh -c 'cd ~/Version1/QFStandalone && npm run dev'}
+log out and start the QuoteFinder app with @samp{vagrant ssh -c 'cd ~/Version1/QFStandalone && npm run dev'}
 
 @item
 We can now test the app. Open a web browser to @uref{http://localhost:8080/add} and click the 'Add' button to add a book to your database. Your terminal window where the app is running will print some info, hopefully ending with @emph{Text added.} If not, make note of any error messages printed.
