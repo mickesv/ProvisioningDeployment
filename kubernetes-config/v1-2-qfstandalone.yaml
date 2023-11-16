@@ -20,6 +20,8 @@ metadata:
     data: config
 data:
   textstore_host: "NOTSET"
+  mongo_user: "root"
+  mongo_pw: "rootpw"
 ---
 
 # QFStandalone
@@ -70,6 +72,7 @@ spec:
       containers:
       - name: qfstandalone
         image: mickesv/qfstandalone:version1
+        imagePullPolicy: Always
         ports:
         - containerPort: 3000
         env:
@@ -78,6 +81,17 @@ spec:
             configMapKeyRef: 
               name: qfapp-config
               key: textstore_host
+        # - name: MONGO_USER
+        #   valueFrom:
+        #     configMapKeyRef:
+        #       name: qfapp-config
+        #       key: mongo_user
+        # - name: MONGO_PW
+        #   valueFrom:
+        #     configMapKeyRef:
+        #       name: qfapp-config
+        #       key: mongo_pw
+
 ---
 # TextStore
 # --------------------
@@ -152,6 +166,17 @@ spec:
           mountPath: /data/db
         - name: mongo-config
           mountPath: /data/configdb
+        # env:
+        # - name: MONGO_INITDB_ROOT_USERNAME
+        #   valueFrom:
+        #     configMapKeyRef:
+        #       name: qfapp-config
+        #       key: mongo_user
+        # - name: MONGO_INITDB_ROOT_PASSWORD
+        #   valueFrom:
+        #     configMapKeyRef:
+        #       name: qfapp-config
+        #       key: mongo_pw
   volumeClaimTemplates:
     - metadata:
         name: textstore-data

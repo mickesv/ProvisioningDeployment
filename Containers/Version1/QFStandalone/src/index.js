@@ -141,7 +141,11 @@ app.use(function(err, req, res, next) {
 server.listen(port, () => {
     console.log(`QuoteFinder app listening on port ${port}`);
     console.log('Server id:', os.hostname());
+		console.log("Starting a connection just to test it...");
+		try {
+				new TextManager().connect();
+		} catch (err) {
+				// Do nothing
+		}
 });
 
-// Start a connection just to test it.
-new TextManager().connect();

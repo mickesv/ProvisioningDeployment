@@ -159,6 +159,8 @@ clean-kube-v1:
 clean-kube-volumes:
 	-kubectl delete --cascade='foreground' -f kubernetes-config/volumes.yaml
 	-kubectl delete pvc --all
+	-kubectl delete pv --all
+
 
 clean-kube-confmap:
 	-kubectl delete cm/qfapp-config

@@ -84,6 +84,7 @@ spec:
       containers:
       - name: qfstandalone
         image: mickesv/qfstandalone:version1
+        imagePullPolicy: Always
         command: ["nodemon", "-L", "-P", "1000", "src/index.js"] # Superimposing the default start command in order to add the "-L" legacy-watch flag
         volumeMounts:
         - mountPath: /app/src
