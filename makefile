@@ -88,7 +88,7 @@ kube-textstore-replicaset: kube-textstore
 # of the app. The one thing more which is needed is to superimpose the default startup command of the 
 # container with a "spec/command", so that nodemon uses a polling legacy-mode to watch for changes.
 kube-mount: kubestart
-	minikube mount --port 10001 $(cwd)/Containers/Version4/QFStandalone/src:/app/src &
+	minikube mount --port 10001 $(cwd)/Containers/Version1/QFStandalone/src:/app/src &
 # Remember to open this port in your firewall first!
 
 kube-v13: kubestart kube-volumes kube-mount kube-secret kube-confmap kube-textstore-replicaset
