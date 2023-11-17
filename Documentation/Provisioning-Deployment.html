@@ -2980,10 +2980,10 @@ One particular thing to look out for is to make sure that one of the servers has
 
 </li><li> Connect to the logs in qfstandalone (as before): <code class="code">kubectl get pods -o name | grep qfstandalone | head -1 | xargs kubectl logs -f</code>
 
-</li><li> Connect to the web interface (e.g. with <code class="code">minikube service qfapp-service</code> ) and search for something. Keep an eye on the logs to see why it fails.
+</li><li> Connect to the web interface (e.g. with <code class="code">minikube service qfapp-service</code> ) and search for something. Keep an eye on the logs in case it fails.
 </li></ol>
 
-<p>It appears that the current implementation of the database connection in &lsquo;<samp class="samp">simpleTextManager.js</samp>&rsquo; is trying to add too much to the environment variable. It would be nice if we were able to enter the container and edit the running application as we did before, but for reasons this is not easily done (see <a class="ref" href="#kube_002dedit">kube-edit</a> ). With a bit of elbow-grease we can at least get things to work decently (don&rsquo;t even bother trying to do some fancy development in this way).
+<p>Things ought to work at this stage; if not, the correct way is to go back to developing the app in docker. Strongly discouraged as it is, it is however still possible to enter through a back door to make small edits (don&rsquo;t even bother trying to do some fancy development in this way):
 </p>
 <ol class="enumerate" start="10">
 <li> Find the name of the qfstandalone pod: <code class="code">kubectl get pods -o name | grep qfstandalone</code>

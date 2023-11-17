@@ -3018,10 +3018,10 @@ One particular thing to look out for is to make sure that one of the servers has
 Connect to the logs in qfstandalone (as before): @code{kubectl get pods -o name | grep qfstandalone | head -1 | xargs kubectl logs -f}
 
 @item
-Connect to the web interface (e.g. with @code{minikube service qfapp-service} ) and search for something. Keep an eye on the logs to see why it fails.
+Connect to the web interface (e.g. with @code{minikube service qfapp-service} ) and search for something. Keep an eye on the logs in case it fails.
 @end enumerate
 
-It appears that the current implementation of the database connection in @samp{simpleTextManager.js} is trying to add too much to the environment variable. It would be nice if we were able to enter the container and edit the running application as we did before, but for reasons this is not easily done (see @ref{kube-edit} ). With a bit of elbow-grease we can at least get things to work decently (don't even bother trying to do some fancy development in this way).
+Things ought to work at this stage; if not, the correct way is to go back to developing the app in docker. Strongly discouraged as it is, it is however still possible to enter through a back door to make small edits (don't even bother trying to do some fancy development in this way):
 
 @enumerate 10
 @item
