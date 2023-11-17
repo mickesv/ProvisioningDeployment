@@ -1,4 +1,4 @@
-This is Provisioning-Deployment.info, produced by makeinfo version 7.0.3
+This is Provisioning-Deployment.info, produced by makeinfo version 7.1
 from Provisioning-Deployment.texi.
 
 This is part of a course on Applied Cloud Computing and Big Data,
@@ -12,7 +12,7 @@ offered by Blekinge Institute of Technology.  Version 1.0
 
      Permission is hereby granted, free of charge, to any person
      obtaining a copy of this software and associated documentation
-     files (the “Software”), to deal in the Software without
+     files (the "Software"), to deal in the Software without
      restriction, including without limitation the rights to use, copy,
      modify, merge, publish, distribute, sublicense, and/or sell copies
      of the Software, and to permit persons to whom the Software is
@@ -21,7 +21,7 @@ offered by Blekinge Institute of Technology.  Version 1.0
      The above copyright notice and this permission notice shall be
      included in all copies or substantial portions of the Software.
 
-     THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND,
+     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
      EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
      MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
      NONINFRINGEMENT.  IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
@@ -47,7 +47,7 @@ offered by Blekinge Institute of Technology.  Version 1.0
 
      Permission is hereby granted, free of charge, to any person
      obtaining a copy of this software and associated documentation
-     files (the “Software”), to deal in the Software without
+     files (the "Software"), to deal in the Software without
      restriction, including without limitation the rights to use, copy,
      modify, merge, publish, distribute, sublicense, and/or sell copies
      of the Software, and to permit persons to whom the Software is
@@ -56,7 +56,7 @@ offered by Blekinge Institute of Technology.  Version 1.0
      The above copyright notice and this permission notice shall be
      included in all copies or substantial portions of the Software.
 
-     THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND,
+     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
      EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
      MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
      NONINFRINGEMENT.  IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
@@ -100,7 +100,7 @@ parts:
 * Files and Data Types Index::
 * Functions and Commands Index::
 
-— The Detailed Node Listing —
+-- The Detailed Node Listing --
 
 Introduction to Orchestration and Provisioning
 
@@ -112,12 +112,12 @@ Microservices and Lightweight Containers
 * A Quick Rundown of Docker Terminology::
 * Dockerfile : Dockerfile.
 * Docker Commands::
-* Not Building Microservices – Infrastructure As A Service : Not Building Microservices -- Infrastructure As A Service.
+* Not Building Microservices - Infrastructure As A Service : Not Building Microservices -- Infrastructure As A Service.
 * Provisioning your Virtual Machine::
 * Communicating Microservices and REST APIs : Communicating Microservices and REST APIs.
 * Other communication means::
 
-Let’s get Practical
+Let's get Practical
 
 * Introducing the QuoteFinder application::
 * Install relevant software::
@@ -137,7 +137,7 @@ Application Design and Development
 * Cloud Architecture Patterns : Cloud Architecture Patterns.
 * Introduction to YAML and Docker-Compose.yml: Introduction to YAML and Docker-Composeyml.
 
-Let’s get Practical Again
+Let's get Practical Again
 
 * Introducing Version 2 of the QuoteFinder app::
 * Installing and Running Version 2 of QuoteFinder::
@@ -214,11 +214,11 @@ in your favourite editor though ‘C-u C-h i Provisioning-Deployment.info’
 ‘info info’ for more details and further key commands):
 
    • <spc> (space) scroll forward
-   • ’b’ Beginning of current node
-   • ’e’ End of current node
-   • ’n’ Next node
-   • ’p’ Previous node
-   • ’u’ Up (usually (but not always) to the top index page)
+   • 'b' Beginning of current node
+   • 'e' End of current node
+   • 'n' Next node
+   • 'p' Previous node
+   • 'u' Up (usually (but not always) to the top index page)
    • <enter> on a cross reference to open it.
 
 
@@ -234,7 +234,7 @@ may help you:
    • Start by reading the abstract and the conclusions.  These will tell
      you what problem or area the article is addressing, and what the
      article contributed to solving the problem.
-   • The articles in this course have – to a large extent – been chosen
+   • The articles in this course have - to a large extent - been chosen
      because they summarise the topics in various ways.  To find these
      summaries, look for _lists, figures, and tables_ in the article.
      Read these.  Read the text around them, or where the figures and
@@ -262,12 +262,12 @@ may help you:
      methodology), and what the raw results were.  Most of the time, you
      can safely skip these sections.  Sometimes however, the _results_
      section is combined with the _analysis_ section.
-   • The _analysis_ section “bakes” the results and tries to answer the
+   • The _analysis_ section "bakes" the results and tries to answer the
      research questions (address the identified problem).  This is
      probably the most interesting section for you to read.
    • The _discussion_ section should raise the view and try to see what
      the results actually mean in a bigger context.  What can you do
-     with the results?  “So what?”.  This is a tricky section to read,
+     with the results?  "So what?".  This is a tricky section to read,
      since the authors want you to believe that their results are the
      best thing invented since hot porridge, but at the same time they
      have to identify threats to the validity of the study.  Validity
@@ -285,7 +285,7 @@ may help you:
 
    The bottom line is that when being told to read a lot of research
 articles, the trick is to learn how to not read them while still getting
-the gist of them.  Hopefully, the “map” described above may provide some
+the gist of them.  Hopefully, the "map" described above may provide some
 help in identifying the parts of an article that are important for you.
 
 
@@ -311,7 +311,7 @@ There are some challenges with this, however:
      install some new software or run some update, you can no longer be
      sure that the application will actually continue to run.  Even if
      it still works on your machine, there is no guarantee that it will
-     also work on the customers’ machine.
+     also work on the customers' machine.
 
    • When you start working on a new feature branch, your machine is
      indeed tainted by everything you have developed and tested before.
@@ -368,8 +368,8 @@ automated tests are treated in the same way; The test code may even be
 part of the same commits as the application code.  By creating scripts
 for your deployments, you now have the ability to put these too under
 configuration management.  No more guesswork about which version of
-framework “frobnicator” that was launched together with version 1.3.42
-of your application – it’s in the setup scripts.
+framework "frobnicator" that was launched together with version 1.3.42
+of your application - it's in the setup scripts.
 
    *Summary* The _ultimate_ goal remains to be able to deploy your
 application to a cloud server somewhere.  But the _path to get there_
@@ -450,15 +450,15 @@ As applications grow, it becomes more and more difficult to understand
 all of them at once.  The programming solution is to divide the
 application into components, where each component has well defined
 responsibilities and interfaces.  Component-based software engineering
-and code modularisation (and – as it is most often used – object
+and code modularisation (and - as it is most often used - object
 oriented software development) is an answer to the need for smaller,
 more manageable parts of a larger system.  However, ultimately, the main
 reason for this type of modularisation is _development_ needs.
 
    Going further down the rabbit hole of software architectures, we do
 see that there are other reasons for modularisation.  One often discuss
-different viewpoints of a software architecture (which – just like UML –
-has its origins in P.  Kruchten “The 4+ 1 view model of architecture.”
+different viewpoints of a software architecture (which - just like UML -
+has its origins in P.  Kruchten "The 4+ 1 view model of architecture."
 _IEEE software_ 12.6 (1995): 42-50.  ), with a _conceptual view_ to
 understand what to build, a _module view_ to understand how to structure
 it while building, and an _execution view_ to understand the threads,
@@ -484,7 +484,7 @@ REST API: Communicating Microservices and REST APIs.), align the
 execution of an application with its conceptual view, and defer creation
 of the module view to each individual component/executable.  Of course,
 this works less well in practice because one still wishes to re-use
-components between the different microservices but that’s another story.
+components between the different microservices but that's another story.
 
    One more benefit (some would argue it is the main benefit) is that
 there is no longer any need for multi-threaded programming.  Each
@@ -513,7 +513,7 @@ permanent storage may be attached to each microservice.
 * A Quick Rundown of Docker Terminology::
 * Dockerfile : Dockerfile.
 * Docker Commands::
-* Not Building Microservices – Infrastructure As A Service : Not Building Microservices -- Infrastructure As A Service.
+* Not Building Microservices - Infrastructure As A Service : Not Building Microservices -- Infrastructure As A Service.
 * Provisioning your Virtual Machine::
 * Communicating Microservices and REST APIs : Communicating Microservices and REST APIs.
 * Other communication means::
@@ -535,16 +535,16 @@ the database).  Challenges are that we still have to start and connect
 all the different parts of our system when running, and we need to build
 the logic ourselves to scale up or down.  If we want to scale one part
 of our application by starting more processes of the same type, we need
-to manage the logic for this.  If we want to “scale out” to another
+to manage the logic for this.  If we want to "scale out" to another
 machine, we need to implement and manage the logic for this.  If one
 process writes to a particular file, all other processes are directly
 influenced by this, and need to have logic implemented to avoid
 conflicts.
 
    Next level up, at least on UNIX systems, is through ‘chroot’.
-Through this program we basically “sandbox” the file system for a
+Through this program we basically "sandbox" the file system for a
 particular process so that we can have separate parts of our disk
-allocated to different processes (called a “chroot jail” ).  Within this
+allocated to different processes (called a "chroot jail" ).  Within this
 new root environment we can install tools only needed for this
 particular process.  We can also have separate sections of our disk for
 e.g.  testing environments and development environments, and we can
@@ -555,14 +555,14 @@ available within its particular chroot jail.
 powerful it started to be used as a lightweight virtualisation.  There
 are, however, some considerable limitations.  For the sake of this
 course, the most major limitation is that any logic surrounding the use
-of chroot – scaling, inter process communication, etc.  – still has to
-be implemented by the developers of the application.  Shirley there’s an
+of chroot - scaling, inter process communication, etc.  - still has to
+be implemented by the developers of the application.  Shirley there's an
 app to help with that!
 
    As it happens, there are applications for this.  You may have heard
 about Docker <https://www.docker.com/> or its open source cousin Podman
 <https://podman.io/>.  Both of these are examples of Linux Containers
-(LXC), which are usually described as “Lightweight virtual machines”.
+(LXC), which are usually described as "Lightweight virtual machines".
 With tools like these you create a _Container_ with a specific set of
 programs installed, and then you can manage this container as a whole,
 rather than having to keep track of each individual part inside.
@@ -719,7 +719,7 @@ using it.
           docker -h
           docker --help
 
-     Wow, that was a long page.  Let’s pipe it through something that
+     Wow, that was a long page.  Let's pipe it through something that
      paginates it for us.  We can use either ‘more’ or its more enabled
      version ‘less’ for this.
 
@@ -739,7 +739,7 @@ using it.
   2. Docker image and Image Management
 
      First, we need to use the Dockerfile and create an image.  This
-     image downloads everything that should be installed – provisioned –
+     image downloads everything that should be installed - provisioned -
      in order to run your application later.  During this process, all
      commands in your Dockerfile will be executed, and the image will be
      stored ready for use.  Note that once this step is complete,
@@ -749,12 +749,12 @@ using it.
      The command is ‘docker build’ , and we want to look in the current
      directory for the Dockerfile so we add a period to the command.
      However, if we do this we get an image which has no name and only
-     an unwieldy image id to work with.  So let’s tag the image as we
+     an unwieldy image id to work with.  So let's tag the image as we
      create it with the ‘-t <tagname>’ flag.
 
           docker build -t myfirstimage .
 
-     Did it work?  Let’s view all images:
+     Did it work?  Let's view all images:
           docker image ls
 
      The output should be something like:
@@ -779,7 +779,7 @@ using it.
 
   3. Docker run and Container Management
 
-     So, let’s get this image to actually run as a container, using the
+     So, let's get this image to actually run as a container, using the
      command ‘docker run’.  We need a few parameters for this to work as
      we want it.  Some of the more commonly used parameters are listed
      in Table *note Table 4.1: tabdocker-run-parameters.
@@ -788,14 +788,13 @@ using it.
      --------------------------------------------------------------------------------------------------------------------------------
      Parameter   Parameter       Description
      --------------------------------------------------------------------------------------------------------------------------------
-     -d          –detach         Run the container in the background without any console interaction
-     -p          –publish        List the ports that should be exposed from inside the container to a specific port on the host OS
-     -e          –env            Set environment variables inside the container
-     -v          –volume         Mount a volume (or directory) from the host into the container
-                 –name           Give the running container a specific name
-     -i          –interactive    Run the container as an interactive console application.  Usually together with -t
-     -t          –tty            Allocate a terminal (console).  Usually together with -i
-
+     -d          -detach         Run the container in the background without any console interaction
+     -p          -publish        List the ports that should be exposed from inside the container to a specific port on the host OS
+     -e          -env            Set environment variables inside the container
+     -v          -volume         Mount a volume (or directory) from the host into the container
+                 -name           Give the running container a specific name
+     -i          -interactive    Run the container as an interactive console application.  Usually together with -t
+     -t          -tty            Allocate a terminal (console).  Usually together with -i
 
      Table 4.1: Some of the more common parameters to docker run.
 
@@ -822,13 +821,13 @@ using it.
      container start <container-id>’.  If we stop the container we can
      also remove it completely (e.g.  in order to update with a newer
      image): ‘docker container rm <container-id>’ (adding the
-     “force”-flag ‘-f’ to rm will first stop the container if it is
+     "force"-flag ‘-f’ to rm will first stop the container if it is
      running, saving you one command: ‘docker rm -f <container-id>’).
 
 
 File: Provisioning-Deployment.info,  Node: Not Building Microservices -- Infrastructure As A Service,  Next: Provisioning your Virtual Machine,  Prev: Docker Commands,  Up: Microservices and Lightweight Containers
 
-4.5 Not Building Microservices – Infrastructure As A Service
+4.5 Not Building Microservices - Infrastructure As A Service
 ============================================================
 
 The alternative to running microservices would be to run a full-fledged
@@ -845,7 +844,7 @@ can act as a management layer between your host operating system and the
 guest operating system that you want to run in your virtual machine
 (Technically, I suppose that Docker/Podman should also be considered
 hypervisors).  The virtual machine is supposed to emulate the hardware,
-so you are free to – in theory – run any operating system built for any
+so you are free to - in theory - run any operating system built for any
 platform.  In practice, however, there are limitations to this.
 
              +-----------------+ +-----------------+
@@ -887,7 +886,7 @@ seamlessly.
 that actually does emulate the virtual hardware as well.  So you can
 emulate an x86 architecture on top of a mac M1 machine, or vice versa.
 The installation and setup _looks_ more daunting than e.g.  Virtualbox
-does, but it is really quite easy – at least on a Linux machine.  In my
+does, but it is really quite easy - at least on a Linux machine.  In my
 experience, Qemu is also much faster than a corresponding virtual
 machine in Virtualbox.
 
@@ -908,12 +907,12 @@ configuration managed deployment that can be used over and over again.
    This is where the software Vagrant <https://www.vagrantup.com/> comes
 into play.  With Vagrant we create a file ‘Vagrantfile’ where we specify
 the size and type of virtual machines we want, the operating system we
-want on them, and any other software we want installed – analogous to
+want on them, and any other software we want installed - analogous to
 the ‘Dockerfile’ discussed earlier, but with much more details.  It is
 important to note that Vagrant does not create any virtual machines
 itself, it is not a hypervisor.  Instead, it interacts with other
 hypervisors such as Virtualbox, VMWare, Hyper-V, or Qemu and requests
-them to do the “heavy lifting” for it.  The beauty of this is that you
+them to do the "heavy lifting" for it.  The beauty of this is that you
 learn once how to work with Vagrant, and can use the same Vagrantfile to
 create your same virtual machine using any of the supported hypervisors
 and indeed even launch your virtual machine on a cloud provider.
@@ -967,7 +966,7 @@ Statelessness
      pattern as transitioning a service through a series of states.  The
      key here is that the server does not keep track of the state for
      every client that is connected, this is instead made part of each
-     client’s requests.
+     client's requests.
 Cacheability
      Whenever possible, the same request should give the same answer
      (this may not be desired if, for example, content is being
@@ -1063,7 +1062,7 @@ queues.  The workflow is now:
   5. The REST service looks up the return address in the message, and
      returns the response accordingly.
 
-   We’re getting there.  Now all we need to do is decide on how the REST
+   We're getting there.  Now all we need to do is decide on how the REST
 service should contact the client.  As before, the client can provide a
 REST api of their own, in order to receive the return call.  Or, since
 we now have a microservice for managing message queues in place, we can
@@ -1084,7 +1083,7 @@ system is connected anyway).  We may dedicate a separate microservice
 running e.g.  Redis <https://redis.io/>, and use an implementation of a
 message queue that connects to this microservice.  We may even wish to
 go formal and pick a service that implements the MQTT protocol (Message
-Queue Telemetry Transport protocol).  But that’s a story for another
+Queue Telemetry Transport protocol).  But that's a story for another
 day.
 
 
@@ -1095,17 +1094,17 @@ File: Provisioning-Deployment.info,  Node: Quiz Hypervisors and Lightweight Virt
 
 *TODO* Please read the following articles:
 
-  1. Crosby, Simon, and David Brown.  “The Virtualization Reality: Are
-     hypervisors the new foundation for system software?.” Queue 4.10
+  1. Crosby, Simon, and David Brown.  "The Virtualization Reality: Are
+     hypervisors the new foundation for system software?."  Queue 4.10
      (2006): 34-41.
-  2. Morabito, Roberto, Jimmy Kjällman, and Miika Komu.  “Hypervisors
-     vs.  lightweight virtualization: a performance comparison.” 2015
+  2. Morabito, Roberto, Jimmy Kjällman, and Miika Komu.  "Hypervisors
+     vs.  lightweight virtualization: a performance comparison."  2015
      IEEE International Conference on cloud engineering.  IEEE, 2015.
-  3. Jiang, Congfeng, et al.  “Energy efficiency comparison of
-     hypervisors.” Sustainable Computing: Informatics and Systems 22
+  3. Jiang, Congfeng, et al.  "Energy efficiency comparison of
+     hypervisors."  Sustainable Computing: Informatics and Systems 22
      (2019): 311-321.
-  4. Riddle, Andrew R., and Soon M.  Chung.  “A survey on the security
-     of hypervisors in cloud computing.” 2015 IEEE 35th International
+  4. Riddle, Andrew R., and Soon M.  Chung.  "A survey on the security
+     of hypervisors in cloud computing."  2015 IEEE 35th International
      Conference on Distributed Computing Systems Workshops.  IEEE, 2015.
 
    We have chosen these articles for you to read because they illustrate
@@ -1132,7 +1131,7 @@ to the following:
    • What is a microservice?
    • What is the REST architecture pattern?  How is it implemented in
      modern microservice development?
-   • What is “Infrastructure-As-A-Service” (IAAS)?
+   • What is "Infrastructure-As-A-Service" (IAAS)?
    • What are the main differences between microservice development and
      IAAS?
 
@@ -1150,7 +1149,7 @@ re-plan your commitment for the remainder of the course.
 
 File: Provisioning-Deployment.info,  Node: Let's get Practical,  Next: Quiz Let's get Practical,  Prev: Quiz Hypervisors and Lightweight Virtual Machines,  Up: Top
 
-6 Let’s get Practical
+6 Let's get Practical
 *********************
 
 * Menu:
@@ -1190,7 +1189,7 @@ different ways, but first let us explore the application a bit.
    • ‘/add’ From the ‘/add’ page you can add new texts to the database.
      For adding texts, we recommend Project Gutenberg
      <https://www.gutenberg.org/> .  Indeed, if you leave the text
-     fields empty, you will add a plaintext copy of Leo Tolstoy’s _War
+     fields empty, you will add a plaintext copy of Leo Tolstoy's _War
      and Peace_ to your database.
    • ‘/list’ Last but not least, ‘/list’ allows you to view a list of
      currently added texts.
@@ -1358,7 +1357,7 @@ File: Provisioning-Deployment.info,  Node: Installing and Running QFStandalone, 
   1. Full Virtual Machine
 
      The first step is to run the QFStandalone app as if you were
-     running it on “bare metal”, i.e.  just as you would do if you
+     running it on "bare metal", i.e.  just as you would do if you
      install it directly on your machine.  The benefit of running it in
      a separate virtual machine is that you will not litter your own
      machine with any of the software required for this one app.  If you
@@ -1374,9 +1373,9 @@ File: Provisioning-Deployment.info,  Node: Installing and Running QFStandalone, 
      scripted, configuration managed, and ready to go.
 
      One note before you begin: In Vagrant you define which boxes you
-     want and give them a name (e.g.  “app” in the tasks below) with the
+     want and give them a name (e.g.  "app" in the tasks below) with the
      command ‘config.vm.define’.  This name is used in commands to
-     vagrant (e.g.  ‘vagrant reload app’ to reload the “app” box) but
+     vagrant (e.g.  ‘vagrant reload app’ to reload the "app" box) but
      may be different from the name with which you access the box on the
      network, i.e.  the hostname.
 
@@ -1390,7 +1389,7 @@ File: Provisioning-Deployment.info,  Node: Installing and Running QFStandalone, 
        2. Create a Vagrantfile according to what is required for your
           particular hypervisor.
              • The box to use is ‘bento/ubuntu-20.04’
-             • Define one VM, e.g.  called ‘app’ # –> what does that
+             • Define one VM, e.g.  called ‘app’ # -> what does that
                mean?
              • Configure this VM so that it forwards the guest port 3000
                to the host port 8080
@@ -1475,13 +1474,13 @@ File: Provisioning-Deployment.info,  Node: Installing and Running QFStandalone, 
           ~/Version1/QFStandalone && npm run dev'’
 
        8. We can now test the app.  Open a web browser to
-          <http://localhost:8080/add> and click the ’Add’ button to add
+          <http://localhost:8080/add> and click the 'Add' button to add
           a book to your database.  Your terminal window where the app
           is running will print some info, hopefully ending with _Text
           added._  If not, make note of any error messages printed.
 
        9. Go to <http://localhost:8080/> and search for something, e.g.
-          ’prince’.  This will give a list of hits.  Remember to keep an
+          'prince'.  This will give a list of hits.  Remember to keep an
           eye on the output in the terminal (ignore the ‘TEXTSTORE_HOST’
           warning for now).
 
@@ -1595,30 +1594,30 @@ File: Provisioning-Deployment.info,  Node: Installing and Running QFStandalone, 
      ‘WORKDIR /app’ and the ‘COPY . .’ instructions.  With these two
      instructions we set the working directory inside the image to
      ‘/app’ and copy everything from the current working directory on
-     the host into the image’s working directory.  After these two
+     the host into the image's working directory.  After these two
      instructions, everything that the image requires to get going is
      essentially in place, and all that is needed is to install
      dependencies from the just now inserted ‘package.json’.
 
        3. Build the image: ‘docker build -t qfstandalone .’
        4. Check that the image is indeed created: ‘docker image ls’
-       5. For the sake of it, let’s tag it as well: ‘docker tag
+       5. For the sake of it, let's tag it as well: ‘docker tag
           qfstandalone:latest mickesv/qfstandalone:version1’ (replace
-          ’mickesv’ with your username on Docker Hub).  If you have an
+          'mickesv' with your username on Docker Hub).  If you have an
           account on Docker Hub, you might also wish to push the image
           thither.  Currently this has little meaning unless you wish to
           proudly distribute your own copy of QuoteFinder.
 
      At this stage we can actually start the container, but it will not
-     yet be able to connect to your database (you don’t even have a
-     database image installed yet).  So we’ll continue setting up things
+     yet be able to connect to your database (you don't even have a
+     database image installed yet).  So we'll continue setting up things
      a while longer before we actually launch the app:
 
        6. Download the ‘mongo’ image: ‘docker pull mongo’
        7. Create a virtual network, so that we might connect our two
           microservices: ‘docker network create qfstandalone-net’
        8. Start the MongoDB container.  This incantation has a few
-          commands built in, so let’s break it down first:
+          commands built in, so let's break it down first:
 
           docker run                  # Start a Container
           -d                          # In detached mode (in the background)
@@ -1632,7 +1631,7 @@ File: Provisioning-Deployment.info,  Node: Installing and Running QFStandalone, 
      In one line: ‘docker run -d --network qfstandalone-net
      --network-alias textstore --name textstore mongo’
        9. Now we are finally ready to start the QuoteFinder container.
-          Again, let’s break down the incantation first:
+          Again, let's break down the incantation first:
 
           docker run                    # Start a container
           -it                           # In interactive mode, and attach
@@ -1653,13 +1652,13 @@ File: Provisioning-Deployment.info,  Node: Installing and Running QFStandalone, 
      qfstandalone -p 8080:3000 mickesv/qfstandalone:version1’
 
        10. We can now test the app.  Open a web browser to
-          <http://localhost:8080/add> and click the ’Add’ button to add
+          <http://localhost:8080/add> and click the 'Add' button to add
           a book to your database.  Your terminal window where the app
           is running will print some info, hopefully ending with _Text
           added._  If not, make note of any error messages printed.
 
        11. Go to <http://localhost:8080/> and search for something, e.g.
-          ’prince’.  This will give a list of hits.  Remember to keep an
+          'prince'.  This will give a list of hits.  Remember to keep an
           eye on the output in the terminal.
 
        12. Let us now test editing the app.  On your host machine, open
@@ -1765,7 +1764,7 @@ start from.  If you use e.g.  Virtualbox, you will not need this.
 
 File: Provisioning-Deployment.info,  Node: Quiz Let's get Practical,  Next: Provisioning and Orchestration,  Prev: Let's get Practical,  Up: Top
 
-7 Quiz: Let’s get Practical
+7 Quiz: Let's get Practical
 ***************************
 
 Please answer the following questions:
@@ -1890,7 +1889,7 @@ or there may be a desire to create more instances of the database and
 have some form of load balancing between them.  This additional step is
 called _Orchestration_.  Vagrant does both; orchestration of which
 virtual machines to start ( for example, ‘config.vm.define "app"’
-creates one machine named “app”), and the provisioning of them (
+creates one machine named "app"), and the provisioning of them (
 ‘config.vm.provision "shell"’ ).  This is practical for smaller setups,
 but the desire to _separate concerns_ means that it is soon desirable to
 delegate the provisioning to a provisioning tool such as Ansible and
@@ -1911,7 +1910,7 @@ File: Provisioning-Deployment.info,  Node: Docker Compose,  Next: Cloud Orchestr
 8.3 Docker Compose
 ==================
 
-Docker’s focus is on provisioning a single image, which is then used as
+Docker's focus is on provisioning a single image, which is then used as
 a template to start one or more containers.  As noticed, already with
 two containers the command line incantations to set up a virtual network
 and hook up the microservices to this becomes quite a mouthful.  The
@@ -2038,7 +2037,7 @@ according to the following:
    • What is orchestration?
    • Why do you want separate tools for provisioning and orchestration?
    • What is Service Oriented Architecture (SOA)?
-   • What “is Software-As-A-Service” (SAAS)?
+   • What "is Software-As-A-Service" (SAAS)?
 
    There is a Quiz on Canvas where you can submit your article summaries
 and answers to the questions.
@@ -2078,7 +2077,7 @@ deals with scaling the application should be easy to do.
 
    Trivially, an application can scale in two directions, i.e.
 _vertically_ by adding more resources within each node (e.g.  faster
-CPU’s, more memory, bigger disks), or _horizontally_ by adding more
+CPU's, more memory, bigger disks), or _horizontally_ by adding more
 nodes.  One refers to this as _vertically scaling up_, and _horizontally
 scaling out_.  The goals of both these types of scalability is to
 support more concurrent users or jobs, or to decrease response times.
@@ -2090,7 +2089,7 @@ microservice architectures, we can create an _extensible_ architecture
 where it is easy to add new functionality as standalone nodes in a
 microservice network.
 
-   B Wilder, _Cloud Architecture Patterns_, O’Reilly, 2012.  ISBN:
+   B Wilder, _Cloud Architecture Patterns_, O'Reilly, 2012.  ISBN:
 978-1-449-31977-9, defines some boundaries for cloud applications, that
 define the types of solutions one is able to imagine.  Specifically,
 they enumerate:
@@ -2148,7 +2147,7 @@ applications, these additional principles _restrict_ the solutions.
 Critically, a cloud application can never be sure that a specific
 resource is available at a specific point in time.  It might, for
 example, be in the process of migrating to a new hardware unit to make
-room for another customer’s request for a bigger resource, or the hard
+room for another customer's request for a bigger resource, or the hard
 disk may fail.  As usual (to use a Swedish expression), what you gain on
 the carousel, you loose on the swings.  The cost per time unit for a
 specific cloud resource may be low, but this is somewhat balanced by the
@@ -2171,7 +2170,7 @@ File: Provisioning-Deployment.info,  Node: Cloud Architecture Patterns,  Next: I
 10.2 Cloud Architecture Patterns
 ================================
 
-B Wilder, _Cloud Architecture Patterns_, O’Reilly, 2012 is a good
+B Wilder, _Cloud Architecture Patterns_, O'Reilly, 2012 is a good
 starting point for the basic structures available to create scalable
 software architecture solutions for cloud native applications.  Below is
 a brief summary of some of the patterns in this book; for details I
@@ -2181,7 +2180,7 @@ encourage you to read the book yourself.
 Together, these two patterns suggest to prefer horizontal scaling and to
 use automated tools to request this scaling.  When using horizontal
 scaling, each component in the application can more or less be
-single-threaded and should be kept as simple as possible.  As I’m sure
+single-threaded and should be kept as simple as possible.  As I'm sure
 have been hammered into you by now, any time you are forced to write
 multi-threaded code an angel loses their wings.
 
@@ -2301,7 +2300,7 @@ nodes, or delegate this to a load balancer or a worker queue.  Calls
 between nodes should be programmed with a timeout to enable switching to
 an alternative strategy, should a node fail to reply.  When a call times
 out, the options are to retry, wait a while and then retry, or switch to
-a backup node and retry.  The ’retry’ strategy is often sufficient if
+a backup node and retry.  The 'retry' strategy is often sufficient if
 there is a load balancer in place, since the new call is likely to end
 up on a new node anyway.
 
@@ -2312,7 +2311,7 @@ unavailable is another discussion.
 process the request right now.  For example, it did not get all of the
 message, some other component it relies on was temporarily unavailable,
 or it was busy doing some maintenance work.  In that case, the node
-should return a “busy signal”, for example a ‘503 service unavailable’
+should return a "busy signal", for example a ‘503 service unavailable’
 return on a http request.  Good clients recognise this busy signal and
 have strategies for dealing with this.  Usually, a retry is sufficient,
 or maybe first wait a while and then retry.
@@ -2330,7 +2329,7 @@ fails, the work can be handed over to one of the application instances
 running on a different data center.
 
    There is an overhead and a cost in running multiple instances of an
-application – even when using the cloud provider’s tools for moving the
+application - even when using the cloud provider's tools for moving the
 application around the world.  Unless there is a tangible improvement in
 user experience, it may not be worth it to implement the multisite
 deployment pattern.
@@ -2360,7 +2359,7 @@ does not deal with dynamic contents.
 
    Sometimes (oftentimes) the delivered content should only be available
 to the one user that requested it (or at least a limited list of users),
-or it should only be available for a specific period of time.  That’s
+or it should only be available for a specific period of time.  That's
 where the Valet Key pattern comes in.  When a user requests access to
 some content through your application, a unique URL is generated for
 this particular user, and the CDN server is instructed to make the
@@ -2380,11 +2379,11 @@ horizontally.  Since the current state of the application (e.g.  the
 number of available nodes of any particular type) can change at a
 moments notice, robust communication pathways using e.g.  message queues
 are required.  To some extent, this defines the execution view of the
-system’s architecture, but with this definition comes a few limitations.
+system's architecture, but with this definition comes a few limitations.
 Accepting that nodes can fail or be taken offline at any time means that
 applications need to be built with this in mind.  Limitations in network
 speeds and a desire to make the best use of available computing
-resources influence where and how an application’s services are deployed
+resources influence where and how an application's services are deployed
 (e.g., which parts of an application that are co-located or distributed
 closer to the customers) and indeed what constitutes a service in the
 first place (e.g.  inserting a content delivery network in the
@@ -2503,13 +2502,13 @@ In summary, the following can be specified:
      volumes:
        db-data:
 
-   ... And at this level, there really isn’t much more to say about the
+   ... And at this level, there really isn't much more to say about the
 yaml syntax.
 
 
 File: Provisioning-Deployment.info,  Node: Let's get Practical Again,  Next: Quiz Design Decisions and Development Setup,  Prev: Application Design and Development,  Up: Top
 
-11 Let’s get Practical Again
+11 Let's get Practical Again
 ****************************
 
 * Menu:
@@ -2619,7 +2618,7 @@ returning results sooner.
 Web Client             QFApp                      QFWorker
 ---------------------------------------------------------------------------------------
                                                   0.  Listen on
-1.  search(words)                                 ’searchJob’ queue
+1.  search(words)                                 'searchJob' queue
 2.  Listen             3.  List all texts
 on ‘socket’            in TextStore database
 for results            4.  Create a job
@@ -2627,7 +2626,7 @@ for results            4.  Create a job
                        5.  Create a return
                        queue
                        6.  Send all jobs
-                       to the ’searchJob’ queue
+                       to the 'searchJob' queue
                        7.  Listen on the          8.  Pick first
                        return queue.              message in queue
                                                   9.  Create N threads
@@ -2641,13 +2640,13 @@ for results            4.  Create a job
                        14.  Receive results       then goto 8 until no more messages
                        on return queue.           then goto 0.
                        15.  send to web
-                       client’s ‘socket’
+                       client's ‘socket’
                        16.  Goto 7.
 17.  Display
 results.
 18.  Goto 2.
 
-   Simple, isn’t it?
+   Simple, isn't it?
 
           ..
          (  |
@@ -2672,7 +2671,7 @@ defining the deployment architecture.
 
   1. Clone the QuoteFinder repository: ‘git clone
      https://github.com/mickesv/QuoteFinder/’ (If you did this in the
-     previous practice round, git will throw an error but that’s ok)
+     previous practice round, git will throw an error but that's ok)
      extract Version 2 by copying it ‘cp -r
      QuoteFinder/Containers/Version2 .’ , and cd into the directory ‘cd
      Version2’
@@ -2705,13 +2704,13 @@ defining the deployment architecture.
           messagequeue’ ‘TEXTSTORE_HOST: textstore’
    • ‘messagequeue’ is based on the image ‘redis:alpine’
         • its starting ‘command’ is ‘redis-server’
-        • it ‘expose’ the port “6379”
+        • it ‘expose’ the port "6379"
         • it mounts the following ‘volumes’
              • ‘redis-data:/data’
              • ‘redis-conf:/usr/local/etc/redis/redis.conf’
    • ‘textstore’ is based on the image ‘mongo’
         • its ‘command’ is ‘--quiet --syslog’
-        • it ‘expose’ the port “27017”
+        • it ‘expose’ the port "27017"
         • it mounts the following ‘volumes’
              • ‘textstore-data:/data/db’
              • ‘mongo-config:/data/configdb’
@@ -2727,19 +2726,19 @@ mention them, no further configuration is necessary):
 
    Note that you are intentionally left to explore the docker-compose
 syntax on your own here.  Play around and give it a try before cheating.
-And no, I’m not going to tell you how to cheat.
+And no, I'm not going to tell you how to cheat.
 
   7. Run ‘docker compose -f docker-compose-v2.yml up’ to start your
      setup.
 
   8. Open a web browser to <http://localhost:8080/add> and click the
-     ’Add’ button to add a book to your database.  Your terminal window
+     'Add' button to add a book to your database.  Your terminal window
      where the app is running will print some info, hopefully ending
      with _Text added._  If not, make note of any error messages
      printed.
 
   9. Go to <http://localhost:8080/> and search for something, e.g.
-     ’prince’.  This will give a list of hits.  Remember to keep an eye
+     'prince'.  This will give a list of hits.  Remember to keep an eye
      on the output in the terminal.
 
 
@@ -2764,7 +2763,7 @@ bug.  Please take a moment to consider why this is the case.
      Among other volumes you should see the four volumes defined in your
      yml-file.  We can not remove them directly because they are in use
      by running containers (try!  The command is ‘docker volume rm
-     <volume-name>’ ).  Stopping the deployment doesn’t help either, the
+     <volume-name>’ ).  Stopping the deployment doesn't help either, the
      volumes are apparently still in use.
 
   2. Stop the deployment with ‘Ctrl-C’ and run ‘docker ps’.  As you
@@ -2773,8 +2772,8 @@ bug.  Please take a moment to consider why this is the case.
      remove all the containers running or not.  I will do this in a lazy
      way with the command ‘docker rm -f $(docker ps -a -q) dummy’ (the
      nested command lists only the IDs of the containers, and the outer
-     command removes them.  ’dummy’ is appended just to ensure that
-     there is something – anything – there to look for so the outer
+     command removes them.  'dummy' is appended just to ensure that
+     there is something - anything - there to look for so the outer
      command knows to behave nicely).
 
   3. It should now be possible to remove the volumes.  Please do, and
@@ -2785,8 +2784,8 @@ bug.  Please take a moment to consider why this is the case.
   1. Assume that we now want to edit the application, as we did before.
      With its current deployment, this will not work; each container is
      only based on the initial image (except redis and mongo that use
-     the defined volumes).  In order to enable editing we must – as
-     before – mount a directory on the host computer to a directory
+     the defined volumes).  In order to enable editing we must - as
+     before - mount a directory on the host computer to a directory
      inside the container (this is referred to as a _bind mount_ in
      docker vernacular).  Edit the ‘docker-compose-v2.yml’ file and add
      ‘volumes’ to the services ‘app’ ( ‘./QFApp/src:/app/src’ ) and
@@ -2828,7 +2827,7 @@ it.  With ‘docker compose’ this is in fact quite easy:
   2. in a terminal where you are not running the ‘docker compose ... up’
      command, enter the directory where the file ‘docker-compose-v2.yml’
      is located, and run the command ‘docker compose -f
-     docker-compose-v2.yml up -d’ (Note the ’detach’ flag ‘-d’, this is
+     docker-compose-v2.yml up -d’ (Note the 'detach' flag ‘-d’, this is
      what does all the magic in this case).  Look at the output in the
      first terminal, you should see that there are now three replicas of
      the worker node running.
@@ -2873,7 +2872,7 @@ virtual networks.
      services and the volumes needed for this version to run.
   4. Launched this deployment
   5. Modified the configuration to use _build mounts_ to superimpose the
-     host’s version of the application code over the default code inside
+     host's version of the application code over the default code inside
      the images.
   6. Edited a file locally and see the app in the running deployment
      restart to reflect the updated version.
@@ -2945,7 +2944,7 @@ Please copy this version to a separate directory:
 
    As before, you should see two directories, one each for ‘QFApp’ and
 one for ‘QFWorker’.  You also copied a file ‘docker-compose-v3.yml’, so
-let’s start by inspecting this file:
+let's start by inspecting this file:
 
      version: "3.8"
      services:
@@ -2986,7 +2985,7 @@ let’s start by inspecting this file:
    There are only three services this time since the Redis store is no
 longer needed.  The images are tagged ‘v3’ to keep them separate from
 the previous version (They could probably have been named ‘qfapp:v3’ and
-‘qfworker:v3’ according to Docker’s tag-numbering scheme, but they are
+‘qfworker:v3’ according to Docker's tag-numbering scheme, but they are
 not really versions of the same app since they use a different
 architecture, and I like to live on the wild side).  The ‘app’ service
 has one additional environment variable set, but otherwise there are no
@@ -3078,7 +3077,7 @@ File: Provisioning-Deployment.info,  Node: Quiz Design Decisions and Development
    • Briefly list and describe the microservice architectural patterns
      identified in Taibi et al.?
    • How do these patterns differ from the architecture patterns
-     described by Bill Wilder, _Cloud Architecture Patterns_, O’Reilly,
+     described by Bill Wilder, _Cloud Architecture Patterns_, O'Reilly,
      2012 (You can find a summary in *note Cloud Architecture
      Patterns::)?  Are there any similarities?
    • Taibi et al.  describe a number of guiding principles for
@@ -3090,8 +3089,8 @@ File: Provisioning-Deployment.info,  Node: Quiz Design Decisions and Development
      currently used in QuoteFinder Version 2?
    • What are the bottlenecks in the current architecture?  What can we
      do about them?
-   • What can be done to scale QuoteFinder Version 2?  Think in “both
-     ends”, i.e.  scaling the front-end as well as the back-end.
+   • What can be done to scale QuoteFinder Version 2?  Think in "both
+     ends", i.e.  scaling the front-end as well as the back-end.
 
    There is a Quiz on Canvas where you can submit your article summaries
 and answers to the questions.
@@ -3141,7 +3140,7 @@ additional run-time configuration.  Docker compose is responsible for
 the next step, which is to orchestrate and deploy the specified
 services.
 
-   There is, however, one more trick up Vagrant’s sleeve, and that is
+   There is, however, one more trick up Vagrant's sleeve, and that is
 the ability to deploy to different providers.  Adding a small
 configuration block in the Vagrantfile makes it possible to use the same
 configuration to deploy to many different cloud providers (or, should
@@ -3176,7 +3175,7 @@ the application microservices are run.
      glue between the pods/containers and the outside world.
 
    The best way to come to terms with this is to walk through a
-practical example, which is what we’ll do next.
+practical example, which is what we'll do next.
 
 
 File: Provisioning-Deployment.info,  Node: Get Started with Kubernetes,  Next: Attach the Database,  Prev: Introduction to Kubernetes,  Up: Deployment with Kubernetes
@@ -3193,7 +3192,7 @@ the status of your cluster with ‘kubectl cluster-info’ .
 
    It is possible to set up your deployment well and good using only the
 command line tool ‘kubectl’ but I would not recommend it.  By now, the
-mantra _Infrastructure as Code_ should be ingrained into you, so let’s
+mantra _Infrastructure as Code_ should be ingrained into you, so let's
 write some YAML code to set up a deployment.
 
      # QFStandalone
@@ -3301,7 +3300,7 @@ qfapp-service’ .  As a courtesy to you, minikube will open this web page
 for you.
 
   5. Previously we were able to see the containers print out all sorts
-     of debug info as it was running.  Let’s try recreating that.
+     of debug info as it was running.  Let's try recreating that.
      First, list all running pods (just the names): ‘kubectl get pods’ .
      Notice that the name you specified has been appended with some sort
      of hash key.  All of this is the name of the pod.
@@ -3322,11 +3321,11 @@ grep qfstandalone | xargs kubectl logs -f’ .
    • ‘kubectl get pods -o name’ prints the names (only the names) of all
      running pods.
    • ‘grep qfstandalone’ filters the output to only those containing the
-     string “qfstandalone”
+     string "qfstandalone"
    • ‘xargs’ converts whatever it receives on standard input into
      arguments at the end of whatever command is given to it.
    • ‘kubectl logs -f’ is the start of this command, to which xargs add
-     the names of all pods containing the string “qfstandalone” in their
+     the names of all pods containing the string "qfstandalone" in their
      names.
 
    The end result is that we are now attached to the logs and can see
@@ -3334,7 +3333,7 @@ the same type of output in the console as we were able to do previously.
 Incidentally, you may notice that users seem to connect from some
 strange IP address; while this _should_ be the address of your host
 computer, it clearly is not.  Take a moment to consider the deployment
-and see if you can’t figure out whose IP address this is.
+and see if you can't figure out whose IP address this is.
 
   6. While you are attached to the logs try searching for something on
      the web page.  This will not work since we have not yet connected
@@ -3360,14 +3359,14 @@ File: Provisioning-Deployment.info,  Node: Attach the Database,  Prev: Get Start
 13.3 Attach the Database
 ========================
 
-Attaching a database should in theory be easy, but let’s take a moment
-and do this “right”, so that we get a configurable and by the books
+Attaching a database should in theory be easy, but let's take a moment
+and do this "right", so that we get a configurable and by the books
 deployment.
 
    First, of course, the database need to be started.  Since we want
 data to survive restarts, we will do this as a ‘StatefulSet’ .  This
 StatefulSet will launch an image of MongoDB (as before).  It will also
-make two persistent VolumeClaims (as before); one for MongoDB’s
+make two persistent VolumeClaims (as before); one for MongoDB's
 configuration and one for the data.
 
    These Persistent Volume Claims are then matched to Persistent Volumes
@@ -3384,7 +3383,7 @@ will need to define the Persistent Volumes somewhere and somehow.  For
 now, however, we can leave this.
 
    What we _do_ need to take care of, however, is a little snag in how
-Persistent Volume Claims work.  Let’s say we decide that we want more
+Persistent Volume Claims work.  Let's say we decide that we want more
 replicas of our database container in the StatefulSet.  Unless otherwise
 specified, Kubernetes will map all of these replicas _to the same_
 volume claim, and MongoDB will most certainly not like this.  The first
@@ -3480,7 +3479,7 @@ the container templates.
 
    Especially interesting here is the ‘volumeClaimTemplates’ .  As you
 notice, the claims are made in terms of how we are going to access them
-(“ReadWriteOnce”), and their desired size.  The ‘metadata.name’ match
+("ReadWriteOnce"), and their desired size.  The ‘metadata.name’ match
 the ‘volumeMounts’ in the container spec above.
 
   2. Also append the following:
@@ -3498,7 +3497,7 @@ the ‘volumeMounts’ in the container spec above.
        textstore_host: "NOTSET"
      ---
 
-   Caution, ‘textstore_host’ MUST be “NOTSET” (case sensitive).  This
+   Caution, ‘textstore_host’ MUST be "NOTSET" (case sensitive).  This
 will be replaced with the right IP during startup.
 
   3. Some edits are required for the qfapp container template to make
@@ -3585,12 +3584,12 @@ File: Provisioning-Deployment.info,  Node: Quiz Deployment with Kubernetes,  Nex
      2023-03-30).  An interesting discussion piece about whether we in
      fact have moved beyond big data already.  Not strictly related to
      Kubernetes and microservice development, but still a relevant read.
-   • D.  Glasser, MongoDB queries don’t always return all matching
+   • D.  Glasser, MongoDB queries don't always return all matching
      documents.
      (https://blog.meteor.com/mongodb-queries-dont-always-return-all-matching-documents-654b6594a827#.59pxgubtq)
      (last checked 2023-03-30) This is just one example of an article
-     that explains challenges with nosql databases and their “eventually
-     consistent” philosophy.
+     that explains challenges with nosql databases and their "eventually
+     consistent" philosophy.
 
    *TODO* Summarise each article/resource (no more than 1/2 page each)
 according to the following:
@@ -3691,7 +3690,7 @@ it is of course desirable to keep related data together on the same
 node.  Rather than splitting data across tables and use joins when
 querying, each record can be designed to contain all the necessary data.
 These records can then be distributed based on some geographical key,
-for example to comply with laws governing where citizens’ data must be
+for example to comply with laws governing where citizens' data must be
 located.
 
    Of course, one can split across columns as well through sharding.
@@ -3725,7 +3724,7 @@ involve a certain amount of tool specific (MongoDB) incantation.
                                                    \ MongoDB Replica    |
                                                    +--------------------+
 
-   In practice, however, it doesn’t.  MongoDB does not know that there
+   In practice, however, it doesn't.  MongoDB does not know that there
 is such a thing as external Load-Balancers (and in any case it can not
 rely on that the user knows).  The MongoDB replica do also not want to
 assume this role, and if they did they would still need to decide which
@@ -3750,7 +3749,7 @@ The qfapp-service
      this service only enables access from the outside of the Kubernetes
      cluster, so there is no need to change it.
 The textstore-service
-     this too will remain unchanged.  To be honest, I’m not sure whether
+     this too will remain unchanged.  To be honest, I'm not sure whether
      it is actually used, but it may need to be there anyway.
 The volumeClaimTemplates for the textstore containers
      These are the same as before and will remain unchanged.
@@ -3760,7 +3759,7 @@ The volumeClaimTemplates for the textstore containers
      The ‘textstore StatefulSet’, does require some changes:
 
         • For cosmetic reasons, we replace the ‘serviceName’ to
-          “textstore-service”.  This becomes part of the hostname (e.g.
+          "textstore-service".  This becomes part of the hostname (e.g.
           ‘textstore-0.textstore-service.default.svc.cluster.local’)
         • The number of ‘replicas’ starts out with the value ‘3’.
         • The startup ‘command’ needs to be edited to start MongoDB in
@@ -3772,7 +3771,7 @@ The volumeClaimTemplates for the textstore containers
         • A _Readiness Probe_ is defined.  This will be used by
           Kubernetes to check whether the startup of a replica is ready
           and it can be added to the list of running replicas.  Running
-          a “ping” command inside the database is usually a good start
+          a "ping" command inside the database is usually a good start
           for this.
 
      In summary, the following yaml defines the textstore StatefulSet:
@@ -3915,7 +3914,7 @@ The volumeClaimTemplates for the textstore containers
           statefulset textstore --timeout=30s’ This may take longer than
           30 seconds, so you may need to run the command a couple of
           times.  If it _does_ take longer, it is an excellent
-          opportunity to open up Kubernetes’ dashboard and see what is
+          opportunity to open up Kubernetes' dashboard and see what is
           going on: ‘minikube dashboard &’
 
        6. Once all three replicas are running (but not before!), it is
@@ -3924,7 +3923,7 @@ The volumeClaimTemplates for the textstore containers
           --eval "rs.initiate()"’ This will log in to _one_ of the
           members in the replicaset and initiate it.  Sometimes, MongoDB
           has already figured this out, and you will receive a message
-          “already initialized”.  This is ok.
+          "already initialized".  This is ok.
 
        7. Double check the status: ‘kubectl exec -it textstore-0 --
           mongosh --quiet --eval "rs.status()"’ One particular thing to
@@ -3946,26 +3945,24 @@ The volumeClaimTemplates for the textstore containers
      enter the container and edit the running application as we did
      before, but for reasons this is not easily done (see *note
      kube-edit:: ).  With a bit of elbow-grease we can at least get
-     things to work decently (don’t even bother trying to do some fancy
+     things to work decently (don't even bother trying to do some fancy
      development in this way).
 
        10. Find the name of the qfstandalone pod: ‘kubectl get pods -o
           name | grep qfstandalone’
 
        11. Enter into this pod: ‘kubectl exec -it <podname> -- sh’
-          (where “podname” is the name of the pod as found in the
+          (where "podname" is the name of the pod as found in the
           previous step.  Feel free to poke around at your own leisure
           here and see what you can find and what works.  Note that in
           order to keep the container image small we used a very limited
-          linux distribution as base, so there isn’t much installed at
+          linux distribution as base, so there isn't much installed at
           all.
 
-       12. Edit the file ‘/app/src/simpleTextManager.js’ (I’m afraid the
-          only editor you’ve got is ‘vi’) .  Replace line 20 with ‘let
-          connection=process.env.TEXTSTORE_HOST;’ and save.  You should
-          see the app restarting in the log output you attached to
-          earlier, and if you try searching for something you should no
-          longer get any errors.
+       12. Edit the file ‘/app/src/simpleTextManager.js’ (I'm afraid the
+          only editor you've got is ‘vi’) .  Make some simple edit and
+          save.  You should see the app restarting in the log output you
+          attached to earlier.
 
      *Summary* We have now:
        1. Configured the simplest and unsafest possible MongoDB
@@ -4002,8 +3999,8 @@ Kubernetes adds an extra layer.  Remember that Containers run inside
 Pods.  So while it is relatively easy and similar to what we have done
 before to set up a bind mount, this will only allow files to be shared
 between the insides of a container and the pod it is running on.  The
-next necessary step is to somehow create a bridge from the pod’s file
-system to the host’s file system.
+next necessary step is to somehow create a bridge from the pod's file
+system to the host's file system.
 
    The first bit is similar to what we have done before: setup the
 container template to mount ‘/app/src’.
@@ -4075,7 +4072,7 @@ mount point in ‘/tmp’ ).
      +------------------------------------------+
 
    Despite all warnings about why this is a bad idea, if we still want
-to access the container’s inside, there are two options available to us.
+to access the container's inside, there are two options available to us.
 One is to define a proper volume with a PersistentVolumeClaim for the
 container.  Of course, there is a non-trivial amount of work to set this
 up in Kubernetes to ensure that an already existing directory on the
@@ -4094,7 +4091,7 @@ difficult and there are plenty of reasons to advice against it.  The
 recommendation is to do the development using e.g.  Docker Compose and
 only deploy to Kubernetes as a last step when everything is tested and
 ship-shape.  This includes subsequent debugging: There should be nothing
-in the containers that wasn’t there already when the image was created,
+in the containers that wasn't there already when the image was created,
 and so all debugging can and should be done locally outside of the
 Kubernetes deployment.
 
@@ -4119,15 +4116,15 @@ replicas of the qfstandalone deployment.
    One simple way to scale is to edit the ‘spec.replicas’ in the yaml
 file and simply re-apply it.  Go ahead; start the dashboard ‘minikube
 dashboard &’ , edit the yaml file (add the ‘sessionAffinity’ flag above
-while you’re at it), and re-run ‘kubectl apply -f
+while you're at it), and re-run ‘kubectl apply -f
 qfstandalone-v-1-3.yaml’ .  You should see the number of deployed pods
 change as a consequence.
 
    You can of course also scale directly via the command line: ‘kubectl
 scale --replicas=3 deployment/qfstandalone’ .
 
-   Keeping an eye on a running deployment is done with the dashboard –
-you can often find clues in here about what is currently going on –
+   Keeping an eye on a running deployment is done with the dashboard -
+you can often find clues in here about what is currently going on -
 especially if some deployment is not rolling out as it should.  If you
 want to programmatically keep track of the rollout status, there is the
 ‘kubectl rollout status’ command.  Especially when you have configured
@@ -4326,7 +4323,7 @@ configuration managed and tested.
 
    _Infrastructure is Code_
 
-   Here’s a bunny to help you remember:
+   Here's a bunny to help you remember:
 
 
       ________________________
@@ -4338,7 +4335,7 @@ configuration managed and tested.
      c(")(")
 
 
-   The “only” thing remaining for you to do now is to prove that you too
+   The "only" thing remaining for you to do now is to prove that you too
 have learnt all this.  Read on to figure out how.
 
 
@@ -4355,7 +4352,7 @@ application according to the following principles:
   2. The application must consist of at least two different types of
      microservices
   3. Each microservice must implement a REST API for access
-  4. The application must be accessible from “the outside” (e.g.  via a
+  4. The application must be accessible from "the outside" (e.g.  via a
      web browser)
   5. All microservices in the application must be horizontally scalable
      independently from each other.
@@ -4459,7 +4456,7 @@ Concept Index
 * Eventual Consistency:                  Database Scaling.    (line  20)
 * Extensibility:                         Principles of Microservice Architectures.
                                                               (line  20)
-* Goal – a Controllable and Repeatable Deployment: Introduction to Orchestration and Provisioning.
+* Goal - a Controllable and Repeatable Deployment: Introduction to Orchestration and Provisioning.
                                                               (line  83)
 * Governance:                            Microservices and Lightweight Containers.
                                                               (line  61)
@@ -4570,7 +4567,7 @@ Concept Index
                                                               (line  15)
 * Software Architecture Module View:     Microservices and Lightweight Containers.
                                                               (line  15)
-* Ultimate Goal – Deploy Application to a Cloud Server: Introduction to Orchestration and Provisioning.
+* Ultimate Goal - Deploy Application to a Cloud Server: Introduction to Orchestration and Provisioning.
                                                               (line  83)
 * Vertical Scaling:                      Principles of Microservice Architectures.
                                                               (line  13)
@@ -4703,13 +4700,13 @@ Functions and Commands Index
                                                               (line  13)
 * Docker Compose replicas:               Scaling the Deployment.
                                                               (line  13)
-* docker container:                      Docker Commands.     (line 112)
-* docker container ls:                   Docker Commands.     (line 112)
-* docker container ps:                   Docker Commands.     (line 112)
-* docker container rm:                   Docker Commands.     (line 118)
+* docker container:                      Docker Commands.     (line 111)
+* docker container ls:                   Docker Commands.     (line 111)
+* docker container ps:                   Docker Commands.     (line 111)
+* docker container rm:                   Docker Commands.     (line 117)
 * docker container run:                  Docker Commands.     (line  81)
-* docker container start:                Docker Commands.     (line 118)
-* docker container stop:                 Docker Commands.     (line 118)
+* docker container start:                Docker Commands.     (line 117)
+* docker container stop:                 Docker Commands.     (line 117)
 * Docker COPY:                           Dockerfile.          (line  38)
 * Docker ENTRYPOINT:                     Dockerfile.          (line  56)
 * Docker ENV:                            Dockerfile.          (line  53)
@@ -4719,7 +4716,7 @@ Functions and Commands Index
 * docker image build:                    Docker Commands.     (line  48)
 * docker image ls:                       Docker Commands.     (line  56)
 * docker image rm:                       Docker Commands.     (line  69)
-* docker ps:                             Docker Commands.     (line 112)
+* docker ps:                             Docker Commands.     (line 111)
 * Docker RUN:                            Dockerfile.          (line  16)
 * docker run:                            Docker Commands.     (line  81)
 * Docker USER:                           Dockerfile.          (line  65)
@@ -4733,76 +4730,76 @@ Functions and Commands Index
 
 
 Tag Table:
-Node: Top1476
-Node: Document Overview5744
-Node: A Note on Reading Research Articles8378
-Node: Introduction to Orchestration and Provisioning12185
-Ref: introduction12480
-Node: Learning Outcomes18821
-Node: Microservices and Lightweight Containers19895
-Node: Building Microservices24161
-Node: A Quick Rundown of Docker Terminology27467
-Node: Dockerfile29574
-Node: Docker Commands33368
-Ref: Getting Help33688
-Ref: Docker image and Image Management34708
-Ref: Docker run and Container Management36757
-Ref: tabdocker-run-parameters37074
-Node: Not Building Microservices -- Infrastructure As A Service39703
-Node: Provisioning your Virtual Machine43257
-Node: Communicating Microservices and REST APIs45244
-Node: Other communication means49195
-Node: Quiz Hypervisors and Lightweight Virtual Machines53880
-Node: Let's get Practical56712
-Node: Introducing the QuoteFinder application57109
-Node: Install relevant software63602
-Node: Installing and Running QFStandalone66242
-Ref: Full Virtual Machine66505
-Ref: Docker76355
-Node: A Minimal Qemu Vagrantfile85370
-Node: Quiz Let's get Practical86701
-Node: Provisioning and Orchestration88469
-Node: Provisioning88788
-Node: Orchestration92318
-Node: Docker Compose94014
-Node: Cloud Orchestration95884
-Node: Quiz Provisioning and Orchestration97877
-Node: Application Design and Development101142
-Node: Principles of Microservice Architectures101595
-Node: Cloud Architecture Patterns107042
-Node: Introduction to YAML and Docker-Composeyml119451
-Node: Let's get Practical Again124922
-Node: Introducing Version 2 of the QuoteFinder app125407
-Node: Installing and Running Version 2 of QuoteFinder132757
-Node: Editing the Running Application136589
-Node: Scaling the Deployment140174
-Node: Cleanup and Summary141766
-Node: Introducing Version 3 of the QuoteFinder app144974
-Node: Quiz Design Decisions and Development Setup150692
-Node: Deployment with Kubernetes152833
-Ref: Deployment153069
-Node: Introduction to Kubernetes153166
-Node: Get Started with Kubernetes156363
-Node: Attach the Database164425
-Node: Quiz Deployment with Kubernetes172299
-Node: Scaling the Database175501
-Node: Database Scaling175828
-Node: MongoDB ReplicaSet178690
-Node: Setting up a MongoDB ReplicaSet in Kubernetes180789
-Ref: TextStore StatefulSet181578
-Ref: Qfapp ConfigMap184315
-Ref: QFStandalone Deployment185349
-Ref: Tasks186645
-Node: Edit a Container in a Pod in a Node in a Cluster190864
-Ref: kube-edit191131
-Node: Additional Concepts196349
-Node: Summary203968
-Node: Assignment Build Something207023
-Ref: assignment-build-something207207
-Node: Concept Index210633
-Node: Program Index222703
-Node: Files and Data Types Index228425
-Node: Functions and Commands Index229604
+Node: Top1466
+Node: Document Overview5718
+Node: A Note on Reading Research Articles8332
+Node: Introduction to Orchestration and Provisioning12123
+Ref: introduction12418
+Node: Learning Outcomes18749
+Node: Microservices and Lightweight Containers19823
+Node: Building Microservices24073
+Node: A Quick Rundown of Docker Terminology27357
+Node: Dockerfile29464
+Node: Docker Commands33258
+Ref: Getting Help33578
+Ref: Docker image and Image Management34596
+Ref: Docker run and Container Management36637
+Ref: tabdocker-run-parameters36952
+Node: Not Building Microservices -- Infrastructure As A Service39562
+Node: Provisioning your Virtual Machine43108
+Node: Communicating Microservices and REST APIs45089
+Node: Other communication means49038
+Node: Quiz Hypervisors and Lightweight Virtual Machines53719
+Node: Let's get Practical56535
+Node: Introducing the QuoteFinder application56930
+Node: Install relevant software63421
+Node: Installing and Running QFStandalone66061
+Ref: Full Virtual Machine66324
+Ref: Docker76152
+Node: A Minimal Qemu Vagrantfile85143
+Node: Quiz Let's get Practical86474
+Node: Provisioning and Orchestration88240
+Node: Provisioning88559
+Node: Orchestration92089
+Node: Docker Compose93781
+Node: Cloud Orchestration95649
+Node: Quiz Provisioning and Orchestration97642
+Node: Application Design and Development100903
+Node: Principles of Microservice Architectures101356
+Node: Cloud Architecture Patterns106797
+Node: Introduction to YAML and Docker-Composeyml119184
+Node: Let's get Practical Again124653
+Node: Introducing Version 2 of the QuoteFinder app125136
+Node: Installing and Running Version 2 of QuoteFinder132474
+Node: Editing the Running Application136286
+Node: Scaling the Deployment139857
+Node: Cleanup and Summary141445
+Node: Introducing Version 3 of the QuoteFinder app144651
+Node: Quiz Design Decisions and Development Setup150365
+Node: Deployment with Kubernetes152500
+Ref: Deployment152736
+Node: Introduction to Kubernetes152833
+Node: Get Started with Kubernetes156026
+Node: Attach the Database164074
+Node: Quiz Deployment with Kubernetes171930
+Node: Scaling the Database175126
+Node: Database Scaling175453
+Node: MongoDB ReplicaSet178313
+Node: Setting up a MongoDB ReplicaSet in Kubernetes180410
+Ref: TextStore StatefulSet181197
+Ref: Qfapp ConfigMap183926
+Ref: QFStandalone Deployment184960
+Ref: Tasks186256
+Node: Edit a Container in a Pod in a Node in a Cluster190313
+Ref: kube-edit190580
+Node: Additional Concepts195790
+Node: Summary203403
+Node: Assignment Build Something206452
+Ref: assignment-build-something206636
+Node: Concept Index210058
+Node: Program Index222124
+Node: Files and Data Types Index227846
+Node: Functions and Commands Index229025
 
 End Tag Table
 

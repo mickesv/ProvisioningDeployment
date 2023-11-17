@@ -2220,8 +2220,8 @@ It appears that the current implementation of the database connection in =simple
 11. Enter into this pod: ~kubectl exec -it <podname> -- sh~ (where "podname" is the name of the pod as found in the previous step.
     Feel free to poke around at your own leisure here and see what you can find and what works. Note that in order to keep the container image small we used a very limited linux distribution as base, so there isn't much installed at all.
 
-12. Edit the file ~/app/src/simpleTextManager.js~ (I'm afraid the only editor you've got is =vi=) . Replace line 20 with ~let connection=process.env.TEXTSTORE_HOST;~ and save.
-    You should see the app restarting in the log output you attached to earlier, and if you try searching for something you should no longer get any errors.
+12. Edit the file ~/app/src/simpleTextManager.js~ (I'm afraid the only editor you've got is =vi=) . Make some simple edit and save. 
+    You should see the app restarting in the log output you attached to earlier.
 
 *Summary*
 We have now:
