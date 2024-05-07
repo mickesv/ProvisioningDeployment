@@ -724,6 +724,19 @@ The first step is to run the QFStandalone app as if you were running it on "bare
 
 One note before you begin: In Vagrant you define which boxes you want and give them a name (e.g. "app" in the tasks below) with the command ~config.vm.define~. This name is used in commands to vagrant (e.g. ~vagrant reload app~ to reload the "app" box) but may be different from the name with which you access the box on the network, i.e. the hostname.
 
+#+begin_quote
+*One more warning*: Using Vagrant and a hypervisor /ought to be/ transparently independent of what host OS you are running. In practice, however, this is not the case with Windows. Some remediation can be done by ensuring that some things are enabled in the bios of the computer, together with other settings inside Windows itself. This works part of the way, but more recent versions of MongoDB uses hardware instructions that are not available from inside a virtual machine.
+
+In short: It is a mess.
+
+If you only have access to a Windows machine, then just read through this part of the tasks and skip ahead to the next section where you will be doing similar things in /Docker/ instead. Running a full virtual machine with a scripted startup (e.g. Vagrant) is a useful skill to have in your toolbox, but it is not worth stopping your progress in the course over. In the rest of the course, you will be using Docker-like tools anyway.
+
+Some things you may wish to try:
+- VirtualBox does not play nice when Hyper-V is enabled on Windows ( https://stackoverflow.com/questions/74986772/failed-to-start-mongod-6-0-in-virtualbox-machine-with-ubuntu-20-04 , https://forums.virtualbox.org/viewtopic.php?f=25&t=99390 , https://stackoverflow.com/a/68214280 )
+- It might help to activate intel-vt/amd-v in your virtual machine.
+- MongoDB version 5 and upwards require a CPU with an x8-64 architecture supporting AVX instructions. Verify that you have this by logging into the VM and run the command ~lscpu~.
+#+end_quote
+
 *Tasks*
 0. [@0] Open a terminal in whichever way your operating system expects you to.
 
@@ -1982,7 +1995,7 @@ As before, clean up your deployment: ~kubectl delete --cascade='foreground' -f q
 *TODO* Please read the following articles and resources:
 
 - Andersson, J., & Norrman, F. (2020). Container Orchestration: the Migration Path to Kubernetes. (Bachelor Thesis)
-- [[https://k8s.af/][Kubernetes Failure Stories]] (last checked 2023-03-30). This is not to dishearten you from using Kubernetes, but there is a lot to learn by looking at mistakes others have made. Also, in the midst of all this failure there are some examples of really good deployment practices in there too.
+- [[https://k8s.af/][Kubernetes Failure Stories]] (last checked 2023-03-30). This is not to dishearten you from using Kubernetes, but there is a lot to learn by looking at mistakes others have made. Also, in the midst of all this failure there are some examples of really good deployment practices in there too. *Pick two stories to summarise.*
 - J. Tigani [[https://motherduck.com/blog/big-data-is-dead/][Big Data is Dead]] (last checked 2023-03-30). An interesting discussion piece about whether we in fact have moved beyond big data already. Not strictly related to Kubernetes and microservice development, but still a relevant read.
 - D. Glasser, [[https://blog.meteor.com/mongodb-queries-dont-always-return-all-matching-documents-654b6594a827#.59pxgubtq][MongoDB queries don't always return all matching documents.]] (last checked 2023-03-30) This is just one example of an article that explains challenges with nosql databases and their "eventually consistent" philosophy.
 
@@ -2484,7 +2497,7 @@ The "only" thing remaining for you to do now is to prove that you too have learn
 It is time to put everything you have learnt so far into practice. The goal of this assignment is for you to create a microservice-based application according to the following principles:
 
 1. The application must be deployable using Kubernetes.
-2. The application must consist of at least two different types of microservices
+2. The application must consist of at least two different types of microservices and a database.
 3. Each microservice must implement a REST API for access
 4. The application must be accessible from "the outside" (e.g. via a web browser)
 5. All microservices in the application must be horizontally scalable independently from each other.
@@ -2511,7 +2524,9 @@ Once delivered, /a meeting will be scheduled/ where you are expected to run and 
 
 
 Your application:
-- may implement any software idea; it may also be a copy of an already existing software.
+- must display your ability to progamatically connect to and use a REST API.
+- must display your ability to program a microservice that provides a REST API.
+- may implement any software idea; it may also re-use the /idea/ from an already existing software.
 - may be too small or trivial to actually warrant scaling; please acknowledge this and provide instructions for what needs to be pretended for the application to make sense.
 - may use any programming language.
 - may use a different access interface than a web browser, as long as no additional tools need to be installed on my computer.

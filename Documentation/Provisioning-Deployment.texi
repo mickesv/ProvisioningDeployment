@@ -1015,6 +1015,25 @@ The first step is to run the QFStandalone app as if you were running it on ``bar
 
 One note before you begin: In Vagrant you define which boxes you want and give them a name (e.g. ``app'' in the tasks below) with the command @code{config.vm.define}. This name is used in commands to vagrant (e.g. @code{vagrant reload app} to reload the ``app'' box) but may be different from the name with which you access the box on the network, i.e. the hostname.
 
+@quotation
+@strong{One more warning}: Using Vagrant and a hypervisor @emph{ought to be} transparently independent of what host OS you are running. In practice, however, this is not the case with Windows. Some remediation can be done by ensuring that some things are enabled in the bios of the computer, together with other settings inside Windows itself. This works part of the way, but more recent versions of MongoDB uses hardware instructions that are not available from inside a virtual machine.
+
+In short: It is a mess.
+
+If you only have access to a Windows machine, then just read through this part of the tasks and skip ahead to the next section where you will be doing similar things in @emph{Docker} instead. Running a full virtual machine with a scripted startup (e.g. Vagrant) is a useful skill to have in your toolbox, but it is not worth stopping your progress in the course over. In the rest of the course, you will be using Docker-like tools anyway.
+
+Some things you may wish to try:
+@itemize
+@item
+VirtualBox does not play nice when Hyper-V is enabled on Windows ( @uref{https://stackoverflow.com/questions/74986772/failed-to-start-mongod-6-0-in-virtualbox-machine-with-ubuntu-20-04} , @uref{https://forums.virtualbox.org/viewtopic.php?f=25&t=99390} , @uref{https://stackoverflow.com/a/68214280} )
+@item
+It might help to activate intel-vt/amd-v in your virtual machine.
+@item
+MongoDB version 5 and upwards require a CPU with an x8-64 architecture supporting AVX instructions. Verify that you have this by logging into the VM and run the command @code{lscpu}.
+@end itemize
+
+@end quotation
+
 @strong{Tasks}
 @enumerate 0
 @item
@@ -2711,7 +2730,7 @@ As before, clean up your deployment: @code{kubectl delete --cascade='foreground'
 @item
 Andersson, J., & Norrman, F@. (2020). Container Orchestration: the Migration Path to Kubernetes. (Bachelor Thesis)
 @item
-@uref{https://k8s.af/, Kubernetes Failure Stories} (last checked 2023-03-30). This is not to dishearten you from using Kubernetes, but there is a lot to learn by looking at mistakes others have made. Also, in the midst of all this failure there are some examples of really good deployment practices in there too.
+@uref{https://k8s.af/, Kubernetes Failure Stories} (last checked 2023-03-30). This is not to dishearten you from using Kubernetes, but there is a lot to learn by looking at mistakes others have made. Also, in the midst of all this failure there are some examples of really good deployment practices in there too. @strong{Pick two stories to summarise.}
 @item
 J@. Tigani @uref{https://motherduck.com/blog/big-data-is-dead/, Big Data is Dead} (last checked 2023-03-30). An interesting discussion piece about whether we in fact have moved beyond big data already. Not strictly related to Kubernetes and microservice development, but still a relevant read.
 @item
@@ -3337,7 +3356,7 @@ It is time to put everything you have learnt so far into practice. The goal of t
 @item
 The application must be deployable using Kubernetes.
 @item
-The application must consist of at least two different types of microservices
+The application must consist of at least two different types of microservices and a database.
 @item
 Each microservice must implement a REST API for access
 @item
@@ -3388,7 +3407,11 @@ Security issues identified and/or mitigated
 Your application:
 @itemize
 @item
-may implement any software idea; it may also be a copy of an already existing software.
+must display your ability to progamatically connect to and use a REST API@.
+@item
+must display your ability to program a microservice that provides a REST API@.
+@item
+may implement any software idea; it may also re-use the @emph{idea} from an already existing software.
 @item
 may be too small or trivial to actually warrant scaling; please acknowledge this and provide instructions for what needs to be pretended for the application to make sense.
 @item

@@ -1048,6 +1048,22 @@ Next: <a href="#A-Minimal-Qemu-Vagrantfile" accesskey="n" rel="next">A Minimal Q
 </p>
 <p>One note before you begin: In Vagrant you define which boxes you want and give them a name (e.g. &ldquo;app&rdquo; in the tasks below) with the command <code class="code">config.vm.define</code>. This name is used in commands to vagrant (e.g. <code class="code">vagrant reload app</code> to reload the &ldquo;app&rdquo; box) but may be different from the name with which you access the box on the network, i.e. the hostname.
 </p>
+<blockquote class="quotation">
+<p><strong class="strong">One more warning</strong>: Using Vagrant and a hypervisor <em class="emph">ought to be</em> transparently independent of what host OS you are running. In practice, however, this is not the case with Windows. Some remediation can be done by ensuring that some things are enabled in the bios of the computer, together with other settings inside Windows itself. This works part of the way, but more recent versions of MongoDB uses hardware instructions that are not available from inside a virtual machine.
+</p>
+<p>In short: It is a mess.
+</p>
+<p>If you only have access to a Windows machine, then just read through this part of the tasks and skip ahead to the next section where you will be doing similar things in <em class="emph">Docker</em> instead. Running a full virtual machine with a scripted startup (e.g. Vagrant) is a useful skill to have in your toolbox, but it is not worth stopping your progress in the course over. In the rest of the course, you will be using Docker-like tools anyway.
+</p>
+<p>Some things you may wish to try:
+</p><ul class="itemize mark-bullet">
+<li>VirtualBox does not play nice when Hyper-V is enabled on Windows ( <a class="uref" href="https://stackoverflow.com/questions/74986772/failed-to-start-mongod-6-0-in-virtualbox-machine-with-ubuntu-20-04">https://stackoverflow.com/questions/74986772/failed-to-start-mongod-6-0-in-virtualbox-machine-with-ubuntu-20-04</a> , <a class="uref" href="https://forums.virtualbox.org/viewtopic.php?f=25&amp;t=99390">https://forums.virtualbox.org/viewtopic.php?f=25&amp;t=99390</a> , <a class="uref" href="https://stackoverflow.com/a/68214280">https://stackoverflow.com/a/68214280</a> )
+</li><li>It might help to activate intel-vt/amd-v in your virtual machine.
+</li><li>MongoDB version 5 and upwards require a CPU with an x8-64 architecture supporting AVX instructions. Verify that you have this by logging into the VM and run the command <code class="code">lscpu</code>.
+</li></ul>
+
+</blockquote>
+
 <p><strong class="strong">Tasks</strong>
 </p><ol class="enumerate" start="0">
 <li> Open a terminal in whichever way your operating system expects you to.
@@ -2682,7 +2698,7 @@ Next: <a href="#Scaling-the-Database" accesskey="n" rel="next">Scaling the Datab
 </p>
 <ul class="itemize mark-bullet">
 <li>Andersson, J., &amp; Norrman, F. (2020). Container Orchestration: the Migration Path to Kubernetes. (Bachelor Thesis)
-</li><li><a class="uref" href="https://k8s.af/">Kubernetes Failure Stories</a> (last checked 2023-03-30). This is not to dishearten you from using Kubernetes, but there is a lot to learn by looking at mistakes others have made. Also, in the midst of all this failure there are some examples of really good deployment practices in there too.
+</li><li><a class="uref" href="https://k8s.af/">Kubernetes Failure Stories</a> (last checked 2023-03-30). This is not to dishearten you from using Kubernetes, but there is a lot to learn by looking at mistakes others have made. Also, in the midst of all this failure there are some examples of really good deployment practices in there too. <strong class="strong">Pick two stories to summarise.</strong>
 </li><li>J. Tigani <a class="uref" href="https://motherduck.com/blog/big-data-is-dead/">Big Data is Dead</a> (last checked 2023-03-30). An interesting discussion piece about whether we in fact have moved beyond big data already. Not strictly related to Kubernetes and microservice development, but still a relevant read.
 </li><li>D. Glasser, <a class="uref" href="https://blog.meteor.com/mongodb-queries-dont-always-return-all-matching-documents-654b6594a827#.59pxgubtq">MongoDB queries don&rsquo;t always return all matching documents.</a> (last checked 2023-03-30) This is just one example of an article that explains challenges with nosql databases and their &ldquo;eventually consistent&rdquo; philosophy.
 </li></ul>
@@ -3302,7 +3318,7 @@ Next: <a href="#Concept-Index" accesskey="n" rel="next">Concept Index</a>, Previ
 </p>
 <ol class="enumerate">
 <li> The application must be deployable using Kubernetes.
-</li><li> The application must consist of at least two different types of microservices
+</li><li> The application must consist of at least two different types of microservices and a database.
 </li><li> Each microservice must implement a REST API for access
 </li><li> The application must be accessible from &ldquo;the outside&rdquo; (e.g. via a web browser)
 </li><li> All microservices in the application must be horizontally scalable independently from each other.
@@ -3335,7 +3351,9 @@ Next: <a href="#Concept-Index" accesskey="n" rel="next">Concept Index</a>, Previ
 
 <p>Your application:
 </p><ul class="itemize mark-bullet">
-<li>may implement any software idea; it may also be a copy of an already existing software.
+<li>must display your ability to progamatically connect to and use a REST API.
+</li><li>must display your ability to program a microservice that provides a REST API.
+</li><li>may implement any software idea; it may also re-use the <em class="emph">idea</em> from an already existing software.
 </li><li>may be too small or trivial to actually warrant scaling; please acknowledge this and provide instructions for what needs to be pretended for the application to make sense.
 </li><li>may use any programming language.
 </li><li>may use a different access interface than a web browser, as long as no additional tools need to be installed on my computer.

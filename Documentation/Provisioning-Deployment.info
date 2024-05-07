@@ -1379,6 +1379,40 @@ File: Provisioning-Deployment.info,  Node: Installing and Running QFStandalone, 
      may be different from the name with which you access the box on the
      network, i.e.  the hostname.
 
+          *One more warning*: Using Vagrant and a hypervisor _ought to
+          be_ transparently independent of what host OS you are running.
+          In practice, however, this is not the case with Windows.  Some
+          remediation can be done by ensuring that some things are
+          enabled in the bios of the computer, together with other
+          settings inside Windows itself.  This works part of the way,
+          but more recent versions of MongoDB uses hardware instructions
+          that are not available from inside a virtual machine.
+
+          In short: It is a mess.
+
+          If you only have access to a Windows machine, then just read
+          through this part of the tasks and skip ahead to the next
+          section where you will be doing similar things in _Docker_
+          instead.  Running a full virtual machine with a scripted
+          startup (e.g.  Vagrant) is a useful skill to have in your
+          toolbox, but it is not worth stopping your progress in the
+          course over.  In the rest of the course, you will be using
+          Docker-like tools anyway.
+
+          Some things you may wish to try:
+             • VirtualBox does not play nice when Hyper-V is enabled on
+               Windows (
+               <https://stackoverflow.com/questions/74986772/failed-to-start-mongod-6-0-in-virtualbox-machine-with-ubuntu-20-04>
+               ,
+               <https://forums.virtualbox.org/viewtopic.php?f=25&t=99390>
+               , <https://stackoverflow.com/a/68214280> )
+             • It might help to activate intel-vt/amd-v in your virtual
+               machine.
+             • MongoDB version 5 and upwards require a CPU with an x8-64
+               architecture supporting AVX instructions.  Verify that
+               you have this by logging into the VM and run the command
+               ‘lscpu’.
+
      *Tasks*
        0. Open a terminal in whichever way your operating system expects
           you to.
@@ -3578,7 +3612,8 @@ File: Provisioning-Deployment.info,  Node: Quiz Deployment with Kubernetes,  Nex
      2023-03-30).  This is not to dishearten you from using Kubernetes,
      but there is a lot to learn by looking at mistakes others have
      made.  Also, in the midst of all this failure there are some
-     examples of really good deployment practices in there too.
+     examples of really good deployment practices in there too.  *Pick
+     two stories to summarise.*
    • J.  Tigani Big Data is Dead
      (https://motherduck.com/blog/big-data-is-dead/) (last checked
      2023-03-30).  An interesting discussion piece about whether we in
@@ -4347,7 +4382,7 @@ application according to the following principles:
 
   1. The application must be deployable using Kubernetes.
   2. The application must consist of at least two different types of
-     microservices
+     microservices and a database.
   3. Each microservice must implement a REST API for access
   4. The application must be accessible from "the outside" (e.g.  via a
      web browser)
@@ -4390,8 +4425,12 @@ answer questions about:
    • Security issues identified and/or mitigated
 
    Your application:
-   • may implement any software idea; it may also be a copy of an
-     already existing software.
+   • must display your ability to progamatically connect to and use a
+     REST API.
+   • must display your ability to program a microservice that provides a
+     REST API.
+   • may implement any software idea; it may also re-use the _idea_ from
+     an already existing software.
    • may be too small or trivial to actually warrant scaling; please
      acknowledge this and provide instructions for what needs to be
      pretended for the application to make sense.
@@ -4752,51 +4791,51 @@ Node: Introducing the QuoteFinder application56930
 Node: Install relevant software63421
 Node: Installing and Running QFStandalone66061
 Ref: Full Virtual Machine66324
-Ref: Docker76152
-Node: A Minimal Qemu Vagrantfile85143
-Node: Quiz Let's get Practical86474
-Node: Provisioning and Orchestration88240
-Node: Provisioning88559
-Node: Orchestration92089
-Node: Docker Compose93781
-Node: Cloud Orchestration95649
-Node: Quiz Provisioning and Orchestration97642
-Node: Application Design and Development100903
-Node: Principles of Microservice Architectures101356
-Node: Cloud Architecture Patterns106797
-Node: Introduction to YAML and Docker-Composeyml119184
-Node: Let's get Practical Again124653
-Node: Introducing Version 2 of the QuoteFinder app125136
-Node: Installing and Running Version 2 of QuoteFinder132474
-Node: Editing the Running Application136286
-Node: Scaling the Deployment139857
-Node: Cleanup and Summary141445
-Node: Introducing Version 3 of the QuoteFinder app144651
-Node: Quiz Design Decisions and Development Setup150365
-Node: Deployment with Kubernetes152500
-Ref: Deployment152736
-Node: Introduction to Kubernetes152833
-Node: Get Started with Kubernetes156026
-Node: Attach the Database164074
-Node: Quiz Deployment with Kubernetes171930
-Node: Scaling the Database175126
-Node: Database Scaling175453
-Node: MongoDB ReplicaSet178313
-Node: Setting up a MongoDB ReplicaSet in Kubernetes180410
-Ref: TextStore StatefulSet181197
-Ref: Qfapp ConfigMap183926
-Ref: QFStandalone Deployment184960
-Ref: Tasks186256
-Node: Edit a Container in a Pod in a Node in a Cluster190111
-Ref: kube-edit190378
-Node: Additional Concepts195588
-Node: Summary203201
-Node: Assignment Build Something206250
-Ref: assignment-build-something206434
-Node: Concept Index209856
-Node: Program Index221922
-Node: Files and Data Types Index227644
-Node: Functions and Commands Index228823
+Ref: Docker78029
+Node: A Minimal Qemu Vagrantfile87020
+Node: Quiz Let's get Practical88351
+Node: Provisioning and Orchestration90117
+Node: Provisioning90436
+Node: Orchestration93966
+Node: Docker Compose95658
+Node: Cloud Orchestration97526
+Node: Quiz Provisioning and Orchestration99519
+Node: Application Design and Development102780
+Node: Principles of Microservice Architectures103233
+Node: Cloud Architecture Patterns108674
+Node: Introduction to YAML and Docker-Composeyml121061
+Node: Let's get Practical Again126530
+Node: Introducing Version 2 of the QuoteFinder app127013
+Node: Installing and Running Version 2 of QuoteFinder134351
+Node: Editing the Running Application138163
+Node: Scaling the Deployment141734
+Node: Cleanup and Summary143322
+Node: Introducing Version 3 of the QuoteFinder app146528
+Node: Quiz Design Decisions and Development Setup152242
+Node: Deployment with Kubernetes154377
+Ref: Deployment154613
+Node: Introduction to Kubernetes154710
+Node: Get Started with Kubernetes157903
+Node: Attach the Database165951
+Node: Quiz Deployment with Kubernetes173807
+Node: Scaling the Database177042
+Node: Database Scaling177369
+Node: MongoDB ReplicaSet180229
+Node: Setting up a MongoDB ReplicaSet in Kubernetes182326
+Ref: TextStore StatefulSet183113
+Ref: Qfapp ConfigMap185842
+Ref: QFStandalone Deployment186876
+Ref: Tasks188172
+Node: Edit a Container in a Pod in a Node in a Cluster192027
+Ref: kube-edit192294
+Node: Additional Concepts197504
+Node: Summary205117
+Node: Assignment Build Something208166
+Ref: assignment-build-something208350
+Node: Concept Index211975
+Node: Program Index224041
+Node: Files and Data Types Index229763
+Node: Functions and Commands Index230942
 
 End Tag Table
 
