@@ -1,0 +1,106 @@
+#+Title: Quizzes for Half Pace Course
+#+Author: Mikael Svahnberg
+#+Email: Mikael.Svahnberg@bth.se
+#+Date: 2024-05-08
+#+EPRESENT_FRAME_LEVEL: 1
+#+OPTIONS: email:t <:t todo:t f:t ':t H:2
+#+STARTUP: beamer
+
+#+LATEX_CLASS_OPTIONS: [10pt,a4paper]
+#+BEAMER_THEME: BTH_msv
+
+#+texinfo: @afourpaper
+
+#+MACRO: CanvasQuiz There is a Quiz on Canvas where you can submit your article summaries and answers to the questions.
+#+MACRO: NonMarked *NOTICE:* /This quiz does not contribute to the grade in the course. We do, however, require of you to submit the quiz on time./ The purpose of this quiz is to serve as a learning aid allowing you to think about these concepts, and for us to keep track of your progress in the course. If you are unable to maintain the study pace required to submit this quiz on time, we want to be made aware of this so that you are able to re-plan your commitment for the remainder of the course.
+
+
+* Summary
+The main documentation "Provisioning and Deployment" is geared towards a course running on quarter speed over a full semester. When running the same course at half speed over the course of half a semester, this would mean two quizzes per week. Even if the questions themselves are mostly checkpoint questions to enable students to ensure, for themselves, that they have understood the key concepts, two quizzes per week can be seen as overwhelming. This document merges the questions into a less daunting number of quizzes.
+* Quiz: Hypervisors, Provisioning, and Deployment
+*TODO* Please read the following articles:
+
+1. Crosby, Simon, and David Brown. "The Virtualization Reality: Are hypervisors the new foundation for system software?." Queue 4.10 (2006): 34-41.
+2. Morabito, Roberto, Jimmy Kjällman, and Miika Komu. "Hypervisors vs. lightweight virtualization: a performance comparison." 2015 IEEE International Conference on cloud engineering. IEEE, 2015.
+3. Jiang, Congfeng, et al. "Energy efficiency comparison of hypervisors." Sustainable Computing: Informatics and Systems 22 (2019): 311-321.
+4. Riddle, Andrew R., and Soon M. Chung. "A survey on the security of hypervisors in cloud computing." 2015 IEEE 35th International Conference on Distributed Computing Systems Workshops. IEEE, 2015.
+5. Rahman, A., Rahman, M. R., Parnin, C., & Williams, L. (2021). Security smells in ansible and chef scripts: A replication study. ACM Transactions on Software Engineering and Methodology (TOSEM), 30(1), 1-31.
+6. Khazaei, H., Barna, C., Beigi-Mohammadi, N., & Litoiu, M. (2016, December). Efficiency analysis of provisioning microservices. In 2016 IEEE International conference on cloud computing technology and science (CloudCom) (pp. 261-268). IEEE.
+7. Esteban Elias Romero, Carlos David Camacho, Carlos Enrique Montenegro, Óscar Esneider Acosta, Rubén González Crespo, Elvis Eduardo Gaona, and Marcelo Herrera Martínez. 2022. Integration of DevOps Practices on a Noise Monitor System with CircleCI and Terraform. ACM Trans. Manage. Inf. Syst. 13, 4, Article 36 (December 2022), 24 pages.
+
+We have chosen these articles for you to read because they illustrate first that there are different types and levels of hypervisors, and secondly because they illustrate that there are many different concerns to consider when selecting which hypervisor (and hence, indirectly, which cloud provider) you chose, such as performance, energy consumption, and security.
+
+*TODO* Summarise each article (no more than 1/2 page each) according to the following:
+
+- Authors and Title of the article
+- Briefly, what is the article about?
+- What have they measured?
+- What are their main findings?
+- What can you learn from this article?
+
+*TODO* Answer the following questions:
+
+- Hypervisors and Provisioning
+  1. What is a hypervisor?
+  2. What are the main differences between a lightweight virtual machine and a virtual machine?
+  3. What is the REST architecture pattern? How is it implemented in modern microservice development?
+  4. What is "Infrastructure-As-A-Service" (IAAS)?
+  5. What is "Software-As-A-Service" (SAAS)?
+  6. What is Service Oriented Architecture (SOA)?
+  7. What are the main differences between microservice development and IAAS?
+  8. What is provisioning? What is orchestration?
+  9. Why do you want separate tools for provisioning and orchestration?
+- QuoteFinder
+  1. QFStandalone depends on five javascript packages. In what file are these dependencies specified?
+  2. The dependencies are never installed on your host computer. How do you instruct Docker that they should be installed?
+  3. How do you instruct Vagrant that they should be installed?
+  4. Which file/javascript module in QFStandalone is responsible for setting up the http routes?
+  5. What are the responsibilities of the =SimpleTextManager= class?
+  6. What are the responsibilities of the file =textStore.js= ?
+  7. The function =index.js::searchTexts()= is mostly built up around promises. Where is the first Promise created?
+  8. Briefly outline what you would need to do if you wish to add a dependency to a new javascript package in your Docker solution. How does this differ compared to if you want to do the same with Vagrant?
+
+{{{CanvasQuiz}}}
+
+{{{NonMarked}}}
+* Quiz: Design, Setup, and Deployment with Kubernetes
+*TODO* Please read the following articles and resources:
+
+1. Taibi, D., Lenarduzzi, V., & Pahl, C. (2018). Architectural patterns for microservices: a systematic mapping study. In CLOSER 2018: Proceedings of the 8th International Conference on Cloud Computing and Services Science, SciTePress, Setúbal, 2018.
+2. Andersson, J., & Norrman, F. (2020). Container Orchestration: the Migration Path to Kubernetes. (Bachelor Thesis)
+3. [[https://k8s.af/][Kubernetes Failure Stories]] (last checked 2023-03-30). This is not to dishearten you from using Kubernetes, but there is a lot to learn by looking at mistakes others have made. Also, in the midst of all this failure there are some examples of really good deployment practices in there too. *Pick two stories to summarise.*
+4. J. Tigani [[https://motherduck.com/blog/big-data-is-dead/][Big Data is Dead]] (last checked 2023-03-30). An interesting discussion piece about whether we in fact have moved beyond big data already. Not strictly related to Kubernetes and microservice development, but still a relevant read.
+5. D. Glasser, [[https://blog.meteor.com/mongodb-queries-dont-always-return-all-matching-documents-654b6594a827#.59pxgubtq][MongoDB queries don't always return all matching documents.]] (last checked 2023-03-30) This is just one example of an article that explains challenges with nosql databases and their "eventually consistent" philosophy.
+
+
+*TODO* Summarise each article/resource (no more than 1/2 page each) according to the following:
+
+- Authors (if available/applicable) and Title of the article
+- Briefly, what is the article about?
+- What have they measured?
+- What are their main findings?
+- What can you learn from this article?
+
+*TODO* Answer the following questions:
+
+
+- Architectural Patterns
+  1. Briefly list and describe the microservice architectural patterns identified in Taibi et al.?
+  2. How do these patterns differ from the architecture patterns described by Bill Wilder, /Cloud Architecture Patterns/, O'Reilly, 2012? Are there any similarities?
+  3. Taibi et al. describe a number of guiding principles for microservice architecture styles. Please list and briefly describe each of these.
+- Patterns in QuoteFinder
+  1. What patterns (from Taibi et al. as well as from Wilder) are currently used in QuoteFinder Version 2?
+  2. What are the bottlenecks in the current architecture? What can we do about them?
+  3. What can be done to scale QuoteFinder Version 2? Think in "both ends", i.e. scaling the front-end as well as the back-end.
+- Kubernetes
+  1. What types of Kubernetes =Services= are there?
+  2. It is recommended to start Services before the Containers they refer to. Why?
+  3. What is a =NodePort=? How does it differ from a =LoadBalancer=?
+  5. What are the differences between a =Pod=, a =Deployment=, a =ReplicaSet=, and a =StatefulSet=?
+  6. When do you use a =ConfigMap=? How does it differ from a =Secret=?
+  7. What are the different ways in which you can use a =ConfigMap= to configure a Container? When would you use each of them?
+
+
+{{{CanvasQuiz}}}
+
+{{{NonMarked}}}
