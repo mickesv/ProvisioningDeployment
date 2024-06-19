@@ -4429,6 +4429,8 @@ answer questions about:
      REST API.
    • must display your ability to program a microservice that provides a
      REST API.
+   • must not reuse existing microservices that have not been developed
+     by yourself (Except the database container).
    • may implement any software idea; it may also re-use the _idea_ from
      an already existing software.
    • may be too small or trivial to actually warrant scaling; please
@@ -4832,10 +4834,10 @@ Node: Additional Concepts197504
 Node: Summary205117
 Node: Assignment Build Something208166
 Ref: assignment-build-something208350
-Node: Concept Index211975
-Node: Program Index224041
-Node: Files and Data Types Index229763
-Node: Functions and Commands Index230942
+Node: Concept Index212099
+Node: Program Index224165
+Node: Files and Data Types Index229887
+Node: Functions and Commands Index231066
 
 End Tag Table
 

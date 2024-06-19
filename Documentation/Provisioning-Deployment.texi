@@ -3411,6 +3411,8 @@ must display your ability to progamatically connect to and use a REST API@.
 @item
 must display your ability to program a microservice that provides a REST API@.
 @item
+must not reuse existing microservices that have not been developed by yourself (Except the database container).
+@item
 may implement any software idea; it may also re-use the @emph{idea} from an already existing software.
 @item
 may be too small or trivial to actually warrant scaling; please acknowledge this and provide instructions for what needs to be pretended for the application to make sense.
