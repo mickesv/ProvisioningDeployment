@@ -1,4 +1,4 @@
-This is Provisioning-Deployment.info, produced by makeinfo version 7.1
+This is Provisioning-Deployment.info, produced by makeinfo version 7.1.1
 from Provisioning-Deployment.texi.
 
 This is part of a course on Applied Cloud Computing and Big Data,
@@ -4384,8 +4384,8 @@ application according to the following principles:
   2. The application must consist of at least two different types of
      microservices and a database.
   3. Each microservice must implement a REST API for access
-  4. The application must be accessible from "the outside" (e.g.  via a
-     web browser)
+  4. The application must be accessible from "the outside" of kubernetes
+     (e.g.  via a web browser)
   5. All microservices in the application must be horizontally scalable
      independently from each other.
   6. Any microservice images required to run your application must have
@@ -4423,6 +4423,12 @@ answer questions about:
    • Interaction between different microservices
    • Details of your deployment
    • Security issues identified and/or mitigated
+
+   If you prefer, you may also submit a video recording (5-10 min long)
+where you go through what the project is abut, what the separate
+microservices do, run the project and access it through its user
+interface (e.g.  a web browser), show any log output, and briefly walk
+through your kubernetes yaml files.
 
    Your application:
    • must display your ability to progamatically connect to and use a
@@ -4768,76 +4774,76 @@ Functions and Commands Index
 
 
 Tag Table:
-Node: Top1466
-Node: Document Overview5718
-Node: A Note on Reading Research Articles8332
-Node: Introduction to Orchestration and Provisioning12123
-Ref: introduction12418
-Node: Learning Outcomes18749
-Node: Microservices and Lightweight Containers19823
-Node: Building Microservices24073
-Node: A Quick Rundown of Docker Terminology27357
-Node: Dockerfile29464
-Node: Docker Commands33258
-Ref: Getting Help33578
-Ref: Docker image and Image Management34596
-Ref: Docker run and Container Management36637
-Ref: tabdocker-run-parameters36952
-Node: Not Building Microservices -- Infrastructure As A Service39562
-Node: Provisioning your Virtual Machine43108
-Node: Communicating Microservices and REST APIs45089
-Node: Other communication means49038
-Node: Quiz Hypervisors and Lightweight Virtual Machines53719
-Node: Let's get Practical56535
-Node: Introducing the QuoteFinder application56930
-Node: Install relevant software63421
-Node: Installing and Running QFStandalone66061
-Ref: Full Virtual Machine66324
-Ref: Docker78029
-Node: A Minimal Qemu Vagrantfile87020
-Node: Quiz Let's get Practical88351
-Node: Provisioning and Orchestration90117
-Node: Provisioning90436
-Node: Orchestration93966
-Node: Docker Compose95658
-Node: Cloud Orchestration97526
-Node: Quiz Provisioning and Orchestration99519
-Node: Application Design and Development102780
-Node: Principles of Microservice Architectures103233
-Node: Cloud Architecture Patterns108674
-Node: Introduction to YAML and Docker-Composeyml121061
-Node: Let's get Practical Again126530
-Node: Introducing Version 2 of the QuoteFinder app127013
-Node: Installing and Running Version 2 of QuoteFinder134351
-Node: Editing the Running Application138163
-Node: Scaling the Deployment141734
-Node: Cleanup and Summary143322
-Node: Introducing Version 3 of the QuoteFinder app146528
-Node: Quiz Design Decisions and Development Setup152242
-Node: Deployment with Kubernetes154377
-Ref: Deployment154613
-Node: Introduction to Kubernetes154710
-Node: Get Started with Kubernetes157903
-Node: Attach the Database165951
-Node: Quiz Deployment with Kubernetes173807
-Node: Scaling the Database177042
-Node: Database Scaling177369
-Node: MongoDB ReplicaSet180229
-Node: Setting up a MongoDB ReplicaSet in Kubernetes182326
-Ref: TextStore StatefulSet183113
-Ref: Qfapp ConfigMap185842
-Ref: QFStandalone Deployment186876
-Ref: Tasks188172
-Node: Edit a Container in a Pod in a Node in a Cluster192027
-Ref: kube-edit192294
-Node: Additional Concepts197504
-Node: Summary205117
-Node: Assignment Build Something208166
-Ref: assignment-build-something208350
-Node: Concept Index212099
-Node: Program Index224165
-Node: Files and Data Types Index229887
-Node: Functions and Commands Index231066
+Node: Top1468
+Node: Document Overview5720
+Node: A Note on Reading Research Articles8334
+Node: Introduction to Orchestration and Provisioning12125
+Ref: introduction12420
+Node: Learning Outcomes18751
+Node: Microservices and Lightweight Containers19825
+Node: Building Microservices24075
+Node: A Quick Rundown of Docker Terminology27359
+Node: Dockerfile29466
+Node: Docker Commands33260
+Ref: Getting Help33580
+Ref: Docker image and Image Management34598
+Ref: Docker run and Container Management36639
+Ref: tabdocker-run-parameters36954
+Node: Not Building Microservices -- Infrastructure As A Service39564
+Node: Provisioning your Virtual Machine43110
+Node: Communicating Microservices and REST APIs45091
+Node: Other communication means49040
+Node: Quiz Hypervisors and Lightweight Virtual Machines53721
+Node: Let's get Practical56537
+Node: Introducing the QuoteFinder application56932
+Node: Install relevant software63423
+Node: Installing and Running QFStandalone66063
+Ref: Full Virtual Machine66326
+Ref: Docker78031
+Node: A Minimal Qemu Vagrantfile87022
+Node: Quiz Let's get Practical88353
+Node: Provisioning and Orchestration90119
+Node: Provisioning90438
+Node: Orchestration93968
+Node: Docker Compose95660
+Node: Cloud Orchestration97528
+Node: Quiz Provisioning and Orchestration99521
+Node: Application Design and Development102782
+Node: Principles of Microservice Architectures103235
+Node: Cloud Architecture Patterns108676
+Node: Introduction to YAML and Docker-Composeyml121063
+Node: Let's get Practical Again126532
+Node: Introducing Version 2 of the QuoteFinder app127015
+Node: Installing and Running Version 2 of QuoteFinder134353
+Node: Editing the Running Application138165
+Node: Scaling the Deployment141736
+Node: Cleanup and Summary143324
+Node: Introducing Version 3 of the QuoteFinder app146530
+Node: Quiz Design Decisions and Development Setup152244
+Node: Deployment with Kubernetes154379
+Ref: Deployment154615
+Node: Introduction to Kubernetes154712
+Node: Get Started with Kubernetes157905
+Node: Attach the Database165953
+Node: Quiz Deployment with Kubernetes173809
+Node: Scaling the Database177044
+Node: Database Scaling177371
+Node: MongoDB ReplicaSet180231
+Node: Setting up a MongoDB ReplicaSet in Kubernetes182328
+Ref: TextStore StatefulSet183115
+Ref: Qfapp ConfigMap185844
+Ref: QFStandalone Deployment186878
+Ref: Tasks188174
+Node: Edit a Container in a Pod in a Node in a Cluster192029
+Ref: kube-edit192296
+Node: Additional Concepts197506
+Node: Summary205119
+Node: Assignment Build Something208168
+Ref: assignment-build-something208352
+Node: Concept Index212425
+Node: Program Index224491
+Node: Files and Data Types Index230213
+Node: Functions and Commands Index231392
 
 End Tag Table
 

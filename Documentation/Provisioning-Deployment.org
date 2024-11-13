@@ -2499,7 +2499,7 @@ It is time to put everything you have learnt so far into practice. The goal of t
 1. The application must be deployable using Kubernetes.
 2. The application must consist of at least two different types of microservices and a database.
 3. Each microservice must implement a REST API for access
-4. The application must be accessible from "the outside" (e.g. via a web browser)
+4. The application must be accessible from "the outside" of kubernetes (e.g. via a web browser)
 5. All microservices in the application must be horizontally scalable independently from each other.
 6. Any microservice images required to run your application must have been pushed to docker hub so that Kubernetes may find them.
 7. The application must make use of some form of database running as a separate microservice.
@@ -2522,6 +2522,7 @@ Once delivered, /a meeting will be scheduled/ where you are expected to run and 
 - Details of your deployment
 - Security issues identified and/or mitigated
 
+If you prefer, you may also submit a video recording (5-10 min long) where you go through what the project is abut, what the separate microservices do, run the project and access it through its user interface (e.g. a web browser), show any log output, and briefly walk through your kubernetes yaml files.
 
 Your application:
 - must display your ability to progamatically connect to and use a REST API.

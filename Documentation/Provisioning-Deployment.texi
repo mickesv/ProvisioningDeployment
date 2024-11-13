@@ -3360,7 +3360,7 @@ The application must consist of at least two different types of microservices an
 @item
 Each microservice must implement a REST API for access
 @item
-The application must be accessible from ``the outside'' (e.g. via a web browser)
+The application must be accessible from ``the outside'' of kubernetes (e.g. via a web browser)
 @item
 All microservices in the application must be horizontally scalable independently from each other.
 @item
@@ -3403,6 +3403,7 @@ Details of your deployment
 Security issues identified and/or mitigated
 @end itemize
 
+If you prefer, you may also submit a video recording (5-10 min long) where you go through what the project is abut, what the separate microservices do, run the project and access it through its user interface (e.g. a web browser), show any log output, and briefly walk through your kubernetes yaml files.
 
 Your application:
 @itemize

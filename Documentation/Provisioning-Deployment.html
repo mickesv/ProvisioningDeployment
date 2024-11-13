@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<!-- Created by GNU Texinfo 7.1, https://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 7.1.1, https://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <!-- This is part of a course on Applied Cloud Computing and Big Data, offered by Blekinge Institute of Technology. Version 1.0
@@ -3320,7 +3320,7 @@ Next: <a href="#Concept-Index" accesskey="n" rel="next">Concept Index</a>, Previ
 <li> The application must be deployable using Kubernetes.
 </li><li> The application must consist of at least two different types of microservices and a database.
 </li><li> Each microservice must implement a REST API for access
-</li><li> The application must be accessible from &ldquo;the outside&rdquo; (e.g. via a web browser)
+</li><li> The application must be accessible from &ldquo;the outside&rdquo; of kubernetes (e.g. via a web browser)
 </li><li> All microservices in the application must be horizontally scalable independently from each other.
 </li><li> Any microservice images required to run your application must have been pushed to docker hub so that Kubernetes may find them.
 </li><li> The application must make use of some form of database running as a separate microservice.
@@ -3348,7 +3348,8 @@ Next: <a href="#Concept-Index" accesskey="n" rel="next">Concept Index</a>, Previ
 </li><li>Security issues identified and/or mitigated
 </li></ul>
 
-
+<p>If you prefer, you may also submit a video recording (5-10 min long) where you go through what the project is abut, what the separate microservices do, run the project and access it through its user interface (e.g. a web browser), show any log output, and briefly walk through your kubernetes yaml files.
+</p>
 <p>Your application:
 </p><ul class="itemize mark-bullet">
 <li>must display your ability to progamatically connect to and use a REST API.
