@@ -44,7 +44,6 @@ We have chosen these articles for you to read because they illustrate first that
   1. What is a hypervisor?
   2. What are the main differences between a lightweight virtual machine and a virtual machine?
   3. What is the REST architecture pattern? How is it implemented in modern microservice development?
-  4. What is "Infrastructure-As-A-Service" (IAAS)?
   5. What is "Software-As-A-Service" (SAAS)?
   6. What is Service Oriented Architecture (SOA)?
   7. What are the main differences between microservice development and IAAS?
