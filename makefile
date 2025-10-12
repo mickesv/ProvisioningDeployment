@@ -137,7 +137,7 @@ doc:
 # Cleanups
 # --------------------
 cleanv1:
-	docker rm -f mickesv/qfstandalone:version1
+	@- docker rm -f qfstandalone textstore 2>/dev/null || true
 
 cleanv1-all:
 	docker rm -f textstore qfstandalone
