@@ -1,4 +1,4 @@
-This is Provisioning-Deployment.info, produced by makeinfo version 7.1.1
+This is Provisioning-Deployment.info, produced by makeinfo version 7.3
 from Provisioning-Deployment.texi.
 
 This is part of a course on Applied Cloud Computing and Big Data,
@@ -29,6 +29,11 @@ offered by Blekinge Institute of Technology.  Version 1.0
      WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
      OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
      DEALINGS IN THE SOFTWARE.
+
+INFO-DIR-SECTION Misc
+START-INFO-DIR-ENTRY
+* (Provisioning-Deployment). Provisioning and Deployment.
+END-INFO-DIR-ENTRY
 
 
 File: Provisioning-Deployment.info,  Node: Top,  Next: Document Overview,  Up: (dir)
@@ -77,6 +82,7 @@ parts:
 * Menu:
 
 * Document Overview::
+* GenAI Policy::
 * A Note on Reading Research Articles::
 * Introduction to Orchestration and Provisioning::
 * Microservices and Lightweight Containers::
@@ -101,6 +107,12 @@ parts:
 * Functions and Commands Index::
 
 -- The Detailed Node Listing --
+
+GenAI Policy
+
+* Sources::
+* General Principles::
+* Specific Guidelines::
 
 Introduction to Orchestration and Provisioning
 
@@ -158,9 +170,8 @@ Scaling the Database
 * MongoDB ReplicaSet::
 * Setting up a MongoDB ReplicaSet in Kubernetes::
 
-
 
-File: Provisioning-Deployment.info,  Node: Document Overview,  Next: A Note on Reading Research Articles,  Prev: Top,  Up: Top
+File: Provisioning-Deployment.info,  Node: Document Overview,  Next: GenAI Policy,  Prev: Top,  Up: Top
 
 1 Document Overview
 *******************
@@ -222,9 +233,293 @@ in your favourite editor though ‘C-u C-h i Provisioning-Deployment.info’
    • <enter> on a cross reference to open it.
 
 
-File: Provisioning-Deployment.info,  Node: A Note on Reading Research Articles,  Next: Introduction to Orchestration and Provisioning,  Prev: Document Overview,  Up: Top
+File: Provisioning-Deployment.info,  Node: GenAI Policy,  Next: A Note on Reading Research Articles,  Prev: Document Overview,  Up: Top
 
-2 A Note on Reading Research Articles
+2 GenAI Policy
+**************
+
+_Note: Throughout this document, "you" refers to students enrolled in
+the course, "we" refers to examiners/supervisors/teaching team._
+
+   The goal of the course assignments is to demonstrate your ability to
+make use of basic software engineering tools that are an integral part
+of a modern software development environment.  This includes your
+editor, compilers, debugger, automated test tools, programming language
+specific documentation tools, microservice container tools, etc.
+
+   All GenAI use must align with the objectives and intended learning
+outcomes defined in the course syllabus
+(https://plan.bth.se/courses/PA2577).  GenAI should support, rather than
+replace, your demonstration of competencies such as critical thinking
+and scientific writing.
+
+* Menu:
+
+* Sources::
+* General Principles::
+* Specific Guidelines::
+
+
+File: Provisioning-Deployment.info,  Node: Sources,  Next: General Principles,  Up: GenAI Policy
+
+2.1 Sources
+===========
+
+This document is partially based on the GenAI policy template by Franz
+Zieris:
+
+     GenAI Policy Template, Franz Zieris, Blekinge Insitute of
+     Technology, 2026.  Available at:
+     <https://github.com/bth-dipt-teaching/genai-policy/blob/main/template.md>
+     Licensed under CC BY 4.0.
+
+     The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
+     NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and
+     "OPTIONAL" in this document are to be interpreted as described in
+     [RFC 2119](https://www.rfc-editor.org/info/rfc2119/).
+
+   The document further makes use of the AI Assessment Scale (AIAS)
+(https://aiassessmentscale.com/) developed by Mike Perkins, Leon Furze,
+Jasper Roe, and Jason MacVaugh in 2023/2024.
+
+
+File: Provisioning-Deployment.info,  Node: General Principles,  Next: Specific Guidelines,  Prev: Sources,  Up: GenAI Policy
+
+2.2 General Principles
+======================
+
+  1. Full Responsibility and Accountability
+
+        • You *MUST* take total ownership of every word, figure, and
+          line of code; verify all AI-assisted output against primary
+          sources.
+        • You *MUST NOT* assume that the AI knows best (e.g., using "The
+          AI said so" as a justification), that details do not matter,
+          or that examiners will not notice.
+        • You *SHOULD* make sure you understand the output of your AI
+          tool and then write/use your own interpretation of it.
+        • *Motivation*: You are effectively "signing" your assignments
+          as your intellectual output.  You must be able to explain,
+          justify, and trace the origin of any part of it.  In group
+          work, accountability is collective; all authors are
+          responsible for the entire content.
+        • *Example*: A student experimented with ChatGPT for generating
+          some program code for a task, but then re-typed it by
+          themselves on a level where they understand what the code
+          does.
+
+  2. Do not Plagiarise
+
+        • *Comment*: This is a wider question than just the use of
+          GenAI, but it applies equally to material produced by GenAI
+          tools.
+        • You *MUST* properly cite and credit any material used in your
+          assignments.  This includes the _work_ of others, and this
+          includes output from GenAI tools.
+        • You *MUST NOT* copy-paste or otherwise present the work of
+          others as if it was your own.
+        • You *SHOULD* make it a habit to always summarise text that you
+          want to use and to immediately add a reference to where you
+          got it from.
+        • You *MAY* include the prompts you used to generate code or
+          text from a GenAI tool, in order to discuss it with your
+          teacher.
+        • *Motivation 1*: The assignments are an opportunity for you to
+          show what _you_ have learned.  By including sources and/or
+          prompts we are able to help you learn more.
+        • *Motivation 2*: Plagiarism is a serious academic offence: You
+          _must always_ give credit to the original author(s).
+        • *Example*: A student asks Claude to generate different
+          suggestions for the code for a particular task, but then
+          writes their own version which is a combination of several
+          suggestions.  They add the prompts used in a source code
+          comment and discuss these with the teacher.
+        • *Example*: A student finds several ready-made solutions to a
+          programming task online, and writes their own solution
+          inspired by what they have read.  They include links to the
+          used pages in a source code comment.
+
+  3. Use AI Tools to Explain, not to Do.
+
+        • You *MAY* use AI to explain different commands and overall
+          workflow.
+        • You *MAY* see this as an opportunity to pratice your ability
+          to find and read documentation and instruction manuals instead
+          of relying on AI tools.
+        • You *SHOULD* make sure that you understand the tools that you
+          use.
+        • You *SHOULD* verify what the AI tells you through independent
+          tests.
+        • You *SHOULD NOT* rely on that the GenAI understand the tools
+          for you.
+        • You *MUST NOT* blame the AI for any mistakes it does.  Those
+          mistakes are yours to catch.
+        • *Motivation*: You must at least be able to identify when GenAI
+          tools suggests something wrong.  Your value as an engineer is
+          further increased if you are also able to work independently
+          with minimal tool or AI support.
+        • *Example*: An engineer asked an AI tool to generate code to
+          implement a feature and realised that the generated code would
+          break the running system and cost millions of dollars.  If
+          they had not independently reviewed the generated code before
+          committing they would not have caught this.
+        • *Comment*: In industry, the line between explaining and doing
+          is blurred, but SHOULD only be crossed by engineers _who
+          already know what they are doing_.
+
+
+File: Provisioning-Deployment.info,  Node: Specific Guidelines,  Prev: General Principles,  Up: GenAI Policy
+
+2.3 Specific Guidelines
+=======================
+
+  1. Installing Software
+
+        • You *MAY* use AI to assist with installing the required
+          software.
+        • You *SHOULD* make sure you have a package manager installed
+          that can automate most software installations, for the future.
+        • *Motivation*: This is not an examined part of the course and
+          you should preferrably not get stuck on this point so you are
+          free to do as you please.  In order to gain more control and
+          understanding, it is better if you use a dedicated package
+          manager.
+        • *Example*: A student is struggling to get git working in WSL2,
+          so they ask Copilot for help, and follows the instructions
+          received.
+
+  2. Answers to Quizzes
+
+        • You *SHOULD NOT* use any GenAI tools to answer the questions.
+        • You *SHOULD NOT* use any GenAI tools to summarise the research
+          articles.
+        • You *MAY* use GenAI tools to improve your language.
+        • *Motivation*: The quizzes do not contribute to the grade; they
+          serve as an indication for yourself to summarise what you have
+          learnt so far, and for us to keep track of your progress
+          through the material, and for us to steer you in the right
+          direction.  Likewise, we require summaries of the research
+          articles only to provide a clear incentive for you to read
+          them.  The summaries are for your own benefit, and if you do
+          not read the article in the first place, you will not benefit
+          from an AI-generated summary of it.
+        • *Example*: A student used ChatGPT to answer the questions only
+          to realise that they still needed to learn the material
+          referenced in the question.
+
+  3. Working with Containers
+
+        • You *MAY* be inspired by existing Dockerfiles, Docker compose
+          files, and Kubernetes files that you find online.
+        • You *MAY* use GenAI tools to generate a Dockerfile, Docker
+          compose file, or a Kubernetes file for you, that you then
+          interpret and re-type in your own project.  Focus on directing
+          AI to achieve your goals while demonstrating your critical
+          thinking.
+        • You *MUST* ensure that your Dockerfiles, Docker compose files,
+          and Kubernetes files _only_ do what is necessary.
+        • You *MUST* ensure that any edited Dockerfile, Docker compose
+          file, or Kubernetes file is _only_ changed where you expect it
+          to be.
+        • You *MUST* be able to read and explain a Dockerfile, a Docker
+          compose file, and a Kubernetes file.
+        • *Motivation*: AI tools regularly generate too much code or too
+          complex solutions, whereas manually written examples are often
+          shorter and more to the point.  Reading many examples of
+          existing Dockerfiles, Docker compose files, and Kubernetes
+          files, and using them as inspiration for your own projects
+          means that you learn how to see through the AI's tendency to
+          over-complicate and bloat so that you are instead able to
+          understand and focus on the core principles.
+        • *Example*: A student asks Claude Code for help to write the
+          remaining service specifications in a partially completed
+          Docker compose file, but writes the specification for
+          environment variables and dependencies on other services
+          manually.  They then compare the new file with the original
+          one and makes sure that there are no other accidental changes.
+        • *Comment*: Because of the tendency to bloat and
+          over-complicate, AI generated software code is actually really
+          bad for learning.  It is much easier to read and understand a
+          minimal example generated by an engineer.
+
+  4. Project Implementation (Assignment "Build Something")
+
+        • You *MUST NOT* use GenAI tools to write any source code or
+          code documentation.
+        • You *SHOULD NOT* use GenAI tools to generate the accompanying
+          report.
+        • You *MAY* read and be inspired by other
+          Kubernetes/microservice projects.
+        • You *MAY* use GenAI to explain existing source code for you.
+        • You *MAY* use AI for planning, idea development, and research.
+          Your final submission should show how you have developed and
+          refined these ideas.
+        • You *SHOULD* discuss with your friends.
+        • *Motivation*: The parts of the implemented projects that we
+          look at is mostly trivial, the intended learning outcome is
+          the ability to build microservices that communicate with each
+          other, and the Kubernetes files necessary to launch the
+          application.  Discussing with your friends is a vital learning
+          tool, and the big difference between that and using an AI tool
+          is that your friends know when to stop explaining and let you
+          find the solution on your own.  The submitted report mostly
+          serves as an introduction to the implemented project to
+          facilitate for us when marking, and we therefore prefer the
+          report to be concise and to the point.  We also ask some
+          reasoning questions that mostly serve as eye-openers for you
+          about what more must be considered if this were a real
+          project.
+        • *Example*: A student is struggling with how to write the
+          source code for an assignment, so they discuss with their
+          classmates who show and explain how they solved the same task.
+
+  5. Modifying Existing Implementations
+
+        • You *MUST NOT* submit source code which is fully AI generated.
+          You must demonstrate your core skills and knowledge.
+        • You *MAY* use GenAI tools to explain the existing codebase.
+        • You *MAY* use AI for planning, idea development, and research.
+          Your final submission should show how you have developed and
+          refined these ideas.
+        • You *SHOULD* discuss with your friends.
+        • *Motivation*: Mechanisms such as map/reduce are at the core of
+          any Big Data processing, and knowing how to use them is an
+          essential skill.  Learning how to use any tool comes from
+          trying it out and understanding if, when, and how it fails.
+        • *Example*: A student uses Claude to further explain the given
+          implementation instructions and to suggest several different
+          examples of how to implement the task, but then manually types
+          their own solution.
+
+  6. Assignment Reports (Big Data Analytics assignments)
+
+        • You *MUST NOT* use GenAI tools to write the reports.
+        • You *MAY* use AI for planning, idea development, and research.
+          Your final submission should show how you have developed and
+          refined these ideas.
+        • You *MAY* use GenAI to improve language and grammar.
+        • *Motivation*: It is through your own analysis that you
+          understand the limitations of Big Data Analytics.  Focus on
+          directing AI to achieve your goals while demonstrating your
+          critical thinking.
+        • *Comment*: We have noticed that AI tools struggle with the
+          analysis assignments in this course: they invent data, and
+          they draw incorrect conclusions.  If you actually generate the
+          data, plot them, and squint at the graphs for twenty seconds,
+          you are able to make a more meaningful and correct analysis
+          than any AI attempt we have so far seen.
+        • *Comment 2*: Yes, it takes time to generate the data.  That is
+          the point, this is why it is called _Big Data_.
+        • *Example*: A student use an AI tool to understand how to plot
+          the data and which statistical tests to run, but does the
+          actual analysis themselves.  They also remember to explain
+          what is seen in the graphs through their own understanding of
+          how the given source code solves the task.
+
+
+File: Provisioning-Deployment.info,  Node: A Note on Reading Research Articles,  Next: Introduction to Orchestration and Provisioning,  Prev: GenAI Policy,  Up: Top
+
+3 A Note on Reading Research Articles
 *************************************
 
 This course may suggest research articles for you to read.  This may
@@ -291,7 +586,7 @@ help in identifying the parts of an article that are important for you.
 
 File: Provisioning-Deployment.info,  Node: Introduction to Orchestration and Provisioning,  Next: Microservices and Lightweight Containers,  Prev: A Note on Reading Research Articles,  Up: Top
 
-3 Introduction to Orchestration and Provisioning
+4 Introduction to Orchestration and Provisioning
 ************************************************
 
 A vital part of making the best use of cloud resources is to have a
@@ -417,7 +712,7 @@ expected to intervene and point-and-click your way to a solution.
 
 File: Provisioning-Deployment.info,  Node: Learning Outcomes,  Up: Introduction to Orchestration and Provisioning
 
-3.1 Learning Outcomes
+4.1 Learning Outcomes
 =====================
 
 Relevant learning outcomes from the course syllabus are:
@@ -443,7 +738,7 @@ will be able to:
 
 File: Provisioning-Deployment.info,  Node: Microservices and Lightweight Containers,  Next: Quiz Hypervisors and Lightweight Virtual Machines,  Prev: Introduction to Orchestration and Provisioning,  Up: Top
 
-4 Microservices and Lightweight Containers
+5 Microservices and Lightweight Containers
 ******************************************
 
 As applications grow, it becomes more and more difficult to understand
@@ -521,7 +816,7 @@ permanent storage may be attached to each microservice.
 
 File: Provisioning-Deployment.info,  Node: Building Microservices,  Next: A Quick Rundown of Docker Terminology,  Up: Microservices and Lightweight Containers
 
-4.1 Building Microservices
+5.1 Building Microservices
 ==========================
 
 What do we then need to do in order to build our application as a
@@ -580,7 +875,7 @@ containers.
 
 File: Provisioning-Deployment.info,  Node: A Quick Rundown of Docker Terminology,  Next: Dockerfile,  Prev: Building Microservices,  Up: Microservices and Lightweight Containers
 
-4.2 A Quick Rundown of Docker Terminology
+5.2 A Quick Rundown of Docker Terminology
 =========================================
 
 When working with Docker you start with a ‘Dockerfile’ .  Each line in
@@ -618,11 +913,10 @@ your running Container.
      +------+-------+                                 |
             +-----------------------------------------+
 
-
 
 File: Provisioning-Deployment.info,  Node: Dockerfile,  Next: Docker Commands,  Prev: A Quick Rundown of Docker Terminology,  Up: Microservices and Lightweight Containers
 
-4.3 Dockerfile
+5.3 Dockerfile
 ==============
 
 Typically, a Dockerfile will contain at least the following commands
@@ -701,7 +995,7 @@ information.
 
 File: Provisioning-Deployment.info,  Node: Docker Commands,  Next: Not Building Microservices -- Infrastructure As A Service,  Prev: Dockerfile,  Up: Microservices and Lightweight Containers
 
-4.4 Docker Commands
+5.4 Docker Commands
 ===================
 
 Now that you have created your Dockerfile, the next step is to start
@@ -782,7 +1076,7 @@ using it.
      So, let's get this image to actually run as a container, using the
      command ‘docker run’.  We need a few parameters for this to work as
      we want it.  Some of the more commonly used parameters are listed
-     in Table *note Table 4.1: tabdocker-run-parameters.
+     in Table *note Table 5.1: tabdocker-run-parameters.
 
      Short       Long
      --------------------------------------------------------------------------------------------------------------------------------
@@ -796,7 +1090,7 @@ using it.
      -i          -interactive    Run the container as an interactive console application.  Usually together with -t
      -t          -tty            Allocate a terminal (console).  Usually together with -i
 
-     Table 4.1: Some of the more common parameters to docker run.
+     Table 5.1: Some of the more common parameters to docker run.
 
      The most common ones you will see are the detach and publish flags,
      and you will often see these together: ‘docker run -dp 8080:3000’,
@@ -827,7 +1121,7 @@ using it.
 
 File: Provisioning-Deployment.info,  Node: Not Building Microservices -- Infrastructure As A Service,  Next: Provisioning your Virtual Machine,  Prev: Docker Commands,  Up: Microservices and Lightweight Containers
 
-4.5 Not Building Microservices - Infrastructure As A Service
+5.5 Not Building Microservices - Infrastructure As A Service
 ============================================================
 
 The alternative to running microservices would be to run a full-fledged
@@ -893,7 +1187,7 @@ machine in Virtualbox.
 
 File: Provisioning-Deployment.info,  Node: Provisioning your Virtual Machine,  Next: Communicating Microservices and REST APIs,  Prev: Not Building Microservices -- Infrastructure As A Service,  Up: Microservices and Lightweight Containers
 
-4.6 Provisioning your Virtual Machine
+5.6 Provisioning your Virtual Machine
 =====================================
 
 With a hypervisor such as above, you get a clean virtual machine, and it
@@ -926,7 +1220,7 @@ which we will get to later (see *note Deployment::).
 
 File: Provisioning-Deployment.info,  Node: Communicating Microservices and REST APIs,  Next: Other communication means,  Prev: Provisioning your Virtual Machine,  Up: Microservices and Lightweight Containers
 
-4.7 Communicating Microservices and REST APIs
+5.7 Communicating Microservices and REST APIs
 =============================================
 
 With microservices we are tearing apart our monolith application into
@@ -998,7 +1292,7 @@ like a proper object.
 
 File: Provisioning-Deployment.info,  Node: Other communication means,  Prev: Communicating Microservices and REST APIs,  Up: Microservices and Lightweight Containers
 
-4.8 Other communication means
+5.8 Other communication means
 =============================
 
 Do note that the required statelessness of a REST service means that the
@@ -1089,7 +1383,7 @@ day.
 
 File: Provisioning-Deployment.info,  Node: Quiz Hypervisors and Lightweight Virtual Machines,  Next: Let's get Practical,  Prev: Microservices and Lightweight Containers,  Up: Top
 
-5 Quiz: Hypervisors and Lightweight Virtual Machines
+6 Quiz: Hypervisors and Lightweight Virtual Machines
 ****************************************************
 
 *TODO* Please read the following articles:
@@ -1149,7 +1443,7 @@ re-plan your commitment for the remainder of the course.
 
 File: Provisioning-Deployment.info,  Node: Let's get Practical,  Next: Quiz Let's get Practical,  Prev: Quiz Hypervisors and Lightweight Virtual Machines,  Up: Top
 
-6 Let's get Practical
+7 Let's get Practical
 *********************
 
 * Menu:
@@ -1162,7 +1456,7 @@ File: Provisioning-Deployment.info,  Node: Let's get Practical,  Next: Quiz Let'
 
 File: Provisioning-Deployment.info,  Node: Introducing the QuoteFinder application,  Next: Install relevant software,  Up: Let's get Practical
 
-6.1 Introducing the QuoteFinder application
+7.1 Introducing the QuoteFinder application
 ===========================================
 
 _QuoteFinder_ is the application we are going to use for testing
@@ -1291,7 +1585,7 @@ MongoDB server.  If left unspecified, TextManager assumes localhost
 
 File: Provisioning-Deployment.info,  Node: Install relevant software,  Next: Installing and Running QFStandalone,  Prev: Introducing the QuoteFinder application,  Up: Let's get Practical
 
-6.2 Install relevant software
+7.2 Install relevant software
 =============================
 
 Before deploying the QuoteFinder app, we need to install and familiarise
@@ -1351,7 +1645,7 @@ Vagrant, please work through some of the tutorials they provide:
 
 File: Provisioning-Deployment.info,  Node: Installing and Running QFStandalone,  Next: A Minimal Qemu Vagrantfile,  Prev: Install relevant software,  Up: Let's get Practical
 
-6.3 Installing and Running QFStandalone
+7.3 Installing and Running QFStandalone
 =======================================
 
   1. Full Virtual Machine
@@ -1764,7 +2058,7 @@ File: Provisioning-Deployment.info,  Node: Installing and Running QFStandalone, 
 
 File: Provisioning-Deployment.info,  Node: A Minimal Qemu Vagrantfile,  Prev: Installing and Running QFStandalone,  Up: Let's get Practical
 
-6.4 A Minimal Qemu Vagrantfile
+7.4 A Minimal Qemu Vagrantfile
 ==============================
 
 In case you want to run Qemu, here is a minimal Vagrantfile for you to
@@ -1798,7 +2092,7 @@ start from.  If you use e.g.  Virtualbox, you will not need this.
 
 File: Provisioning-Deployment.info,  Node: Quiz Let's get Practical,  Next: Provisioning and Orchestration,  Prev: Let's get Practical,  Up: Top
 
-7 Quiz: Let's get Practical
+8 Quiz: Let's get Practical
 ***************************
 
 Please answer the following questions:
@@ -1833,7 +2127,7 @@ re-plan your commitment for the remainder of the course.
 
 File: Provisioning-Deployment.info,  Node: Provisioning and Orchestration,  Next: Quiz Provisioning and Orchestration,  Prev: Quiz Let's get Practical,  Up: Top
 
-8 Provisioning and Orchestration
+9 Provisioning and Orchestration
 ********************************
 
 * Menu:
@@ -1846,7 +2140,7 @@ File: Provisioning-Deployment.info,  Node: Provisioning and Orchestration,  Next
 
 File: Provisioning-Deployment.info,  Node: Provisioning,  Next: Orchestration,  Up: Provisioning and Orchestration
 
-8.1 Provisioning
+9.1 Provisioning
 ================
 
 Whether we are setting up a physical computer, a virtual machine, or a
@@ -1911,7 +2205,7 @@ transfer your deployment to the new state in a controlled manner.
 
 File: Provisioning-Deployment.info,  Node: Orchestration,  Next: Docker Compose,  Prev: Provisioning,  Up: Provisioning and Orchestration
 
-8.2 Orchestration
+9.2 Orchestration
 =================
 
 As the number of services we wish to deploy grows (actually, as soon as
@@ -1941,7 +2235,7 @@ Separation of Concerns for the win!
 
 File: Provisioning-Deployment.info,  Node: Docker Compose,  Next: Cloud Orchestration,  Prev: Orchestration,  Up: Provisioning and Orchestration
 
-8.3 Docker Compose
+9.3 Docker Compose
 ==================
 
 Docker's focus is on provisioning a single image, which is then used as
@@ -1986,7 +2280,7 @@ implicitly defined, which is a relief.
 
 File: Provisioning-Deployment.info,  Node: Cloud Orchestration,  Prev: Docker Compose,  Up: Provisioning and Orchestration
 
-8.4 Cloud Orchestration
+9.4 Cloud Orchestration
 =======================
 
 So now you have your Vagrantfile or your docker compose-file and are
@@ -2022,8 +2316,8 @@ Lambda Functions on e.g Azure or Amazon Web Services.
 
 File: Provisioning-Deployment.info,  Node: Quiz Provisioning and Orchestration,  Next: Application Design and Development,  Prev: Provisioning and Orchestration,  Up: Top
 
-9 Quiz: Provisioning and Orchestration
-**************************************
+10 Quiz: Provisioning and Orchestration
+***************************************
 
 *TODO* Please read the following articles and resources:
 
@@ -2087,7 +2381,7 @@ re-plan your commitment for the remainder of the course.
 
 File: Provisioning-Deployment.info,  Node: Application Design and Development,  Next: Let's get Practical Again,  Prev: Quiz Provisioning and Orchestration,  Up: Top
 
-10 Application Design and Development
+11 Application Design and Development
 *************************************
 
 * Menu:
@@ -2099,7 +2393,7 @@ File: Provisioning-Deployment.info,  Node: Application Design and Development,  
 
 File: Provisioning-Deployment.info,  Node: Principles of Microservice Architectures,  Next: Cloud Architecture Patterns,  Up: Application Design and Development
 
-10.1 Principles of Microservice Architectures
+11.1 Principles of Microservice Architectures
 =============================================
 
 The key quality requirement for cloud architecture patterns is
@@ -2201,7 +2495,7 @@ Platform Service Ecosystem
 
 File: Provisioning-Deployment.info,  Node: Cloud Architecture Patterns,  Next: Introduction to YAML and Docker-Composeyml,  Prev: Principles of Microservice Architectures,  Up: Application Design and Development
 
-10.2 Cloud Architecture Patterns
+11.2 Cloud Architecture Patterns
 ================================
 
 B Wilder, _Cloud Architecture Patterns_, O'Reilly, 2012 is a good
@@ -2431,7 +2725,7 @@ time-limited access keys.
 
 File: Provisioning-Deployment.info,  Node: Introduction to YAML and Docker-Composeyml,  Prev: Cloud Architecture Patterns,  Up: Application Design and Development
 
-10.3 Introduction to YAML and Docker-Compose.yml
+11.3 Introduction to YAML and Docker-Compose.yml
 ================================================
 
 An increasing range of tools use YAML <https://yaml.org/spec/> to
@@ -2542,7 +2836,7 @@ yaml syntax.
 
 File: Provisioning-Deployment.info,  Node: Let's get Practical Again,  Next: Quiz Design Decisions and Development Setup,  Prev: Application Design and Development,  Up: Top
 
-11 Let's get Practical Again
+12 Let's get Practical Again
 ****************************
 
 * Menu:
@@ -2557,7 +2851,7 @@ File: Provisioning-Deployment.info,  Node: Let's get Practical Again,  Next: Qui
 
 File: Provisioning-Deployment.info,  Node: Introducing Version 2 of the QuoteFinder app,  Next: Installing and Running Version 2 of QuoteFinder,  Up: Let's get Practical Again
 
-11.1 Introducing Version 2 of the QuoteFinder app
+12.1 Introducing Version 2 of the QuoteFinder app
 =================================================
 
 Version 2 of the QuoteFinder app replaces the rudimentary search
@@ -2693,7 +2987,7 @@ results.
 
 File: Provisioning-Deployment.info,  Node: Installing and Running Version 2 of QuoteFinder,  Next: Editing the Running Application,  Prev: Introducing Version 2 of the QuoteFinder app,  Up: Let's get Practical Again
 
-11.2 Installing and Running Version 2 of QuoteFinder
+12.2 Installing and Running Version 2 of QuoteFinder
 ====================================================
 
 You have already installed the required software stack (‘docker’ and
@@ -2778,7 +3072,7 @@ And no, I'm not going to tell you how to cheat.
 
 File: Provisioning-Deployment.info,  Node: Editing the Running Application,  Next: Scaling the Deployment,  Prev: Installing and Running Version 2 of QuoteFinder,  Up: Let's get Practical Again
 
-11.3 Editing the Running Application
+12.3 Editing the Running Application
 ====================================
 
 In case you happened to skip directly to the search step, you will
@@ -2845,7 +3139,7 @@ adding any texts this new warning will be printed in the console.
 
 File: Provisioning-Deployment.info,  Node: Scaling the Deployment,  Next: Cleanup and Summary,  Prev: Editing the Running Application,  Up: Let's get Practical Again
 
-11.4 Scaling the Deployment
+12.4 Scaling the Deployment
 ===========================
 
 There is one last thing we wish to do with the running deployment: Scale
@@ -2881,7 +3175,7 @@ container.
 
 File: Provisioning-Deployment.info,  Node: Cleanup and Summary,  Next: Introducing Version 3 of the QuoteFinder app,  Prev: Scaling the Deployment,  Up: Let's get Practical Again
 
-11.5 Cleanup and Summary
+12.5 Cleanup and Summary
 ========================
 
 Stop and clean up after the running deployment by running the following
@@ -2956,7 +3250,7 @@ deal with this.
 
 File: Provisioning-Deployment.info,  Node: Introducing Version 3 of the QuoteFinder app,  Prev: Cleanup and Summary,  Up: Let's get Practical Again
 
-11.6 Introducing Version 3 of the QuoteFinder app
+12.6 Introducing Version 3 of the QuoteFinder app
 =================================================
 
 A few issues continue to itch with QuoteFinder Version 2.  Specifically,
@@ -3097,7 +3391,7 @@ Version 2.
 
 File: Provisioning-Deployment.info,  Node: Quiz Design Decisions and Development Setup,  Next: Deployment with Kubernetes,  Prev: Let's get Practical Again,  Up: Top
 
-12 Quiz: Design Decisions and Development Setup
+13 Quiz: Design Decisions and Development Setup
 ***********************************************
 
 *TODO* Please read the following article:
@@ -3140,7 +3434,7 @@ re-plan your commitment for the remainder of the course.
 
 File: Provisioning-Deployment.info,  Node: Deployment with Kubernetes,  Next: Quiz Deployment with Kubernetes,  Prev: Quiz Design Decisions and Development Setup,  Up: Top
 
-13 Deployment with Kubernetes
+14 Deployment with Kubernetes
 *****************************
 
 * Menu:
@@ -3152,7 +3446,7 @@ File: Provisioning-Deployment.info,  Node: Deployment with Kubernetes,  Next: Qu
 
 File: Provisioning-Deployment.info,  Node: Introduction to Kubernetes,  Next: Get Started with Kubernetes,  Up: Deployment with Kubernetes
 
-13.1 Introduction to Kubernetes
+14.1 Introduction to Kubernetes
 ===============================
 
 With the introduction of Docker Compose, it is now possible to provision
@@ -3214,7 +3508,7 @@ practical example, which is what we'll do next.
 
 File: Provisioning-Deployment.info,  Node: Get Started with Kubernetes,  Next: Attach the Database,  Prev: Introduction to Kubernetes,  Up: Deployment with Kubernetes
 
-13.2 Get Started with Kubernetes
+14.2 Get Started with Kubernetes
 ================================
 
 You have already installed the necessary software to set up a very small
@@ -3390,7 +3684,7 @@ and see if you can't figure out whose IP address this is.
 
 File: Provisioning-Deployment.info,  Node: Attach the Database,  Prev: Get Started with Kubernetes,  Up: Deployment with Kubernetes
 
-13.3 Attach the Database
+14.3 Attach the Database
 ========================
 
 Attaching a database should in theory be easy, but let's take a moment
@@ -3601,7 +3895,7 @@ this, since it is only going to get worse.
 
 File: Provisioning-Deployment.info,  Node: Quiz Deployment with Kubernetes,  Next: Scaling the Database,  Prev: Deployment with Kubernetes,  Up: Top
 
-14 Quiz: Deployment with Kubernetes
+15 Quiz: Deployment with Kubernetes
 ***********************************
 
 *TODO* Please read the following articles and resources:
@@ -3664,7 +3958,7 @@ re-plan your commitment for the remainder of the course.
 
 File: Provisioning-Deployment.info,  Node: Scaling the Database,  Next: Edit a Container in a Pod in a Node in a Cluster,  Prev: Quiz Deployment with Kubernetes,  Up: Top
 
-15 Scaling the Database
+16 Scaling the Database
 ***********************
 
 * Menu:
@@ -3676,7 +3970,7 @@ File: Provisioning-Deployment.info,  Node: Scaling the Database,  Next: Edit a C
 
 File: Provisioning-Deployment.info,  Node: Database Scaling,  Next: MongoDB ReplicaSet,  Up: Scaling the Database
 
-15.1 Database Scaling
+16.1 Database Scaling
 =====================
 
       ____________________________
@@ -3735,7 +4029,7 @@ Madness only ever lies a single design decision away.
 
 File: Provisioning-Deployment.info,  Node: MongoDB ReplicaSet,  Next: Setting up a MongoDB ReplicaSet in Kubernetes,  Prev: Database Scaling,  Up: Scaling the Database
 
-15.2 MongoDB ReplicaSet
+16.2 MongoDB ReplicaSet
 =======================
 
 For the sake of selling access to various tools, everyone agrees that
@@ -3774,7 +4068,7 @@ define, list, and sort a suitable array of invectives.
 
 File: Provisioning-Deployment.info,  Node: Setting up a MongoDB ReplicaSet in Kubernetes,  Prev: MongoDB ReplicaSet,  Up: Scaling the Database
 
-15.3 Setting up a MongoDB ReplicaSet in Kubernetes
+16.3 Setting up a MongoDB ReplicaSet in Kubernetes
 ==================================================
 
 The following items from the previous setup are generic enough that they
@@ -4012,7 +4306,7 @@ The volumeClaimTemplates for the textstore containers
 
 File: Provisioning-Deployment.info,  Node: Edit a Container in a Pod in a Node in a Cluster,  Next: Additional Concepts,  Prev: Scaling the Database,  Up: Top
 
-16 Edit a Container in a Pod in a Node in a Cluster
+17 Edit a Container in a Pod in a Node in a Cluster
 ***************************************************
 
       _______________________________________
@@ -4130,7 +4424,7 @@ Kubernetes deployment.
 
 File: Provisioning-Deployment.info,  Node: Additional Concepts,  Next: Summary,  Prev: Edit a Container in a Pod in a Node in a Cluster,  Up: Top
 
-17 Additional Concepts
+18 Additional Concepts
 **********************
 
 A few loose ends need to be tied up to complete this introduction to
@@ -4296,7 +4590,7 @@ creating a transparent and yet scalable solution.
 
 File: Provisioning-Deployment.info,  Node: Summary,  Next: Assignment Build Something,  Prev: Additional Concepts,  Up: Top
 
-18 Summary
+19 Summary
 **********
 
 This is it!  We have reached the end of the road for what I wanted to
@@ -4366,14 +4660,13 @@ configuration managed and tested.
      (..)
      c(")(")
 
-
    The "only" thing remaining for you to do now is to prove that you too
 have learnt all this.  Read on to figure out how.
 
 
 File: Provisioning-Deployment.info,  Node: Assignment Build Something,  Next: Concept Index,  Prev: Summary,  Up: Top
 
-19 Assignment: Build Something
+20 Assignment: Build Something
 ******************************
 
 It is time to put everything you have learnt so far into practice.  The
@@ -4771,83 +5064,96 @@ Functions and Commands Index
 * YAML Ansible:                          Provisioning.        (line  48)
 * YAML Docker Compose:                   Docker Compose.      (line  14)
 
-
 
 Tag Table:
-Node: Top1468
-Node: Document Overview5720
-Node: A Note on Reading Research Articles8334
-Node: Introduction to Orchestration and Provisioning12125
-Ref: introduction12420
-Node: Learning Outcomes18751
-Node: Microservices and Lightweight Containers19825
-Node: Building Microservices24075
-Node: A Quick Rundown of Docker Terminology27359
-Node: Dockerfile29466
-Node: Docker Commands33260
-Ref: Getting Help33580
-Ref: Docker image and Image Management34598
-Ref: Docker run and Container Management36639
-Ref: tabdocker-run-parameters36954
-Node: Not Building Microservices -- Infrastructure As A Service39564
-Node: Provisioning your Virtual Machine43110
-Node: Communicating Microservices and REST APIs45091
-Node: Other communication means49040
-Node: Quiz Hypervisors and Lightweight Virtual Machines53721
-Node: Let's get Practical56537
-Node: Introducing the QuoteFinder application56932
-Node: Install relevant software63423
-Node: Installing and Running QFStandalone66063
-Ref: Full Virtual Machine66326
-Ref: Docker78031
-Node: A Minimal Qemu Vagrantfile87022
-Node: Quiz Let's get Practical88353
-Node: Provisioning and Orchestration90119
-Node: Provisioning90438
-Node: Orchestration93968
-Node: Docker Compose95660
-Node: Cloud Orchestration97528
-Node: Quiz Provisioning and Orchestration99521
-Node: Application Design and Development102782
-Node: Principles of Microservice Architectures103235
-Node: Cloud Architecture Patterns108676
-Node: Introduction to YAML and Docker-Composeyml121063
-Node: Let's get Practical Again126532
-Node: Introducing Version 2 of the QuoteFinder app127015
-Node: Installing and Running Version 2 of QuoteFinder134353
-Node: Editing the Running Application138165
-Node: Scaling the Deployment141736
-Node: Cleanup and Summary143324
-Node: Introducing Version 3 of the QuoteFinder app146530
-Node: Quiz Design Decisions and Development Setup152244
-Node: Deployment with Kubernetes154379
-Ref: Deployment154615
-Node: Introduction to Kubernetes154712
-Node: Get Started with Kubernetes157905
-Node: Attach the Database165953
-Node: Quiz Deployment with Kubernetes173809
-Node: Scaling the Database177044
-Node: Database Scaling177371
-Node: MongoDB ReplicaSet180231
-Node: Setting up a MongoDB ReplicaSet in Kubernetes182328
-Ref: TextStore StatefulSet183115
-Ref: Qfapp ConfigMap185844
-Ref: QFStandalone Deployment186878
-Ref: Tasks188174
-Node: Edit a Container in a Pod in a Node in a Cluster192029
-Ref: kube-edit192296
-Node: Additional Concepts197506
-Node: Summary205119
-Node: Assignment Build Something208168
-Ref: assignment-build-something208352
-Node: Concept Index212425
-Node: Program Index224491
-Node: Files and Data Types Index230213
-Node: Functions and Commands Index231392
+Node: Top1587
+Node: Document Overview5929
+Node: GenAI Policy8520
+Node: Sources9520
+Node: General Principles10383
+Ref: Full Responsibility and Accountability10563
+Ref: Do not Plagiarise11638
+Ref: Use AI Tools to Explain not to Do13355
+Node: Specific Guidelines14835
+Ref: Installing Software15001
+Ref: Answers to Quizzes15729
+Ref: Working with Containers16778
+Ref: Project Implementation (Assignment ``Build Something'')18881
+Ref: Modifying Existing Implementations20669
+Ref: Assignment Reports (Big Data Analytics assignments)21680
+Node: A Note on Reading Research Articles23152
+Node: Introduction to Orchestration and Provisioning26938
+Ref: introduction27233
+Node: Learning Outcomes33564
+Node: Microservices and Lightweight Containers34638
+Node: Building Microservices38888
+Node: A Quick Rundown of Docker Terminology42172
+Node: Dockerfile44278
+Node: Docker Commands48072
+Ref: Getting Help48392
+Ref: Docker image and Image Management49410
+Ref: Docker run and Container Management51451
+Ref: tabdocker-run-parameters51766
+Node: Not Building Microservices -- Infrastructure As A Service54376
+Node: Provisioning your Virtual Machine57922
+Node: Communicating Microservices and REST APIs59903
+Node: Other communication means63852
+Node: Quiz Hypervisors and Lightweight Virtual Machines68533
+Node: Let's get Practical71349
+Node: Introducing the QuoteFinder application71744
+Node: Install relevant software78235
+Node: Installing and Running QFStandalone80875
+Ref: Full Virtual Machine81138
+Ref: Docker92843
+Node: A Minimal Qemu Vagrantfile101834
+Node: Quiz Let's get Practical103165
+Node: Provisioning and Orchestration104931
+Node: Provisioning105250
+Node: Orchestration108780
+Node: Docker Compose110472
+Node: Cloud Orchestration112340
+Node: Quiz Provisioning and Orchestration114333
+Node: Application Design and Development117596
+Node: Principles of Microservice Architectures118049
+Node: Cloud Architecture Patterns123490
+Node: Introduction to YAML and Docker-Composeyml135877
+Node: Let's get Practical Again141346
+Node: Introducing Version 2 of the QuoteFinder app141829
+Node: Installing and Running Version 2 of QuoteFinder149167
+Node: Editing the Running Application152979
+Node: Scaling the Deployment156550
+Node: Cleanup and Summary158138
+Node: Introducing Version 3 of the QuoteFinder app161344
+Node: Quiz Design Decisions and Development Setup167058
+Node: Deployment with Kubernetes169193
+Ref: Deployment169429
+Node: Introduction to Kubernetes169526
+Node: Get Started with Kubernetes172719
+Node: Attach the Database180767
+Node: Quiz Deployment with Kubernetes188623
+Node: Scaling the Database191858
+Node: Database Scaling192185
+Node: MongoDB ReplicaSet195045
+Node: Setting up a MongoDB ReplicaSet in Kubernetes197142
+Ref: TextStore StatefulSet197929
+Ref: Qfapp ConfigMap200658
+Ref: QFStandalone Deployment201692
+Ref: Tasks202988
+Node: Edit a Container in a Pod in a Node in a Cluster206843
+Ref: kube-edit207110
+Node: Additional Concepts212320
+Node: Summary219933
+Node: Assignment Build Something222981
+Ref: assignment-build-something223165
+Node: Concept Index227238
+Node: Program Index239304
+Node: Files and Data Types Index245026
+Node: Functions and Commands Index246205
 
 End Tag Table
 
 
 Local Variables:
 coding: utf-8
+Info-documentlanguage: en
 End:
