@@ -1197,18 +1197,20 @@ the Introduction (See *note introduction::), we want to do better than
 this.  We wish help from the computer to create a repeatable and
 configuration managed deployment that can be used over and over again.
 
-   This is where the software Vagrant <https://www.vagrantup.com/> comes
-into play.  With Vagrant we create a file ‘Vagrantfile’ where we specify
-the size and type of virtual machines we want, the operating system we
-want on them, and any other software we want installed - analogous to
-the ‘Dockerfile’ discussed earlier, but with much more details.  It is
-important to note that Vagrant does not create any virtual machines
-itself, it is not a hypervisor.  Instead, it interacts with other
-hypervisors such as Virtualbox, VMWare, Hyper-V, or Qemu and requests
-them to do the "heavy lifting" for it.  The beauty of this is that you
-learn once how to work with Vagrant, and can use the same Vagrantfile to
-create your same virtual machine using any of the supported hypervisors
-and indeed even launch your virtual machine on a cloud provider.
+   This is where software such as Vagrant <https://www.vagrantup.com/>
+comes into play (Update 2026: Sadly, Vagrant is on the verge of being
+discontinued) .  With Vagrant we create a file ‘Vagrantfile’ where we
+specify the size and type of virtual machines we want, the operating
+system we want on them, and any other software we want installed -
+analogous to the ‘Dockerfile’ discussed earlier, but with much more
+details.  It is important to note that Vagrant does not create any
+virtual machines itself, it is not a hypervisor.  Instead, it interacts
+with other hypervisors such as Virtualbox, VMWare, Hyper-V, or Qemu and
+requests them to do the "heavy lifting" for it.  The beauty of this is
+that you learn once how to work with Vagrant, and can use the same
+Vagrantfile to create your same virtual machine using any of the
+supported hypervisors and indeed even launch your virtual machine on a
+cloud provider.
 
    Unlike Docker, a Vagrantfile can also specify several machine
 configurations in one, so you can orchestrate your entire application at
@@ -1860,9 +1862,9 @@ went wrong and try a different approach next time.
 the computer can run for us.  Eventually we are able to review the log
 output to see what went wrong and how to modify the installation script.
 
-   We have already seen two forms of provisioning; the one we made with
-Docker, and the one we made with Vagrant.  Let us examine the
-differences.
+   We have already mentioned two forms of provisioning; the one we made
+with Docker, and one using tools that scripts the provisioning of a full
+VM.  Let us examine the differences.
 
    With Docker we started with an almost ready machine (‘FROM
 node:18-alpine’) , and the focus was to install _anything else_ that we
@@ -1870,18 +1872,18 @@ needed and to further configure the microservice image.  We also had to
 repeat some of this configuration on the command line when we started a
 container based on this image.
 
-   With Vagrant we started with a relatively clean linux install
-(bento/ubuntu-20.04), and then had to execute a series of shell commands
-in order to install the rest.  We can not compare with the docker
-install straight off since we also installed a MongoDB database, and we
-downloaded the entire QuoteFinder repository (not just its dependencies)
-inside the virtual machine, but if you go back and look, you will notice
-that there was a bit of ‘sudo apt-get update’, ‘sudo apt-get install
--y’, some ‘echo’ and ‘cd here/and/there’ , and some copying of files
-with ‘cp’ .  All the things you could expect to do interactively, but
-saved in the Vagrantfile to be able to run and re-run the provisioning
-at will.  Technically, we _can_ do all of this in our Dockerfile too,
-but there is generally less need for it.
+   With a full VM provisioning we start with a relatively clean linux
+install (e.g.  bento/ubuntu-20.04), and then have to execute a series of
+shell commands in order to install the rest.  We can not compare with
+the docker install straight off since we can install many tools inside
+the same VM, e.g.  a MongoDB database, and we downloaded the entire
+QuoteFinder repository (not just its dependencies) inside the virtual
+machine, but typically there is a bit of ‘sudo apt-get update’, ‘sudo
+apt-get install -y’, some ‘echo’ and ‘cd here/and/there’ , and some
+copying of files with ‘cp’ .  All the things you could expect to do
+interactively, but saved in a provisioning script to be able to run and
+re-run the provisioning at will.  Technically, we _can_ do all of this
+in our Dockerfile too, but there is generally less need for it.
 
    If we do not wish to get our hands dirty with shell provisioning, we
 can use provisioning software instead.  For example, Ansible
@@ -1921,14 +1923,14 @@ but the desire to _separate concerns_ means that it is soon desirable to
 delegate the provisioning to a provisioning tool such as Ansible and
 leave the Vagrantfile responsible only for the orchestration.
 
-   With Vagrant, adding more machines is as easy as adding additional
-blocks of ‘config.vm.define’.  For each defined virtual machine, the
-network alias, preferred IP address, and forwarded ports can be
-configured.  Additional provisioning can also be added for each machine,
-but I would advise against this: it is better to rely on your designated
-provisioning tool for _all_ provisioning, and only include as little as
-is necessary to bootstrap this provisioning tool in your Vagrantfile.
-Separation of Concerns for the win!
+   With tools such as Vagrant, adding more machines is as easy as adding
+additional blocks of ‘config.vm.define’.  For each defined virtual
+machine, the network alias, preferred IP address, and forwarded ports
+can be configured.  Additional provisioning can also be added for each
+machine, but I would advise against this: it is better to rely on your
+designated provisioning tool for _all_ provisioning, and only include as
+little as is necessary to bootstrap this provisioning tool in your
+Vagrantfile.  Separation of Concerns for the win!
 
 
 File: Provisioning-Deployment.info,  Node: Docker Compose,  Next: Cloud Orchestration,  Prev: Orchestration,  Up: Provisioning and Orchestration
@@ -1981,13 +1983,13 @@ File: Provisioning-Deployment.info,  Node: Cloud Orchestration,  Prev: Docker Co
 9.4 Cloud Orchestration
 =======================
 
-So now you have your Vagrantfile or your docker compose-file and are
-able to deploy any number of machines or services locally.  The next
-step up is to deploy to a cloud provider instead.  Vagrant has
-rudimentary support for this since one may define several ‘provider’
-blocks in the Vagrantfile, and determine at startup time whither to
-deploy: ‘vagrant up --provider <some provider>’ .  Docker compose, on
-the contrary, does not easily support this.
+So now you have your docker compose-file and are able to deploy any
+number of machines or services locally.  The next step up is to deploy
+to a cloud provider instead.  Some tools have has rudimentary support
+for this by allowing the definition of several different ‘provider’
+blocks in the configuration, and determine at startup time whither to
+deploy, e.g.: ‘vagrant up --provider <some provider>’ .  Docker compose,
+on the contrary, does not easily support this.
 
    What if you want to deploy to several providers in one go?  What if
 you want to first deploy a small set of servers, and then declaratively
@@ -3148,35 +3150,18 @@ File: Provisioning-Deployment.info,  Node: Introduction to Kubernetes,  Next: Ge
 ===============================
 
 With the introduction of Docker Compose, it is now possible to provision
-and orchestrate docker microservices in the same way as has previously
-been introduced for full virtual machines e.g.  with the use of Vagrant.
-Some differences are nevertheless worth mentioning:
+and orchestrate a whole collection of docker microservices.  The
+provisioning is done in a first step, where an initial docker image is
+created.  Up to a point, the software in this image is ready to start
+running, requiring only a small set of additional run-time
+configuration.  Docker compose is responsible for the next step, which
+is to orchestrate and deploy the specified services.  However, Docker
+Compose only deploys locally.
 
-   With Vagrant and a hypervisor, provisioning and deployment is done in
-one step.  While a separate provisioning tool such as Ansible or Puppet
-may be used, the idea is still to start with an empty virtual machine
-and then install and configure everything from the operating system and
-required tool stack all the way up to the software that is supposed to
-run on the VM.
-
-   With Docker the provisioning is done in a separate step, where an
-initial docker image is created.  Up to a point, the software in this
-image is ready to start running, requiring only a small set of
-additional run-time configuration.  Docker compose is responsible for
-the next step, which is to orchestrate and deploy the specified
-services.
-
-   There is, however, one more trick up Vagrant's sleeve, and that is
-the ability to deploy to different providers.  Adding a small
-configuration block in the Vagrantfile makes it possible to use the same
-configuration to deploy to many different cloud providers (or, should
-you so desire, different hypervisors locally).
-
-   This is not supported by Docker Compose.  To this end, it is time to
-introduce the next tool in the tool chain, i.e.  Kubernetes
-<https://kubernetes.io/> .  Somewhat simplified, one can say that
-Kubernetes is used to set up the deployment infrastructure within which
-the application microservices are run.
+   To deploy to a cloud provider, it is time to introduce the next tool
+in the tool chain, i.e.  Kubernetes <https://kubernetes.io/> .  Somewhat
+simplified, one can say that Kubernetes is used to set up the deployment
+infrastructure within which the application microservices are run.
 
    *Some Kubernetes Terminology* From the inside out:
 
@@ -4323,8 +4308,6 @@ technologies, i.e.:
    Specifically, we use some specific tools:
 
    • Docker, as a means to define a single microservice
-   • Vagrant and a Hypervisor, as an alternative to set up a full
-     fledged virtual machine
    • Docker Compose, to orchestrate a complete local solution
    • Kubernetes, to orchestrate and deploy a solution possibly to a
      cloud provider
@@ -4510,30 +4493,30 @@ Concept Index
 * Kubernetes Access Roles:               Attach the Database. (line  16)
 * Kubernetes ConfigMap:                  Attach the Database. (line  47)
 * Kubernetes Container:                  Introduction to Kubernetes.
-                                                              (line  39)
+                                                              (line  22)
 * Kubernetes Deployment:                 Introduction to Kubernetes.
-                                                              (line  39)
+                                                              (line  22)
 * Kubernetes EmptyDir:                   Edit a Container in a Pod in a Node in a Cluster.
                                                               (line  35)
 * Kubernetes HostPath:                   Edit a Container in a Pod in a Node in a Cluster.
                                                               (line  43)
 * Kubernetes Label:                      Introduction to Kubernetes.
-                                                              (line  39)
+                                                              (line  22)
 * Kubernetes Liveness Probes:            Additional Concepts. (line  28)
 * Kubernetes Node:                       Edit a Container in a Pod in a Node in a Cluster.
                                                               (line  57)
 * Kubernetes NodePort:                   Get Started with Kubernetes.
                                                               (line 112)
 * Kubernetes Persistent Storage:         Introduction to Kubernetes.
-                                                              (line  39)
+                                                              (line  22)
 * Kubernetes Persistent Volume:          Introduction to Kubernetes.
-                                                              (line  39)
+                                                              (line  22)
 * Kubernetes Persistent Volume Claim:    Introduction to Kubernetes.
-                                                              (line  39)
+                                                              (line  22)
 * Kubernetes Persistent VolumeClaim Templates: Attach the Database.
                                                               (line  29)
 * Kubernetes Pod:                        Introduction to Kubernetes.
-                                                              (line  39)
+                                                              (line  22)
 * Kubernetes Readiness Probe:            Setting up a MongoDB ReplicaSet in Kubernetes.
                                                               (line  22)
 * Kubernetes ReplicaSet:                 Get Started with Kubernetes.
@@ -4542,11 +4525,11 @@ Concept Index
 * Kubernetes Scaling:                    Additional Concepts. (line  18)
 * Kubernetes Secrets:                    Additional Concepts. (line  61)
 * Kubernetes Service:                    Introduction to Kubernetes.
-                                                              (line  39)
+                                                              (line  22)
 * Kubernetes SessionAffinity:            Additional Concepts. (line   6)
 * Kubernetes StatefulSet:                Attach the Database. (line  10)
 * Kubernetes Volume:                     Introduction to Kubernetes.
-                                                              (line  39)
+                                                              (line  22)
 * Lambda Functions:                      Additional Concepts. (line 152)
 * Layered Architecture Style:            Communicating Microservices and REST APIs.
                                                               (line  58)
@@ -4649,7 +4632,7 @@ Program Index
                                                               (line   6)
 * Kubernetes:                            Cloud Orchestration. (line  14)
 * Kubernetes <1>:                        Introduction to Kubernetes.
-                                                              (line  31)
+                                                              (line  15)
 * less:                                  Docker Commands.     (line  21)
 * LXC Linux Containers:                  Building Microservices.
                                                               (line  41)
@@ -4794,57 +4777,57 @@ Ref: Docker run and Container Management51392
 Ref: tab-docker-run-parameters51708
 Node: Not Building Microservices -- Infrastructure As A Service54318
 Node: Provisioning your Virtual Machine57864
-Node: Communicating Microservices and REST APIs59845
-Node: Other communication means63794
-Node: Quiz Hypervisors and Lightweight Virtual Machines68475
-Node: Let's get Practical71291
-Node: Introducing the QuoteFinder application71627
-Node: Install relevant software78118
-Node: Installing and Running QFStandalone79550
-Ref: Docker79778
-Node: Quiz Let's get Practical88766
-Node: Provisioning and Orchestration90330
-Node: Provisioning90649
-Node: Orchestration94179
-Node: Docker Compose95871
-Node: Cloud Orchestration97739
-Node: Quiz Provisioning and Orchestration99732
-Node: Application Design and Development102995
-Node: Principles of Microservice Architectures103448
-Node: Cloud Architecture Patterns108889
-Node: Introduction to YAML and Docker-Composeyml121276
-Node: Let's get Practical Again126745
-Node: Introducing Version 2 of the QuoteFinder app127228
-Node: Installing and Running Version 2 of QuoteFinder134566
-Node: Editing the Running Application138378
-Node: Scaling the Deployment141949
-Node: Cleanup and Summary143537
-Node: Introducing Version 3 of the QuoteFinder app146743
-Node: Quiz Design Decisions and Development Setup152457
-Node: Deployment with Kubernetes154592
-Ref: Deployment154828
-Node: Introduction to Kubernetes154925
-Node: Get Started with Kubernetes158118
-Node: Attach the Database166166
-Node: Quiz Deployment with Kubernetes174022
-Node: Scaling the Database177257
-Node: Database Scaling177584
-Node: MongoDB ReplicaSet180444
-Node: Setting up a MongoDB ReplicaSet in Kubernetes182541
-Ref: TextStore StatefulSet183328
-Ref: Qfapp ConfigMap186057
-Ref: QFStandalone Deployment187091
-Ref: Tasks188387
-Node: Edit a Container in a Pod in a Node in a Cluster192242
-Ref: kube-edit192509
-Node: Additional Concepts197719
-Node: Summary205332
-Node: Assignment Build Something208380
-Ref: assignment-build-something208564
-Node: Concept Index212637
-Node: Program Index224703
-Node: Files and Data Types Index230425
-Node: Functions and Commands Index231604
+Node: Communicating Microservices and REST APIs59918
+Node: Other communication means63867
+Node: Quiz Hypervisors and Lightweight Virtual Machines68548
+Node: Let's get Practical71364
+Node: Introducing the QuoteFinder application71700
+Node: Install relevant software78191
+Node: Installing and Running QFStandalone79623
+Ref: Docker79851
+Node: Quiz Let's get Practical88839
+Node: Provisioning and Orchestration90403
+Node: Provisioning90722
+Node: Orchestration94310
+Node: Docker Compose96017
+Node: Cloud Orchestration97885
+Node: Quiz Provisioning and Orchestration99893
+Node: Application Design and Development103156
+Node: Principles of Microservice Architectures103609
+Node: Cloud Architecture Patterns109050
+Node: Introduction to YAML and Docker-Composeyml121437
+Node: Let's get Practical Again126906
+Node: Introducing Version 2 of the QuoteFinder app127389
+Node: Installing and Running Version 2 of QuoteFinder134727
+Node: Editing the Running Application138539
+Node: Scaling the Deployment142110
+Node: Cleanup and Summary143698
+Node: Introducing Version 3 of the QuoteFinder app146904
+Node: Quiz Design Decisions and Development Setup152618
+Node: Deployment with Kubernetes154753
+Ref: Deployment154989
+Node: Introduction to Kubernetes155086
+Node: Get Started with Kubernetes157451
+Node: Attach the Database165499
+Node: Quiz Deployment with Kubernetes173355
+Node: Scaling the Database176590
+Node: Database Scaling176917
+Node: MongoDB ReplicaSet179777
+Node: Setting up a MongoDB ReplicaSet in Kubernetes181874
+Ref: TextStore StatefulSet182661
+Ref: Qfapp ConfigMap185390
+Ref: QFStandalone Deployment186424
+Ref: Tasks187720
+Node: Edit a Container in a Pod in a Node in a Cluster191575
+Ref: kube-edit191842
+Node: Additional Concepts197052
+Node: Summary204665
+Node: Assignment Build Something207616
+Ref: assignment-build-something207800
+Node: Concept Index211873
+Node: Program Index223939
+Node: Files and Data Types Index229661
+Node: Functions and Commands Index230840
 
 End Tag Table
 

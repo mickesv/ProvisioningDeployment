@@ -1050,7 +1050,7 @@ With a hypervisor such as above@comma{} you get a clean virtual machine@comma{} 
 
 @pindex Vagrant
 @tindex Vagrantfile
-This is where the software Vagrant @uref{https://www.vagrantup.com/} comes into play. With Vagrant we create a file @samp{Vagrantfile} where we specify the size and type of virtual machines we want@comma{} the operating system we want on them@comma{} and any other software we want installed -- analogous to the @samp{Dockerfile} discussed earlier@comma{} but with much more details. It is important to note that Vagrant does not create any virtual machines itself@comma{} it is not a hypervisor. Instead@comma{} it interacts with other hypervisors such as Virtualbox@comma{} VMWare@comma{} Hyper-V@comma{} or Qemu and requests them to do the ``heavy lifting'' for it. The beauty of this is that you learn once how to work with Vagrant@comma{} and can use the same Vagrantfile to create your same virtual machine using any of the supported hypervisors and indeed even launch your virtual machine on a cloud provider.
+This is where software such as Vagrant @uref{https://www.vagrantup.com/} comes into play (Update 2026: Sadly@comma{} Vagrant is on the verge of being discontinued) . With Vagrant we create a file @samp{Vagrantfile} where we specify the size and type of virtual machines we want@comma{} the operating system we want on them@comma{} and any other software we want installed -- analogous to the @samp{Dockerfile} discussed earlier@comma{} but with much more details. It is important to note that Vagrant does not create any virtual machines itself@comma{} it is not a hypervisor. Instead@comma{} it interacts with other hypervisors such as Virtualbox@comma{} VMWare@comma{} Hyper-V@comma{} or Qemu and requests them to do the ``heavy lifting'' for it. The beauty of this is that you learn once how to work with Vagrant@comma{} and can use the same Vagrantfile to create your same virtual machine using any of the supported hypervisors and indeed even launch your virtual machine on a cloud provider.
 
 Unlike Docker@comma{} a Vagrantfile can also specify several machine configurations in one@comma{} so you can orchestrate your entire application at once instead of having to work separately with each component/microservice in your system setup. But this is another story which we will get to later (see @ref{Deployment}).
 
@@ -1552,11 +1552,11 @@ As good engineers we of course maintain a logbook of everything we do to the mac
 
 As better engineers@comma{} we encode our installation into a @emph{script} that the computer can run for us. Eventually we are able to review the log output to see what went wrong and how to modify the installation script.
 
-We have already seen two forms of provisioning; the one we made with Docker@comma{} and the one we made with Vagrant. Let us examine the differences.
+We have already mentioned two forms of provisioning; the one we made with Docker@comma{} and one using tools that scripts the provisioning of a full VM@. Let us examine the differences.
 
 With Docker we started with an almost ready machine (@samp{FROM node:18-alpine}) @comma{} and the focus was to install @emph{anything else} that we needed and to further configure the microservice image. We also had to repeat some of this configuration on the command line when we started a container based on this image.
 
-With Vagrant we started with a relatively clean linux install (bento/ubuntu-20.04)@comma{} and then had to execute a series of shell commands in order to install the rest. We can not compare with the docker install straight off since we also installed a MongoDB database@comma{} and we downloaded the entire QuoteFinder repository (not just its dependencies) inside the virtual machine@comma{} but if you go back and look@comma{} you will notice that there was a bit of @code{sudo apt-get update}@comma{} @code{sudo apt-get install -y}@comma{} some @code{echo} and @code{cd here/and/there} @comma{} and some copying of files with @samp{cp} . All the things you could expect to do interactively@comma{} but saved in the Vagrantfile to be able to run and re-run the provisioning at will. Technically@comma{} we @emph{can} do all of this in our Dockerfile too@comma{} but there is generally less need for it.
+With a full VM provisioning we start with a relatively clean linux install (e.g. bento/ubuntu-20.04)@comma{} and then have to execute a series of shell commands in order to install the rest. We can not compare with the docker install straight off since we can install many tools inside the same VM@comma{} e.g. a MongoDB database@comma{} and we downloaded the entire QuoteFinder repository (not just its dependencies) inside the virtual machine@comma{} but typically there is a bit of @code{sudo apt-get update}@comma{} @code{sudo apt-get install -y}@comma{} some @code{echo} and @code{cd here/and/there} @comma{} and some copying of files with @samp{cp} . All the things you could expect to do interactively@comma{} but saved in a provisioning script to be able to run and re-run the provisioning at will. Technically@comma{} we @emph{can} do all of this in our Dockerfile too@comma{} but there is generally less need for it.
 
 @pindex Ansible
 @pindex Chef
@@ -1572,7 +1572,7 @@ An added benefit to provisioning tools like this is that it is possible to updat
 @cindex Orchestration
 As the number of services we wish to deploy grows (actually@comma{} as soon as it grows to more than one@comma{} e.g. an application and a database)@comma{} there is a need to manage the collection of deployments. An application may@comma{} for example@comma{} consist of several collaborating virtual machines@comma{} each requiring a specific provisioning and configuration of ports to forward@comma{} or there may be a desire to create more instances of the database and have some form of load balancing between them. This additional step is called @emph{Orchestration}. Vagrant does both; orchestration of which virtual machines to start ( for example@comma{} @code{config.vm.define "app"} creates one machine named ``app'')@comma{} and the provisioning of them ( @samp{config.vm.provision "shell"} ). This is practical for smaller setups@comma{} but the desire to @emph{separate concerns} means that it is soon desirable to delegate the provisioning to a provisioning tool such as Ansible and leave the Vagrantfile responsible only for the orchestration.
 
-With Vagrant@comma{} adding more machines is as easy as adding additional blocks of @samp{config.vm.define}. For each defined virtual machine@comma{} the network alias@comma{} preferred IP address@comma{} and forwarded ports can be configured. Additional provisioning can also be added for each machine@comma{} but I would advise against this: it is better to rely on your designated provisioning tool for @emph{all} provisioning@comma{} and only include as little as is necessary to bootstrap this provisioning tool in your Vagrantfile. Separation of Concerns for the win!
+With tools such as Vagrant@comma{} adding more machines is as easy as adding additional blocks of @samp{config.vm.define}. For each defined virtual machine@comma{} the network alias@comma{} preferred IP address@comma{} and forwarded ports can be configured. Additional provisioning can also be added for each machine@comma{} but I would advise against this: it is better to rely on your designated provisioning tool for @emph{all} provisioning@comma{} and only include as little as is necessary to bootstrap this provisioning tool in your Vagrantfile. Separation of Concerns for the win!
 
 @node Docker Compose
 @section Docker Compose
@@ -1606,7 +1606,7 @@ And is started with @samp{docker compose -f docker-compose-v1.yml up}. I am not 
 @node Cloud Orchestration
 @section Cloud Orchestration
 
-So now you have your Vagrantfile or your docker compose-file and are able to deploy any number of machines or services locally. The next step up is to deploy to a cloud provider instead. Vagrant has rudimentary support for this since one may define several @samp{provider} blocks in the Vagrantfile@comma{} and determine at startup time whither to deploy: @samp{vagrant up --provider <some provider>} . Docker compose@comma{} on the contrary@comma{} does not easily support this. 
+So now you have your docker compose-file and are able to deploy any number of machines or services locally. The next step up is to deploy to a cloud provider instead. Some tools have has rudimentary support for this by allowing the definition of several different @samp{provider} blocks in the configuration@comma{} and determine at startup time whither to deploy@comma{} e.g.: @samp{vagrant up --provider <some provider>} . Docker compose@comma{} on the contrary@comma{} does not easily support this. 
 
 @pindex Terraform
 @pindex Kubernetes
@@ -2461,16 +2461,10 @@ There is a Quiz on Canvas where you can submit your article summaries and answer
 @node Introduction to Kubernetes
 @section Introduction to Kubernetes
 
-With the introduction of Docker Compose@comma{} it is now possible to provision and orchestrate docker microservices in the same way as has previously been introduced for full virtual machines e.g. with the use of Vagrant. Some differences are nevertheless worth mentioning:
-
-With Vagrant and a hypervisor@comma{} provisioning and deployment is done in one step. While a separate provisioning tool such as Ansible or Puppet may be used@comma{} the idea is still to start with an empty virtual machine and then install and configure everything from the operating system and required tool stack all the way up to the software that is supposed to run on the VM@.
-
-With Docker the provisioning is done in a separate step@comma{} where an initial docker image is created. Up to a point@comma{} the software in this image is ready to start running@comma{} requiring only a small set of additional run-time configuration. Docker compose is responsible for the next step@comma{} which is to orchestrate and deploy the specified services.
-
-There is@comma{} however@comma{} one more trick up Vagrant's sleeve@comma{} and that is the ability to deploy to different providers. Adding a small configuration block in the Vagrantfile makes it possible to use the same configuration to deploy to many different cloud providers (or@comma{} should you so desire@comma{} different hypervisors locally).
+With the introduction of Docker Compose@comma{} it is now possible to provision and orchestrate a whole collection of docker microservices. The provisioning is done in a first step@comma{} where an initial docker image is created. Up to a point@comma{} the software in this image is ready to start running@comma{} requiring only a small set of additional run-time configuration. Docker compose is responsible for the next step@comma{} which is to orchestrate and deploy the specified services. However@comma{} Docker Compose only deploys locally.
 
 @pindex Kubernetes
-This is not supported by Docker Compose. To this end@comma{} it is time to introduce the next tool in the tool chain@comma{} i.e. Kubernetes @uref{https://kubernetes.io/} . Somewhat simplified@comma{} one can say that Kubernetes is used to set up the deployment infrastructure within which the application microservices are run.
+To deploy to a cloud provider@comma{} it is time to introduce the next tool in the tool chain@comma{} i.e. Kubernetes @uref{https://kubernetes.io/} . Somewhat simplified@comma{} one can say that Kubernetes is used to set up the deployment infrastructure within which the application microservices are run.
 
 @strong{Some Kubernetes Terminology}
 From the inside out:
@@ -3440,8 +3434,6 @@ Specifically@comma{} we use some specific tools:
 @itemize
 @item
 Docker@comma{} as a means to define a single microservice
-@item
-Vagrant and a Hypervisor@comma{} as an alternative to set up a full fledged virtual machine
 @item
 Docker Compose@comma{} to orchestrate a complete local solution
 @item
