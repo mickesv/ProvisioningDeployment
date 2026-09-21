@@ -642,10 +642,10 @@ Once you are done (not yet), you may want to clean up after yourself. Each image
 *** Docker run and Container Management
 #+FINDEX: docker run
 #+FINDEX: docker container run
-So, let's get this image to actually run as a container, using the command =docker run=. We need a few parameters for this to work as we want it. Some of the more commonly used parameters are listed in Table [[tab:docker-run-parameters]]
+So, let's get this image to actually run as a container, using the command =docker run=. We need a few parameters for this to work as we want it. Some of the more commonly used parameters are listed in Table [[tab-docker-run-parameters]]
 
 #+CAPTION: Some of the more common parameters to docker run.
-#+LABEL: tab:docker-run-parameters
+#+LABEL: tab-docker-run-parameters
 | Short     | Long          |                                                                                                   |
 | Parameter | Parameter     | Description                                                                                       |
 |-----------+---------------+---------------------------------------------------------------------------------------------------|
@@ -919,8 +919,6 @@ Before deploying the QuoteFinder app, we need to install and familiarise ourselv
 - (Linux) docker
 - (Linux) docker-compose
 - (Linux) minikube and kubectl
-- Virtualbox or Qemu
-- Vagrant
 
 *TODO* Install Docker https://docs.docker.com/get-docker/
 #+PINDEX: Homebrew
@@ -928,168 +926,12 @@ On Windows or OSX, the software to install is /Docker Desktop/. This is now avai
 
 On Linux, you will want to install ~docker~, ~docker-compose~, and ~minikube~.
 
-*TODO* Install Vagrant https://developer.hashicorp.com/vagrant/downloads
-
-*TODO* Install a Hypervisor
-Vagrant provides a script language for  provisioning and orchestrating a solution, but it relies on that you already have a hypervisor installed (see [[iaas]] ). Virtualbox https://www.virtualbox.org/ is free and easy to install if your hardware is supported. Vagrant works more or less straight off with Virtualbox.
-
-You may wish to try Qemu https://www.qemu.org/download/#linux , and all its gory details https://wiki.archlinux.org/title/QEMU. If you do, you will need the following two vagrant plugins, and config the libvirt provider in the =Vagrantfile= (see [[qemu-vagrant]] ):
-
-#+begin_src bash
-vagrant plugin install vagrant-mutate # to convert boxes between different hypervisors
-vagrant plugin install vagrant-libvirt
-
-# You may also wish to download and convert a box image for use with qemu:
-vagrant box add bento/ubuntu-20.04
-vagrant mutate bento/ubuntu-20.04 libvirt
-#+end_src
-
 *TODO* Run some Tutorials
-To familiarise yourself with Docker and Vagrant, please work through some of the tutorials they provide:
+To familiarise yourself with Docker, please work through some of the tutorials they provide:
 
 1. Docker https://docs.docker.com/get-started/
 2. Docker with node.js  https://docs.docker.com/language/nodejs/
-3. Vagrant https://developer.hashicorp.com/vagrant/tutorials
 ** Installing and Running QFStandalone :Practice:
-*** Full Virtual Machine
-The first step is to run the QFStandalone app as if you were running it on "bare metal", i.e. just as you would do if you install it directly on your machine. The benefit of running it in a separate virtual machine is that you will not litter your own machine with any of the software required for this one app. If you are involved in several different projects, each requiring their own technology stack and (possibly) different versions of some tools, it quickly becomes a nightmare to keep track of on a single machine. If you instead get into the habit of always developing inside a virtual machine, you will avoid much of this pain. Not to mention that you should not trust the software that some random teacher tells you to install, so running things inside a virtual machine is a prudent security measure. Lastly, should you later decide do deploy to a cloud provider, your machine setup is already scripted, configuration managed, and ready to go.
-
-One note before you begin: In Vagrant you define which boxes you want and give them a name (e.g. "app" in the tasks below) with the command ~config.vm.define~. This name is used in commands to vagrant (e.g. ~vagrant reload app~ to reload the "app" box) but may be different from the name with which you access the box on the network, i.e. the hostname.
-
-#+begin_quote
-*One more warning*: Using Vagrant and a hypervisor /ought to be/ transparently independent of what host OS you are running. In practice, however, this is not the case with Windows. Some remediation can be done by ensuring that some things are enabled in the bios of the computer, together with other settings inside Windows itself. This works part of the way, but more recent versions of MongoDB uses hardware instructions that are not available from inside a virtual machine.
-
-In short: It is a mess.
-
-If you only have access to a Windows machine, then just read through this part of the tasks and skip ahead to the next section where you will be doing similar things in /Docker/ instead. Running a full virtual machine with a scripted startup (e.g. Vagrant) is a useful skill to have in your toolbox, but it is not worth stopping your progress in the course over. In the rest of the course, you will be using Docker-like tools anyway.
-
-Some things you may wish to try:
-- VirtualBox does not play nice when Hyper-V is enabled on Windows ( https://stackoverflow.com/questions/74986772/failed-to-start-mongod-6-0-in-virtualbox-machine-with-ubuntu-20-04 , https://forums.virtualbox.org/viewtopic.php?f=25&t=99390 , https://stackoverflow.com/a/68214280 )
-- It might help to activate intel-vt/amd-v in your virtual machine.
-- MongoDB version 5 and upwards require a CPU with an x8-64 architecture supporting AVX instructions. Verify that you have this by logging into the VM and run the command ~lscpu~.
-#+end_quote
-
-*Tasks*
-0. [@0] Open a terminal in whichever way your operating system expects you to.
-
-1. Create an empty directory on your machine, e.g. ~QuoteFinder/Version1/vagrant~ , and cd into it.
-
-2. Create a Vagrantfile according to what is required for your particular hypervisor.
-   - The box to use is =bento/ubuntu-20.04=
-   - Define one VM, e.g. called =app=  # --> what does that mean?
-   - Configure this VM so that it forwards the guest port 3000 to the host port 8080
-
-3. Set up provisioning of the VM to install MongoDB and node.js as follows:
-
-#+begin_src ruby
-  config.vm.provision "shell", inline: <<-SHELL
-  sudo apt-get update
-  sudo apt-get install -y git curl wget gnupg ca-certificates
-
-  echo "----------> Installing MongoDB-org"
-  curl -fsSL https://pgp.mongodb.com/server-7.0.asc | \
-   sudo gpg -o /usr/share/keyrings/mongodb-server-7.0.gpg \
-   --dearmor
-
-   echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-7.0.gpg ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/7.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-7.0.list
-
-  sudo apt-get update
-  sudo apt-get install -y mongodb-org
-  sudo systemctl start mongod
-
-  echo "----------> Installing node.js"
-  sudo mkdir -p /etc/apt/keyrings
-  curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
-
-  NODE_MAJOR=20
-  echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" | sudo tee /etc/apt/sources.list.d/nodesource.list
-
-  sudo apt-get update
-  sudo apt-get install nodejs -y
-  sudo npm install -g nodemon
-  SHELL
-#+end_src
-
-4. [@4] Set up provisioning of the VM to download QuoteFinder and set it up as follows (note that this is run as the user =vagrant= in order to get file permissions right):
-
-#+begin_src ruby
-config.vm.provision "shell", privileged: false, inline: <<-SHELL
-echo "----------> Downloading QuoteFinder"
-cd /home/vagrant
-if [ -d "./QuoteFinder" ]; then
-   echo "repo already cloned..."   
-else
-   git clone https://github.com/mickesv/QuoteFinder/
-fi
-cp -r QuoteFinder/Containers/Version1 .
-
-echo "----------> Setting up QFStandalone"
-cd Version1/QFStandalone
-npm install
-
-SHELL
-#+end_src
-
-The if-statement here is not strictly necessary but it helps us if we want to re-provision without destroying the VM first, since otherwise git will throw an error at us.
-
-5. [@5] Start the machine: ~vagrant up~ 
-6. Log in to the machine with ~vagrant ssh~ and double check that everything is installed as it should be:
-
-#+begin_src bash
-$ node --version
-v19.7.0
-$ mongosh --version
-1.7.1
-$ ls -l Version1/QFStandalone/
-total 116
--rw-rw-r--   1 vagrant vagrant    150 Feb 23 11:37 Dockerfile
-drwxrwxr-x 134 vagrant vagrant   4096 Feb 23 11:38 node_modules
--rw-rw-r--   1 vagrant vagrant    414 Feb 23 11:37 package.json
--rw-rw-r--   1 vagrant vagrant 100895 Feb 23 11:38 package-lock.json
-drwxrwxr-x   4 vagrant vagrant   4096 Feb 23 11:37 src
-#+end_src
-
-Your specific version numbers may of course vary, but specific things to look at is that the node version is not something hopelessly outdated such as =0.10.0=, that the owner of the files is =vagrant=, that there is a =package-lock.json= file, and a =node_modules= directory.
-
-7. [@7] log out and start the QuoteFinder app with =vagrant ssh -c 'cd ~/Version1/QFStandalone && npm run dev'=
-
-8. We can now test the app. Open a web browser to http://localhost:8080/add and click the 'Add' button to add a book to your database. Your terminal window where the app is running will print some info, hopefully ending with /Text added./ If not, make note of any error messages printed.
-
-9. Go to http://localhost:8080/ and search for something, e.g. 'prince'. This will give a list of hits. Remember to keep an eye on the output in the terminal (ignore the =TEXTSTORE_HOST= warning for now).
-
-10. We can also test editing the app. In a new terminal, on your /host/ machine, navigate to the directory where you have your Vagrantfile and amaze at the fact that this directory still contains nothing but the Vagrantfile.
-
-11. Log in to the running virtual machine with ~vagrant ssh~, change directory to =~/Version1/QFStandalone/src= and open the file =index.js= in an editor. At least two editors are installed by default, =vi= and =nano=.
-
-12. In the function ~startPage()~ , instead of directly return a page rendering, let us by default always list the available texts. So replace the return line with =return listTextsPage(req, res);= and save. Because we are internally using ~nodemon~ https://nodemon.io/ to start our app (this is specified in =package.json= ), the app is restarted whenever we save a file, which you can go back to your first terminal and verify.
-
-If you think it was cumbersome to edit the file like this, then any modern IDE ought to support opening a file over a network protocol. In Emacs, for example, you open the file as usual but with the search path ~/vagrant:version1--app:/home/vagrant/Version1/QFStandalone/src/index.js~ , i.e. using the protocol ~/vagrant:~ , open a file on the machine ~app~ as specified in the Vagrantfile in the directory ~version1~ , and then the full path to the file inside the guest machine.
-
-Another approach (which is maybe more likely) is that you would develop locally in a sub-directory relative to where the Vagrantfile is located. You can specify the sync folder and mechanism in the Vagrantfile (see https://developer.hashicorp.com/vagrant/docs/synced-folders/basic_usage). The standard sync type is ~nfs~, which requires an nfs server running on your host. Furthermore, you need to instruct Vagrant to disable ~UDP~ by configuring your sync folder as follows:
-
-#+begin_src ruby
-Vagrant.configure("2") do |config|
-  [...]	
-  config.vm.synced_folder ".", "/vagrant", type: "nfs", nfs_udp: false
-  [...]
-end
-#+end_src
-
-This will mount the directory in which the Vagrantfile resides to ~/vagrant~ on the guest machine (Please, do log in and check this). Alternatively, you can use ~rsync~ as type for the sync folder (see the example in the qemu configuration [[qemu-vagrant]]). While this does not require an nfs server on the host, you need to run ~vagrant rsync-auto~ to sync in real-time and not only when the guest boots up. 
-
-*Summary*
-We have now
-1. Configured a virtual machine using Vagrant and a hypervisor of your choice.
-2. Provisioned the machine with the help of some shell scripting so that it has node.js installed and is running a MongoDB database.
-3. Installed version 1 of the QuoteFinder app.
-4. Started the machine and let it set everything up.
-5. Started the QuoteFinder app and tested it to ensure that it is able to connect to the web client and the database.
-6. Edited a file in the QuoteFinder app and seen the app restart and the changes immediately go live.
-
-Not bad for a first try, eh?
-
-*Cleanup*
-Run ~vagrant destroy -f~ to take down the machine and scrub it from your computer. All that remains now is the Vagrantfile (Sadly, the edit we made is also lost because we never committed it), but that is also all we need to start the machine and re-provision it again.
 *** Docker
 The next step is to microservice the app. QFStandalone is still simple enough so that it will be run as a single microservice. However, we want to run the database as a separate microservice. If nothing else, this will mean that any books that we add to the database will remain when we rebuild the QFStandalone image.
 
@@ -1179,7 +1021,7 @@ We have now:
 7. Connected Version1/QFStandalone with MongoDB using our virtual network and started the app so that we may test it.
 8. Edited a file locally and see the running app inside the container restart to reflect the updated version.
 
-Not bad for a /second/ try, eh?
+Not bad for a first try, eh?
 
 *Cleanup*
 #+begin_src bash
@@ -1203,47 +1045,16 @@ Not bad for a /second/ try, eh?
                 ||----w |
                 ||     ||
 #+end_src
-** A Minimal Qemu Vagrantfile <<qemu-vagrant>> :Overview:
-In case you want to run Qemu, here is a minimal Vagrantfile for you to start from. If you use e.g. Virtualbox, you will not need this.
-
-#+begin_src ruby
-  Vagrant.configure("2") do |config|
-    # Some of these things may not be necessary, but it does yield a smoother setup.
-    config.vm.synced_folder ".", "/vagrant", type: "rsync"
-    config.vm.boot_timeout = 999999
-    config.ssh.insert_key = false
-    config.vm.box_check_update = false
-
-    # This is the most important section where you define the parameters for qemu/libvirt
-    config.vm.provider :libvirt do |libvirt|
-      # Don't forget to create your storage pool
-      libvirt.storage_pool_name="default"
-      libvirt.driver="kvm"
-      libvirt.uri="qemu:///system"
-      libvirt.memory = 1024
-      libvirt.graphics_type = "none"
-      libvirt.cpus = 1
-    end
-
-    # And this is just your bog standard Vagrantfile to fire up one virtual machine
-    # using bento/ubuntu-18.04 and the name "test_machine"
-    config.vm.box = "bento/ubuntu-18.04"
-    config.vm.define "test_machine" do |node|
-    end
-  end
-#+end_src
 * Quiz: Let's get Practical :Quiz:
 Please answer the following questions:
 
 1. QFStandalone depends on five javascript packages. In what file are these dependencies specified?
 2. The dependencies are never installed on your host computer. How do you instruct Docker that they should be installed?
-3. How do you instruct Vagrant that they should be installed?
-4. Which file/javascript module is responsible for setting up the http routes?
-5. What are the responsibilities of the =SimpleTextManager= class?
-6. What are the responsibilities of the file =textStore.js= ?
-7. The function =index.js::searchTexts()= is mostly built up around promises. Where is the first Promise created?
-8. Briefly outline what you would need to do if you wish to add a dependency to a new javascript package in your Vagrant solution.
-9. Briefly outline what you would need to do if you wish to add a dependency to a new javascript package in your Docker solution.
+3. Which file/javascript module is responsible for setting up the http routes?
+4. What are the responsibilities of the =SimpleTextManager= class?
+5. What are the responsibilities of the file =textStore.js= ?
+6. The function =index.js::searchTexts()= is mostly built up around promises. Where is the first Promise created?
+7. Briefly outline what you would need to do if you wish to add a dependency to a new javascript package in your Docker solution.
 
 {{{CanvasQuiz}}}
 
